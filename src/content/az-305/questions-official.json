@@ -1,0 +1,1822 @@
+[
+  {
+    "id": "az-305-q201",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing an Azure governance structure for a company with several business units that each own multiple subscriptions. You need to apply Azure Policy and role assignments consistently across related subscriptions. Which design meets the requirements?",
+    "options": [
+      "Group the subscriptions into management groups",
+      "Group the subscriptions into a single tenant",
+      "Group each subscription into resource groups",
+      "Group the subscriptions into Azure blueprints"
+    ],
+    "answer": 0,
+    "explanation": "Management groups provide a single scope above subscriptions for consistent policy and RBAC inheritance. Tenants isolate directory boundaries, while resource groups and blueprints do not group subscriptions.",
+    "docs": [
+      {
+        "label": "Azure management groups",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q202",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing a subscription structure for a company that must isolate billing and limits for each department. You need separate budgets and service quotas per department. Which design meets the requirements?",
+    "options": [
+      "Create one resource group per department",
+      "Create one subscription per department",
+      "Create one management group per department",
+      "Create one billing profile per department"
+    ],
+    "answer": 1,
+    "explanation": "Subscriptions are the boundary for billing and resource limits, so a subscription per department isolates budgets and quotas. Resource groups and management groups do not provide separate billing.",
+    "docs": [
+      {
+        "label": "Resource and subscription organization",
+        "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/design-area/resource-org-subscriptions"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q203",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are reviewing a design where virtual machines are over-provisioned and idle. You need to recommend the Well-Architected pillar that addresses wasted spend. Which pillar do you recommend?",
+    "options": [
+      "The Reliability pillar",
+      "The Security pillar",
+      "The Cost Optimization pillar",
+      "The Operational Excellence pillar"
+    ],
+    "answer": 2,
+    "explanation": "Cost Optimization focuses on eliminating waste and right-sizing resources. Reliability, Security, and Operational Excellence address availability, threat protection, and operations respectively.",
+    "docs": [
+      {
+        "label": "Cost Optimization pillar",
+        "url": "https://learn.microsoft.com/en-us/azure/well-architected/cost-optimization/"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q204",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to prevent users from deploying virtual machines to unsupported Azure regions. Solution: Assign an Azure Policy with a deny effect at the management group scope. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "An Azure Policy with a deny effect blocks non-compliant resource creation at the assigned scope. Assigning it to a management group applies the restriction to all contained subscriptions.",
+    "docs": [
+      {
+        "label": "Azure Policy effects",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q205",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to grant an administrator a permanent Owner role so they can manage resources at any time. Solution: Use Microsoft Entra Privileged Identity Management to assign the Owner role permanently. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "PIM is designed for time-bound, just-in-time access with approval, not permanent assignments. Use a direct role assignment for permanent standing access.",
+    "docs": [
+      {
+        "label": "Privileged Identity Management",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q206",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing hybrid identity for a company that must keep passwords synchronized from on-premises Active Directory to Microsoft Entra ID. You need password hash synchronization with seamless single sign-on. Which solution meets the requirements?",
+    "options": [
+      "Microsoft Entra Connect cloud sync",
+      "Microsoft Entra B2B collaboration",
+      "Microsoft Entra External ID for customers",
+      "Microsoft Entra Connect Sync"
+    ],
+    "answer": 3,
+    "explanation": "Microsoft Entra Connect Sync provides password hash synchronization and seamless single sign-on for hybrid identity. Cloud sync does not support seamless SSO, and B2B and External ID target guest and consumer identity.",
+    "docs": [
+      {
+        "label": "What is Microsoft Entra Connect Sync?",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q207",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing identity for a customer-facing app where users register with personal email or social accounts. You need self-service sign-up and branded sign-in pages. Which solution meets the requirements?",
+    "options": [
+      "Azure AD B2C",
+      "Microsoft Entra B2B collaboration",
+      "Microsoft Entra Connect Sync",
+      "Microsoft Entra ID federation"
+    ],
+    "answer": 0,
+    "explanation": "Azure AD B2C provides self-service registration, social identity providers, and custom branded sign-in. B2B and Connect target partner and employee identities respectively.",
+    "docs": [
+      {
+        "label": "Azure AD B2C documentation",
+        "url": "https://learn.microsoft.com/en-us/entra/external-id/customers/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q208",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing privileged access for a security team. You need just-in-time elevation to the Contributor role that expires automatically and requires approval. Which solution meets the requirements?",
+    "options": [
+      "Azure role assignments with conditions",
+      "Microsoft Entra Privileged Identity Management",
+      "Azure Policy with a deny effect",
+      "Microsoft Entra Conditional Access"
+    ],
+    "answer": 1,
+    "explanation": "PIM provides time-bound, approval-based, just-in-time activation of privileged roles. Direct assignments, Policy, and Conditional Access do not grant expiring role activation.",
+    "docs": [
+      {
+        "label": "Privileged Identity Management",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q209",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to require multi-factor authentication for all users signing in from outside the corporate network. Solution: Create a Microsoft Entra Conditional Access policy with a network location condition and an MFA grant control. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Conditional Access policies evaluate sign-in conditions such as location and can require MFA as a grant control. This challenges risky sign-ins as configured.",
+    "docs": [
+      {
+        "label": "Conditional Access overview",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q210",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need a single pane of glass to query logs from virtual machines, containers, and applications across subscriptions. Solution: Configure Log Analytics workspaces and use Azure Monitor. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure Monitor with Log Analytics workspaces centralizes logs and metrics from many resource types for querying and alerting. Workspaces can collect data across subscriptions.",
+    "docs": [
+      {
+        "label": "Azure Monitor overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q211",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing telemetry for an application. You need to trace requests, detect exceptions, and view dependency latency end to end. Which service meets the requirements?",
+    "options": [
+      "Azure Log Analytics workspace",
+      "Azure Activity Log",
+      "Azure Application Insights",
+      "Azure Service Health alerts"
+    ],
+    "answer": 2,
+    "explanation": "Application Insights provides application performance management including request tracing, exceptions, and dependency tracking. Log Analytics is for log queries, and Activity Log records control-plane events.",
+    "docs": [
+      {
+        "label": "Application Insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q212",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing compliance for a regulated workload. You need to group several related policy definitions and assign them together as one unit. Which feature meets the requirements?",
+    "options": [
+      "A management group hierarchy",
+      "A custom Azure role",
+      "A single resource lock",
+      "An Azure Policy initiative"
+    ],
+    "answer": 3,
+    "explanation": "An initiative is a collection of policy definitions that can be assigned as a single unit for compliance. Management groups, roles, and locks do not bundle policies.",
+    "docs": [
+      {
+        "label": "Azure Policy initiative",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q213",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing identity for a company with on-premises Active Directory. You need to provision users and groups to Microsoft Entra ID without deploying a synchronization server on-premises. Which solution meets the requirements?",
+    "options": [
+      "Microsoft Entra Connect cloud sync",
+      "Microsoft Entra Connect Sync",
+      "Microsoft Entra B2B collaboration",
+      "Microsoft Entra ID federation with ADFS"
+    ],
+    "answer": 0,
+    "explanation": "Cloud sync provisions identities from on-premises AD to Entra ID using lightweight agents, without a full sync server. Connect Sync requires an on-premises sync server.",
+    "docs": [
+      {
+        "label": "Microsoft Entra Connect cloud sync",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/what-is-cloud-sync"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q214",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to prevent accidental deletion of a production resource group. Solution: Apply a Delete lock to the resource group. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A Delete lock prevents authorized users from deleting the locked resource or resource group. It does not block modifications, but deletion is prevented.",
+    "docs": [
+      {
+        "label": "Resource locks",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q215",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need an application running on a virtual machine to authenticate to Azure Key Vault without storing credentials. Solution: Enable a system-assigned managed identity on the virtual machine. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A system-assigned managed identity provides an automatically managed identity in Entra ID for the VM, enabling credential-free authentication to resources like Key Vault.",
+    "docs": [
+      {
+        "label": "Managed identities overview",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q216",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing alerting for critical metrics. You need to notify on-call engineers by email and trigger a runbook in response to one alert rule. Which feature meets the requirements?",
+    "options": [
+      "A Log Analytics query",
+      "An action group",
+      "A diagnostic setting",
+      "A data collection rule"
+    ],
+    "answer": 1,
+    "explanation": "Action groups define notification and automation targets, such as email and runbook actions, that alert rules invoke. Other options collect or route data but do not notify.",
+    "docs": [
+      {
+        "label": "Action groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q217",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing identity for a single company with subsidiaries that must share one directory and one set of user accounts. You need a single identity boundary with centralized administration. Which design meets the requirements?",
+    "options": [
+      "One tenant per subsidiary",
+      "One tenant per subscription",
+      "One Microsoft Entra tenant",
+      "One tenant per application"
+    ],
+    "answer": 2,
+    "explanation": "A single tenant provides one directory and identity boundary with centralized user and access administration. Multiple tenants fragment identities.",
+    "docs": [
+      {
+        "label": "What is Microsoft Entra ID?",
+        "url": "https://learn.microsoft.com/en-us/entra/fundamentals/whatis"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q218",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing hybrid identity where passwords must be validated by on-premises Active Directory in real time without storing password hashes in the cloud. Which option meets the requirements?",
+    "options": [
+      "Password hash synchronization",
+      "Federation with ADFS",
+      "Seamless single sign-on",
+      "Pass-through authentication mode"
+    ],
+    "answer": 3,
+    "explanation": "Pass-through authentication validates credentials against on-premises AD in real time without syncing password hashes. PHS stores hashes in the cloud, and federation relies on ADFS.",
+    "docs": [
+      {
+        "label": "Pass-through authentication",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/how-to-connect-pta"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q219",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to grant users permission to only restart virtual machines, and no other actions. Solution: Create a custom role with the Microsoft.Compute/virtualMachines/restart/action permission and assign it. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A custom role with a narrowly scoped action grants exactly the restart permission. Custom roles allow least-privilege access beyond built-in roles.",
+    "docs": [
+      {
+        "label": "Azure custom roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q220",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to retain control-plane operations on a subscription for ten years. Solution: Send the Azure Activity Log to a Log Analytics workspace with a ten-year retention policy. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The Activity Log records control-plane events, and routing it to Log Analytics enables long-term retention beyond the default 90 days.",
+    "docs": [
+      {
+        "label": "Azure Activity log",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q221",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing access and compliance. You need to separate the decision of which users can deploy resources from which resource configurations are allowed. Which pair of controls meets the requirements?",
+    "options": [
+      "RBAC and Azure Policy",
+      "RBAC and resource locks",
+      "Azure Policy and blueprints",
+      "RBAC and management groups"
+    ],
+    "answer": 0,
+    "explanation": "RBAC controls who can perform actions, while Azure Policy controls what configurations are allowed. Together they separate authorization from compliance enforcement.",
+    "docs": [
+      {
+        "label": "Azure Policy overview",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q222",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing governance for privileged roles. You need periodic certification that users still require their assigned roles, with attestation by managers. Which feature meets the requirements?",
+    "options": [
+      "Microsoft Entra Privileged Identity Management",
+      "Microsoft Entra access reviews",
+      "Microsoft Entra Identity Protection",
+      "Microsoft Entra Conditional Access"
+    ],
+    "answer": 1,
+    "explanation": "Access reviews provide periodic certification where reviewers attest whether users still need access. PIM controls activation, while Identity Protection and Conditional Access address risk and sign-in.",
+    "docs": [
+      {
+        "label": "Access reviews",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q223",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing monitoring for a company that requires centralized billing and one set of dashboards, but each business unit must have its own access boundary. Which design meets the requirements?",
+    "options": [
+      "A separate workspace per business unit",
+      "A separate workspace per subscription",
+      "A single workspace with table-level RBAC",
+      "A separate workspace per resource group"
+    ],
+    "answer": 2,
+    "explanation": "A single workspace centralizes data and billing while table-level RBAC restricts access per business unit. Separate workspaces fragment data and dashboards.",
+    "docs": [
+      {
+        "label": "Log Analytics workspace design",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q224",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to assign the Reader role to a contractor for a fixed 30 days. Solution: Assign the Reader role directly and rely on the contractor leaving the role after 30 days. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Direct assignments persist until manually removed and are not time-bound. Use an eligible assignment with an end date or a PIM assignment for time-bound access.",
+    "docs": [
+      {
+        "label": "Privileged Identity Management",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q225",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to stream metrics and logs from an Azure resource to Event Hubs for third-party monitoring. Solution: Configure a diagnostic setting that sends data to an Event Hubs namespace. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Diagnostic settings route platform metrics and logs to Event Hubs, Log Analytics, or Storage. Streaming to Event Hubs enables integration with external monitoring tools.",
+    "docs": [
+      {
+        "label": "Diagnostic settings",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q226",
+    "domain": "Design data storage solutions",
+    "prompt": "You are migrating an on-premises SQL Server workload that uses cross-database queries and SQL Server Agent jobs. You need a fully managed platform service. Which service meets the requirements?",
+    "options": [
+      "Azure SQL Database only",
+      "Azure Synapse Analytics only",
+      "Azure Cosmos DB only",
+      "Azure SQL Managed Instance"
+    ],
+    "answer": 3,
+    "explanation": "Managed Instance supports cross-database queries and SQL Server Agent, unlike Azure SQL Database. Synapse and Cosmos DB do not host this SQL Server workload.",
+    "docs": [
+      {
+        "label": "Azure SQL Managed Instance",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q227",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing an Azure Cosmos DB account for a global app that must always read the latest committed write across regions. Which consistency level meets the requirements?",
+    "options": [
+      "Strong consistency level",
+      "Eventual consistency level",
+      "Session consistency level",
+      "Consistent prefix level"
+    ],
+    "answer": 0,
+    "explanation": "Strong consistency guarantees linearizable reads across regions, ensuring readers never see stale data. The other levels allow some staleness.",
+    "docs": [
+      {
+        "label": "Cosmos DB consistency levels",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q228",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing a Cosmos DB container with heavy read and write throughput. You need to avoid hot partitions as data grows. Which choice best meets the requirements?",
+    "options": [
+      "A low-cardinality key",
+      "A high-cardinality key",
+      "A timestamp-based key",
+      "No partition key"
+    ],
+    "answer": 1,
+    "explanation": "A high-cardinality key distributes items evenly across physical partitions, avoiding hot spots. Low-cardinality and timestamp keys concentrate load, and a key is required.",
+    "docs": [
+      {
+        "label": "Cosmos DB partitioning",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q229",
+    "domain": "Design data storage solutions",
+    "prompt": "You need to store analytics data that requires a hierarchical namespace and POSIX-style access control lists. Solution: Create an Azure Data Lake Storage Gen2 account with hierarchical namespace enabled. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Data Lake Storage Gen2 adds a hierarchical namespace and POSIX ACLs to blob storage, meeting analytics access-control requirements.",
+    "docs": [
+      {
+        "label": "Data Lake Storage Gen2",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q230",
+    "domain": "Design data storage solutions",
+    "prompt": "You need a storage account that can serve reads from a secondary region during a regional outage. Solution: Use geo-redundant storage (GRS). Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "GRS replicates data to a secondary region but does not allow read access to it during an outage. Read-access geo-redundant storage (RA-GRS) enables secondary reads.",
+    "docs": [
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q231",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing Cosmos DB for a workload with unpredictable, bursty traffic and long idle periods. You need to pay only for capacity consumed with no manual tuning. Which option meets the requirements?",
+    "options": [
+      "Provisioned throughput mode",
+      "Autoscale throughput mode",
+      "Serverless capacity mode",
+      "Manual throughput mode"
+    ],
+    "answer": 2,
+    "explanation": "Serverless mode bills per request unit consumed and requires no throughput management, ideal for bursty and idle workloads. Provisioned and autoscale modes require configuring capacity.",
+    "docs": [
+      {
+        "label": "Cosmos DB serverless",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/serverless"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q232",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing storage for Hadoop-based analytics that must support directory semantics and atomic rename operations. Which feature must the storage account enable?",
+    "options": [
+      "A private endpoint",
+      "Storage blob versioning",
+      "A service endpoint",
+      "A hierarchical namespace"
+    ],
+    "answer": 3,
+    "explanation": "A hierarchical namespace provides directory semantics and atomic renames for analytics workloads like Hadoop and Spark. The other features address security or versioning.",
+    "docs": [
+      {
+        "label": "Hierarchical namespace",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-namespace"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q233",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing storage for audit logs that are rarely accessed but must be retrievable immediately when needed. Which access tier minimizes cost while meeting the retrieval requirement?",
+    "options": [
+      "The Cool tier",
+      "The Hot tier",
+      "The Archive tier",
+      "The Premium tier"
+    ],
+    "answer": 0,
+    "explanation": "Cool tier is for infrequently accessed data with immediate retrieval, while Archive tier has hour-long rehydration. Hot is for frequent access and Premium is performance-optimized.",
+    "docs": [
+      {
+        "label": "Blob access tiers",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q234",
+    "domain": "Design data storage solutions",
+    "prompt": "You need each of several databases to scale compute independently without sharing resources. Solution: Place the databases in a single elastic pool. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Elastic pools share a single set of resources across databases, so compute is not independent. Independent scaling requires separate single databases.",
+    "docs": [
+      {
+        "label": "Elastic pools",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/elastic-pool-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q235",
+    "domain": "Design data storage solutions",
+    "prompt": "You need to encrypt a storage account using a key stored in Azure Key Vault that you rotate and control. Solution: Configure customer-managed keys for the storage account. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Customer-managed keys let you encrypt storage using your own Key Vault keys, giving you control over rotation and revocation.",
+    "docs": [
+      {
+        "label": "Customer-managed keys",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q236",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing storage that must remain available if an entire availability zone fails, and replicate asynchronously to another region. Which redundancy meets the requirements?",
+    "options": [
+      "Use read-access geo-redundant storage",
+      "Use geo-zone-redundant storage",
+      "Use zone-redundant storage",
+      "Use locally redundant storage"
+    ],
+    "answer": 1,
+    "explanation": "Geo-zone-redundant storage (GZRS) combines zone-level redundancy within the primary region with asynchronous replication to a secondary region. RA-GRS lacks intra-region zone redundancy.",
+    "docs": [
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q237",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing shared storage that multiple virtual machines must mount as an SMB file share. Which service meets the requirements?",
+    "options": [
+      "Azure Blob Storage",
+      "Azure Disk Storage",
+      "Azure Files service",
+      "Azure Queue Storage"
+    ],
+    "answer": 2,
+    "explanation": "Azure Files provides SMB and NFS file shares that VMs can mount. Blob is object storage, Disk provides raw disks, and Queue provides messaging.",
+    "docs": [
+      {
+        "label": "Azure Files",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q238",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing a globally distributed Cosmos DB account. You need to accept writes in two regions with automatic conflict handling. Which configuration meets the requirements?",
+    "options": [
+      "Single-region writes with read replicas",
+      "Multi-region writes with strong consistency",
+      "Single-region writes with geo-redundancy",
+      "Multi-region writes with last-writer-wins"
+    ],
+    "answer": 3,
+    "explanation": "Multi-region writes allow writes in multiple regions, and last-writer-wins resolves conflicts automatically. Strong consistency is incompatible with multi-region writes.",
+    "docs": [
+      {
+        "label": "Multi-region writes",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-multi-master"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q239",
+    "domain": "Design data storage solutions",
+    "prompt": "You need to store block blobs and file shares in the same storage account using the general-purpose v2 account type. Solution: Create a general-purpose v2 storage account and enable both blob and file services. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "General-purpose v2 accounts support block blobs, file shares, tables, and queues together, meeting the requirement.",
+    "docs": [
+      {
+        "label": "Storage account overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q240",
+    "domain": "Design data storage solutions",
+    "prompt": "You need to guarantee that a blob cannot be modified or deleted for a compliance retention period. Solution: Enable a time-based retention policy on a version-level immutability policy. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Version-level immutability with a time-based retention policy locks blob versions so they cannot be modified or deleted until retention expires.",
+    "docs": [
+      {
+        "label": "Version-level immutability",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-version-level-worm-policies"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q241",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing a database that must scale storage independently of compute and support rapid scale-out of read replicas. Which option meets the requirements?",
+    "options": [
+      "Azure SQL Database Hyperscale",
+      "Azure SQL Database serverless",
+      "Azure SQL Database Basic tier",
+      "Azure SQL Managed Instance"
+    ],
+    "answer": 0,
+    "explanation": "Hyperscale separates compute and storage and supports fast read replicas. Serverless auto-scales compute but does not separate storage in the same way, and Basic has fixed limits.",
+    "docs": [
+      {
+        "label": "Hyperscale service tier",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/service-tier-hyperscale"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q242",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing a Cosmos DB API for a new application that queries JSON documents with rich SQL syntax and requires automatic indexing. Which API meets the requirements?",
+    "options": [
+      "The Table API",
+      "The NoSQL API",
+      "The MongoDB API",
+      "The Cassandra API"
+    ],
+    "answer": 1,
+    "explanation": "The NoSQL (core SQL) API supports rich SQL queries over JSON documents with automatic indexing. Table, MongoDB, and Cassandra APIs target different data models.",
+    "docs": [
+      {
+        "label": "Choose an API",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/choose-api"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q243",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing storage cost management for blobs. You need to automatically move blobs to a cooler tier after 30 days. Which feature meets the requirements?",
+    "options": [
+      "A shared access signature",
+      "A stored access policy",
+      "A lifecycle management policy",
+      "An Azure Policy assignment"
+    ],
+    "answer": 2,
+    "explanation": "Lifecycle management policies automatically transition blobs between access tiers based on rules. The other options govern access or compliance, not tiering.",
+    "docs": [
+      {
+        "label": "Lifecycle management",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q244",
+    "domain": "Design data storage solutions",
+    "prompt": "You need a storage account that automatically continues serving writes from a secondary region during a primary outage. Solution: Use geo-redundant storage. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "GRS replicates to a secondary region but does not automatically fail over writes; a customer-initiated failover is required. RA-GRS only enables secondary reads.",
+    "docs": [
+      {
+        "label": "Storage disaster recovery",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q245",
+    "domain": "Design data storage solutions",
+    "prompt": "You need to ensure a Cosmos DB container never throttles requests regardless of traffic spikes. Solution: Configure autoscale throughput with a maximum limit above peak demand. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Autoscale scales within a configured maximum; requests beyond the max still return throttling. No configuration can guarantee zero throttling under unbounded demand.",
+    "docs": [
+      {
+        "label": "Cosmos DB request units",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q246",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing storage for a database that requires sub-millisecond latency and very high IOPS with dynamic performance tuning. Which managed disk type meets the requirements?",
+    "options": [
+      "Premium SSD managed disks",
+      "Standard SSD managed disks",
+      "Standard HDD managed disks",
+      "Ultra Disk managed disks"
+    ],
+    "answer": 3,
+    "explanation": "Ultra Disks provide sub-millisecond latency and independently tunable IOPS and throughput. Premium SSDs have single-digit millisecond latency and fixed performance tiers.",
+    "docs": [
+      {
+        "label": "Managed disk types",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q247",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing a key-value store that must scale globally with low latency and multi-region writes. Which service meets the requirements?",
+    "options": [
+      "Azure Cosmos DB",
+      "Azure Table Storage",
+      "Azure Blob Storage",
+      "Azure Queue Storage"
+    ],
+    "answer": 0,
+    "explanation": "Cosmos DB is a globally distributed NoSQL database with multi-region writes and low latency. Table Storage is single-region by default, and Blob and Queue are not key-value databases.",
+    "docs": [
+      {
+        "label": "Cosmos DB introduction",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q248",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing access to archived blobs. You need to read an archived blob after changing its tier to Hot. Which process meets the requirements?",
+    "options": [
+      "Download the blob directly",
+      "Rehydrate the blob first",
+      "Copy the blob directly",
+      "Delete and recreate the blob"
+    ],
+    "answer": 1,
+    "explanation": "Archived blobs must be rehydrated to an online tier before reads; direct download or copy is not possible while in Archive tier.",
+    "docs": [
+      {
+        "label": "Blob rehydration",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/archive-rehydrate-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q249",
+    "domain": "Design data storage solutions",
+    "prompt": "You need to maintain a readable secondary database in another region for disaster recovery and offload read workloads. Solution: Configure active geo-replication for the Azure SQL database. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Active geo-replication maintains readable secondary replicas in other regions that can be used for reads and failover.",
+    "docs": [
+      {
+        "label": "Active geo-replication",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q250",
+    "domain": "Design data storage solutions",
+    "prompt": "You need an Azure Cosmos DB account to provide strong consistency across regions by default. Solution: Create a standard account without changing the default consistency level. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The default consistency level for a new Cosmos DB account is Session, not Strong. You must explicitly configure Strong consistency.",
+    "docs": [
+      {
+        "label": "Cosmos DB consistency levels",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q251",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing a recovery plan where business owners accept losing up to five minutes of data. Which objective does this tolerance define?",
+    "options": [
+      "The recovery time objective",
+      "The maximum tolerable downtime",
+      "The recovery point objective",
+      "The backup retention period"
+    ],
+    "answer": 2,
+    "explanation": "Recovery Point Objective (RPO) defines the maximum acceptable data loss measured in time. RTO measures time to restore, downtime is the outage duration, and retention is backup age.",
+    "docs": [
+      {
+        "label": "Reliability metrics",
+        "url": "https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q252",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing a solution that must restore service within 30 minutes of a failure. Which metric does the 30-minute requirement define?",
+    "options": [
+      "The recovery point objective",
+      "The service level agreement",
+      "The planned change window",
+      "The recovery time objective"
+    ],
+    "answer": 3,
+    "explanation": "Recovery Time Objective (RTO) is the maximum acceptable time to restore service after an outage. RPO defines data loss, and SLA defines overall availability.",
+    "docs": [
+      {
+        "label": "Reliability metrics",
+        "url": "https://learn.microsoft.com/en-us/azure/well-architected/reliability/metrics"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q253",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing disaster recovery for virtual machines. You need to replicate them to another region and orchestrate failover. Which service meets the requirements?",
+    "options": [
+      "Azure Site Recovery",
+      "Azure Backup service",
+      "Azure Archive Storage",
+      "Azure Import/Export service"
+    ],
+    "answer": 0,
+    "explanation": "Site Recovery replicates VMs to a secondary region and orchestrates failover and failback. Backup creates restore points but does not orchestrate regional failover.",
+    "docs": [
+      {
+        "label": "Azure Site Recovery overview",
+        "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q254",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to protect a stateless web application from a data center failure within a region. Solution: Deploy the application across two availability zones in the region. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Availability zones are physically separate data centers within a region, so spreading across zones protects against a single data center failure.",
+    "docs": [
+      {
+        "label": "Availability zones",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q255",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to guarantee that a regional deployment can fail over with no data loss and zero downtime. Solution: Deploy the application across two regions that form a region pair. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Region pairs provide geographic separation and sequenced updates, but failover is not automatic, and zero-downtime, zero-data-loss failover requires application design and replication, not region pairing alone.",
+    "docs": [
+      {
+        "label": "Cross-region replication",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/cross-region-replication-azure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q256",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing high availability for VMs within a single region. You need protection from planned maintenance and hardware failures on the same rack. Which option meets the requirements?",
+    "options": [
+      "An availability zone",
+      "An availability set",
+      "A proximity placement group",
+      "A virtual machine scale set"
+    ],
+    "answer": 1,
+    "explanation": "Availability sets distribute VMs across fault and update domains to protect against rack failures and planned maintenance. Zones protect against data center failure, not single-rack issues.",
+    "docs": [
+      {
+        "label": "Availability sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q257",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing backup for databases that must be retained for seven years to meet regulatory requirements. Which solution meets the requirements?",
+    "options": [
+      "Azure Site Recovery replication",
+      "Storage account soft delete",
+      "Azure Backup retention policies",
+      "A virtual machine snapshot"
+    ],
+    "answer": 2,
+    "explanation": "Azure Backup supports long-term retention policies for compliance. Site Recovery replicates for DR but does not provide long-term point-in-time retention.",
+    "docs": [
+      {
+        "label": "Back up Azure VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q258",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing a recovery strategy that restores backed-up data in a secondary region when the primary region is unavailable. Which feature meets the requirements?",
+    "options": [
+      "A locally redundant vault",
+      "The soft delete feature",
+      "A single resource lock",
+      "A cross-region restore"
+    ],
+    "answer": 3,
+    "explanation": "Cross-region restore enables restoring backups in a paired secondary region when the primary region is unavailable. LRS vaults, soft delete, and locks do not provide regional failover.",
+    "docs": [
+      {
+        "label": "Cross-region restore",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-restore-vms"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q259",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to restore individual files from a virtual machine after accidental deletion. Solution: Use Azure Site Recovery to restore the deleted files. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Site Recovery replicates whole VMs for failover and does not provide file-level restore. Azure Backup supports item-level file recovery.",
+    "docs": [
+      {
+        "label": "File recovery from VM backup",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-restore-files-from-vm"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q260",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to back up files and folders from an on-premises Windows server to Azure. Solution: Install the Microsoft Azure Recovery Services agent and configure a backup policy. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The MARS agent backs up files, folders, and system state from on-premises or cloud Windows machines to a Recovery Services vault.",
+    "docs": [
+      {
+        "label": "MARS agent",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-mars-agent"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q261",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing recovery with an RTO of under 15 minutes. You need automated failover without manual steps. Which solution best meets the requirements?",
+    "options": [
+      "Site Recovery recovery plans",
+      "Manual backup and restore",
+      "A cold standby deployment",
+      "Periodic virtual machine snapshots"
+    ],
+    "answer": 0,
+    "explanation": "Recovery plans automate multi-VM failover steps, minimizing RTO. Manual restore, cold standby, and snapshots involve slower, manual recovery.",
+    "docs": [
+      {
+        "label": "Recovery plans",
+        "url": "https://learn.microsoft.com/en-us/azure/site-recovery/recovery-plan-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q262",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing backup storage that must survive a single availability zone failure. Which vault redundancy meets the requirements?",
+    "options": [
+      "Use locally redundant storage",
+      "Use zone-redundant storage",
+      "Use geo-redundant storage",
+      "Use read-access geo-redundant storage"
+    ],
+    "answer": 1,
+    "explanation": "Zone-redundant storage (ZRS) replicates backup data across availability zones, surviving a zone failure. LRS stays in one zone, and GRS protects across regions.",
+    "docs": [
+      {
+        "label": "Back up Azure VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q263",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing multi-region deployment and need Microsoft to sequence planned maintenance so both regions do not update simultaneously. Which design meets the requirements?",
+    "options": [
+      "Use two random regions",
+      "Use one region only",
+      "Use a region pair",
+      "Use two availability zones"
+    ],
+    "answer": 2,
+    "explanation": "Region pairs receive sequenced planned maintenance so only one region in a pair updates at a time. Random regions and zones do not guarantee this sequencing.",
+    "docs": [
+      {
+        "label": "Cross-region replication",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/cross-region-replication-azure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q264",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to ensure backups cannot be deleted by any user, including administrators, during the retention period. Solution: Enable soft delete only. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Soft delete retains deleted backups for a recovery window but does not prevent an administrator from purging them. Immutable vaults prevent deletion during retention.",
+    "docs": [
+      {
+        "label": "Immutable vault",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q265",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to validate that replicated VMs can fail over without disrupting production. Solution: Run a Site Recovery test failover to an isolated network. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Test failover runs in an isolated network and validates recovery readiness without impacting the source VMs.",
+    "docs": [
+      {
+        "label": "Test failover",
+        "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-test-failover-to-azure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q266",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing a solution with an RPO near zero for a critical database. Which replication approach best meets the requirements?",
+    "options": [
+      "Asynchronous database replication",
+      "A daily backup",
+      "A weekly backup",
+      "Synchronous database replication"
+    ],
+    "answer": 3,
+    "explanation": "Synchronous replication commits writes to the secondary before acknowledging, achieving near-zero RPO. Asynchronous and periodic backups allow greater data loss.",
+    "docs": [
+      {
+        "label": "Geo-replication pattern",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/geode"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q267",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing point-in-time recovery for an Azure SQL Database. You need to restore to any point within the last 14 days. Which feature meets the requirements?",
+    "options": [
+      "Automated database backups",
+      "Active geo-replication only",
+      "Auto-failover groups only",
+      "Manual database copies"
+    ],
+    "answer": 0,
+    "explanation": "Azure SQL Database automated backups support point-in-time restore within the retention period. Geo-replication and failover groups address regional DR, not PITR.",
+    "docs": [
+      {
+        "label": "Recovery using backups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/recovery-using-backups"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q268",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing automatic failover for several Azure SQL databases together. You need a single endpoint and coordinated failover. Which feature meets the requirements?",
+    "options": [
+      "Active geo-replication of databases",
+      "An auto-failover group",
+      "A local read replica",
+      "A point-in-time restore"
+    ],
+    "answer": 1,
+    "explanation": "Auto-failover groups provide a single listener endpoint and coordinated failover for multiple databases. Active geo-replication handles individual databases, and read replicas are within-region.",
+    "docs": [
+      {
+        "label": "Auto-failover groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q269",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to protect an application from a complete regional outage. Solution: Deploy the application across two availability zones in the same region. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Availability zones protect against data center failures within a region but not a full regional outage. Regional protection requires a multi-region deployment.",
+    "docs": [
+      {
+        "label": "Availability zones",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q270",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to back up an Azure virtual machine and retain daily recovery points for 30 days. Solution: Configure Azure Backup with a daily schedule and 30-day retention. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure Backup provides scheduled recovery points with configurable retention, meeting the daily 30-day requirement.",
+    "docs": [
+      {
+        "label": "Back up Azure VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms-prepare"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q271",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing recovery for a database after a bad deployment. You need to restore it to a state from three days ago. Which approach meets the requirement?",
+    "options": [
+      "A geo-replication failover",
+      "A scale-out read replica",
+      "A point-in-time restore",
+      "A database copy"
+    ],
+    "answer": 2,
+    "explanation": "Point-in-time restore recovers a database to a prior transactionally consistent state. Failover and read replicas address availability, not historical restore.",
+    "docs": [
+      {
+        "label": "Recovery using backups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/recovery-using-backups"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q272",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing backup protection against ransomware. You need to prevent backups from being deleted or modified for a fixed retention period. Which feature meets the requirements?",
+    "options": [
+      "Soft delete only",
+      "Blob versioning only",
+      "A resource lock",
+      "An immutable vault"
+    ],
+    "answer": 3,
+    "explanation": "Immutable vaults make backups non-erasable and non-modifiable for the retention period. Soft delete and versioning only delay or track deletion.",
+    "docs": [
+      {
+        "label": "Immutable vault",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q273",
+    "domain": "Design business continuity solutions",
+    "prompt": "You are designing recovery for on-premises VMware virtual machines. You need to replicate them to Azure for disaster recovery. Which component meets the requirements?",
+    "options": [
+      "A replication appliance",
+      "A VPN gateway",
+      "A load balancer",
+      "An Application Gateway"
+    ],
+    "answer": 0,
+    "explanation": "Site Recovery uses a replication appliance to replicate VMware VMs to Azure. Networking components do not replicate the virtual machines.",
+    "docs": [
+      {
+        "label": "VMware to Azure architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/site-recovery/vmware-azure-architecture"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q274",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to achieve an RPO of zero for a virtual machine by using Azure Site Recovery alone. Does this solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Site Recovery uses asynchronous replication with a recovery point interval, typically minutes, so a zero RPO is not guaranteed. Zero RPO requires synchronous replication.",
+    "docs": [
+      {
+        "label": "Azure to Azure architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/site-recovery/azure-to-azure-architecture"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q275",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to replicate a storage account so that it remains readable from a secondary region during a primary region outage. Solution: Use read-access geo-redundant storage. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "RA-GRS replicates data to a secondary region and allows read access to it while the primary is unavailable.",
+    "docs": [
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q276",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing hosting for a REST API that runs continuously and requires automatic OS patching and built-in scaling. Which service meets the requirements?",
+    "options": [
+      "The Azure Functions service",
+      "Azure App Service",
+      "Azure Container Instances",
+      "Azure Virtual Machines"
+    ],
+    "answer": 1,
+    "explanation": "App Service is a managed platform for web apps and APIs with automatic patching and scaling. Functions is event-driven, while ACI and VMs require more management.",
+    "docs": [
+      {
+        "label": "Azure App Service overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q277",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing a containerized application with several microservices. You need automatic scaling, Dapr integration, and no Kubernetes cluster management. Which service meets the requirements?",
+    "options": [
+      "Azure Kubernetes Service",
+      "Azure Container Instances",
+      "Azure Container Apps",
+      "Azure Service Fabric"
+    ],
+    "answer": 2,
+    "explanation": "Container Apps is a serverless container platform with built-in scaling and Dapr, without managing Kubernetes. AKS requires cluster management.",
+    "docs": [
+      {
+        "label": "Azure Container Apps",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q278",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing compute that must scale out automatically as CPU demand increases and use identical VM configurations. Which service meets the requirements?",
+    "options": [
+      "A single virtual machine",
+      "An availability set",
+      "A dedicated host group",
+      "VM scale sets"
+    ],
+    "answer": 3,
+    "explanation": "Scale sets deploy and scale identical VM instances automatically based on metrics. A single VM, availability set, and dedicated hosts do not autoscale instance counts.",
+    "docs": [
+      {
+        "label": "Scale sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q279",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to route HTTP traffic to different backend pools based on the URL path. Solution: Configure Azure Load Balancer with path-based routing rules. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Azure Load Balancer operates at layer 4 and cannot route based on URL path. Use Azure Application Gateway for path-based layer 7 routing.",
+    "docs": [
+      {
+        "label": "Load Balancer overview",
+        "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q280",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need a global load balancer that can route traffic based on URL path and provide TLS termination. Solution: Use Azure Traffic Manager. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Traffic Manager is DNS-based and cannot terminate TLS or route on URL path. Azure Front Door provides these layer 7 capabilities globally.",
+    "docs": [
+      {
+        "label": "Traffic Manager overview",
+        "url": "https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q281",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing network filtering that must allow or deny traffic based on fully qualified domain names. Which service meets the requirements?",
+    "options": [
+      "The Azure Firewall service",
+      "A network security group",
+      "An application security group",
+      "A user-defined route table"
+    ],
+    "answer": 0,
+    "explanation": "Azure Firewall supports FQDN-based filtering at both network and application levels. NSGs filter on IP, port, and protocol, and ASGs and UDRs do not filter FQDNs.",
+    "docs": [
+      {
+        "label": "Azure Firewall features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/features"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q282",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing connectivity from on-premises to Azure. You need dedicated, private connectivity that does not traverse the public internet. Which option meets the requirements?",
+    "options": [
+      "A site-to-site VPN",
+      "The Azure ExpressRoute service",
+      "A point-to-site VPN",
+      "A public peering setup"
+    ],
+    "answer": 1,
+    "explanation": "ExpressRoute provides a dedicated private connection that bypasses the public internet. Site-to-site and point-to-site VPNs traverse the public internet.",
+    "docs": [
+      {
+        "label": "ExpressRoute introduction",
+        "url": "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q283",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing access to a storage account from a virtual network. You need the traffic to stay on the Microsoft backbone and reach a private IP. Which option meets the requirements?",
+    "options": [
+      "A service endpoint",
+      "A public endpoint",
+      "A private endpoint",
+      "A NAT gateway"
+    ],
+    "answer": 2,
+    "explanation": "A private endpoint assigns a private IP from your VNet and keeps traffic on the Microsoft backbone. Service endpoints still use the storage account's public address.",
+    "docs": [
+      {
+        "label": "Private endpoints",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q284",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need a messaging service that supports a publish-subscribe model with filtering and can deliver a message to multiple subscribers simultaneously. Solution: Use Azure Service Bus queues. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Service Bus queues deliver each message to a single consumer. Use Service Bus topics or Event Grid for fan-out to multiple subscribers.",
+    "docs": [
+      {
+        "label": "Service Bus messaging",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q285",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to ingest and retain a high-throughput stream of telemetry events for later batch processing by multiple consumers. Solution: Use Azure Event Grid. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Event Grid is for discrete event routing and notification, not high-throughput stream ingestion with retention. Use Azure Event Hubs for telemetry streaming.",
+    "docs": [
+      {
+        "label": "Event Grid overview",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q286",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing decoupled communication where one order event must reach billing, shipping, and audit systems independently. Which messaging feature meets the requirements?",
+    "options": [
+      "Service Bus queues",
+      "A storage queue",
+      "An Event Hubs capture",
+      "Service Bus topics"
+    ],
+    "answer": 3,
+    "explanation": "A topic supports publish-subscribe so multiple subscriptions each receive the message. A queue delivers to one consumer, and storage queues lack native pub-sub.",
+    "docs": [
+      {
+        "label": "Queues, topics, subscriptions",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q287",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing an API gateway that must enforce rate limits, transform requests, and authenticate callers before reaching backends. Which service meets the requirements?",
+    "options": [
+      "Azure API Management",
+      "Azure Front Door",
+      "Azure Application Gateway",
+      "Azure Load Balancer"
+    ],
+    "answer": 0,
+    "explanation": "API Management provides a policy-driven gateway for rate limiting, transformation, and authentication. Front Door and gateways route traffic but lack API policies.",
+    "docs": [
+      {
+        "label": "API Management concepts",
+        "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q288",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing migration of 100 terabytes to Azure over a slow connection. You need offline physical transfer. Which option meets the requirements?",
+    "options": [
+      "The AzCopy tool",
+      "Azure Data Box",
+      "The Azure Migrate service",
+      "The Azure Import/Export service"
+    ],
+    "answer": 1,
+    "explanation": "Data Box ships physical appliances for offline transfer of large volumes. AzCopy is network-based, and Azure Migrate assesses rather than transfers at this scale offline.",
+    "docs": [
+      {
+        "label": "Azure Data Box overview",
+        "url": "https://learn.microsoft.com/en-us/azure/databox/data-box-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q289",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to migrate an on-premises SQL Server database to Azure SQL. Solution: Use Azure Migrate Server Assessment. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Server Assessment discovers and assesses servers but does not migrate databases. Use Azure Database Migration Service or Data Migration Assistant for database migration.",
+    "docs": [
+      {
+        "label": "Azure Migrate services",
+        "url": "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q290",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to migrate an on-premises virtual machine to Azure, including its configuration and dependencies. Solution: Use only AzCopy to copy the files to a storage account. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "AzCopy only copies files and does not create or configure Azure VMs. Use Azure Migrate for a complete VM migration with configuration.",
+    "docs": [
+      {
+        "label": "Get started with AzCopy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q291",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing serverless functions that must scale automatically and bill only while executing. Which hosting plan meets the requirements?",
+    "options": [
+      "The Premium plan",
+      "The Dedicated plan",
+      "The Consumption plan",
+      "The Flex Consumption plan"
+    ],
+    "answer": 2,
+    "explanation": "The Consumption plan scales functions automatically and bills per execution. Premium and Dedicated plans incur always-on baseline costs.",
+    "docs": [
+      {
+        "label": "Azure Functions scale",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q292",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing a container platform where teams need full control over scheduling, networking plugins, and custom controllers. Which service meets the requirements?",
+    "options": [
+      "Azure Container Apps",
+      "Azure Container Instances",
+      "Azure Web App for Containers",
+      "Azure Kubernetes Service"
+    ],
+    "answer": 3,
+    "explanation": "AKS provides full Kubernetes control over scheduling, networking, and controllers. Container Apps abstracts Kubernetes, and ACI and Web App for Containers offer less control.",
+    "docs": [
+      {
+        "label": "What is Azure Kubernetes Service?",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q293",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing rules that apply to groups of virtual machines defined by workload, not by IP address. Which feature meets the requirements?",
+    "options": [
+      "Application security groups",
+      "Network security groups",
+      "User-defined route tables",
+      "Virtual network service endpoints"
+    ],
+    "answer": 0,
+    "explanation": "Application security groups let you define NSG rules based on logical VM groupings rather than IP addresses. NSGs themselves are the rules, not the grouping mechanism.",
+    "docs": [
+      {
+        "label": "Application security groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q294",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need guaranteed bandwidth and consistent low latency for a critical hybrid workload, with no dependency on the public internet. Solution: Use a site-to-site VPN gateway. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "VPN gateways run over the public internet and do not guarantee bandwidth or latency. ExpressRoute provides dedicated, guaranteed connectivity.",
+    "docs": [
+      {
+        "label": "VPN Gateway",
+        "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q295",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need virtual machines to resolve the names of other VMs on the same virtual network using Azure-provided DNS. Solution: Use the default Azure-provided DNS for the virtual network. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The default Azure-provided DNS resolves hostnames within the same virtual network automatically. Custom DNS is only needed for cross-network or private zone resolution.",
+    "docs": [
+      {
+        "label": "Name resolution for VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-name-resolution-for-vms-and-role-instances"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q296",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing a public load balancer that requires high availability, outbound rules, and zone redundancy. Which SKU meets the requirements?",
+    "options": [
+      "The Basic SKU",
+      "The Standard SKU",
+      "The Gateway SKU",
+      "The Classic SKU"
+    ],
+    "answer": 1,
+    "explanation": "The Standard SKU supports zone redundancy, outbound rules, and an availability SLA. Basic SKU lacks these production features, and Gateway SKU targets different scenarios.",
+    "docs": [
+      {
+        "label": "Load Balancer SKUs",
+        "url": "https://learn.microsoft.com/en-us/azure/load-balancer/skus"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q297",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing global routing that must send each user to the endpoint with the lowest latency. Which routing method meets the requirements?",
+    "options": [
+      "Priority routing method",
+      "Weighted routing method",
+      "Performance routing method",
+      "Geographic routing method"
+    ],
+    "answer": 2,
+    "explanation": "Performance routing directs users to the endpoint with the lowest measured latency. Priority, weighted, and geographic methods use other selection criteria.",
+    "docs": [
+      {
+        "label": "Traffic Manager routing",
+        "url": "https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-routing-methods"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q298",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing highly available hybrid connectivity. You need two active connections that can tolerate a provider failure. Which design meets the requirements?",
+    "options": [
+      "A single VPN gateway",
+      "A single ExpressRoute circuit",
+      "A point-to-site VPN",
+      "Dual ExpressRoute circuits"
+    ],
+    "answer": 3,
+    "explanation": "Two ExpressRoute circuits across different providers or locations provide redundant, active connectivity. A single circuit or VPN gateway is a single point of failure.",
+    "docs": [
+      {
+        "label": "ExpressRoute high availability",
+        "url": "https://learn.microsoft.com/en-us/azure/expressroute/designing-for-high-availability-with-expressroute"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q299",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to protect a web application from common web attacks and route users to the nearest healthy region. Solution: Configure Azure Front Door with a web application firewall policy. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Front Door combines global routing with an integrated WAF to block common attacks and direct users to the closest healthy origin.",
+    "docs": [
+      {
+        "label": "Azure Front Door overview",
+        "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q300",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to inspect and filter traffic at the network layer for all subnets in a hub virtual network using a single appliance. Solution: Use Azure Application Gateway. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Application Gateway is a layer 7 load balancer for web apps, not a network-layer filter for all subnets. Use Azure Firewall for centralized network-layer filtering.",
+    "docs": [
+      {
+        "label": "Application Gateway overview",
+        "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview"
+      }
+    ]
+  }
+]

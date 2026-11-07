@@ -1,0 +1,1822 @@
+[
+  {
+    "id": "ai-500-q201",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are designing a multi-agent solution in Microsoft Foundry. A central agent must dispatch user requests to specialized billing, support, and sales subagents while keeping each independently deployable. Which orchestration pattern should you use?",
+    "options": [
+      "Central orchestrator routing",
+      "Peer-to-peer routing",
+      "A sequential pipeline",
+      "Autonomous agents only"
+    ],
+    "answer": 0,
+    "explanation": "Hub-and-spoke (orchestrator-subagent) uses a central orchestrator to route work to specialized, independently deployable subagents.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q202",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are building agents that must exchange tasks across two different platforms owned by separate teams. You need capability discovery and long-running task tracking. Which protocol should you use?",
+    "options": [
+      "MCP for tool access",
+      "REST over a private link",
+      "A2A for cross-platform messaging",
+      "gRPC with fixed contracts"
+    ],
+    "answer": 2,
+    "explanation": "A2A provides cross-platform agent-to-agent messaging with published agent cards and a task/artifact model.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q203",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need agents on different platforms to invoke each other's capabilities and track long-running tasks. Solution: use the A2A protocol with published agent cards and a task/artifact model. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A2A provides cross-platform agent messaging with capability discovery via agent cards and long-running task tracking.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q204",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "Your agents need secure, authenticated access to internal tools and Microsoft 365 data with auditing. Which protocol should you standardize on for tool and data access?",
+    "options": [
+      "A2A with published agent cards",
+      "MCP with enterprise security",
+      "Direct SDK calls per API",
+      "Custom JSON over WebSocket"
+    ],
+    "answer": 1,
+    "explanation": "MCP is the recommended way to surface tools and data to agents with enterprise-grade security, authentication, and auditing.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q205",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need secure tool access with auditing for your agents. Solution: front the tools with MCP and use least-privileged scope. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "MCP provides secure, authenticated, audited tool access, and least-privileged scope limits the attack surface.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q206",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are defining the memory architecture for an agent that must remember a user's preferences across separate sessions and devices. Which memory type should the agent use?",
+    "options": [
+      "Short-term session context",
+      "Stateless prompts, no storage",
+      "Ephemeral key-value store",
+      "Managed long-term memory"
+    ],
+    "answer": 3,
+    "explanation": "Long-term memory is persistent, managed knowledge retained across sessions, devices, and workflows.",
+    "docs": [
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q207",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need durable recall of a user's allergies across separate chat sessions. Solution: rely on the orchestration framework's session context, which resets each session. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Session context is short-term and resets; durable cross-session recall requires a managed long-term memory store.",
+    "docs": [
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q208",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "A high-risk agent approves financial transactions. You must prevent lateral movement and enforce least privilege. Which identity design should you apply?",
+    "options": [
+      "Shared admin credential",
+      "Per-agent scoped identity",
+      "One shared role",
+      "Anonymous public access"
+    ],
+    "answer": 1,
+    "explanation": "Zero Trust for agents means each agent gets its own scoped identity with least privilege, preventing lateral movement.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q209",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "Two subagents must process the same document concurrently, then a reviewer reconciles their output. Which pattern fits?",
+    "options": [
+      "Sequential dependency chain",
+      "Hub-and-spoke with one coordinator",
+      "Single monolithic agent loop",
+      "Parallel execution, later merge"
+    ],
+    "answer": 3,
+    "explanation": "Parallel execution runs independent subagents concurrently, then merges or reconciles their outputs.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q210",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need to reduce redundant work when agents repeat similar subtasks in one workflow. Solution: use short-term memory to share intermediate context within the workflow. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Short-term memory within a workflow avoids recomputing and redundant work while limiting inter-agent context.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q211",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are decomposing a business goal into an agent topology. What should you do first?",
+    "options": [
+      "Map workflows and agents",
+      "Pick a deployment region",
+      "Write the CI/CD pipeline",
+      "Provision a vector database"
+    ],
+    "answer": 0,
+    "explanation": "Start by decomposing goals into workflows, agents, subagents, and tools before selecting components.",
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q212",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need capability discovery between internal agents on the same platform with minimal complexity. Solution: require every internal subagent to publish A2A agent cards and route all calls through A2A. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "For internal flows, platform-native orchestration is simpler; A2A is meant for cross-platform agent messaging.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q213",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You must keep an orchestrator's context small because several subagents each return long transcripts. What should you do?",
+    "options": [
+      "Pass each raw transcript",
+      "Enlarge the context window",
+      "Summarize each result first",
+      "Store all data together"
+    ],
+    "answer": 2,
+    "explanation": "Limit inter-agent context to what is necessary; summarize subagent outputs to avoid bloating the orchestrator context.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q214",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need to authenticate agents to tools with enterprise security and auditing. Solution: access tools through MCP with per-agent least-privileged credentials. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "MCP with per-agent least-privileged credentials provides authenticated, audited tool access.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q215",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "Two tenants' agents share a single Foundry project. You must isolate each tenant's data and memory. What should you do?",
+    "options": [
+      "One shared tagged store",
+      "Turn off all memory",
+      "Dedicated stores per tenant",
+      "Encrypt prompts at rest"
+    ],
+    "answer": 2,
+    "explanation": "Dedicated memory stores per agent or tenant establish clear boundaries for memory access and isolation.",
+    "docs": [
+      {
+        "label": "Create and use memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/how-to/memory-usage"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q216",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need short-lived working context during a conversation plus durable knowledge across sessions. Solution: use short-term memory for the session and a long-term store for persisted knowledge. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Short-term memory tracks the current session; long-term memory retains distilled knowledge across sessions.",
+    "docs": [
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q217",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "An agent must discover another agent's capabilities before invoking it across runtimes. What should each agent publish?",
+    "options": [
+      "An A2A agent card",
+      "A shared API key",
+      "A network egress rule",
+      "A long-lived thread ID"
+    ],
+    "answer": 0,
+    "explanation": "A2A requires agents to publish agent cards describing capabilities so workflows can discover and invoke them.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q218",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need durable recall that survives redeployments and works across devices. Solution: store all user facts in the agent's in-process session variables. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "In-process session variables are volatile and device-scoped; durable recall requires a persistent memory store.",
+    "docs": [
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q219",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are choosing between platform-native orchestration and a custom peer-to-peer mesh for internal subagent flows. Which approach reduces complexity?",
+    "options": [
+      "Custom mesh, manual routing",
+      "Peer-to-peer, direct calls",
+      "A2A across every subagent",
+      "Platform-native orchestration only"
+    ],
+    "answer": 3,
+    "explanation": "Prefer platform-native orchestration for internal subagent flows to keep orchestration simple.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q220",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need to cap total token usage across a multi-agent workflow to control cost. Which architectural practice helps most?",
+    "options": [
+      "Use the largest model",
+      "Budget per workflow stage",
+      "Log every raw token",
+      "Store prompts as plain text"
+    ],
+    "answer": 1,
+    "explanation": "Set token budgets per agent and stage, and limit inter-agent context, to bound cost and latency.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q221",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need to enforce policy and auditing across many agents at the control plane. Solution: enforce policy with custom scripts written per agent only. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Per-agent scripts lack centralized enforcement; use a control-plane governance framework for policy and auditing.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q222",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are deciding how a workflow routes a document through template selection, generation, and compliance checks. Which pattern combines serial and concurrent steps?",
+    "options": [
+      "Hybrid serial and parallel",
+      "Pure sequential only",
+      "A single agent only",
+      "Strictly parallel only"
+    ],
+    "answer": 0,
+    "explanation": "Complex workflows mix serial steps (template, generate, inspect) with concurrent compliance checks.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q223",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You must standardize security, registration, and observability for external connected agents. What should you use?",
+    "options": [
+      "Manual scripts per agent",
+      "Unversioned REST endpoints",
+      "Published SDKs, native support",
+      "Shared long-lived API keys"
+    ],
+    "answer": 2,
+    "explanation": "Integrate external agents via published SDKs with native MCP and A2A support to standardize security and observability.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q224",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need an orchestrator to remain responsive while multiple subagents run. Solution: run all subagents sequentially, one after another. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Sequential execution serializes work and hurts responsiveness; design for parallelism with limited context.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q225",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You must detect and block a hosted agent calling an unexpected external destination. Which control should you configure?",
+    "options": [
+      "Input content filter",
+      "Network egress controls",
+      "Output content filter",
+      "Prompt caching policy"
+    ],
+    "answer": 1,
+    "explanation": "Network egress controls govern outbound connections a hosted agent makes, allowing only approved destinations.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q226",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You are building a RAG agent in Foundry. Retrieved chunks sometimes split a single concept across two chunks, producing incomplete answers. What should you adjust?",
+    "options": [
+      "Increase model temperature",
+      "Reduce vector dimensions",
+      "Rotate the index key",
+      "Change the chunking strategy"
+    ],
+    "answer": 3,
+    "explanation": "Chunking strategy controls how documents are split; aligning chunk boundaries to semantic units improves retrieval completeness.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q227",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your RAG agent returns plausible but unsupported answers because retrieved passages are irrelevant. Which component most directly fixes relevance?",
+    "options": [
+      "Higher token sampling",
+      "Better embeddings and retrieval",
+      "Longer prompt templates",
+      "A bigger context window"
+    ],
+    "answer": 1,
+    "explanation": "Embedding quality and retrieval precision directly determine whether the right passages reach the model.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q228",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need to reduce latency and cost for repeated identical requests. Solution: enable prompt caching for the shared system prompt. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Prompt caching reuses cached prefix tokens across requests, lowering latency and cost for repeated prompts.",
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q229",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your agent must run untrusted user-submitted Python safely. Which Foundry capability should you use?",
+    "options": [
+      "A user-created virtual machine",
+      "The agent's host process",
+      "An inline eval statement",
+      "The Code Interpreter sandbox"
+    ],
+    "answer": 3,
+    "explanation": "Code Interpreter runs Python in a Microsoft-managed sandbox designed for untrusted code execution.",
+    "docs": [
+      {
+        "label": "Code Interpreter tool for Microsoft Foundry agents",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/how-to/tools/code-interpreter"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q230",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need an agent to reuse answers for semantically similar requests without re-invoking the model. Solution: use prompt caching to reuse answers for semantically similar requests. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Prompt caching reuses prefix tokens, not whole answers for similar requests; use semantic caching keyed by embedding similarity.",
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q231",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "A high-impact agent action should not proceed until a person confirms it. Which mechanism should you add?",
+    "options": [
+      "Human-in-the-loop approval",
+      "Fully autonomous execution",
+      "Removing all controls",
+      "Disabling action logging"
+    ],
+    "answer": 0,
+    "explanation": "Human-in-the-loop workflows insert approval or override steps for high-impact actions.",
+    "docs": [
+      {
+        "label": "Multiple-agent workflow automation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q232",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need a long-running workflow where a user can approve or cancel a step. Solution: allow cancel and skip on long-running steps and surface summaries. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Allowing cancel and skip and surfacing summaries keeps users in control of long-running steps.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q233",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your agent calls a tool with a wrong argument shape and then retries incorrectly. What should you provide so the agent self-corrects?",
+    "options": [
+      "A larger context window",
+      "A higher temperature setting",
+      "Typed schemas with descriptions",
+      "A longer API timeout"
+    ],
+    "answer": 2,
+    "explanation": "Typed payloads and descriptive schemas plus descriptive errors let the agent self-correct on tool calls.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q234",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You must host an MCP server that wraps an existing workflow with minimal infrastructure. Which Azure service should you choose?",
+    "options": [
+      "Azure Bastion",
+      "Azure Front Door",
+      "Azure Functions",
+      "Azure Data Box"
+    ],
+    "answer": 2,
+    "explanation": "MCP servers can be built on Azure Functions, Logic Apps, or API Management.",
+    "docs": [
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q235",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need your agent to ground answers in your own documents. Solution: retrieve relevant chunks and inject them into the prompt at runtime. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Dynamic context injection of retrieved chunks grounds responses in your data.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q236",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your agent repeats a stable tool call in a loop with no termination. What should you enforce?",
+    "options": [
+      "An iteration limit",
+      "Higher sampling temperature",
+      "A longer context",
+      "Faster compute hardware"
+    ],
+    "answer": 0,
+    "explanation": "Cap tool-call iterations to prevent runaway loops and control cost and latency.",
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q237",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need each user request to share no state with the next. Solution: use a single global state object shared across all user requests. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A shared global state leaks context across users; use stateless tool calls that read only the current thread.",
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q238",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You must inject user-specific policy into every agent turn based on the current context. Which technique applies?",
+    "options": [
+      "Static hard-coded text",
+      "Random token sampling",
+      "Response truncation",
+      "Dynamic context injection"
+    ],
+    "answer": 3,
+    "explanation": "Dynamic context injection adds relevant runtime data into the prompt based on current context.",
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q239",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need a subagent to call an external service that has no SDK. Solution: define an MCP tool with a typed schema over the service's HTTP API. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "An MCP tool with a typed schema exposes the HTTP API as a callable, validated tool for the agent.",
+    "docs": [
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q240",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "A multi-step agent must remember earlier steps within one session without persisting anything. Which mechanism holds this working state?",
+    "options": [
+      "A long-term memory store",
+      "Session-scoped thread state",
+      "A vector database",
+      "A durable message queue"
+    ],
+    "answer": 1,
+    "explanation": "Short-term memory in the form of session/thread state holds current working context without persistence.",
+    "docs": [
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q241",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need deterministic, exact-match reuse of identical prompts. Solution: rely on prompt caching alone to return the full cached answer for identical prompts. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Prompt caching caches prefix tokens, not completed answers; use response caching keyed on the raw prompt text.",
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q242",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your agent's tool description is ambiguous, so it invokes the wrong tool. What should you rewrite?",
+    "options": [
+      "The tool description",
+      "The model deployment name",
+      "The resource group tag",
+      "The API version"
+    ],
+    "answer": 0,
+    "explanation": "Clear tool names and descriptions help the model select and call the correct tool.",
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q243",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need the agent to execute code and read files it generated. Solution: attach the Code Interpreter tool but keep generated files outside its sandbox. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Code Interpreter reads files inside its session sandbox; files kept outside are not accessible to it.",
+    "docs": [
+      {
+        "label": "Code Interpreter tool for Microsoft Foundry agents",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/how-to/tools/code-interpreter"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q244",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You must call a downstream API as the signed-in user rather than as the app. Which flow should you implement?",
+    "options": [
+      "Client credentials",
+      "Device code",
+      "On-behalf-of",
+      "Password grant"
+    ],
+    "answer": 2,
+    "explanation": "The on-behalf-of flow exchanges the user's token for a downstream token, preserving user identity.",
+    "docs": [
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q245",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your agent returns an error mid-workflow and stops. You want it to recover and continue. What should you design?",
+    "options": [
+      "A longer context window",
+      "Descriptive errors with retry",
+      "A bigger model only",
+      "More parallel agents"
+    ],
+    "answer": 1,
+    "explanation": "Design descriptive errors so agents can self-correct and retry rather than halting.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q246",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need tools to be callable by multiple agents with unified auth and audit. Solution: give each agent its own SDK key directly to each tool. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Separate keys per tool provide no unified authentication or audit; expose the tools through a shared MCP server.",
+    "docs": [
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q247",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your RAG agent's answers are too generic because chunks are too large. What should you do?",
+    "options": [
+      "Enlarge each chunk further",
+      "Remove the embedding model",
+      "Disable retrieval entirely",
+      "Split into smaller chunks"
+    ],
+    "answer": 3,
+    "explanation": "Smaller, well-bounded chunks improve retrieval precision and reduce noise in the prompt.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q248",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You must let the model decide which of several tools to call and with what arguments. Which capability enables this?",
+    "options": [
+      "Prompt caching",
+      "Function calling",
+      "Context compression",
+      "Output streaming"
+    ],
+    "answer": 1,
+    "explanation": "Function calling with JSON schemas lets the model select a tool and produce valid arguments.",
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q249",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need a reusable conversational state that survives a single session but not redeployments. Solution: use session-scoped thread state managed by the orchestration framework. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Session-scoped thread state holds short-term context for the session without long-term persistence.",
+    "docs": [
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q250",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You are grounding agent responses in a knowledge base and must measure whether answers are supported. Which evaluation target matters most?",
+    "options": [
+      "Response tone",
+      "UI latency",
+      "Cache hit rate",
+      "Groundedness against sources"
+    ],
+    "answer": 3,
+    "explanation": "Groundedness measures whether answers are supported by retrieved sources.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q251",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You must score hundreds of agent responses against quality criteria without manual review. Which approach should you use?",
+    "options": [
+      "LLM-as-a-judge evaluation",
+      "Static log inspection",
+      "Manual spreadsheet review",
+      "A/B routing only"
+    ],
+    "answer": 0,
+    "explanation": "LLM-as-a-judge uses a model to score outputs against criteria, enabling automated, scalable evaluation.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q252",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to test an agent with realistic but private-data-free inputs. What should you generate?",
+    "options": [
+      "Production user data",
+      "Random binary blobs",
+      "Synthetic test data",
+      "Empty string prompts"
+    ],
+    "answer": 2,
+    "explanation": "Synthetic data safely evaluates and tests agents without exposing real user data.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q253",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to detect hallucination where the agent cites a source that does not support its claim. Solution: use a groundedness evaluator that checks claims against retrieved context. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A groundedness evaluator flags claims unsupported by the retrieved context.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q254",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "A multi-agent workflow fails intermittently. You need to reproduce the exact chain of reasoning across agents. What should you capture?",
+    "options": [
+      "Only final output",
+      "Disk encryption status",
+      "Traces and replay",
+      "Only deployment timestamps"
+    ],
+    "answer": 2,
+    "explanation": "Cross-service trace correlation and replay capture reproduce the reasoning path across agents.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q255",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to cut cost for a workflow with a large stable system prompt. Solution: enable prompt caching for the shared prefix. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Prompt caching bills cached prefix tokens at a lower rate and reduces latency.",
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q256",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "An agent loses earlier conversation facts as its context window fills. Which issue is this?",
+    "options": [
+      "Sliding-window amnesia",
+      "A routing bug",
+      "An indexing error",
+      "A handshake failure"
+    ],
+    "answer": 0,
+    "explanation": "Sliding-window amnesia drops earlier context as the window slides, harming continuity.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q257",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to observe latency and errors across every agent in a workflow. Solution: correlate distributed traces with correlation IDs across services. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Trace correlation with correlation IDs links spans across agents for end-to-end observability.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q258",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You must compare a new agent version against the current one on the same evaluation set before release. What should you do?",
+    "options": [
+      "Deploy straight to prod",
+      "Skip evaluation entirely",
+      "Test only one sample",
+      "Run an evaluation harness"
+    ],
+    "answer": 3,
+    "explanation": "An evaluation harness scores both versions on a fixed dataset for a controlled comparison.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q259",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "Your agent's answers improve with relevant context but worsen as you add more irrelevant context. What is the likely limit?",
+    "options": [
+      "Disk throughput",
+      "The context window",
+      "Network bandwidth",
+      "CPU core count"
+    ],
+    "answer": 1,
+    "explanation": "Overfilling the context window degrades output quality and can cause the model to ignore key facts.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q260",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need continuous, automatic quality checks on every agent release. Solution: run LLM-as-a-judge scoring in your CI pipeline. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Running LLM-as-a-judge scoring in CI automates quality gates for each release.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q261",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You want to reduce token cost while keeping answers accurate. Which optimization should you try first?",
+    "options": [
+      "Summarize the context",
+      "Always enlarge context",
+      "Add agent instances",
+      "Allow unbounded retries"
+    ],
+    "answer": 0,
+    "explanation": "Summarizing and trimming context reduces tokens while preserving the essential information.",
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q262",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to catch regressions in retrieval quality after changing the chunker. Solution: evaluate only response latency after changing the chunker. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Latency does not measure retrieval quality; evaluate retrieval with precision and recall on a labeled set.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q263",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "An evaluator model has its own biases. How should you reduce this risk in judging?",
+    "options": [
+      "Remove all metrics",
+      "Use one biased judge",
+      "Use multiple judges",
+      "Ignore low scores"
+    ],
+    "answer": 2,
+    "explanation": "Combining multiple judges and metrics reduces single-model bias in evaluation.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q264",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to detect when an agent loops on the same tool call. Solution: monitor only the final output text to detect loops. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Final output misses the loop itself; monitor tool-call counts and alert on iteration thresholds.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q265",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "Your agent's quality varies with the amount of retrieved context. Which evaluation should you run to find the sweet spot?",
+    "options": [
+      "A memory stress test",
+      "A chunk-size ablation study",
+      "A network throughput test",
+      "A disk I/O benchmark"
+    ],
+    "answer": 1,
+    "explanation": "Testing different chunk sizes shows how retrieval granularity affects answer quality.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q266",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to know how often answers are grounded in sources. Solution: track groundedness and relevance metrics in your evaluation dashboard. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Groundedness and relevance metrics in a dashboard quantify answer quality over time.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q267",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You are reviewing cost telemetry and see high spend with no cache hits. What should you review first?",
+    "options": [
+      "TLS certificate expiry",
+      "Region latency only",
+      "Disk storage class",
+      "Prompt cache configuration"
+    ],
+    "answer": 3,
+    "explanation": "Check prompt cache configuration; uncached repeated prefixes drive up token cost.",
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q268",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to isolate a slow subagent as the bottleneck. Solution: measure only total end-to-end latency of the workflow. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "End-to-end latency hides which agent is slow; trace per-agent latency spans in the workflow.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q269",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "A judge model scores nearly everything as correct. What should you add to sharpen evaluation?",
+    "options": [
+      "Fewer test cases",
+      "Clear scoring rubrics",
+      "A warmer tone",
+      "Shorter prompt text"
+    ],
+    "answer": 1,
+    "explanation": "Clear rubrics with distinct score levels make judge outputs more discriminating.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q270",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You must measure whether an agent answers the user's actual question. Which metric applies?",
+    "options": [
+      "Response length",
+      "Token speed",
+      "Cache ratio",
+      "Relevance"
+    ],
+    "answer": 3,
+    "explanation": "Relevance measures whether the response addresses the user's question.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q271",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need a reproducible debugging session of a failed multi-agent run. Solution: log only the final output text for the run. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Final output omits intermediate reasoning; capture agent replay and span correlation for the run.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q272",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "Your agent drifts after a model update. What should you run to detect the change?",
+    "options": [
+      "Run a regression evaluation",
+      "Perform a fresh deployment",
+      "Run a manual spot check",
+      "Run a network ping"
+    ],
+    "answer": 0,
+    "explanation": "Regression evaluation on a fixed set detects quality changes after model updates.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q273",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You must quantify how often retrieved passages actually answer the query. Which retrieval metric should you use?",
+    "options": [
+      "End-to-end latency",
+      "Token throughput rate",
+      "Recall and precision",
+      "Service uptime percent"
+    ],
+    "answer": 2,
+    "explanation": "Recall and precision measure how completely and accurately retrieved passages answer queries.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q274",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to lower evaluation cost without losing coverage. Solution: evaluate the entire dataset every time to lower cost. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Evaluating everything raises cost; sample a representative subset and run the judge only on it.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q275",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "A workflow's context grows each turn until quality drops. Which optimization should you implement?",
+    "options": [
+      "Append more history",
+      "Remove all summaries",
+      "Context compaction",
+      "Increase temperature"
+    ],
+    "answer": 2,
+    "explanation": "Compaction or summarization bounds context growth and preserves key information.",
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q276",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "An agent must call a downstream API as the signed-in user, not as the service itself. Which OAuth flow should you use?",
+    "options": [
+      "On-behalf-of",
+      "Client credentials",
+      "Device code",
+      "Password grant"
+    ],
+    "answer": 0,
+    "explanation": "The on-behalf-of flow exchanges the user's delegated token for a downstream API token.",
+    "docs": [
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q277",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must store an agent's API secret so it is not committed to source. Where should the secret live?",
+    "options": [
+      "In the repo config",
+      "In a plain env file",
+      "In a public blob",
+      "In Azure Key Vault"
+    ],
+    "answer": 3,
+    "explanation": "Azure Key Vault stores secrets securely and supports managed identity access.",
+    "docs": [
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q278",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need agents to authenticate to Azure resources without managing keys. Which mechanism should you use?",
+    "options": [
+      "A long-lived static key",
+      "A per-agent managed identity",
+      "A shared admin password",
+      "A hard-coded client secret"
+    ],
+    "answer": 1,
+    "explanation": "Managed identities authenticate to Azure resources without secrets and can be scoped to least privilege.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q279",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must block harmful content before a prompt reaches the model and before an answer reaches the user. Which control points should you configure?",
+    "options": [
+      "Input and output filters",
+      "Network access controls only",
+      "DNS record rules only",
+      "Storage key rules only"
+    ],
+    "answer": 0,
+    "explanation": "Guardrails scan user input and final output intervention points for harmful content.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q280",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to catch an agent exfiltrating data to an unapproved domain. Solution: configure network egress controls on the hosted agent. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Network egress controls restrict outbound connections to allowed destinations on hosted agents.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q281",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must adversarially probe an agent for prompt-injection and harmful outputs before release. Which practice applies?",
+    "options": [
+      "Blue/green deployment",
+      "Semantic caching",
+      "Red teaming",
+      "Load testing"
+    ],
+    "answer": 2,
+    "explanation": "AI Red Teaming adversarially probes for safety and security failures before deployment.",
+    "docs": [
+      {
+        "label": "AI Red Teaming",
+        "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q282",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to scan content an agent proposes to send to a tool, not just user input. Solution: enable the tool-call intervention point in your guardrail. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The tool-call intervention point scans the action and data an agent proposes to send to a tool.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q283",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must roll a new agent version to a small percentage of traffic before full rollout. Which strategy applies?",
+    "options": [
+      "Big-bang only",
+      "Canary deployment",
+      "Manual copy",
+      "No testing"
+    ],
+    "answer": 1,
+    "explanation": "Canary releases route a small percentage of traffic to the new version before full rollout.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q284",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need near-instant rollback if a new version fails. Solution: run the old and new versions side by side and switch traffic back if needed. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Blue/green deployment keeps two parallel environments, enabling instant rollback by switching traffic.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q285",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must enforce separation between development, acceptance, and production agent deployments. Which model should you use?",
+    "options": [
+      "Single shared environment",
+      "One prod-only env",
+      "No environments",
+      "DTAP environment staging"
+    ],
+    "answer": 3,
+    "explanation": "DTAP (dev, test, acceptance, production) separates stages to control promotion and risk.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q286",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to rotate agent secrets automatically. Solution: store secrets in Key Vault and reference them without hard-coding. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Key Vault enables central, rotatable secret storage referenced without hard-coding.",
+    "docs": [
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q287",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "Two teams share a Foundry project. You must give one team read-only access to agents. Which mechanism should you use?",
+    "options": [
+      "A shared password",
+      "Foundry RBAC roles",
+      "Public endpoints",
+      "Anonymous tokens"
+    ],
+    "answer": 1,
+    "explanation": "Foundry RBAC roles (e.g., Foundry User/Owner) scope permissions per principal.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q288",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need every code change to run evaluation and guardrail checks before promotion. Solution: run evaluation and guardrail checks manually after promotion. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Manual post-promotion checks miss regressions; add evaluation and guardrail gates to the CI/CD pipeline.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q289",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must verify an agent cannot access a restricted downstream API. What should you enforce?",
+    "options": [
+      "A bigger context",
+      "More parallel agents",
+      "Faster hardware",
+      "Least-privilege identity scope"
+    ],
+    "answer": 3,
+    "explanation": "Least-privilege identity scope limits which resources an agent can reach.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q290",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to block harmful content in a tool's response before the agent acts on it. Solution: enable the tool-response intervention point. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The tool-response intervention point scans content returned from a tool to the agent.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q291",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You are promoting an agent through dev, test, and production. Which automation should control each promotion?",
+    "options": [
+      "A CI/CD pipeline",
+      "Manual approval only",
+      "No automation",
+      "Ad-hoc scripts"
+    ],
+    "answer": 0,
+    "explanation": "A CI/CD pipeline automates build, test, and promotion across environments with gates.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q292",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to ensure the same guardrail applies to both a model and an agent in one project. Solution: create two separate guardrails because one guardrail cannot apply to both. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A single Foundry guardrail can be applied to one or more models and agents in a project.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q293",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must test a fix in production-like conditions before users see it. Which environment stage fits?",
+    "options": [
+      "Local laptop only",
+      "Dev sandbox only",
+      "Acceptance environment",
+      "No staging"
+    ],
+    "answer": 2,
+    "explanation": "An acceptance (staging) environment mirrors production for pre-release validation.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q294",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to know which principal created an agent action for audit. Solution: share one service principal across all agents for actions. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A shared principal obscures who acted; require per-agent identities so actions are attributable.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q295",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must securely provide a signing key to an agent without embedding it in code. Which approach should you use?",
+    "options": [
+      "Hard-code it in source",
+      "Commit it to git",
+      "Reference a Key Vault",
+      "Print it to logs"
+    ],
+    "answer": 2,
+    "explanation": "Reference a Key Vault secret so the agent fetches the key securely at runtime.",
+    "docs": [
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q296",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to gradually shift all traffic to a new agent while watching error rates. Solution: switch all traffic to the new agent at once. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Switching all traffic at once is a big-bang release; use a canary with a small slice and expand it.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q297",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You want continuous safety verification under attack-like inputs. Which ongoing practice should you adopt?",
+    "options": [
+      "Regular AI Red Teaming",
+      "Annual manual review only",
+      "No testing at all",
+      "Blue/green deployment only"
+    ],
+    "answer": 0,
+    "explanation": "Regular AI Red Teaming continuously probes for new vulnerabilities as the system changes.",
+    "docs": [
+      {
+        "label": "AI Red Teaming",
+        "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q298",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must ensure a secret used by two agents is independently revocable. What should you do?",
+    "options": [
+      "Share one long-lived key",
+      "Store in source code",
+      "Use one admin token",
+      "Issue per-agent credentials"
+    ],
+    "answer": 3,
+    "explanation": "Per-agent credentials allow independent revocation without impacting other agents.",
+    "docs": [
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q299",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to block a prompt injection that tricks an agent into a harmful tool call. Solution: add a guardrail on the user-input intervention point only. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Input filters alone miss harmful tool calls; enable the tool-call intervention point too.",
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q300",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You are deploying an agent update with zero downtime. Which strategy runs two environments and swaps traffic?",
+    "options": [
+      "Big-bang only",
+      "Blue/green deployment",
+      "Manual copy",
+      "Single prod box"
+    ],
+    "answer": 1,
+    "explanation": "Blue/green deployment runs two environments and swaps traffic for zero-downtime releases.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  }
+]

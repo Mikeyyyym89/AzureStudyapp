@@ -1,0 +1,1822 @@
+[
+  {
+    "id": "sc-500-q201",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to give a developer Contributor access to an Azure subscription. The developer must request access each time and keep it for no more than four hours. What should you configure?",
+    "options": [
+      "Eligible assignment in PIM",
+      "Permanent assignment in PIM",
+      "Access review for the role",
+      "Conditional Access session control"
+    ],
+    "answer": 0,
+    "explanation": "An eligible assignment requires activation before use, and PIM caps activation at a configurable duration such as four hours.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q202",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Users sign in with passwords plus a one-time code from Microsoft Authenticator. You must eliminate passwords while preserving phishing-resistant sign-in on managed Windows devices. What should you configure?",
+    "options": [
+      "Authenticator one-time passcode",
+      "Windows Hello for Business",
+      "SMS verification code method",
+      "Temporary access pass credential"
+    ],
+    "answer": 1,
+    "explanation": "Windows Hello for Business uses a device-bound biometric or PIN credential for phishing-resistant passwordless sign-in on managed Windows devices.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q203",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to block all legacy authentication to Microsoft Entra. Solution: Create a Conditional Access policy that selects Other clients in the Client apps condition and applies the Block access grant control. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Legacy protocols appear as Other clients, and a Block grant control prevents their sign-in.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q204",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must let contractors use unmanaged devices but restrict them from downloading files. What should you configure?",
+    "options": [
+      "Device compliance policy",
+      "Entitlement management package",
+      "Conditional Access App Control",
+      "Identity Protection sign-in risk"
+    ],
+    "answer": 2,
+    "explanation": "Conditional Access App Control applies session controls that can block downloads on unmanaged devices without installing software.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q205",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to require multi-factor authentication only for users in a specific group. Solution: Create a Conditional Access policy scoped to that group with a grant control that requires one of the selected controls: MFA or a compliant device. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Requiring one of the controls lets a compliant device satisfy the policy without MFA, so MFA is not enforced.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q206",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to ensure Global Administrator role activations require a second administrator's approval. What should you configure in PIM?",
+    "options": [
+      "Role assignment schedule",
+      "Access review recurrence",
+      "Conditional Access policy",
+      "Activation approval setting"
+    ],
+    "answer": 3,
+    "explanation": "PIM role settings include an approval requirement on activation, which routes requests to designated approvers.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q207",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Users need phishing-resistant passwordless authentication across many applications. What should you enable?",
+    "options": [
+      "FIDO2 security keys",
+      "SMS one-time codes",
+      "Email one-time codes",
+      "Voice call verification"
+    ],
+    "answer": 0,
+    "explanation": "FIDO2 security keys provide hardware-bound, phishing-resistant passwordless authentication across applications.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q208",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to let help desk staff reset user passwords without assigning them the Global Administrator role. Solution: Assign the Helpdesk Administrator role. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Helpdesk Administrator can reset passwords and invalidate refresh tokens for non-administrator users.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q209",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "External partners need time-limited access to a set of apps and SharePoint sites, with approval. What should you use?",
+    "options": [
+      "Permanent role in PIM",
+      "Entitlement Management access package",
+      "Access review series",
+      "Conditional Access policy"
+    ],
+    "answer": 1,
+    "explanation": "An access package bundles apps and sites with an approval workflow and a configurable assignment duration.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q210",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to prevent administrators from having permanently assigned privileged roles. Solution: Assign each administrator the role permanently but require justification on every use. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Requiring justification does not remove the permanent assignment; the role stays active. Use eligible assignments in PIM instead.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q211",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must allow only the Microsoft Authenticator app and FIDO2 keys as MFA methods, and disable SMS for new registrations. What should you configure?",
+    "options": [
+      "Conditional Access grant control",
+      "Identity Protection policy",
+      "Authentication methods policy",
+      "MFA server settings"
+    ],
+    "answer": 2,
+    "explanation": "The authentication methods policy controls which methods users may register and use, including disabling SMS.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q212",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to require MFA for all privileged roles at sign-in, with no exceptions. What should you configure?",
+    "options": [
+      "PIM activation requirement",
+      "Per-user MFA enforcement",
+      "Security defaults configuration",
+      "Conditional Access policy"
+    ],
+    "answer": 3,
+    "explanation": "A Conditional Access policy targeting directory roles with an MFA grant control enforces MFA for all privileged sign-ins.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q213",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to ensure a user must provide a justification before activating an eligible role. Solution: Enable the Require justification on activation setting on the PIM role setting. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "PIM role settings include a Require justification on activation toggle that prompts for a reason at activation.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q214",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must automatically force password change for users flagged with high user risk. What should you configure?",
+    "options": [
+      "Identity Protection risk policy",
+      "Conditional Access session policy",
+      "PIM role activation setting",
+      "Authentication methods policy"
+    ],
+    "answer": 0,
+    "explanation": "An Identity Protection user risk policy can require password reset remediation for users at high risk.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q215",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to block sign-ins from anonymous IP addresses. Solution: Configure a Conditional Access policy with a location condition for all trusted locations. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Trusted locations scope named networks, not anonymous IPs; anonymous IP is a sign-in risk detection handled by Identity Protection.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q216",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Help desk staff must reset passwords for standard users only, without other administrative rights. What should you assign?",
+    "options": [
+      "User Administrator role",
+      "Helpdesk Administrator role",
+      "Authentication Administrator role",
+      "Global Administrator role"
+    ],
+    "answer": 1,
+    "explanation": "Helpdesk Administrator can reset passwords for non-administrators with the least privilege among the options.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q217",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must restrict guest access to B2B collaboration invitations from specified partner domains only. What should you configure?",
+    "options": [
+      "Conditional Access location policy",
+      "Entitlement Management settings",
+      "Cross-tenant access settings",
+      "Authentication methods policy"
+    ],
+    "answer": 2,
+    "explanation": "Cross-tenant access settings control inbound and outbound B2B collaboration with specific external tenants.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q218",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to require MFA for all users, including guests, accessing a specific app. Solution: Create a Conditional Access policy targeting all users and the app, with a grant control requiring MFA. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A policy scoped to all users includes guests, and the MFA grant control enforces MFA for the app.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q219",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must periodically validate that group members still require access, and remove those who do not. What should you create?",
+    "options": [
+      "Conditional Access policy",
+      "PIM eligible assignment",
+      "Entitlement lifecycle workflow",
+      "Group access review"
+    ],
+    "answer": 3,
+    "explanation": "An access review periodically requires reviewers to confirm group membership and can auto-remove unconfirmed members.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q220",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to re-evaluate user risk only at sign-in, not continuously. Solution: Enable continuous access evaluation for the workload. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Continuous access evaluation enforces risk and other events in near real time during the session, the opposite of sign-in-only evaluation.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-continuous-access-evaluation"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q221",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A small tenant has Microsoft Entra ID Free. You need to require MFA for all users with minimal configuration. What should you enable?",
+    "options": [
+      "Entra security defaults",
+      "Conditional Access policy",
+      "Per-user MFA setting",
+      "Identity Protection policy"
+    ],
+    "answer": 0,
+    "explanation": "Security defaults is available in the free tier and enables MFA for all users with minimal effort; Conditional Access and Identity Protection require premium licenses.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q222",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Several administrators need the Security Administrator role only while responding to incidents. What should you configure?",
+    "options": [
+      "Permanent role assignment",
+      "PIM for groups",
+      "Access review series",
+      "Conditional Access policy"
+    ],
+    "answer": 1,
+    "explanation": "PIM for groups grants eligible membership in a role-assignable group, enabling on-demand activation during incidents.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/concept-pim-for-groups"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q223",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to ensure an access package assignment is removed automatically after 30 days. Solution: Set the access package assignment duration to 30 days. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Access package lifecycle settings include an assignment duration that expires and removes access automatically.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q224",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A contractor leaves the project. You need to revoke the contractor's access to all resources immediately. What should you do?",
+    "options": [
+      "Delete the guest's device",
+      "Run an access review",
+      "Disable the guest account",
+      "Remove the group assignment"
+    ],
+    "answer": 2,
+    "explanation": "Disabling the guest account blocks sign-in immediately across all resources while retaining the object for audit.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/external-id/b2b-quickstart-add-guest-users-portal"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q225",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to require a justification and a ticket number when a user activates an eligible role. Solution: Enable Require justification on activation only. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Require justification alone does not collect a ticket number; you must also enable Require ticket number on activation.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q226",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to manage access to key vault secrets using Azure RBAC roles, retiring legacy vault access policies. What should you configure?",
+    "options": [
+      "Vault access policy model",
+      "Managed identity assignment",
+      "Private endpoint connection",
+      "Azure RBAC permission model"
+    ],
+    "answer": 3,
+    "explanation": "Switching the key vault permission model to Azure RBAC disables vault access policies and enforces RBAC roles on the data plane.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q227",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to restrict key vault access to requests from a specific virtual network subnet. What should you configure?",
+    "options": [
+      "Key vault firewall setting",
+      "VNet service endpoint only",
+      "Network security group rule",
+      "Azure Firewall network rule"
+    ],
+    "answer": 0,
+    "explanation": "The key vault firewall lets you allow selected virtual networks and subnets; a service endpoint alone does not enforce the restriction.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/network-security"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q228",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to connect to a storage account using a private IP from within your virtual network. Solution: Add a virtual network service endpoint to the storage account's firewall. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Service endpoints keep traffic on the Azure backbone but still use the resource's public endpoint; a private IP requires a private endpoint.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q229",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An application in a VNet must reach a storage account through a private IP address. What should you create?",
+    "options": [
+      "Service endpoint for storage",
+      "Private endpoint for storage",
+      "Network security group rule",
+      "Azure Firewall DNAT rule"
+    ],
+    "answer": 1,
+    "explanation": "A private endpoint assigns a private IP in the VNet and routes traffic over Private Link.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q230",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to allow inbound HTTPS only from a set of web server VMs to a database subnet. Solution: Create an application security group for the web servers and reference it as the source in an NSG rule. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Application security groups can be referenced as the source in an NSG rule, applying it to the member NICs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q231",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need centrally enforced outbound internet filtering with FQDN-based rules and threat intelligence for multiple VNets. What should you deploy?",
+    "options": [
+      "Network security group",
+      "Application security group",
+      "Azure Firewall instance",
+      "Azure Bastion host"
+    ],
+    "answer": 2,
+    "explanation": "Azure Firewall provides central, stateful L3-L7 filtering with FQDN rules and threat intelligence.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q232",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need always-on volumetric DDoS protection for public endpoints on multiple VNets, with cost protection. What should you enable?",
+    "options": [
+      "DDoS IP Protection",
+      "Azure Firewall Premium",
+      "Web Application Firewall",
+      "DDoS Network Protection"
+    ],
+    "answer": 3,
+    "explanation": "DDoS Network Protection provides always-on monitoring, adaptive tuning, and cost protection for VNet resources.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q233",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to identify missing security configurations and misconfigurations on an Azure SQL Database. Solution: Enable Defender for SQL advanced threat protection. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Threat protection detects attacks such as SQL injection, not configuration gaps; use SQL vulnerability assessment for configuration checks.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q234",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to scan uploaded blobs for malware and detect suspicious access patterns in a storage account. What should you enable?",
+    "options": [
+      "Defender for Storage",
+      "Storage service endpoint",
+      "Azure DDoS Protection",
+      "Storage firewall rules"
+    ],
+    "answer": 0,
+    "explanation": "Defender for Storage provides malware scanning and activity monitoring for a storage account.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q235",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to restrict access to a storage account so that only requests from a specific public IP range can reach the data plane. Solution: Configure the storage account firewall to allow only that IP range and deny all others. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The storage account firewall can allow a specific public IP range and block all other traffic.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q236",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to eliminate shared storage account keys and require Microsoft Entra authentication for data access. What should you configure?",
+    "options": [
+      "Enable Entra ID RBAC only",
+      "Disable shared key authorization",
+      "Rotate storage account keys",
+      "Configure private endpoint"
+    ],
+    "answer": 1,
+    "explanation": "Setting Allow storage account key access to Disabled forces Entra ID authentication for data plane requests.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q237",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to override an allow rule so that a specific source IP is denied RDP on a VM. What should you configure?",
+    "options": [
+      "Lower-priority allow NSG rule",
+      "Application security group",
+      "Higher-priority deny NSG rule",
+      "Azure Firewall DNAT rule"
+    ],
+    "answer": 2,
+    "explanation": "NSG rules are evaluated by priority; a lower numeric (higher priority) deny rule overrides a higher numeric allow rule.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q238",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to block all public network access to a storage account. Solution: Enable Allow trusted Microsoft services and leave public network access enabled. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Trusted services bypass the firewall only for specific Microsoft services; the public endpoint stays enabled. Set public network access to Disabled.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q239",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need a single location to define allow and deny network rules for outbound traffic across many subscriptions. What should you use?",
+    "options": [
+      "Network security groups",
+      "Application security groups",
+      "Virtual network service endpoints",
+      "Azure Firewall Manager"
+    ],
+    "answer": 3,
+    "explanation": "Azure Firewall Manager centralizes Azure Firewall policy across regions and subscriptions.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall-manager/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q240",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to enable bidirectional SSH and RDP to VMs over TLS from the Azure portal without exposing public IP addresses. Solution: Deploy Azure Bastion in the virtual network. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure Bastion provides RDP/SSH over TLS 443 via the portal, eliminating the need for public IPs on VMs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q241",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An application identity must read secret values from a key vault but not list or change them. Which RBAC role should you assign?",
+    "options": [
+      "Key Vault Secrets User",
+      "Key Vault Secrets Officer",
+      "Key Vault Reader",
+      "Key Vault Administrator"
+    ],
+    "answer": 0,
+    "explanation": "Key Vault Secrets User reads secret contents; Secrets Officer and Administrator can modify them, and Reader cannot read values.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q242",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "After creating a private endpoint, name resolution still resolves to the public IP. What should you configure?",
+    "options": [
+      "Service endpoint policy",
+      "Private DNS zone integration",
+      "Network security group rule",
+      "Azure Firewall DNAT"
+    ],
+    "answer": 1,
+    "explanation": "Link a private DNS zone so the resource name resolves to the private endpoint IP instead of the public IP.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q243",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to fully isolate an Azure SQL Database from the public internet. Solution: Configure a service endpoint on the subnet and add the subnet to the database firewall. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A service endpoint still uses the database's public endpoint; full isolation from the internet requires a private endpoint.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q244",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An app in an App Service integrated with a VNet must connect privately to Azure SQL Database. What should you configure?",
+    "options": [
+      "Allow Azure services setting",
+      "SQL firewall IP allow rule",
+      "Private endpoint for SQL",
+      "Azure DDoS Protection"
+    ],
+    "answer": 2,
+    "explanation": "A private endpoint connects the database over a private IP from the VNet, avoiding broad allow rules.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q245",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to audit which identities accessed secrets in a key vault. Solution: Enable the Azure RBAC permission model and enable key vault diagnostics to send audit logs to a Log Analytics workspace. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "RBAC gives identity-based access so audit events attribute secret access to specific identities, which diagnostics streams to the workspace.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q246",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to encrypt a storage account with a key you control, enabling automatic rotation. What should you configure?",
+    "options": [
+      "Microsoft-managed key setting",
+      "Storage firewall rule",
+      "Shared access signature",
+      "Customer-managed key rotation"
+    ],
+    "answer": 3,
+    "explanation": "Customer-managed keys in Key Vault support automatic key rotation for Azure Storage.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/customer-managed-keys-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q247",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to protect a public web app from SQL injection and cross-site scripting at the network edge. What should you deploy?",
+    "options": [
+      "Web Application Firewall",
+      "Azure Firewall Premium",
+      "Network security group",
+      "Azure DDoS Protection"
+    ],
+    "answer": 0,
+    "explanation": "Azure WAF provides OWASP-based protection against SQLi and XSS; Azure Firewall is L3-L7 but not a WAF.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/web-application-firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q248",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to ensure a key vault can only be accessed from within your virtual network, with no public internet exposure. Solution: Configure the key vault firewall to allow a virtual network service endpoint. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Service endpoints keep the public endpoint; use a private endpoint and disable public access for no internet exposure.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q249",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A third party needs temporary, read-only access to a single blob. What should you issue?",
+    "options": [
+      "Storage account key",
+      "Shared access signature",
+      "Entra ID guest account",
+      "User-assigned managed identity"
+    ],
+    "answer": 1,
+    "explanation": "A SAS grants scoped, time-limited access to a specific resource; account keys grant account-wide access.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q250",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to inspect all outbound traffic from a spoke VNet to the internet and block it to malicious domains. Solution: Route the spoke's default route to Azure Firewall and enable threat intelligence-based filtering. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Forcing the default route through Azure Firewall and enabling threat intelligence blocks traffic to known-malicious destinations.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q251",
+    "domain": "Secure compute",
+    "prompt": "You need to keep RDP and SSH ports closed by default on Azure VMs and open them only for specific IPs for a limited time. What should you enable?",
+    "options": [
+      "Azure Bastion host",
+      "Network security group",
+      "Just-in-time VM access",
+      "Azure Firewall DNAT"
+    ],
+    "answer": 2,
+    "explanation": "Just-in-time VM access keeps management ports closed and opens them temporarily for approved source IPs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q252",
+    "domain": "Secure compute",
+    "prompt": "You need agentless vulnerability assessment and file integrity monitoring for Azure VMs. What should you enable?",
+    "options": [
+      "Defender for Storage",
+      "Azure Disk Encryption",
+      "Microsoft Defender for Endpoint",
+      "Defender for Servers"
+    ],
+    "answer": 3,
+    "explanation": "Defender for Servers provides vulnerability assessment, file integrity monitoring, and other workload protections.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-defender-for-servers"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q253",
+    "domain": "Secure compute",
+    "prompt": "You need to encrypt a VM's OS and data disks at the guest operating system level using BitLocker with keys stored in a key vault. Solution: Enable Azure Disk Encryption. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure Disk Encryption uses BitLocker (Windows) or DM-Crypt (Linux) at the guest level with keys in Key Vault.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q254",
+    "domain": "Secure compute",
+    "prompt": "You need end-to-end encryption so data is encrypted on the VM host before reaching Azure Storage. What should you enable?",
+    "options": [
+      "Encryption at host",
+      "Azure Disk Encryption",
+      "Server-side encryption only",
+      "Network security group"
+    ],
+    "answer": 0,
+    "explanation": "Encryption at host encrypts data at the Hyper-V host, providing end-to-end encryption independent of the guest or storage layer.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q255",
+    "domain": "Secure compute",
+    "prompt": "You need to enable Just-in-time VM access for VMs in a subscription. Solution: Enable Defender for Cloud's foundational CSPM plan only. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Just-in-time VM access requires Defender for Servers; foundational CSPM alone does not enable it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q256",
+    "domain": "Secure compute",
+    "prompt": "A VM currently has a public IP used only for administration. You need to remove the public IP while keeping RDP access. What should you deploy?",
+    "options": [
+      "Network security group",
+      "Azure Bastion host",
+      "Just-in-time VM access",
+      "Azure Firewall Premium"
+    ],
+    "answer": 1,
+    "explanation": "Azure Bastion provides RDP/SSH over TLS without requiring a public IP on the VM.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q257",
+    "domain": "Secure compute",
+    "prompt": "An administrator needs JIT access to a VM, but only from the corporate public IP range, on port 3389. What should you configure in JIT?",
+    "options": [
+      "NSG default deny rule",
+      "Bastion tunnel setting",
+      "JIT source IP setting",
+      "Firewall application rule"
+    ],
+    "answer": 2,
+    "explanation": "A JIT policy specifies allowed source IP ranges and the ports and protocols to open.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q258",
+    "domain": "Secure compute",
+    "prompt": "You need to run a confidential workload that keeps data encrypted in memory during processing. Solution: Deploy the workload on a confidential VM with a vTPM and enable guest attestation. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Confidential VMs with SEV-SNP encrypt data in memory, and guest attestation verifies the trusted platform.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-vm-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q259",
+    "domain": "Secure compute",
+    "prompt": "You need to use a customer-managed key to encrypt several managed disks. What should you create?",
+    "options": [
+      "Key vault access policy",
+      "Managed identity only",
+      "Storage account key",
+      "Disk encryption set"
+    ],
+    "answer": 3,
+    "explanation": "A disk encryption set links a Key Vault key to managed disks for customer-managed server-side encryption.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q260",
+    "domain": "Secure compute",
+    "prompt": "You need to enforce Just-in-time VM access for every VM in a subscription using Azure Policy. Solution: Assign a custom policy with a Deny effect that rejects VMs without JIT enabled. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "JIT is enabled through Defender for Cloud, and the built-in policy only audits management port exposure; it cannot enforce JIT with Deny.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q261",
+    "domain": "Secure compute",
+    "prompt": "You need to onboard VMs to Microsoft Defender for Endpoint automatically when they are created. What should you configure?",
+    "options": [
+      "Defender for Servers auto-provisioning",
+      "Manual onboarding script",
+      "Log Analytics agent extension",
+      "Key Vault managed identity"
+    ],
+    "answer": 0,
+    "explanation": "Defender for Servers auto-provisioning automatically deploys the Defender for Endpoint agent to new VMs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-defender-for-servers"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q262",
+    "domain": "Secure compute",
+    "prompt": "You need vulnerability scanning of VM operating systems without installing an agent on each VM. What should you enable?",
+    "options": [
+      "Log Analytics agent",
+      "Agentless vulnerability assessment",
+      "Azure Disk Encryption",
+      "Azure Network Watcher"
+    ],
+    "answer": 1,
+    "explanation": "Defender for Servers offers agentless vulnerability assessment that scans VM snapshots.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-defender-for-servers"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q263",
+    "domain": "Secure compute",
+    "prompt": "You need to prevent an attacker from using stolen local admin credentials to move laterally between VMs. Solution: Enable Just-in-time VM access. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "JIT restricts management-port exposure, not credential-based lateral movement; use least-privilege local admin and LAPS.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-windows-laps"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q264",
+    "domain": "Secure compute",
+    "prompt": "You need to block execution of unauthorized applications on Azure VMs. What should you enable?",
+    "options": [
+      "Just-in-time VM access",
+      "Network security group",
+      "Adaptive application controls",
+      "Azure Policy tags"
+    ],
+    "answer": 2,
+    "explanation": "Adaptive application controls allowlist approved applications and block others on VMs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/adaptive-application-controls"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q265",
+    "domain": "Secure compute",
+    "prompt": "You need to encrypt a VM's disks using customer-managed keys for server-side encryption. Solution: Create a disk encryption set referencing a key vault key and attach it to the VM's managed disks. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A disk encryption set applies customer-managed key server-side encryption to managed disks.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q266",
+    "domain": "Secure compute",
+    "prompt": "You need to enforce that Linux VMs comply with a CIS benchmark configuration at scale. What should you use?",
+    "options": [
+      "Microsoft Defender for Endpoint",
+      "Network security group",
+      "Azure Monitor alert rule",
+      "Azure Policy machine configuration"
+    ],
+    "answer": 3,
+    "explanation": "Azure Policy machine configuration audits and enforces in-guest settings such as CIS benchmarks.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q267",
+    "domain": "Secure compute",
+    "prompt": "You need to ensure new VMs use Secure Boot and vTPM to protect against boot-level malware. What should you enable?",
+    "options": [
+      "Trusted launch configuration",
+      "Azure Disk Encryption",
+      "Encryption at host",
+      "Network security group"
+    ],
+    "answer": 0,
+    "explanation": "Trusted launch enables Secure Boot, vTPM, and boot integrity monitoring for VMs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q268",
+    "domain": "Secure compute",
+    "prompt": "You need to ensure VMs cannot be assigned a public IP address at creation. Solution: Assign Azure Policy with an effect of Deny on public IP address resources. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A Deny policy on public IP resources prevents their creation, blocking VMs from using public IPs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q269",
+    "domain": "Secure compute",
+    "prompt": "You need endpoint detection and response with automated investigation across Windows and Linux VMs. What should you deploy?",
+    "options": [
+      "Azure Disk Encryption",
+      "Defender for Endpoint",
+      "Network security group",
+      "Azure Monitor agent"
+    ],
+    "answer": 1,
+    "explanation": "Microsoft Defender for Endpoint provides EDR with automated investigation and remediation across operating systems.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-defender-for-servers"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q270",
+    "domain": "Secure compute",
+    "prompt": "You need to apply a security baseline to all Windows VMs at creation automatically. Solution: Enable Defender for Servers auto-provisioning of the Log Analytics agent. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Auto-provisioning deploys agents, not baselines; use Azure Policy machine configuration to apply baselines.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/machine-configuration/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q271",
+    "domain": "Secure compute",
+    "prompt": "You need defense-in-depth disk encryption: guest-level encryption plus platform server-side encryption. What should you enable together?",
+    "options": [
+      "Encryption at host only",
+      "Customer-managed key only",
+      "Disk encryption plus SSE",
+      "Network security group only"
+    ],
+    "answer": 2,
+    "explanation": "Enabling Azure Disk Encryption on top of server-side encryption provides double encryption at the guest and platform layers.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q272",
+    "domain": "Secure compute",
+    "prompt": "You need Azure Bastion that supports host scaling for many concurrent sessions. Which SKU should you choose?",
+    "options": [
+      "Bastion Basic SKU",
+      "Bastion Developer SKU",
+      "Bastion Premium SKU",
+      "Bastion Standard SKU"
+    ],
+    "answer": 3,
+    "explanation": "Bastion Standard supports host scaling; Basic and Developer do not scale.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q273",
+    "domain": "Secure compute",
+    "prompt": "You need to encrypt a VM's temporary disk and page file with customer-managed keys. Solution: Enable server-side encryption with a customer-managed key. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Server-side encryption with CMK encrypts OS and data disks but not the temporary disk; use encryption at host for temp disks and page file.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q274",
+    "domain": "Secure compute",
+    "prompt": "Defender for Cloud recommends narrowing NSG rules that are too permissive. You want to apply these recommendations automatically. What should you use?",
+    "options": [
+      "Adaptive network hardening",
+      "Just-in-time VM access",
+      "Azure Firewall Premium",
+      "Azure Bastion host"
+    ],
+    "answer": 0,
+    "explanation": "Adaptive network hardening recommends and applies tighter NSG rules based on observed traffic.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/adaptive-network-hardening"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q275",
+    "domain": "Secure compute",
+    "prompt": "You need to securely connect to a VM over SSH without a public IP and without opening port 22. Solution: Use Azure Bastion with the native client. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure Bastion native client provides SSH/RDP over TLS without public IPs or open management ports.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q276",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need agentless scanning, attack path analysis, and data-aware security posture across multicloud. Which plan should you enable?",
+    "options": [
+      "Foundational CSPM plan",
+      "Defender CSPM plan",
+      "Defender for Servers",
+      "Azure Policy only"
+    ],
+    "answer": 1,
+    "explanation": "Defender CSPM adds agentless scanning, attack paths, and data-aware posture; foundational CSPM is the free subset.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q277",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to automatically remediate a Defender for Cloud recommendation by reconfiguring resources. What should you use?",
+    "options": [
+      "Sentinel automation rule",
+      "Azure Monitor alert rule",
+      "Azure Policy remediation",
+      "Purview data policy"
+    ],
+    "answer": 2,
+    "explanation": "Defender recommendations map to Azure Policy, and the Fix action deploys the policy remediation task.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/remediate-vulnerability-findings-vm"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q278",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to monitor regulatory compliance across Azure and AWS resources in a single view. Solution: Enable Defender for Cloud foundational CSPM only. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Foundational CSPM covers Azure resources; multicloud AWS compliance requires Defender CSPM and connecting the AWS account.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q279",
+    "domain": "Manage and monitor security posture",
+    "prompt": "A global company needs regional data residency and per-region access control for security data. What should you implement?",
+    "options": [
+      "Single Sentinel workspace",
+      "One Log Analytics table",
+      "Event Hub namespace",
+      "Multiple Sentinel workspaces"
+    ],
+    "answer": 3,
+    "explanation": "Multiple workspaces support data residency requirements and region-scoped access control.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q280",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to ingest Azure Activity logs into Microsoft Sentinel. Solution: Enable the Azure Activity data connector. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The Azure Activity connector ingests subscription-level control-plane activity into Sentinel.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/connect-data-sources"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q281",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to ingest logs from a custom on-premises appliance with no built-in connector. What should you use?",
+    "options": [
+      "Custom log ingestion",
+      "Microsoft native connector",
+      "Threat intelligence connector",
+      "Purview data connector"
+    ],
+    "answer": 0,
+    "explanation": "For sources without a native connector, use Azure Monitor Agent custom logs via a data collection rule.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/connect-data-sources"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q282",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to automatically assign incidents to an analyst and add a tag when an incident is created. What should you configure?",
+    "options": [
+      "Playbook with Logic Apps",
+      "Sentinel automation rule",
+      "Scheduled analytics rule",
+      "Azure Monitor workbook"
+    ],
+    "answer": 1,
+    "explanation": "Automation rules run on incident creation to modify fields such as owner and tags.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/automation/automation"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q283",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to alert when a Global Administrator role assignment is added to any user. Solution: Enable the Microsoft Entra ID Protection data connector and create an analytics rule. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The Entra ID Protection connector provides risk detections, not directory audit events; use the Microsoft Entra ID connector and query AuditLogs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/connect-data-sources"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q284",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need a KQL query that returns only the latest sign-in for each user. Which operator should you use?",
+    "options": [
+      "Use the summarize operator",
+      "Use the project operator",
+      "Use the arg_max operator",
+      "Use the render operator"
+    ],
+    "answer": 2,
+    "explanation": "arg_max returns the row with the maximum value of a column per group, such as the latest TimeGenerated per user.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q285",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to join sign-in events with threat intelligence indicators to find matches on source IP. Solution: Use the KQL join operator between SigninLogs and ThreatIntelligenceIndicator. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Joining SigninLogs with ThreatIntelligenceIndicator on the IP field surfaces sign-ins from known-malicious IPs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q286",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to deploy a set of analytics rules, workbooks, and hunting queries for a specific product. What should you use?",
+    "options": [
+      "Data connector only",
+      "Azure Policy initiative",
+      "Logic Apps connector",
+      "Content hub solution"
+    ],
+    "answer": 3,
+    "explanation": "Content hub solutions bundle connectors, analytics rules, workbooks, and hunting queries for a source.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/sentinel-solutions-deploy"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q287",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to discover and classify sensitive data across Azure, AWS, and GCP data stores. What should you deploy?",
+    "options": [
+      "Purview DSPM solution",
+      "Defender for Cloud CSPM",
+      "Microsoft Sentinel workspace",
+      "Azure Information Protection"
+    ],
+    "answer": 0,
+    "explanation": "Purview Data Security Posture Management provides multicloud data discovery, classification, and risk assessment.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/purview/data-security-posture-management"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q288",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to prevent users from downloading unencrypted files from SharePoint. Solution: Enable Purview DSPM. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Purview DSPM discovers and assesses data risk but does not enforce download restrictions; use sensitivity labels and protection.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/purview/data-security-posture-management"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q289",
+    "domain": "Manage and monitor security posture",
+    "prompt": "Analysts want to summarize incidents and generate KQL queries using natural language. What should you provision?",
+    "options": [
+      "Azure OpenAI service",
+      "Copilot for Security",
+      "Logic Apps connector",
+      "Microsoft Sentinel workbook"
+    ],
+    "answer": 1,
+    "explanation": "Microsoft Copilot for Security provides natural-language incident summaries and KQL generation.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q290",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to give analysts a natural-language chat interface for investigating Defender alerts. Solution: Deploy Microsoft Copilot for Security and embed it in Microsoft Defender XDR. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Copilot for Security provides an embedded chat experience in Defender XDR for natural-language investigation.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q291",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need Copilot for Security to query data from a custom security product. What should you create?",
+    "options": [
+      "A new promptbook",
+      "An SCU license",
+      "A custom plugin",
+      "A Sentinel connector"
+    ],
+    "answer": 2,
+    "explanation": "Plugins let Copilot for Security integrate with custom or third-party data sources.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q292",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need a consolidated measure of your security posture and prioritized recommendations. What should you review?",
+    "options": [
+      "Sentinel incident queue",
+      "Purview data map",
+      "Azure activity log",
+      "Microsoft Secure Score"
+    ],
+    "answer": 3,
+    "explanation": "Microsoft Secure Score aggregates posture and prioritizes recommendations across workloads.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q293",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to be alerted when your Secure Score drops below a threshold. Solution: Create an Azure Monitor alert on the Secure Score metric. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Secure Score changes are surfaced via Defender for Cloud workflow automation, not a standard Azure Monitor metric alert.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/workflow-automation"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q294",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to trigger a Logic Apps playbook automatically when a Defender for Cloud alert is generated. What should you configure?",
+    "options": [
+      "Defender workflow automation",
+      "Sentinel automation rule",
+      "Azure Policy remediation",
+      "Event Grid subscription"
+    ],
+    "answer": 0,
+    "explanation": "Defender for Cloud workflow automation triggers Logic Apps on alerts and recommendations.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/workflow-automation"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q295",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to export Defender for Cloud alerts to a SIEM other than Sentinel. Solution: Configure continuous export to an Event Hub and forward to the SIEM. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Continuous export streams Defender alerts to Event Hub, which a third-party SIEM can consume.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/continuous-export"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q296",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to detect anomalous user behavior and identify risky entities without writing rules. What should you enable?",
+    "options": [
+      "Scheduled analytics rules",
+      "Entity behavior analytics",
+      "Threat intelligence connector",
+      "Azure Monitor workbook"
+    ],
+    "answer": 1,
+    "explanation": "Sentinel UEBA provides built-in anomalous behavior detection and entity risk scoring.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/identify-threats-with-entity-behavior-analytics"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q297",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need near-real-time alerting within minutes for a high-severity detection. Which analytics rule type should you use?",
+    "options": [
+      "Scheduled analytics rule",
+      "A hunting query",
+      "NRT analytics rule",
+      "Azure Monitor workbook"
+    ],
+    "answer": 2,
+    "explanation": "NRT (near-real-time) rules run every minute for immediate detection; scheduled rules run on a slower schedule.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/detect-threats-built-in"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q298",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to retain Sentinel data for seven years cost-effectively. Solution: Set the Log Analytics workspace interactive retention period to seven years. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Interactive retention is limited to about two years; use data export to Azure Storage or archive tiers for long-term retention.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q299",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to send Defender for Cloud security alerts and recommendations to a Log Analytics workspace automatically. What should you configure?",
+    "options": [
+      "Azure diagnostic settings",
+      "Sentinel data connector",
+      "Azure Policy assignment",
+      "Continuous export setting"
+    ],
+    "answer": 3,
+    "explanation": "Continuous export streams alerts and recommendations to Log Analytics or Event Hub.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/continuous-export"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q300",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to generate a natural-language summary of a Sentinel incident for executives. Solution: Use Microsoft Copilot for Security's incident summary capability. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Copilot for Security summarizes Sentinel incidents in natural language for different audiences.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot"
+      }
+    ]
+  }
+]

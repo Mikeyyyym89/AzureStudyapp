@@ -1,0 +1,1822 @@
+[
+  {
+    "id": "ai-200-q201",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution. You need to build a container image and push it to Azure Container Registry from source code without installing Docker locally. The solution must run the build in Azure. What should you do?",
+    "options": [
+      "Run an ACR Task",
+      "Run az acr import",
+      "Use Docker Compose instead",
+      "Deploy a container group"
+    ],
+    "answer": 0,
+    "explanation": "ACR Tasks build container images in the cloud from source, so Docker is not required locally.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q202",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need container images in a European deployment region to pull with low latency. Solution: Enable geo-replication on the registry to replicate to that region. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Geo-replication replicates repositories to regional endpoints, reducing pull latency.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q203",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution that must run event-driven microservices with automatic scale-to-zero. The solution must require minimal operational overhead and use a serverless container platform. What should you use?",
+    "options": [
+      "Azure Kubernetes Service",
+      "Azure Container Apps",
+      "Azure Container Instances",
+      "Azure Service Fabric"
+    ],
+    "answer": 1,
+    "explanation": "Container Apps provides serverless containers with KEDA-driven scale-to-zero.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q204",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need a one-time batch job in Azure Container Instances that does not restart after it finishes. Solution: Set the restart policy to Never. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A restart policy of Never runs the container once and does not restart it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q205",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution that processes messages from an Azure Service Bus queue. You need Container Apps to scale based on queue depth. The solution must scale automatically. What should you configure?",
+    "options": [
+      "A horizontal pod autoscaler",
+      "A Dapr sidecar component",
+      "A KEDA scale rule",
+      "A fixed replica limit"
+    ],
+    "answer": 2,
+    "explanation": "Container Apps use KEDA scale rules; the Service Bus scaler scales on queue length.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q206",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need to deploy a new Container App revision while keeping the current revision available. Solution: Route 100 percent of traffic to the new revision. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Routing 100 percent to the new revision removes traffic from the old one; split traffic to keep both active.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/revisions"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q207",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI inference solution that uses GPUs. You need to schedule GPU workloads on a dedicated set of nodes in AKS. The solution must isolate GPU capacity. What should you do?",
+    "options": [
+      "Enable the cluster autoscaler setting",
+      "Increase the pod replica count",
+      "Apply a taint to pods",
+      "Add a GPU node pool"
+    ],
+    "answer": 3,
+    "explanation": "A dedicated GPU node pool with the correct VM SKU schedules GPU pods.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/create-node-pools"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q208",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution that frequently pulls a base image from Docker Hub. You need to reduce pull latency and avoid rate limits. The solution must keep a local copy in your registry. What should you configure?",
+    "options": [
+      "Create a cache rule",
+      "Enable the geo-replication option",
+      "Add a registry webhook",
+      "Enable registry content trust"
+    ],
+    "answer": 0,
+    "explanation": "ACR cache rules cache public images locally, reducing latency and rate limits.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-cache"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q209",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution in Container Apps. You need to store an API key securely and reference it as an environment variable. The solution must not expose the value in plain text. What should you do?",
+    "options": [
+      "Hardcode the API key",
+      "Add a secret reference",
+      "Use a plain ConfigMap",
+      "Expose it in code"
+    ],
+    "answer": 1,
+    "explanation": "Container Apps secrets are stored encrypted and referenced as environment variables via secretRef.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/manage-secrets"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q210",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need an ACR Task to pull a base image from a private registry without storing credentials. Solution: Store the registry admin password in the task definition. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Hardcoding the admin password is insecure; use a managed identity to authenticate without credentials.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-authentication-managed-identity"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q211",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution that needs a simple container to run a single workload with virtual network access and no autoscaling. The solution must be the simplest option. What should you use?",
+    "options": [
+      "Azure Container Apps",
+      "Azure Kubernetes Service",
+      "Azure Container Instances",
+      "Azure App Service"
+    ],
+    "answer": 2,
+    "explanation": "ACI is the simplest container option with VNet support and no autoscaling.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q212",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need to expose a Container App publicly over HTTPS. Solution: Configure internal-only ingress. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Internal-only ingress restricts access to the environment; external ingress is required for public access.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/ingress"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q213",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building a microservices-based AI solution on Container Apps. You need service-to-service invocation and pub/sub without changing application code. What should you enable?",
+    "options": [
+      "Enable KEDA scaling",
+      "Enable managed identity",
+      "Enable private ingress",
+      "Enable Dapr integration"
+    ],
+    "answer": 3,
+    "explanation": "Dapr provides service invocation and pub/sub building blocks without code changes.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/dapr-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q214",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need to deploy a Container Apps environment into your own virtual network for private networking. Solution: Enable a dedicated workload profile. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Workload profiles control compute resources; VNet integration is configured on the environment.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/networking"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q215",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution on AKS that experiences variable traffic. You need pods to scale automatically based on CPU usage. The solution must scale replica count. What should you enable?",
+    "options": [
+      "Horizontal Pod Autoscaler",
+      "Vertical Pod Autoscaler",
+      "Apply node taints",
+      "Use network policy"
+    ],
+    "answer": 0,
+    "explanation": "HPA scales the number of replicas based on CPU and memory metrics.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/concepts-scale"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q216",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need to build a container image and push it to ACR on demand from source code. Solution: Run az acr import with the source. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "az acr import copies existing images; use az acr build (a quick task) to build and push from source.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-quick-task"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q217",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution that must run a data-processing job on a fixed schedule. The job must not run continuously. The solution must minimize cost. What should you use?",
+    "options": [
+      "An always running Container App",
+      "A scheduled Container Apps job",
+      "A KEDA based scale rule",
+      "An AKS DaemonSet per node"
+    ],
+    "answer": 1,
+    "explanation": "Scheduled jobs run containers on a CRON schedule without continuous billing.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/jobs"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q218",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need two containers to share storage and a network namespace and scale together. Solution: Deploy them in the same container group. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Container groups share a lifecycle, storage, and network namespace.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q219",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building a CI/CD pipeline that must push images to ACR from GitHub Actions. The solution must not use hardcoded passwords. What should you use?",
+    "options": [
+      "Admin account password",
+      "A shared secret",
+      "OpenID Connect federation",
+      "A SAS token"
+    ],
+    "answer": 2,
+    "explanation": "OIDC federation lets GitHub Actions authenticate to Azure and ACR without secrets.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q220",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need a Container App to scale to zero replicas when idle. Solution: Set the minimum replica count to zero. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A minimum replica count of zero enables scale-to-zero when there is no traffic.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q221",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution with images that must be rebuilt automatically when a base image updates. The solution must run without manual intervention. What should you configure?",
+    "options": [
+      "Only a simple webhook notification",
+      "A scheduled recurring build job",
+      "A registry image cache rule",
+      "A base image update trigger"
+    ],
+    "answer": 3,
+    "explanation": "ACR Tasks base image update triggers rebuild images when their base images change.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-base-image-updates"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q222",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution that requires full control over the Kubernetes API and node configuration. Which service should you use?",
+    "options": [
+      "Azure Kubernetes Service",
+      "Azure Container Apps",
+      "Azure Container Instances",
+      "Azure App Service"
+    ],
+    "answer": 0,
+    "explanation": "AKS exposes the full Kubernetes API and node configuration; Container Apps abstracts it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q223",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution that scales based on Azure Storage queue length. You need to define the scaling logic in Kubernetes. What should you create?",
+    "options": [
+      "Create a Deployment",
+      "Create a ScaledObject",
+      "Create a Service",
+      "Create an Ingress"
+    ],
+    "answer": 1,
+    "explanation": "A ScaledObject maps a scaler such as Azure Queue to a workload in KEDA.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q224",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need a canary deployment where 10 percent of traffic reaches a new revision. Solution: Split traffic 90/10 across two revisions. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Revision traffic splitting enables canary deployments with weighted routing.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/revisions"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q225",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI solution with container images in ACR. You need to restore an image that was accidentally deleted. The solution must retain deleted artifacts for a period. What should you enable?",
+    "options": [
+      "Enable registry content trust",
+      "Set a retention policy",
+      "Enable repository soft delete",
+      "Enable geo-replication on registries"
+    ],
+    "answer": 2,
+    "explanation": "Soft delete retains deleted artifacts for a configurable period for recovery.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-soft-delete-policy"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q226",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution with a predictable, steady workload. You need to control Cosmos DB cost precisely with a fixed throughput. The solution must guarantee a specific RU/s rate. What should you use?",
+    "options": [
+      "Use the autoscale throughput",
+      "Use the serverless capacity",
+      "Use the free tier",
+      "Use the provisioned throughput"
+    ],
+    "answer": 3,
+    "explanation": "Provisioned throughput sets a fixed RU/s rate, ideal for steady workloads.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q227",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need every Cosmos DB read to return the latest committed write with linearizability. Solution: Set the default consistency level to Strong. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Strong consistency guarantees linearizable reads that reflect the latest committed write.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q228",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that stores chat documents in Cosmos DB. You need a partition key that evenly distributes requests and storage. The solution must avoid hot partitions. What should you choose?",
+    "options": [
+      "A high cardinality key",
+      "A single constant key",
+      "A timestamp based key",
+      "A boolean value key"
+    ],
+    "answer": 0,
+    "explanation": "High-cardinality keys distribute data and RU evenly across physical partitions.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q229",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need to run vector similarity search in Cosmos DB for NoSQL. Solution: Use the SQL LIKE operator on the vector field. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "LIKE does not perform vector similarity; use a vector indexing policy and VectorDistance().",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q230",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that must react to inserts and updates in a Cosmos DB container in near real time. You need to process each change once. What should you use?",
+    "options": [
+      "A periodic SQL query",
+      "The Cosmos change feed",
+      "A full data export",
+      "Repeated point read calls"
+    ],
+    "answer": 1,
+    "explanation": "The change feed provides an ordered, incremental stream of item changes.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/change-feed"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q231",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need to automatically delete Cosmos DB items after 30 days. Solution: Set the container default TTL to 2592000 seconds. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A container default TTL auto-deletes items after the specified number of seconds.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/time-to-live"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q232",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that writes frequently and queries only on a single known property. You need to minimize RU cost for writes. The solution must reduce indexing overhead. What should you do?",
+    "options": [
+      "Index all property paths",
+      "Enable the composite indexes",
+      "Limit the indexed paths",
+      "Increase the provisioned throughput"
+    ],
+    "answer": 2,
+    "explanation": "Indexing only queried paths reduces the RU cost of writes.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/index-policy"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q233",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution with unpredictable traffic. You need Cosmos DB throughput to scale automatically between a minimum and a maximum. What should you enable?",
+    "options": [
+      "Use the provisioned throughput",
+      "Use the serverless capacity",
+      "Use the free tier",
+      "Use the autoscale throughput"
+    ],
+    "answer": 3,
+    "explanation": "Autoscale scales RU/s automatically between a minimum and a configured maximum.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/autoscale"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q234",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that stores embeddings in Azure Database for PostgreSQL. You need to run cosine similarity search using the pgvector extension. Which operator should you use?",
+    "options": [
+      "The cosine distance operator",
+      "The Euclidean distance operator",
+      "The inner product operator",
+      "The Hamming distance operator"
+    ],
+    "answer": 0,
+    "explanation": "pgvector uses the cosine distance operator <=> for cosine similarity search.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q235",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need to reduce latency for frequently read AI model metadata. Solution: Implement the cache-aside pattern with Azure Cache for Redis. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Cache-aside loads frequently read data into Redis, reducing latency.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q236",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that stores embeddings in Azure Cache for Redis Enterprise. You need to run vector similarity search. The solution must use a vector index. What should you use?",
+    "options": [
+      "A Redis sorted set",
+      "A RediSearch vector index",
+      "A Redis hash field",
+      "A Redis pub/sub channel"
+    ],
+    "answer": 1,
+    "explanation": "Redis Enterprise with RediSearch supports vector similarity search via an HNSW index.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-tutorial-vector-similarity"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q237",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need every read across all regions to return the latest committed write with linearizability. Solution: Set the consistency level to Session. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Session consistency is scoped to a single client session; Strong is required for global linearizability.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q238",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that must remain available if one Azure region fails. You need writes in multiple regions. What should you enable?",
+    "options": [
+      "Enable the geo-replication only",
+      "Add a read replica",
+      "Enable the multi-region writes",
+      "Use point-in-time restore"
+    ],
+    "answer": 2,
+    "explanation": "Multi-region writes allow writes in each region for higher availability.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/multi-region-writes"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q239",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need to partition a Cosmos DB container on tenant ID and then on user ID within each tenant. Solution: Create two separate partition keys on tenant and user. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A container supports one partition key or a hierarchical partition key, not two independent keys.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q240",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that needs read latency lower than Strong while bounding the staleness of reads. The solution must guarantee reads are no more than a set time behind. What should you configure?",
+    "options": [
+      "Use eventual consistency",
+      "Use consistent prefix",
+      "Use session consistency",
+      "Use bounded staleness"
+    ],
+    "answer": 3,
+    "explanation": "Bounded staleness bounds read lag by a time interval or operation count.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q241",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that must read a single Cosmos DB item by ID and partition key at the lowest RU cost. Which operation should you use?",
+    "options": [
+      "A point read operation",
+      "A full container scan",
+      "A cross partition query",
+      "A change feed read"
+    ],
+    "answer": 0,
+    "explanation": "A point read by ID and partition key costs about 1 RU per 1 KB of the item.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q242",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that runs ORDER BY queries on two properties together. You need to avoid high RU and incorrect ordering. What should you define?",
+    "options": [
+      "Define a unique key",
+      "Define a composite index",
+      "Set a TTL policy",
+      "Create a stored procedure"
+    ],
+    "answer": 1,
+    "explanation": "Composite indexes optimize multi-property ORDER BY and range queries.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/index-policy"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q243",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need cached AI responses to expire after 10 minutes so stale data is not served. Solution: Set a TTL of 600 seconds on the cache entries. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Redis TTL expires keys after the specified number of seconds.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q244",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that reads the Cosmos DB change feed across multiple instances. You need each change delivered to exactly one instance with checkpointing. What should you use?",
+    "options": [
+      "A raw SQL query",
+      "A manual polling loop",
+      "The change feed processor",
+      "A database trigger function"
+    ],
+    "answer": 2,
+    "explanation": "The change feed processor distributes work across instances using leases and checkpoints.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/change-feed-processor"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q245",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need the lowest possible read latency for a Cosmos DB workload that tolerates stale reads. Solution: Set the consistency level to Eventual. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Eventual consistency offers the lowest latency and highest throughput.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q246",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution where Cosmos DB items are about 2 KB. You need to estimate the cost of a point read by ID and partition key. The solution must assume 1 RU per 1 KB for reads. What is the approximate cost?",
+    "options": [
+      "One request unit",
+      "Five request units",
+      "Ten request units",
+      "Two request units"
+    ],
+    "answer": 3,
+    "explanation": "Point reads cost about 1 RU per 1 KB, so a 2 KB item costs about 2 RU.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q247",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need to write several Cosmos DB items atomically across multiple partition keys. Solution: Use a transactional batch. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Transactional batches are atomic but limited to a single partition key.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/transactional-batch"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q248",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution with multi-region writes. You need to resolve conflicts when the same item is updated in two regions. What should you configure?",
+    "options": [
+      "A conflict resolution policy",
+      "An indexing policy change",
+      "A throughput setting change",
+      "A consistency level change"
+    ],
+    "answer": 0,
+    "explanation": "Conflict resolution policies, such as last-writer-wins, handle write conflicts.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/conflict-resolution-policies"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q249",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need Cosmos DB for a workload with low, intermittent traffic and no minimum throughput. Solution: Use serverless capacity. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Serverless bills per operation with no provisioned minimum throughput.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/serverless"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q250",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building an AI solution that must query a numeric property with greater-than filters. You need the property indexed for efficient range queries. What index kind should you use?",
+    "options": [
+      "Disable the property index",
+      "Use a range index",
+      "Use a hash index",
+      "Use a sparse index"
+    ],
+    "answer": 1,
+    "explanation": "Range indexes support greater-than and less-than filters and ORDER BY efficiently.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/index-policy"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q251",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution where a producer sends a message consumed by exactly one consumer with ordering and duplicate detection. The solution must guarantee at-least-once delivery with a queue. What should you use?",
+    "options": [
+      "Azure Event Grid",
+      "Azure Event Hubs",
+      "Azure Service Bus",
+      "Azure Monitor alerts"
+    ],
+    "answer": 2,
+    "explanation": "Service Bus queues provide single-consumer, ordered, at-least-once messaging.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q252",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need to notify multiple independent subscribers about a blob creation event. Solution: Create an Event Grid event subscription for each subscriber. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Event Grid fans out events to multiple subscribers via separate subscriptions.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q253",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution with an Azure Function that processes Service Bus queue messages. You need the function to run whenever a message arrives. The solution must be event-driven. What should you configure?",
+    "options": [
+      "A timer trigger function",
+      "An HTTP trigger function",
+      "A blob trigger function",
+      "A Service Bus trigger"
+    ],
+    "answer": 3,
+    "explanation": "The Service Bus trigger invokes the function for each queue or topic message.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q254",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need to orchestrate a long-running AI workflow with a sequence of functions and state management. Solution: Use Durable Functions with an orchestrator function. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Durable Functions orchestrators manage stateful workflows with a sequence of function calls.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q255",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution where messages that fail processing more than a set number of times must be isolated for inspection. What should you configure?",
+    "options": [
+      "Max delivery count",
+      "Enable duplicate detection",
+      "Enable scheduled delivery",
+      "Enable message sessions"
+    ],
+    "answer": 0,
+    "explanation": "After the max delivery count, Service Bus moves messages to the dead-letter queue.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q256",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need a message broker with transactions, sessions, and scheduled delivery. Solution: Use Azure Event Grid. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Event Grid is for discrete event notification; Service Bus provides transactions and sessions.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q257",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution where an Azure Function must react to changes in a Cosmos DB container using leases for scaling. What should you use?",
+    "options": [
+      "A Service Bus trigger",
+      "A Cosmos DB trigger",
+      "A timer trigger function",
+      "A queue trigger function"
+    ],
+    "answer": 1,
+    "explanation": "The Cosmos DB trigger uses the change feed and lease collections for scaling.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-trigger"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q258",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need a Service Bus topic to deliver messages only to subscriptions whose filter matches a property. Solution: Enable duplicate detection on the topic. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Duplicate detection does not filter messages; use subscription rules with SQL filters.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q259",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution where a function receives an HTTP request and must write a JSON result to Azure Blob Storage without writing client code. What should you use?",
+    "options": [
+      "A blob input trigger",
+      "A Durable Functions client",
+      "A blob output binding",
+      "A retry policy setting"
+    ],
+    "answer": 2,
+    "explanation": "Output bindings write to services such as Blob Storage without explicit SDK code.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-output"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q260",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need Event Grid to retain undelivered events after retries fail. Solution: Configure dead-lettering to a storage account. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Event Grid dead-letters undelivered events to blob storage after retries fail.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/manage-event-delivery"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q261",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution that must not process the same Service Bus message twice if the sender retries. The solution must deduplicate messages. What should you enable?",
+    "options": [
+      "Enable dead-letter support",
+      "Enable the auto-forwarding",
+      "Enable entity partitioning",
+      "Enable duplicate detection"
+    ],
+    "answer": 3,
+    "explanation": "Duplicate detection drops duplicate messages within a configured window.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/duplicate-detection"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q262",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need a function to run on a fixed schedule every 15 minutes. Solution: Configure a blob storage trigger. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A blob trigger fires on blob events; use a timer trigger with a CRON expression.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q263",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution that processes queue messages in first-in-first-out order grouped by a related identifier. The solution must preserve order per group. What should you enable?",
+    "options": [
+      "Enable message sessions",
+      "Enable duplicate detection",
+      "Enable the auto-forwarding",
+      "Enable message batching"
+    ],
+    "answer": 0,
+    "explanation": "Sessions guarantee FIFO ordering within a session ID.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q264",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution that must react to Azure Storage blob events without creating a custom event source. What should you use?",
+    "options": [
+      "A Service Bus message queue",
+      "An Event Grid system topic",
+      "An Event Hubs data stream",
+      "A custom Event Grid topic"
+    ],
+    "answer": 1,
+    "explanation": "System topics expose Azure resource events automatically without a custom source.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/system-topics"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q265",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution with a function that fails intermittently. You need it to retry automatically with a fixed delay. The solution must not require code changes. What should you configure?",
+    "options": [
+      "A scale controller rule",
+      "An authorization level setting",
+      "A function retry policy",
+      "A host lock setting"
+    ],
+    "answer": 2,
+    "explanation": "Retry policies retry failed executions with fixed or exponential delays.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-error-pages"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q266",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need to ingest millions of telemetry events per second for streaming analytics. Solution: Use Azure Service Bus. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Event Hubs handles high-throughput streaming; Service Bus is for enterprise messaging.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q267",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution where a function needs a connection string for a Service Bus binding. The solution must not hardcode the value. What should you do?",
+    "options": [
+      "Store it in code",
+      "Use a hardcoded constant",
+      "Add to the trigger",
+      "Use an app setting"
+    ],
+    "answer": 3,
+    "explanation": "Bindings read connection strings from application settings rather than hardcoded values.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q268",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need Event Grid to retry delivery of an event a subscriber fails to acknowledge. Solution: Configure a retry policy with a maximum delivery count. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Event Grid retries delivery according to its retry policy and max delivery count.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/manage-event-delivery"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q269",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution where messages from one queue must automatically move to another queue after a delay period. What should you configure?",
+    "options": [
+      "Enable the auto-forwarding",
+      "Enable message sessions",
+      "Add topic filters",
+      "Enable duplicate detection"
+    ],
+    "answer": 0,
+    "explanation": "Auto-forwarding forwards messages from one entity to another.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-auto-forwarding"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q270",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need to configure batching behavior for a function app's Service Bus trigger. Solution: Set the batch options in host.json. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "host.json configures trigger batching and concurrency for the function app.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-host-json"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q271",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution that must guarantee a message is not lost if processing fails midway. The solution must require explicit completion. What receive mode should you use?",
+    "options": [
+      "Use receive-delete mode",
+      "Use peek-lock mode",
+      "Use scheduled mode",
+      "Use session mode"
+    ],
+    "answer": 1,
+    "explanation": "Peek-lock completes or abandons messages, preventing loss on processing failure.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-transfers-locks-settlement"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q272",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution that must publish custom events and route them to multiple Azure services. What should you create?",
+    "options": [
+      "A Service Bus session queue",
+      "An Event Hubs data partition",
+      "A custom Event Grid topic",
+      "An Azure storage message queue"
+    ],
+    "answer": 2,
+    "explanation": "Custom topics let you publish and route your own events to many subscribers.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/custom-topics"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q273",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an AI solution with variable event-driven load. You need functions to scale out automatically and pay only for executions. The solution must minimize cost. What hosting plan should you use?",
+    "options": [
+      "Use a Premium plan",
+      "Use a Dedicated plan",
+      "Use an App Service plan",
+      "Use a Consumption plan"
+    ],
+    "answer": 3,
+    "explanation": "The Consumption plan scales automatically and bills per execution.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/consumption-plan"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q274",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need a one-to-many messaging pattern where one message reaches multiple consumers. Solution: Use a Service Bus queue. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Queues are one-to-one; use a topic with subscriptions for fan-out delivery.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q275",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building a latency-sensitive AI solution with Azure Functions. You need to avoid cold starts and keep instances warm. The solution must prewarm workers. What should you use?",
+    "options": [
+      "Premium plan with prewarming",
+      "Use the Consumption plan",
+      "Use the free tier",
+      "Disable the autoscaling feature"
+    ],
+    "answer": 0,
+    "explanation": "The Premium plan keeps instances warm to reduce cold-start latency.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-premium-plan"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q276",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution that stores an API key in Key Vault. You need the key to rotate automatically before it expires. The solution must not require manual steps. What should you configure?",
+    "options": [
+      "An access policy",
+      "A rotation policy",
+      "A private endpoint",
+      "A retention policy"
+    ],
+    "answer": 1,
+    "explanation": "Key Vault auto-rotation rotates secrets on a schedule or before they expire.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/secrets/tutorial-rotation"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q277",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to be notified when a Key Vault secret is near expiration. Solution: Configure a Key Vault access policy. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Access policies control access; use Event Grid subscriptions on near-expiry events for notifications.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/event-grid-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q278",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution on Container Apps that accesses Key Vault. You need to authenticate without storing credentials. The solution must use Microsoft Entra. What should you use?",
+    "options": [
+      "A client secret",
+      "A SAS token",
+      "A managed identity",
+      "A shared key"
+    ],
+    "answer": 2,
+    "explanation": "Managed identities let the app authenticate to Key Vault without storing secrets.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/authentication"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q279",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need an application to pick up configuration changes without restarting. Solution: Use App Configuration with a sentinel key and a refresh interval. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Sentinel keys trigger dynamic configuration refresh without an app restart.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q280",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution where a new feature must be enabled for a subset of users without redeploying. The solution must toggle at runtime. What should you use?",
+    "options": [
+      "A connection string",
+      "A managed identity",
+      "A private endpoint",
+      "A feature flag"
+    ],
+    "answer": 3,
+    "explanation": "Feature flags toggle features at runtime without redeployment.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/manage-feature-flags"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q281",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to collect traces from a containerized app and export them to Azure Monitor. Solution: Configure only an OpenTelemetry receiver. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Receivers collect data but do not send it out; an exporter is required to send to Azure Monitor.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q282",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are troubleshooting an AI solution in Log Analytics. You need to list only error-level logs from the last hour for a table. Which KQL operator should you use first?",
+    "options": [
+      "The where operator",
+      "The join operator",
+      "The render operator",
+      "The parse operator"
+    ],
+    "answer": 0,
+    "explanation": "The where operator filters rows by a condition such as level equals Error.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/where-operator"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q283",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to count the number of requests per status code from an AppRequests table. Solution: Use summarize with count() by resultCode. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "summarize count() by resultCode aggregates row counts per group.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/summarize-operator"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q284",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution that needs different configuration values for development and production. The solution must store both in the same store. What should you use?",
+    "options": [
+      "A second store",
+      "Use key labels",
+      "A sentinel key",
+      "A feature flag"
+    ],
+    "answer": 1,
+    "explanation": "Labels differentiate values for the same key across environments.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-key-value"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q285",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to control access to Key Vault secrets using Azure role assignments. Solution: Use vault access policies only. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Role assignments require the Azure RBAC permission model, not vault access policies.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q286",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution and need to export metrics, logs, and traces to a backend. Which OpenTelemetry component sends telemetry to the backend?",
+    "options": [
+      "The sampler component",
+      "The propagator component",
+      "The exporter component",
+      "The receiver component"
+    ],
+    "answer": 2,
+    "explanation": "Exporters push collected telemetry to configured backends such as Azure Monitor.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-configuration"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q287",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are troubleshooting an AI solution in Log Analytics. You need to limit a query to events from the last 24 hours only. Which function should you use?",
+    "options": [
+      "The bin function",
+      "The parse function",
+      "The take operator",
+      "The ago function"
+    ],
+    "answer": 3,
+    "explanation": "ago(24h) restricts the query to events from the last 24 hours.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/ago-function"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q288",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building a high-traffic AI solution where telemetry volume exceeds limits. You need to reduce telemetry while keeping representative traces. The solution must lower data cost. What should you enable?",
+    "options": [
+      "Enable the telemetry sampling",
+      "Set a log retention policy",
+      "Enable the continuous export",
+      "Use the live metrics"
+    ],
+    "answer": 0,
+    "explanation": "Sampling reduces telemetry volume while preserving representative patterns.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/sampling"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q289",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to recover a Key Vault secret after deletion for a retention period. Solution: Enable soft-delete and purge protection. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Soft-delete retains secrets for recovery, and purge protection prevents permanent deletion.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q290",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution with multiple Container Apps that each need their own identity. The identity must be deleted when an app is removed. What should you use?",
+    "options": [
+      "A user-assigned identity",
+      "A system-assigned identity",
+      "A service principal",
+      "A SAS token"
+    ],
+    "answer": 1,
+    "explanation": "System-assigned identities share the lifecycle of their resource and are deleted with it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q291",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution in a supported language. You need to add OpenTelemetry telemetry with minimal code changes. What should you use?",
+    "options": [
+      "Use manual instrumentation",
+      "Use custom exporters",
+      "Use automatic instrumentation",
+      "Use log shipping"
+    ],
+    "answer": 2,
+    "explanation": "Automatic instrumentation adds telemetry with little or no code change.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q292",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are troubleshooting an AI solution and need to add a computed column that extracts a value from a field. The solution must modify the result set. Which KQL operator should you use?",
+    "options": [
+      "The join operator",
+      "The project operator",
+      "The take operator",
+      "The extend operator"
+    ],
+    "answer": 3,
+    "explanation": "The extend operator adds computed columns to the result set.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/extend-operator"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q293",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need App Configuration to remain available and serve reads if one region fails. Solution: Use a single-region store with a snapshot. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Snapshots are point-in-time captures, not regional redundancy; create a replica in another region.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-geo-replication"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q294",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution that must access Key Vault only from inside a virtual network and never over the public internet. The solution must use private IP addressing. What should you configure?",
+    "options": [
+      "A private endpoint",
+      "A firewall rule",
+      "A service endpoint",
+      "A public IP"
+    ],
+    "answer": 0,
+    "explanation": "Private endpoints expose Key Vault on a private IP within the virtual network.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/private-link-service"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q295",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to return only specific columns from a Log Analytics table. Solution: Use the project-rename operator. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "project-rename renames columns but keeps all of them; use project to select columns.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/project-operator"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q296",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution and need to trigger an action when a metric crosses a threshold. The solution must alert automatically. What should you configure?",
+    "options": [
+      "A log retention policy",
+      "A metric alert rule",
+      "An Azure Monitor workbook",
+      "An Azure Monitor dashboard"
+    ],
+    "answer": 1,
+    "explanation": "Metric alert rules fire when a metric crosses a defined threshold.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q297",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to trigger a function when a Key Vault secret is rotated. Solution: Use an Event Grid subscription on the secret new version event. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Key Vault emits a new secret version event that Event Grid can route to a function.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/event-grid-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q298",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are troubleshooting an AI solution and need to see request counts grouped by five-minute intervals. The solution must aggregate over time. Which KQL operators should you combine?",
+    "options": [
+      "where and join",
+      "extend and parse",
+      "summarize and bin",
+      "project and take"
+    ],
+    "answer": 2,
+    "explanation": "bin() groups timestamps and summarize aggregates counts per bin.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/bin-function"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q299",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need trace context to flow across service boundaries for end-to-end tracing. Solution: Disable context propagation in the OpenTelemetry SDK. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Context propagation must be enabled to carry trace context across services.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q300",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are building an AI solution that must store a feature's on/off state that can be toggled at runtime without a restart. The solution must store it in App Configuration. What should you use?",
+    "options": [
+      "A static key",
+      "A key label",
+      "A configuration snapshot",
+      "A feature flag"
+    ],
+    "answer": 3,
+    "explanation": "Feature flags are key-values that toggle features at runtime without redeployment.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/manage-feature-flags"
+      }
+    ]
+  }
+]
