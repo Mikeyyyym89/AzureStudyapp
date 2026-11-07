@@ -1,0 +1,408 @@
+[
+  {
+    "id": "sc-500-q166",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Your organization uses Azure and AWS, and the security team must discover unused and excessive permissions across both clouds, right-size identities to least privilege, and detect identities with high-risk or anomalous permissions, without writing custom code. Which solution should you use?",
+    "options": [
+      "Microsoft Entra Permissions Management, a cloud infrastructure entitlement management (CIEM) solution that discovers, remediates, and monitors permissions across Azure, AWS, and GCP.",
+      "Azure Policy with built-in initiatives applied at the management group level.",
+      "Microsoft Entra ID Protection user risk policies.",
+      "Manual review of Azure RBAC role assignments by the security team."
+    ],
+    "answer": 0,
+    "explanation": "Permissions Management is a CIEM solution that discovers, right-sizes, and continuously monitors permissions across multiple clouds. Azure Policy governs resource configuration rather than identity entitlements, Entra ID Protection addresses user sign-in and user risk rather than cloud permissions, and manual review does not scale across clouds.",
+    "docs": [
+      { "label": "Cloud infrastructure entitlement management (CIEM)", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions-management" }
+    ]
+  },
+  {
+    "id": "sc-500-q167",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Your applications use service principals and managed identities to access Azure resources. You must detect when a workload identity has leaked credentials or is exhibiting anomalous token usage, and you must be able to respond automatically. What should you configure?",
+    "options": [
+      "A Conditional Access policy targeting interactive users with sign-in risk.",
+      "Microsoft Entra ID Protection for workload identities, which detects leaked credentials and risky sign-ins for service principals and supports automated response.",
+      "Azure Key Vault soft-delete and purge protection.",
+      "A network security group rule blocking port 443."
+    ],
+    "answer": 1,
+    "explanation": "Workload identity protection extends risk detection to service principals and managed identities, detecting leaked credentials and anomalous usage. Conditional Access and user risk policies target interactive user accounts, Key Vault soft-delete protects secrets rather than detecting compromise, and a network rule does not detect identity compromise.",
+    "docs": [
+      { "label": "Securing workload identities", "url": "https://learn.microsoft.com/en-us/entra/id-protection/concept-workload-identity-risk" }
+    ]
+  },
+  {
+    "id": "sc-500-q168",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "When employees join, change roles, or leave, access must be provisioned and deprovisioned automatically: new hires receive a base set of group memberships and their manager gets a review task after 30 days, and departing employees have access removed on their last day. You must implement this with minimal custom scripting. What should you use?",
+    "options": [
+      "A runbook in Azure Automation that an administrator triggers manually.",
+      "A Conditional Access policy with a sign-in frequency control.",
+      "Microsoft Entra ID Governance lifecycle workflows for joiner, mover, and leaver scenarios, with tasks for group membership and access reviews.",
+      "Azure AD Connect sync rules modified per user."
+    ],
+    "answer": 2,
+    "explanation": "Lifecycle workflows automate joiner, mover, and leaver access using built-in tasks (such as adding to groups and triggering access reviews) that run on triggers like hire date or attribute change. A manual runbook does not automate, Conditional Access controls sign-in conditions rather than provisioning, and per-user sync rule changes are not a scalable governance solution.",
+    "docs": [
+      { "label": "Understanding lifecycle workflows", "url": "https://learn.microsoft.com/en-us/entra/id-governance/understanding-lifecycle-workflows" }
+    ]
+  },
+  {
+    "id": "sc-500-q169",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Your on-premises Active Directory environment has domain controllers that are not monitored. You must detect attacks such as pass-the-hash, Kerberoasting, and suspicious lateral movement without installing an agent on every workstation. What should you deploy?",
+    "options": [
+      "Azure Bastion on the domain controllers.",
+      "Azure Policy with a compliance initiative on the domain controllers.",
+      "Microsoft Entra Connect cloud sync only.",
+      "Microsoft Defender for Identity sensors on the domain controllers, which monitor domain controller traffic and Active Directory events."
+    ],
+    "answer": 3,
+    "explanation": "Defender for Identity sensors installed on domain controllers inspect traffic and Active Directory events to detect identity-based attacks such as pass-the-hash and Kerberoasting. Azure Bastion and Azure Policy do not detect Active Directory attacks, and Entra Connect cloud sync is a synchronization mechanism, not a threat detection tool.",
+    "docs": [
+      { "label": "Microsoft Defender for Identity overview", "url": "https://learn.microsoft.com/en-us/defender-for-identity/what-is" }
+    ]
+  },
+  {
+    "id": "sc-500-q170",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A regulator requires phishing-resistant MFA for administrators. SMS and voice call methods must be blocked for administrators, and you must allow passwordless sign-in using FIDO2 security keys and Windows Hello for Business. Which configuration should you implement?",
+    "options": [
+      "Create a Conditional Access policy targeting administrators that requires an authentication strength limited to phishing-resistant methods (FIDO2 and Windows Hello for Business), and do not offer SMS or voice to those users.",
+      "Enable per-user MFA for administrators and leave SMS as an available method.",
+      "Create a Conditional Access policy requiring MFA but allow all methods for all users.",
+      "Block all sign-ins from administrators and reset their passwords daily."
+    ],
+    "answer": 0,
+    "explanation": "Authentication strength in Conditional Access lets you require only phishing-resistant methods such as FIDO2 security keys and Windows Hello for Business for administrators. Per-user MFA does not restrict method type, allowing all methods for all users defeats the requirement, and blocking all administrator sign-ins is not a usable control.",
+    "docs": [
+      { "label": "Passwordless authentication options", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless" },
+      { "label": "Conditional Access overview", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q171",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Users access an unmanaged SaaS application with Microsoft Entra single sign-on. You must prevent users from downloading sensitive documents through the SaaS app in real time and restrict the app's ability to perform certain risky activities, while still allowing normal use. Which capability should you use?",
+    "options": [
+      "A network security group rule on the SaaS provider's IP range.",
+      "Microsoft Defender for Cloud Apps session controls (reverse proxy) with a session policy to block downloads and an app governance policy to restrict risky app activities.",
+      "Azure Firewall with an FQDN deny rule for the SaaS app domain.",
+      "Microsoft Entra ID Protection with a password reset policy."
+    ],
+    "answer": 1,
+    "explanation": "Defender for Cloud Apps session controls route traffic through a reverse proxy and enforce session policies such as blocking downloads, while app governance policies restrict risky app activities. NSG rules and FQDN deny rules block network access but cannot apply per-action session controls, and Entra ID Protection does not govern SaaS activity.",
+    "docs": [
+      { "label": "Microsoft Defender for Cloud Apps overview", "url": "https://learn.microsoft.com/en-us/defender-cloud-apps/what-is-defender-for-cloud-apps" }
+    ]
+  },
+  {
+    "id": "sc-500-q172",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must inspect outbound TLS traffic for known command-and-control and exploit signatures, detect and alert on intrusion attempts, and centralize all filtering in one managed service. Which Azure Firewall tier and features should you enable?",
+    "options": [
+      "Azure Firewall Basic with network rules only.",
+      "Azure Firewall Standard with DNAT rules.",
+      "Azure Firewall Premium with intrusion detection and prevention system (IDPS) and TLS inspection enabled.",
+      "A network security group with an application rule."
+    ],
+    "answer": 2,
+    "explanation": "Azure Firewall Premium adds IDPS for threat-based inspection and TLS inspection for decrypting outbound traffic, capabilities not available in Basic or Standard tiers. DNAT rules handle inbound translation, not outbound threat inspection, and network security groups cannot inspect TLS payloads.",
+    "docs": [
+      { "label": "Azure Firewall features by SKU", "url": "https://learn.microsoft.com/en-us/azure/firewall/features-by-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q173",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A storage account holds critical business documents. You must protect against ransomware by preventing blobs from being overwritten or deleted during a policy period, and you must be able to restore accidentally deleted blobs even after an attacker disables soft-delete. Which combination should you use?",
+    "options": [
+      "Rely on the storage account firewall only.",
+      "Enable read-access geo-redundant storage only.",
+      "Enable blob versioning but not soft delete.",
+      "Enable blob versioning and soft delete, and apply a time-based retention (immutability) policy so blobs cannot be overwritten or deleted."
+    ],
+    "answer": 3,
+    "explanation": "A time-based retention immutability policy prevents overwrite and delete during the retention period, soft delete recovers recently deleted blobs, and versioning preserves prior versions. A firewall restricts network access rather than protecting against destructive writes, geo-redundancy is about availability, and versioning alone does not prevent deletion.",
+    "docs": [
+      { "label": "Immutable blob storage policies", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-policy-overview" },
+      { "label": "Soft delete for blobs", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/soft-delete-blob-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q174",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must protect sensitive columns so that even a database administrator with direct access to the database files cannot read the plaintext values, while the application still queries and computes over those columns transparently. Which technology should you use?",
+    "options": [
+      "Always Encrypted, which encrypts data at the client so the database engine never sees plaintext for protected columns.",
+      "Transparent Data Encryption (TDE) only.",
+      "Dynamic data masking only.",
+      "Row-level security only."
+    ],
+    "answer": 0,
+    "explanation": "Always Encrypted encrypts sensitive columns at the client so the database engine and its administrators never see plaintext. TDE encrypts the entire database at rest but the engine still processes plaintext, dynamic data masking only obfuscates results for non-privileged users, and row-level security filters rows rather than encrypting values.",
+    "docs": [
+      { "label": "Always Encrypted", "url": "https://learn.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine" }
+    ]
+  },
+  {
+    "id": "sc-500-q175",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must identify which VMs are communicating with an unexpected public IP, determine whether traffic was allowed or denied, and visualize traffic patterns over time. You want to enable this without deploying agents on the VMs. What should you configure?",
+    "options": [
+      "Azure Bastion diagnostics only.",
+      "Network security group flow logs captured to a storage account, with Network Watcher traffic analytics for visualization and anomaly detection.",
+      "Application Insights on each VM.",
+      "A service endpoint on each subnet."
+    ],
+    "answer": 1,
+    "explanation": "NSG flow logs record allowed and denied flows without agents, and Network Watcher traffic analytics provides visualization and anomaly detection. Bastion diagnostics cover management sessions, Application Insights monitors applications rather than network flows, and service endpoints expose PaaS services without providing flow visibility.",
+    "docs": [
+      { "label": "Flow logging for network security groups", "url": "https://learn.microsoft.com/en-us/azure/network-watcher/nsg-flow-logs-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q176",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A public web application is under a Layer 7 attack that sends a high volume of requests from a single IP using a known malicious User-Agent string. You must block that traffic at the edge without changing application code. What should you do?",
+    "options": [
+      "Add a network security group rule denying the IP on the VM subnet.",
+      "Scale out the application to absorb the traffic.",
+      "Create a Web Application Firewall custom rule on Azure Front Door that matches the User-Agent string and blocks the request, plus a rate-limit rule for the IP.",
+      "Enable Azure DDoS Protection Standard only."
+    ],
+    "answer": 2,
+    "explanation": "A WAF custom rule on Front Door can match request characteristics such as the User-Agent and block at the edge, and rate-limiting controls request volume per IP. NSGs are Layer 3/4 and cannot match HTTP headers, scaling out does not block malicious traffic, and DDoS Protection mitigates volumetric attacks rather than application-layer signature matching.",
+    "docs": [
+      { "label": "Azure Web Application Firewall on Front Door", "url": "https://learn.microsoft.com/en-us/azure/web-application-firewall/afds/afds-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q177",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Your organization exposes REST APIs through Azure API Management, and a compliance requirement demands continuous API security posture assessment and runtime threat detection for those APIs. Which capability should you enable?",
+    "options": [
+      "A network security group on the API Management subnet only.",
+      "Azure Front Door without WAF.",
+      "Microsoft Sentinel with no API data connector.",
+      "Microsoft Defender for APIs, which provides API security posture and runtime threat detection for Azure API Management."
+    ],
+    "answer": 3,
+    "explanation": "Defender for APIs provides API security posture assessment and runtime threat detection for APIs published through Azure API Management. NSGs and Front Door without WAF provide no API-specific threat detection, and Sentinel requires a data source to receive signals.",
+    "docs": [
+      { "label": "About Microsoft Defender for APIs", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-apis-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q178",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An on-premises network connects to Azure over ExpressRoute. On-premises servers must resolve the FQDNs of Azure private endpoints to their private IPs, and Azure VMs must resolve on-premises hostnames. You must enable this without deploying a full virtual machine DNS server. What should you deploy?",
+    "options": [
+      "Azure DNS Private Resolver with an inbound endpoint for on-premises queries and an outbound endpoint plus forwarding rules for on-premises name resolution, integrated with the private DNS zones.",
+      "A public DNS server with public IP addresses.",
+      "Azure Front Door for name resolution.",
+      "A load balancer with DNS health probes."
+    ],
+    "answer": 0,
+    "explanation": "Azure DNS Private Resolver provides inbound and outbound endpoints to bridge on-premises and Azure private DNS without a dedicated DNS VM. Public DNS cannot resolve private endpoint FQDNs to private IPs, Front Door is not a name-resolution service, and a load balancer with health probes performs no DNS resolution.",
+    "docs": [
+      { "label": "What is Azure DNS Private Resolver?", "url": "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q179",
+    "domain": "Secure compute",
+    "prompt": "An AKS cluster hosts a multi-tenant microservices application. The API server must not be reachable from the internet, access to the cluster must use Entra ID RBAC so that each team has least-privilege permissions, and pods must only communicate with approved peers. Which configuration meets all requirements?",
+    "options": [
+      "A public AKS cluster with a shared kubeconfig file.",
+      "A private AKS cluster, Entra ID (Azure RBAC) integration for cluster access, and a network policy such as Azure Network Policy Manager or Calico for pod-to-pod isolation.",
+      "A public cluster with a network security group only.",
+      "A private cluster with no RBAC configured."
+    ],
+    "answer": 1,
+    "explanation": "A private cluster removes the public API endpoint, Entra ID RBAC enforces least-privilege cluster access, and a network policy restricts pod-to-pod communication. A public cluster with a shared kubeconfig is insecure, a network security group only filters at the node level and is not pod-aware, and a private cluster without RBAC leaves access uncontrolled.",
+    "docs": [
+      { "label": "Create a private AKS cluster", "url": "https://learn.microsoft.com/en-us/azure/aks/private-clusters" },
+      { "label": "Azure RBAC for Kubernetes authorization", "url": "https://learn.microsoft.com/en-us/azure/aks/manage-azure-rbac" }
+    ]
+  },
+  {
+    "id": "sc-500-q180",
+    "domain": "Secure compute",
+    "prompt": "You must shift security left by scanning code for secrets and vulnerabilities in the CI/CD pipeline, and surface findings in the same portal your security team already uses, across GitHub and Azure DevOps, without changing developer workflows. Which solution should you use?",
+    "options": [
+      "A manual code review checklist.",
+      "Azure Policy on the subscription only.",
+      "Microsoft Defender for Cloud DevOps security (Defender for DevOps), which connects GitHub and Azure DevOps and surfaces code-to-cloud findings.",
+      "Microsoft Sentinel with a Syslog connector."
+    ],
+    "answer": 2,
+    "explanation": "Defender for DevOps connects source code repositories, surfaces secrets and vulnerabilities in code within Defender for Cloud, and provides code-to-cloud context without disrupting developer workflows. Manual checklists do not scale, Azure Policy governs resources rather than source code, and a Syslog connector ingests logs rather than scanning code.",
+    "docs": [
+      { "label": "Microsoft Defender for Cloud DevOps security", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q181",
+    "domain": "Secure compute",
+    "prompt": "A web application runs in Azure App Service and is accessible over the internet. You must detect threats such as suspicious login attempts and malware against the App Service, keep the app reachable only through a private network from internal clients, and authenticate to a database without stored credentials. Which combination should you use?",
+    "options": [
+      "A public App Service with no threat detection and a stored connection string.",
+      "Azure Bastion to access the App Service.",
+      "Azure Disk Encryption on the App Service plan.",
+      "Defender for App Service for threat detection, private endpoint or VNet integration for private access, and a managed identity for database authentication."
+    ],
+    "answer": 3,
+    "explanation": "Defender for App Service detects threats against the app, private endpoint or VNet integration restricts inbound access to the private network, and a managed identity authenticates to the database without stored credentials. The other options omit threat detection, use the wrong service for the goal, or retain stored credentials.",
+    "docs": [
+      { "label": "Microsoft Defender for App Service", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-app-service-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q182",
+    "domain": "Secure compute",
+    "prompt": "Your organization has Windows and Linux servers running in AWS and on-premises. You need file integrity monitoring, vulnerability assessment, and endpoint detection and response across all of them, with regulatory compliance reporting. Which solution should you use?",
+    "options": [
+      "Microsoft Defender for Servers Plan 2 with Azure Arc-enabled servers for the AWS and on-premises machines.",
+      "Microsoft Defender for Servers Plan 1 only on Azure VMs.",
+      "Azure Bastion on the on-premises servers.",
+      "A network security group on each AWS subnet."
+    ],
+    "answer": 0,
+    "explanation": "Defender for Servers Plan 2 provides file integrity monitoring, vulnerability assessment, and endpoint detection and response, and Azure Arc extends these protections to AWS and on-premises servers. Plan 1 lacks file integrity monitoring and vulnerability assessment, Azure Bastion only enables management connectivity, and NSGs do not provide server threat detection.",
+    "docs": [
+      { "label": "Microsoft Defender for Servers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction" },
+      { "label": "Azure Arc overview", "url": "https://learn.microsoft.com/en-us/azure/azure-arc/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q183",
+    "domain": "Secure compute",
+    "prompt": "You must ensure that only container images signed by a trusted identity can be deployed to AKS, and unsigned images must be rejected at admission time. What should you implement?",
+    "options": [
+      "A convention that developers only push signed images.",
+      "Sign images with Notation using a private key in Key Vault, and enforce the signature with an Azure Policy for Kubernetes admission rule that rejects unsigned images.",
+      "A network security group on the container registry.",
+      "Azure Front Door in front of the registry."
+    ],
+    "answer": 1,
+    "explanation": "Signing images with Notation binds an image to a trusted identity, and Azure Policy for Kubernetes enforces admission rules that reject unsigned or untrusted images at deployment. A convention is not enforced, NSGs filter network traffic rather than image provenance, and Front Door does not validate image signatures.",
+    "docs": [
+      { "label": "Sign container images with Notation", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-sign-build-push" },
+      { "label": "Azure Policy for AKS", "url": "https://learn.microsoft.com/en-us/azure/aks/use-azure-policy" }
+    ]
+  },
+  {
+    "id": "sc-500-q184",
+    "domain": "Secure compute",
+    "prompt": "A multi-tenant AKS cluster processes regulated data from different tenants. You must isolate tenant data during processing so that the Kubernetes control plane and host cannot read it, using hardware-based trusted execution environments. Which option should you choose?",
+    "options": [
+      "Standard pods with a network policy.",
+      "Standard pods with a resource quota.",
+      "Confidential containers (confidential AKS) with Intel SGX or AMD SEV-SNP pods that run inside hardware-isolated enclaves.",
+      "Pods with a larger CPU request."
+    ],
+    "answer": 2,
+    "explanation": "Confidential containers run pods inside hardware-based trusted execution environments, isolating data in use from the Kubernetes control plane and host. Network policies and resource quotas manage connectivity and resources but do not protect data in use, and a larger CPU request is a performance setting.",
+    "docs": [
+      { "label": "Confidential containers on Azure", "url": "https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-containers" }
+    ]
+  },
+  {
+    "id": "sc-500-q185",
+    "domain": "Manage and monitor security posture",
+    "prompt": "Security analysts currently switch between three separate portals for endpoint, identity, and email alerts. You must correlate signals from Microsoft Defender for Endpoint, Microsoft Defender for Identity, Microsoft Defender for Office 365, and Microsoft Defender for Cloud Apps in a single console with automated investigation. What should you use?",
+    "options": [
+      "Azure Monitor only.",
+      "Azure Network Watcher only.",
+      "Microsoft Entra admin center only.",
+      "Microsoft Defender XDR, the unified extended detection and response (XDR) platform that correlates signals across Microsoft 365 Defender workloads and supports automated investigation and response."
+    ],
+    "answer": 3,
+    "explanation": "Microsoft Defender XDR unifies signals from endpoint, identity, email, and cloud apps into one console with correlated incidents and automated investigation. Azure Monitor and Network Watcher focus on infrastructure telemetry and network visibility, and the Entra admin center manages identity configuration rather than providing XDR.",
+    "docs": [
+      { "label": "What is Microsoft Defender XDR?", "url": "https://learn.microsoft.com/en-us/defender-xdr/microsoft-365-defender" }
+    ]
+  },
+  {
+    "id": "sc-500-q186",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need Microsoft Sentinel to automatically correlate low-fidelity signals into a single high-severity incident when it detects a multi-stage attack chain, such as a suspicious sign-in followed by endpoint activity, without writing custom rules. Which feature should you enable?",
+    "options": [
+      "Fusion (advanced multistage attack detection), which uses machine learning to correlate related signals into incidents.",
+      "A single scheduled analytics rule for each signal type.",
+      "A data connector only.",
+      "A workbook visualization."
+    ],
+    "answer": 0,
+    "explanation": "Fusion correlates low-fidelity signals across sources using machine learning to detect multi-stage attacks and generate consolidated incidents, without manual rule authoring. Individual scheduled rules would generate separate alerts, data connectors ingest data rather than detect, and workbooks visualize rather than correlate detections.",
+    "docs": [
+      { "label": "Advanced multistage attack detection in Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/fusion" }
+    ]
+  },
+  {
+    "id": "sc-500-q187",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must detect insider threats and account compromise by establishing a behavioral baseline for users and hosts, and flagging anomalies such as a user accessing data they have never touched before. Which capability should you enable?",
+    "options": [
+      "A network security group rule.",
+      "User and Entity Behavior Analytics (UEBA) in Microsoft Sentinel, which builds behavioral baselines and surfaces anomalies on the entity pages.",
+      "Azure Disk Encryption.",
+      "A service endpoint."
+    ],
+    "answer": 1,
+    "explanation": "UEBA builds behavioral baselines for users and entities and surfaces anomalies, enabling insider-threat and account-compromise detection. NSG rules and service endpoints control network access, and disk encryption protects data at rest, none of which provide behavioral analytics.",
+    "docs": [
+      { "label": "Enable UEBA in Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/enable-entity-behavior-analytics" }
+    ]
+  },
+  {
+    "id": "sc-500-q188",
+    "domain": "Manage and monitor security posture",
+    "prompt": "Your security team needs near-real-time detection (within seconds to a few minutes) for a specific high-priority event, while most other detections can run on a five-minute or hourly schedule. Which Microsoft Sentinel analytics rule type should you use for the high-priority event?",
+    "options": [
+      "A workbook.",
+      "A watchlist.",
+      "A near-real-time (NRT) analytics rule, which runs the query at frequent intervals for fast detection.",
+      "A data connector."
+    ],
+    "answer": 2,
+    "explanation": "NRT analytics rules run queries at frequent intervals (as often as every minute or few minutes) for near-real-time detection, while scheduled rules are better suited to longer intervals. Workbooks visualize data, watchlists hold reference data, and data connectors ingest data rather than detect.",
+    "docs": [
+      { "label": "Threat detection in Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/detect-threats-built-in" }
+    ]
+  },
+  {
+    "id": "sc-500-q189",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must apply consistent security standards across a multi-subscription environment organized under management groups, and you need to continuously evaluate compliance and remediate non-compliant resources centrally. What should you do?",
+    "options": [
+      "Manually review each subscription's resources periodically.",
+      "Enable per-user MFA only.",
+      "Deploy a separate Microsoft Sentinel workspace per resource.",
+      "Use Microsoft Defender for Cloud security governance to assign built-in or custom initiatives (Azure Policy) at the management group scope and remediate from the recommendations."
+    ],
+    "answer": 3,
+    "explanation": "Defender for Cloud security governance assigns standards and Azure Policy initiatives at management group scope so they inherit to subscriptions, with continuous compliance evaluation and remediation guidance. Manual review does not scale, per-user MFA is an identity control, and per-resource workspaces do not enforce standards.",
+    "docs": [
+      { "label": "Cloud security posture management", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management" },
+      { "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q190",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must discover and classify sensitive data across Azure Storage and managed databases, identify data that is publicly exposed or over-shared, and report data security posture without deploying agents on the data sources. Which solution should you use?",
+    "options": [
+      "Microsoft Defender for Cloud data security posture management (DSPM), which scans data sources, classifies sensitive data, and surfaces exposure without agents.",
+      "Azure Key Vault.",
+      "Azure Bastion.",
+      "A network security group."
+    ],
+    "answer": 0,
+    "explanation": "Defender for Cloud DSPM discovers, classifies, and assesses sensitive data across Azure data sources and reports overexposure without requiring agents. Key Vault stores secrets rather than classifying data, Bastion provides management connectivity, and NSGs filter traffic rather than assess data exposure.",
+    "docs": [
+      { "label": "Data security posture management", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-data-security-posture" }
+    ]
+  }
+]

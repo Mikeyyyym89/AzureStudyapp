@@ -1,0 +1,214 @@
+[
+  {
+    "id": "az-305-case-3",
+    "title": "Contoso Healthcare — Patient portal and records platform",
+    "scenario": "Contoso Healthcare is building a patient portal and electronic health records platform on Azure. The platform must keep patient data within the European Union to satisfy data-residency regulations, expose services only over private network paths, meet strict availability and recovery objectives, and give compliance officers a complete, searchable audit trail.",
+    "context": [
+      "Patient data must remain within EU regions.",
+      "All PaaS services must be reachable only through private endpoints.",
+      "The portal database requires 99.99% availability and an RPO of 5 minutes with an RTO of 30 minutes.",
+      "Sign-in and audit logs must be retained and searchable for 7 years."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Contoso Healthcare operates clinics across the European Union and is retiring a legacy on-premises patient portal.",
+          "The new platform consists of a web front end, an API layer, and a SQL database that stores patient records and attached documents.",
+          "The organization must demonstrate compliance to auditors and provide a full, queryable audit history of sign-ins."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "All patient data and its backups must stay within EU Azure regions.",
+          "The SQL database must deliver 99.99% availability, an RPO of at most 5 minutes, and an RTO of at most 30 minutes for a regional outage.",
+          "The web front end, API, and database must be reachable only from inside the virtual network or over ExpressRoute/VPN.",
+          "Sign-in and audit logs must be retained for 7 years and remain queryable for investigations.",
+          "The operations team must receive an alert when the API error rate exceeds a configured threshold."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "A hub virtual network in West Europe is connected to on-premises by an ExpressRoute circuit.",
+          "A spoke virtual network hosts a development version of the web front end.",
+          "Identity is managed in Microsoft Entra ID with Microsoft Entra Connect Sync from on-premises Active Directory.",
+          "There is currently no central log retention solution and no cross-region disaster recovery."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "az-305-case-3-q1",
+        "domain": "Design data storage solutions",
+        "prompt": "Which storage redundancy should Contoso use for the blob storage that holds patient documents, so the data remains available if a single Azure availability zone fails while keeping every replica within a single EU region?",
+        "options": [
+          "Locally redundant storage (LRS)",
+          "Geo-redundant storage (GRS)",
+          "Zone-redundant storage (ZRS)",
+          "Read-access geo-redundant storage (RA-GRS)"
+        ],
+        "answer": 2,
+        "explanation": "Zone-redundant storage (ZRS) synchronously replicates data across three availability zones within the same region, so it survives a full-zone failure while keeping all copies inside a single EU region — exactly matching the data-residency constraint. LRS is confined to one data center and cannot survive a zone failure; GRS and RA-GRS replicate to a secondary region, which adds cross-region copies that the single-region residency requirement does not call for.",
+        "docs": [
+          { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+        ]
+      },
+      {
+        "id": "az-305-case-3-q2",
+        "domain": "Design infrastructure solutions",
+        "prompt": "Which design exposes the SQL database and storage account only over private network paths, including access from on-premises over ExpressRoute?",
+        "options": [
+          "Private endpoints (Azure Private Link) with private DNS zones",
+          "Service endpoints with a storage firewall rule on each service",
+          "Public endpoints restricted by an IP allow-list",
+          "Network security groups applied directly to the PaaS resources"
+        ],
+        "answer": 0,
+        "explanation": "Private endpoints assign a private IP address from the virtual network to each PaaS resource, removing public exposure and enabling access from on-premises over ExpressRoute/VPN; private DNS zones then resolve the PaaS fully qualified domain names to those private IPs. Service endpoints keep the resource on its public endpoint and are not reachable from on-premises over ExpressRoute; an IP allow-list still exposes a public endpoint; and network security groups do not apply to PaaS resources such as SQL Database and Storage.",
+        "docs": [
+          { "label": "What is Azure Private Link?", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-link-overview" }
+        ]
+      },
+      {
+        "id": "az-305-case-3-q3",
+        "domain": "Design business continuity solutions",
+        "prompt": "Which configuration meets the 99.99% availability, 5-minute RPO, and 30-minute RTO targets for a regional outage while keeping the secondary copy within the EU?",
+        "options": [
+          "A single Azure SQL Database with locally redundant storage",
+          "An auto-failover group with active geo-replication to a paired EU region and an automatic failover policy",
+          "Geo-restore from a daily geo-redundant backup",
+          "Azure Backup with hourly transaction-log backups and cross-region restore"
+        ],
+        "answer": 1,
+        "explanation": "An auto-failover group continuously geo-replicates the database to a paired EU region and can fail over automatically, delivering seconds-to-minutes RPO and minutes-level RTO with no manual steps, while keeping the replica inside the EU. A single LRS database has no cross-region copy; geo-restore from a daily backup has an RPO of up to 24 hours and is a slow manual operation; and hourly Azure Backup log backups give roughly one-hour RPO plus a longer manual restore, failing the 5-minute RPO target.",
+        "docs": [
+          { "label": "Failover groups and active geo-replication for Azure SQL Database", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview" }
+        ]
+      },
+      {
+        "id": "az-305-case-3-q4",
+        "domain": "Design identity, governance, and monitoring solutions",
+        "prompt": "How should Contoso retain sign-in and audit logs for 7 years and keep them searchable, while also alerting the operations team when the API error rate exceeds a threshold?",
+        "options": [
+          "Rely on the default 30-day Microsoft Entra sign-in log retention",
+          "Export logs to CSV files on a monthly schedule",
+          "Stream Microsoft Entra sign-in logs and Application Insights telemetry to a Log Analytics workspace with interactive plus archive retention, and configure a query-based alert rule",
+          "Rely on Microsoft Defender for Cloud security recommendations"
+        ],
+        "answer": 2,
+        "explanation": "Routing Microsoft Entra sign-in logs and Application Insights telemetry into a Log Analytics workspace lets you configure interactive plus archive retention so logs are retained for 7 years and remain KQL-queryable, and a log-based alert rule fires when the API error rate crosses the threshold. The native 30-day retention fails the 7-year requirement; CSV exports are neither continuously searchable nor alerting-capable; and Defender for Cloud recommendations are security posture findings, not log retention or error-rate alerting.",
+        "docs": [
+          { "label": "Configure data retention and archive policies in Log Analytics", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "az-305-case-4",
+    "title": "Fabrikam Games — Global multiplayer game backend",
+    "scenario": "Fabrikam Games is launching a global multiplayer title. The game backend must deliver low-latency reads to players worldwide, keep authoritative writes in a single primary region to avoid conflicts, absorb large traffic spikes at launch without manual intervention, and recover automatically from a regional outage.",
+    "context": [
+      "Players worldwide must read game state with low latency.",
+      "All writes must flow through a single primary region to avoid conflicts.",
+      "The backend must scale automatically to handle 10x launch-day traffic.",
+      "Recovery from a regional outage must be automatic and fast."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Fabrikam Games is preparing a global launch for a real-time multiplayer game with millions of expected players.",
+          "The backend is composed of stateless containerized microservices and a distributed game-state database.",
+          "The game logic is authoritative in one region, but players everywhere need near-instant reads."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Players worldwide must read game state with single-digit-millisecond latency.",
+          "All writes must go through a single primary region; reads must be served from the region closest to each player.",
+          "The microservices tier must scale automatically to 10x normal traffic during launch without manual action.",
+          "If the primary region fails, the game must fail over automatically with minimal data loss and return to service quickly.",
+          "The operations team must be able to scale and restart services but must not be able to delete resources."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "The microservices are already packaged in Linux containers.",
+          "Game state is modeled as JSON documents keyed by player ID and partition key.",
+          "The team runs a pilot in a single Azure region and has observed launch-style traffic spikes in testing.",
+          "There is currently no cross-region configuration and no least-privilege role for operations."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "az-305-case-4-q1",
+        "domain": "Design data storage solutions",
+        "prompt": "Which Azure Cosmos DB configuration provides low-latency global reads, a single write region, and minimal data loss on regional failover?",
+        "options": [
+          "A single-region account with Strong consistency",
+          "A multi-region account with multi-region writes and Bounded staleness consistency",
+          "A multi-region account with a single write region, multi-region reads, and Session consistency",
+          "An Azure SQL Database with active geo-replication"
+        ],
+        "answer": 2,
+        "explanation": "A multi-region Cosmos DB account with a single write region replicates the data for reads in every region (single-digit-millisecond local reads), while all writes converge on one region to avoid conflicts; Session consistency gives each player read-your-writes guarantees with low latency. Strong consistency in a single region cannot serve low-latency global reads; multi-region writes introduce conflict resolution that the authoritative-single-write requirement rules out; and Azure SQL Database geo-replication does not provide the global, low-latency read scale of Cosmos DB.",
+        "docs": [
+          { "label": "Azure Cosmos DB consistency levels", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels" }
+        ]
+      },
+      {
+        "id": "az-305-case-4-q2",
+        "domain": "Design infrastructure solutions",
+        "prompt": "Which compute design lets the containerized microservices scale automatically to 10x traffic during launch without manual intervention?",
+        "options": [
+          "Azure App Service with a fixed number of instances",
+          "Azure Kubernetes Service (AKS) with the Horizontal Pod Autoscaler and the cluster autoscaler",
+          "A single Azure virtual machine running Docker",
+          "Azure Functions on the Consumption plan running the containers"
+        ],
+        "answer": 1,
+        "explanation": "AKS scales pods with the Horizontal Pod Autoscaler based on load and scales nodes with the cluster autoscaler, so the microservices can grow to 10x launch traffic automatically. A fixed-size App Service or a single VM cannot absorb the spike without manual intervention, and Azure Functions on the Consumption plan does not support custom Linux containers.",
+        "docs": [
+          { "label": "Cluster autoscaler in Azure Kubernetes Service", "url": "https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler" }
+        ]
+      },
+      {
+        "id": "az-305-case-4-q3",
+        "domain": "Design business continuity solutions",
+        "prompt": "Which service should route players to a healthy region automatically when the primary region fails?",
+        "options": [
+          "A regional Azure Load Balancer with health probes",
+          "An availability set within the primary region",
+          "Azure Front Door with health-probe-based global routing across two regions",
+          "A network security group on the web tier"
+        ],
+        "answer": 2,
+        "explanation": "Azure Front Door is a global, Layer-7 service that routes users to the nearest healthy backend based on health probes, providing automatic failover between regions when the primary region fails. A regional Load Balancer and an availability set both operate within a single region and cannot survive a regional outage, and a network security group filters traffic rather than routing or failing over.",
+        "docs": [
+          { "label": "Azure Front Door overview", "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview" }
+        ]
+      },
+      {
+        "id": "az-305-case-4-q4",
+        "domain": "Design identity, governance, and monitoring solutions",
+        "prompt": "Which approach gives the operations team the ability to scale and restart services without the ability to delete resources, and is reusable across the team's resource groups?",
+        "options": [
+          "Assign the Contributor built-in role",
+          "Assign the Owner built-in role",
+          "Create a custom Azure RBAC role containing only the required actions (scale and restart) and assign it at the appropriate scope",
+          "Assign the Virtual Machine Contributor built-in role"
+        ],
+        "answer": 2,
+        "explanation": "A custom Azure RBAC role scoped to only the scale and restart actions grants the minimum permissions the operations team needs and is reusable across resource groups. Contributor and Owner grant far more than required (including delete), and Virtual Machine Contributor is too broad and unrelated to scaling the containerized services.",
+        "docs": [
+          { "label": "Azure custom roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "id": "ai-200-q191",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need to host a stateless AI prediction API as a container that scales based on HTTP traffic and concurrent requests, scales to zero when idle to save cost, and needs no Kubernetes management. Which service should you choose?",
+    "options": [
+      "Azure Kubernetes Service with the cluster autoscaler.",
+      "Azure Container Apps with HTTP scaling and scale-to-zero.",
+      "Azure Container Instances.",
+      "Azure App Service with a code-based deployment."
+    ],
+    "answer": 1,
+    "explanation": "Container Apps provides HTTP-based autoscaling and scale-to-zero with no Kubernetes management. AKS (option 0) requires cluster management; ACI (option 2) does not autoscale; App Service (option 3) runs code, not a custom container with the same scale-to-zero semantics.",
+    "docs": [
+      { "label": "Azure Container Apps overview", "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q192",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "Your Container Apps app must ship application logs from the main container to a central location, and you need to inject a sidecar that tails the log files and forwards them, without modifying the application image. What should you do?",
+    "options": [
+      "Rewrite the application to write directly to Application Insights.",
+      "Run the log forwarder as a separate Container App.",
+      "Store logs in the container's writable layer and download them manually.",
+      "Add a sidecar container to the Container App (container group) that reads the shared log volume and forwards the logs."
+    ],
+    "answer": 3,
+    "explanation": "Container Apps supports multiple containers per app, enabling a sidecar to tail a shared volume's logs without changing the main image. Options 0 and 1 require code changes or a separate service; option 2 is not a real forwarding solution.",
+    "docs": [
+      { "label": "Containers in Azure Container Apps", "url": "https://learn.microsoft.com/en-us/azure/container-apps/containers" }
+    ]
+  },
+  {
+    "id": "ai-200-q193",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "Your team tags container images with 'latest' and manually pushes them. This has caused deployments to pick up unintended images and made it hard to trace which commit produced an image. Which practices should you adopt?",
+    "options": [
+      "Use immutable, unique tags (for example, the commit SHA) for released images and enable an ACR retention policy to remove old, unused images.",
+      "Keep pushing everything as 'latest'.",
+      "Tag every image with the current date only.",
+      "Disable the registry's content trust."
+    ],
+    "answer": 0,
+    "explanation": "Immutable unique tags provide traceability and prevent ambiguity, and retention policies clean up old images. 'latest' (option 1) and date tags (option 2) are ambiguous; disabling content trust (option 3) reduces security.",
+    "docs": [
+      { "label": "Azure Container Registry best practices", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-best-practices" }
+    ]
+  },
+  {
+    "id": "ai-200-q194",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "Your Container Apps application uses several non-secret configuration values (model version, feature toggle, region) that operators must change without redeploying. Secrets must not be stored in this store. What should you use?",
+    "options": [
+      "Environment variables baked into the image at build time.",
+      "A local settings file committed to the repository.",
+      "Azure App Configuration with feature flags and dynamic refresh, resolving any secrets via Key Vault references.",
+      "A Service Bus queue for configuration updates."
+    ],
+    "answer": 2,
+    "explanation": "App Configuration centralizes non-secret settings with feature flags and dynamic refresh, keeping secrets in Key Vault. Build-time environment variables (option 0) and committed files (option 1) require redeployment; Service Bus (option 3) is not a configuration mechanism.",
+    "docs": [
+      { "label": "Azure App Configuration overview", "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q195",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You store session transcripts in Cosmos DB for NoSQL. Each transcript belongs to a user and is identified by a unique id. Reads are almost always point reads by id within a user's context, and data is distributed across many users. Which partition key should you choose?",
+    "options": [
+      "/userId",
+      "/id",
+      "/sessionDate",
+      "/city"
+    ],
+    "answer": 0,
+    "explanation": "/userId distributes data evenly across users and groups a user's documents together for efficient reads. /id scatters documents into separate partitions; /sessionDate and /city can create hot or uneven partitions.",
+    "docs": [
+      { "label": "Partitioning and horizontal scaling in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q196",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You must convert call-center audio recordings to text and add speaker diarization and timestamps for a compliance review workflow. Which Azure AI service should you use?",
+    "options": [
+      "Azure AI Vision.",
+      "Azure AI Speech with batch transcription and speaker diarization.",
+      "Azure AI Language with sentiment analysis.",
+      "Azure AI Document Intelligence."
+    ],
+    "answer": 1,
+    "explanation": "Azure AI Speech provides batch speech-to-text with speaker diarization and timestamps. Vision processes images, Language analyzes text, and Document Intelligence extracts document data — none of these transcribe audio.",
+    "docs": [
+      { "label": "What is Azure AI Speech?", "url": "https://learn.microsoft.com/en-us/azure/ai-services/speech-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q197",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "Your app maintains an inventory count in Cosmos DB that must be strictly accurate and consistent across all reads immediately after an update, because other systems depend on the exact count. Which consistency level should you configure?",
+    "options": [
+      "Eventual.",
+      "Consistent prefix.",
+      "Session.",
+      "Strong."
+    ],
+    "answer": 3,
+    "explanation": "Strong consistency guarantees linearizable reads that reflect the latest write immediately, which is required for exact counts. Eventual, consistent prefix, and session allow stale reads and do not guarantee immediate global accuracy.",
+    "docs": [
+      { "label": "Consistency levels in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels" }
+    ]
+  },
+  {
+    "id": "ai-200-q198",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You store a large training dataset that is accessed only once per month for retraining and must minimize storage cost. The data must be retrievable within hours. Which access tier should you use?",
+    "options": [
+      "Hot tier.",
+      "Cool tier.",
+      "Cold tier.",
+      "Archive tier."
+    ],
+    "answer": 2,
+    "explanation": "Cold tier is the cheapest online tier for rarely accessed data with retrieval within hours. Archive (option 3) is cheaper but retrieval can take hours and is intended for rarely accessed long-term data, making Cold the better fit for 'retrievable within hours' at the lowest online cost. Hot (option 0) and Cool (option 1) are more expensive for monthly access.",
+    "docs": [
+      { "label": "Access tiers for Azure Blob Storage", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q199",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need to reliably deliver processing jobs between a producer and a single worker, retry on failure, and move unprocessable messages aside for later inspection. Which service should you use?",
+    "options": [
+      "Azure Service Bus queue with Peek-Lock and dead-lettering.",
+      "Azure Event Hubs.",
+      "Azure Event Grid.",
+      "Azure Queue Storage with receive-and-delete only."
+    ],
+    "answer": 0,
+    "explanation": "Service Bus provides reliable delivery, retries, and dead-letter queues. Event Hubs and Event Grid (options 1 and 2) are streaming and routing services without per-message dead-lettering; Queue Storage with receive-and-delete (option 3) loses messages on failure.",
+    "docs": [
+      { "label": "Azure Service Bus messaging overview", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q200",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need an Azure Function that runs when a new blob is uploaded, reads the blob contents, and writes an enriched record to Cosmos DB, with no custom polling code. Which bindings should you use?",
+    "options": [
+      "A timer trigger and an HTTP output.",
+      "A Blob storage trigger for input and a Cosmos DB output binding.",
+      "A Cosmos DB trigger and a Blob output binding.",
+      "A Service Bus trigger and a Blob output binding."
+    ],
+    "answer": 1,
+    "explanation": "A Blob trigger fires on upload and passes the blob as input; a Cosmos DB output binding writes the enriched record. Options 0, 2, and 3 use the wrong trigger or output direction.",
+    "docs": [
+      { "label": "Azure Functions triggers and bindings concepts", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings" }
+    ]
+  },
+  {
+    "id": "ai-200-q201",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You must call an Azure OpenAI deployment from a production app with enterprise identity (Microsoft Entra ID), no API keys in code, and support for content filtering and monitoring built into the platform. Which approach should you use?",
+    "options": [
+      "Call a raw OpenAI.com endpoint with a shared API key.",
+      "Embed a hard-coded API key in the app.",
+      "Use a third-party model provider with no governance.",
+      "Use Azure OpenAI Service with the SDK and a managed identity (Entra ID), leveraging built-in content filters and monitoring."
+    ],
+    "answer": 3,
+    "explanation": "Azure OpenAI Service provides Entra ID authentication, built-in content filtering, and monitoring, unlike a raw OpenAI endpoint with API keys. Options 0 and 1 use keys; option 2 lacks governance.",
+    "docs": [
+      { "label": "What is Azure OpenAI Service?", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q202",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "Your Azure Function must read blobs from a storage account. You must avoid storing the storage account key and apply least privilege. What should you do?",
+    "options": [
+      "Enable the function's managed identity and grant it the Storage Blob Data Reader role on the storage account.",
+      "Put the storage account key in the app settings.",
+      "Grant the function Contributor on the subscription.",
+      "Make the storage container public."
+    ],
+    "answer": 0,
+    "explanation": "A managed identity with the Storage Blob Data Reader role scoped to the account provides least-privilege access without keys. Option 1 stores a key; option 2 over-provisions; option 3 exposes data publicly.",
+    "docs": [
+      { "label": "Managed identities for Azure resources", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q203",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "Your app needs a connection string that rotates often. You must update it at runtime without redeploying and keep it out of source control. What should you do?",
+    "options": [
+      "Store it in a JSON file in the repository.",
+      "Set it as a build-time environment variable.",
+      "Store the connection string in Azure Key Vault and reference it from the app settings via a Key Vault reference with a managed identity.",
+      "Email the connection string to the team."
+    ],
+    "answer": 2,
+    "explanation": "Key Vault references resolve the secret at runtime, so rotation requires no redeployment and the secret stays out of source control. Options 0 and 1 expose or freeze the value; option 3 is insecure.",
+    "docs": [
+      { "label": "Use Key Vault references for App Service and Azure Functions", "url": "https://learn.microsoft.com/en-us/azure/app-service/app-service-key-vault-references" }
+    ]
+  },
+  {
+    "id": "ai-200-q204",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to trace a single request as it flows across a Function, a Container App, and Azure OpenAI to find where latency is introduced. Which telemetry approach should you use?",
+    "options": [
+      "Azure Activity Log.",
+      "Distributed tracing with Application Insights (OpenTelemetry), correlating spans across services.",
+      "Azure Resource health.",
+      "Cosmos DB request diagnostics only."
+    ],
+    "answer": 1,
+    "explanation": "Distributed tracing in Application Insights correlates spans end-to-end to localize latency. Activity Log (option 0) is control-plane; Resource health (option 2) is availability; Cosmos diagnostics (option 3) cover only one dependency.",
+    "docs": [
+      { "label": "Azure Monitor OpenTelemetry overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q205",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You must protect against accidental or malicious permanent deletion of an entire Key Vault and its keys during a disaster-recovery scenario. Which features should you enable?",
+    "options": [
+      "Enable diagnostics logging only.",
+      "Enable network access from all networks.",
+      "Set retention on a backup blob.",
+      "Enable soft-delete and purge protection on the Key Vault."
+    ],
+    "answer": 3,
+    "explanation": "Soft-delete and purge protection prevent immediate permanent deletion of the vault and its secrets and keys. Logging (option 0), open networking (option 1), and blob retention (option 2) do not protect against permanent deletion.",
+    "docs": [
+      { "label": "Azure Key Vault soft-delete overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview" }
+    ]
+  }
+]

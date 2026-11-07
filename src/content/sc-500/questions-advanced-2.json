@@ -1,0 +1,254 @@
+[
+  {
+    "id": "sc-500-q191",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You are designing a privileged access strategy. Administrators must use separate, hardened accounts for high-risk work; elevated roles must be activated just-in-time with MFA and approval; activation must require a compliant device; and access must be re-certified quarterly. Which set of controls meets all requirements?",
+    "options": [
+      "Dedicated privileged accounts, PIM-eligible role assignments with MFA and approval on activation, a Conditional Access policy requiring a compliant device during activation, and quarterly access reviews.",
+      "Permanent Global Administrator assignments on day-to-day accounts with a compliant-device Conditional Access policy only.",
+      "A single shared administrator account with MFA.",
+      "PIM-eligible assignments without MFA, approval, or access reviews."
+    ],
+    "answer": 0,
+    "explanation": "A complete privileged access strategy separates day-to-day and privileged accounts, enforces just-in-time activation with MFA and approval in PIM, requires a compliant device via Conditional Access during activation, and certifies continued need with access reviews. Permanent assignments retain standing access, a shared account removes accountability, and PIM without MFA, approval, or reviews lacks oversight.",
+    "docs": [
+      { "label": "Configure Privileged Identity Management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure" },
+      { "label": "Microsoft Entra access reviews", "url": "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q192",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A user's credentials are leaked, raising high user risk, and they later attempt a sign-in flagged as medium sign-in risk. You must require MFA for the medium-risk sign-in and force a password reset for the high user risk, with self-service recovery so the helpdesk is not involved. Which policies should you configure?",
+    "options": [
+      "A sign-in risk policy only that blocks all medium-risk sign-ins.",
+      "A sign-in risk policy requiring MFA for medium and above, and a user risk policy requiring a password reset for high user risk, with self-service password reset enabled.",
+      "A user risk policy that blocks the user permanently.",
+      "Manually reset passwords and disable accounts on a case-by-case basis."
+    ],
+    "answer": 1,
+    "explanation": "A sign-in risk policy challenges medium-risk sign-ins with MFA, a user risk policy forces a password reset when the user's credentials are known to be leaked, and self-service password reset avoids helpdesk involvement. Blocking all medium-risk sign-ins is overly restrictive, permanently blocking the user is disproportionate, and manual handling is not automatic.",
+    "docs": [
+      { "label": "Configure and enable risk policies", "url": "https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-risk-policies" }
+    ]
+  },
+  {
+    "id": "sc-500-q193",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A partner organization needs collaboration access to specific SharePoint sites and Teams. You must trust the partner's MFA claims so their users are not prompted twice, keep their access time-boxed with approval, and automatically remove access at engagement end. What should you configure?",
+    "options": [
+      "Create individual guest accounts with no MFA trust and no expiration.",
+      "Disable cross-tenant access and block the partner tenant entirely.",
+      "Configure cross-tenant access settings to trust the partner's MFA claims, and create an entitlement management access package with the sites and teams, an approval step, and an expiration policy.",
+      "Add the partner users directly to the Global Administrator role."
+    ],
+    "answer": 2,
+    "explanation": "Cross-tenant access settings let you trust the partner's MFA claims so their users are not re-prompted, and an entitlement management access package provides approval-gated, time-bound access with automatic removal at expiration. Individual guests without trust or expiration lack these controls, blocking the tenant prevents collaboration, and granting Global Administrator is a severe privilege escalation.",
+    "docs": [
+      { "label": "Cross-tenant access overview", "url": "https://learn.microsoft.com/en-us/entra/external-id/cross-tenant-access-overview" },
+      { "label": "Microsoft Entra entitlement management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q194",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A Key Vault stores application secrets. You must move to Azure RBAC for authorization, restrict network access to a private endpoint, authenticate applications with managed identities, and prevent accidental or malicious permanent deletion of the vault and its keys. Which configuration satisfies all requirements?",
+    "options": [
+      "Access policies, public network access, and no deletion protection.",
+      "Azure RBAC but public network access and shared service principals.",
+      "A private endpoint but access policies and no soft-delete.",
+      "Azure RBAC for authorization, a private endpoint with public access disabled, managed identities for application access, and soft-delete with purge protection enabled."
+    ],
+    "answer": 3,
+    "explanation": "Azure RBAC provides uniform, auditable authorization; a private endpoint with public access disabled removes internet exposure; managed identities provide passwordless authentication; and soft-delete with purge protection prevents permanent deletion. Access policies lack the granularity of RBAC, public endpoints expose the vault, and omitting soft-delete or purge protection leaves data vulnerable to permanent deletion.",
+    "docs": [
+      { "label": "Azure RBAC for Key Vault", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide" },
+      { "label": "Key Vault soft-delete and purge protection", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q195",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must design defense-in-depth networking: internet traffic enters through a global edge with Layer 7 filtering and DDoS protection, spoke workloads use private IPs with no public exposure, east-west traffic is inspected centrally, and only the web tier accepts traffic from the internet. Which design meets all requirements?",
+    "options": [
+      "Azure Front Door with WAF for global Layer 7 and DDoS protection, Azure Firewall in the hub for east-west and outbound inspection, private endpoints for PaaS services, and NSGs with ASGs restricting inbound to the web tier only.",
+      "A single public IP on each VM with an NSG allow-all rule.",
+      "Service endpoints only with no firewall.",
+      "Azure Bastion with a public IP on every VM."
+    ],
+    "answer": 0,
+    "explanation": "Front Door with WAF provides global Layer 7 filtering and DDoS protection, Azure Firewall in the hub inspects east-west and outbound traffic, private endpoints remove public exposure for PaaS services, and NSGs with ASGs restrict inbound to the web tier. Public IPs on every VM, service-endpoint-only designs, and Bastion with public IPs all leave workloads exposed or lack centralized inspection.",
+    "docs": [
+      { "label": "Azure Web Application Firewall", "url": "https://learn.microsoft.com/en-us/azure/web-application-firewall/overview" },
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q196",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A ransomware event must be survivable: you must detect malware uploads, restore clean versions of blobs, and prevent attackers from encrypting or deleting backups during the retention period. Which combination should you use?",
+    "options": [
+      "Defender for Storage only, with no backup or immutability.",
+      "Defender for Storage for malware detection, blob versioning and soft delete with point-in-time restore, and a time-based retention immutability policy on the backup container.",
+      "A storage firewall only.",
+      "Read-access geo-redundant storage only."
+    ],
+    "answer": 1,
+    "explanation": "Defender for Storage detects malware uploads, blob versioning and soft delete with point-in-time restore recover clean versions, and a time-based retention immutability policy prevents attackers from encrypting or deleting backups during the retention window. Defender alone does not provide recovery or immutability, a firewall restricts network access rather than protecting against destructive writes, and geo-redundancy provides availability rather than recovery or immutability.",
+    "docs": [
+      { "label": "Microsoft Defender for Storage", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction" },
+      { "label": "Immutable blob storage policies", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-policy-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q197",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An Azure SQL Database holds regulated data. You must eliminate SQL authentication, encrypt data at rest with your own key, protect a sensitive column from database administrators, and audit all access with threat detection. Which combination meets all requirements?",
+    "options": [
+      "SQL authentication, platform-managed TDE, and no auditing.",
+      "Entra authentication and auditing but no encryption or threat detection.",
+      "Microsoft Entra-only authentication, TDE with a customer-managed key, Always Encrypted for the sensitive column, SQL auditing, and Defender for SQL.",
+      "Dynamic data masking only with SQL authentication."
+    ],
+    "answer": 2,
+    "explanation": "Microsoft Entra-only authentication removes SQL logins, TDE with a customer-managed key encrypts data at rest under your control, Always Encrypted protects the sensitive column even from database administrators, SQL auditing records access, and Defender for SQL adds threat detection. The other options retain SQL authentication, omit encryption or auditing, or provide only masking.",
+    "docs": [
+      { "label": "Microsoft Entra authentication for Azure SQL", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/authentication-aad-overview" },
+      { "label": "Microsoft Defender for SQL", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q198",
+    "domain": "Secure compute",
+    "prompt": "A regulated AKS cluster must have no public API server, enforce least-privilege RBAC and admission control, scan images and detect runtime threats, and protect regulated data in use. Which combination meets all requirements?",
+    "options": [
+      "A public cluster with a shared credential.",
+      "A private cluster with no RBAC or policy.",
+      "Defender for Containers only.",
+      "A private cluster with Entra RBAC, Azure Policy for Kubernetes, Defender for Containers for image and runtime protection, and confidential containers for data-in-use isolation."
+    ],
+    "answer": 3,
+    "explanation": "A private cluster removes the public API server, Entra RBAC enforces least-privilege access, Azure Policy for Kubernetes enforces admission control, Defender for Containers scans images and detects runtime threats, and confidential containers protect data in use. The other options expose the API server, omit access or policy controls, or cover only one aspect of the requirement.",
+    "docs": [
+      { "label": "Microsoft Defender for Containers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction" },
+      { "label": "Create a private AKS cluster", "url": "https://learn.microsoft.com/en-us/azure/aks/private-clusters" }
+    ]
+  },
+  {
+    "id": "sc-500-q199",
+    "domain": "Secure compute",
+    "prompt": "You must consolidate server security for Azure VMs and on-premises servers: endpoint detection and response, vulnerability assessment, file integrity monitoring, and regulatory compliance reporting, all managed from one portal. Which solution should you deploy?",
+    "options": [
+      "Microsoft Defender for Servers Plan 2 with Azure Arc for the on-premises servers, enabling EDR, vulnerability assessment, file integrity monitoring, and regulatory compliance in Defender for Cloud.",
+      "Azure Bastion and Azure Backup only.",
+      "A third-party antivirus on each server with no central reporting.",
+      "Network security groups only."
+    ],
+    "answer": 0,
+    "explanation": "Defender for Servers Plan 2 provides EDR, vulnerability assessment, file integrity monitoring, and regulatory compliance, and Azure Arc extends these protections to on-premises servers, all managed in Defender for Cloud. Bastion and Backup provide connectivity and backup rather than threat detection, third-party antivirus lacks central reporting, and NSGs only filter traffic.",
+    "docs": [
+      { "label": "Microsoft Defender for Servers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction" },
+      { "label": "Azure Arc overview", "url": "https://learn.microsoft.com/en-us/azure/azure-arc/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q200",
+    "domain": "Secure compute",
+    "prompt": "Serverless and PaaS applications must authenticate without secrets, reach databases over a private network, block Layer 7 attacks, and detect runtime threats. Which set of controls meets all requirements?",
+    "options": [
+      "Stored connection strings and public endpoints only.",
+      "Managed identities for passwordless authentication, VNet integration or private endpoints for private connectivity, Azure Web Application Firewall for Layer 7 protection, and Defender for App Service for runtime threat detection.",
+      "A network security group on a VM hosting the applications.",
+      "Azure Disk Encryption only."
+    ],
+    "answer": 1,
+    "explanation": "Managed identities provide passwordless authentication, VNet integration or private endpoints give private connectivity, WAF blocks Layer 7 attacks, and Defender for App Service detects runtime threats. Stored connection strings and public endpoints are insecure, an NSG on a VM does not address PaaS security, and disk encryption only protects data at rest.",
+    "docs": [
+      { "label": "Microsoft Defender for App Service", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-app-service-introduction" },
+      { "label": "Managed identities for Azure resources", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q201",
+    "domain": "Secure compute",
+    "prompt": "You must secure the full container supply chain: scan code for secrets and vulnerabilities, scan images in the registry, require images to be signed, and reject unsigned or vulnerable images at deployment. Which combination should you use?",
+    "options": [
+      "A manual checklist for developers only.",
+      "Defender for DevOps only, with no registry or admission controls.",
+      "Defender for DevOps for code scanning, Defender for Containers for registry image scanning, Notation for image signing, and Azure Policy for Kubernetes to reject unsigned or vulnerable images.",
+      "Azure Front Door in front of the registry only."
+    ],
+    "answer": 2,
+    "explanation": "Defender for DevOps scans source code for secrets and vulnerabilities, Defender for Containers scans registry images, Notation signs images to establish provenance, and Azure Policy for Kubernetes enforces admission rules that reject unsigned or vulnerable images. A manual checklist is not enforced, Defender for DevOps alone does not scan registries or enforce admission, and Front Door does not validate images.",
+    "docs": [
+      { "label": "Microsoft Defender for Cloud DevOps security", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction" },
+      { "label": "Microsoft Defender for Containers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q202",
+    "domain": "Manage and monitor security posture",
+    "prompt": "A global SOC must respect data residency by region, grant analysts least-privilege access to only their region's data, detect insider threats with behavioral analytics, and automatically respond to high-severity incidents. Which design meets all requirements?",
+    "options": [
+      "One global workspace with all analysts as Contributor.",
+      "One workspace per analyst with no RBAC.",
+      "A single workspace with no automation.",
+      "Region-scoped Sentinel workspaces for residency, workspace and table-level RBAC for least privilege, UEBA for insider threat detection, and automation rules with playbooks for high-severity response."
+    ],
+    "answer": 3,
+    "explanation": "Region-scoped workspaces respect data residency, workspace and table-level RBAC enforce least privilege, UEBA detects insider threats and account compromise, and automation rules with playbooks automate high-severity response. A single global workspace with Contributor over-grants and may violate residency, per-analyst workspaces do not centralize management, and a workspace without automation lacks response capabilities.",
+    "docs": [
+      { "label": "Design your Microsoft Sentinel workspace architecture", "url": "https://learn.microsoft.com/en-us/azure/sentinel/design-your-workspace-architecture" },
+      { "label": "Enable UEBA in Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/enable-entity-behavior-analytics" }
+    ]
+  },
+  {
+    "id": "sc-500-q203",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must assess posture across Azure and AWS, discover generative AI apps and their attack paths, map compliance to NIST and CIS, and stream recommendations to a SIEM for custom reporting. Which combination should you use?",
+    "options": [
+      "Defender for Cloud CSPM for multicloud posture, AI security posture management for generative AI apps, regulatory compliance standards for NIST and CIS, and continuous export to the SIEM.",
+      "Azure Policy only with no multicloud or AI visibility.",
+      "Microsoft Sentinel with no Defender for Cloud integration.",
+      "A static spreadsheet updated manually."
+    ],
+    "answer": 0,
+    "explanation": "Defender CSPM assesses posture across Azure and AWS, AI security posture management discovers generative AI apps and their attack paths, regulatory compliance standards map to NIST and CIS, and continuous export streams recommendations to the SIEM. Azure Policy is Azure-only, Sentinel without Defender integration lacks posture assessment, and a static spreadsheet is not continuous.",
+    "docs": [
+      { "label": "Cloud security posture management", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management" },
+      { "label": "AI security posture management", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-security-posture" }
+    ]
+  },
+  {
+    "id": "sc-500-q204",
+    "domain": "Manage and monitor security posture",
+    "prompt": "Analysts must investigate a data-exfiltration incident using natural language, generating KQL queries and correlating Microsoft Sentinel alerts with Microsoft Purview data-classification findings, while the AI can only access data the analyst is authorized to see. Which solution should you use?",
+    "options": [
+      "A public generative AI API integrated through a custom connector.",
+      "Microsoft Security Copilot embedded in the unified security operations platform, with role-based access controls enforcing the analyst's permissions across Sentinel and Purview data.",
+      "Azure OpenAI accessed over a public endpoint.",
+      "A third-party SOAR tool without AI."
+    ],
+    "answer": 1,
+    "explanation": "Security Copilot provides natural-language investigation, KQL generation, and correlation across Microsoft security tools while respecting the analyst's RBAC so it only accesses authorized data. Public AI APIs or public Azure OpenAI endpoints risk exposing tenant data, and a SOAR tool without AI does not provide natural-language investigation.",
+    "docs": [
+      { "label": "Microsoft Security Copilot", "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot" }
+    ]
+  },
+  {
+    "id": "sc-500-q205",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need a KQL query that detects a likely brute-force-then-sign-in pattern: list IP addresses that had at least five failed sign-ins followed by a successful sign-in from the same IP within 10 minutes in the last hour. Which query is correct?",
+    "options": [
+      "SigninLogs | where TimeGenerated > ago(1h) | count",
+      "SigninLogs | summarize by UserPrincipalName",
+      "let failures = SigninLogs | where TimeGenerated > ago(1h) and ResultType != 0 | summarize FailureCount = count(), FirstFailure = min(TimeGenerated) by IPAddress | where FailureCount >= 5; SigninLogs | where TimeGenerated > ago(1h) and ResultType == 0 | join kind=inner failures on IPAddress | where TimeGenerated between (FirstFailure .. FirstFailure + 10m) | project IPAddress, UserPrincipalName, FailureCount",
+      "SigninLogs | where ResultType == 0 | top 10 by IPAddress"
+    ],
+    "answer": 2,
+    "explanation": "The correct query first computes, per IP address, the count of failed sign-ins and the time of the first failure, filters to IPs with at least five failures, then joins successful sign-ins from the same IP that occurred within 10 minutes of the first failure. The other options only count total rows, summarize without an aggregation, or select successful sign-ins without correlating to failures.",
+    "docs": [
+      { "label": "Kusto Query Language overview", "url": "https://learn.microsoft.com/en-us/kusto/query/" }
+    ]
+  }
+]

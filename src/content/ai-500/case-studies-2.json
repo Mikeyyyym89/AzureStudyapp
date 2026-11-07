@@ -1,0 +1,231 @@
+[
+  {
+    "id": "ai-500-case-3",
+    "title": "Fabrikam Insurance — Multi-tenant claims adjudication",
+    "scenario": "Fabrikam Insurance is building a claims-adjudication multi-agent system in Microsoft Foundry that serves multiple carrier tenants. A claim flows through intake, policy verification, damage assessment (vision), fraud scoring, and settlement proposal. High-dollar settlements above $50,000 require human approval, every fraud decision must be explainable for audit, and each carrier's data must be strictly isolated from the others.",
+    "context": [
+      "Route each claim through the correct specialist agent.",
+      "Keep token cost low while each agent stays focused.",
+      "Fraud scoring must produce an explainable, auditable record.",
+      "Settlements above $50,000 require human approval with an audit trail.",
+      "Carrier tenant data must be strictly isolated."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "The system has five specialist agents: intake, policy verification, damage assessment (which calls a vision model), fraud scoring, and settlement proposal.",
+          "A central orchestrator routes each claim to the appropriate specialist and coordinates the handoffs between stages.",
+          "Fraud scoring consumes structured claim data and returns a risk score plus a written rationale.",
+          "Settlements above $50,000 pause for a human underwriter's approval before the proposal is finalized.",
+          "The system is multi-tenant: it serves several insurance carriers whose data must never cross."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Total token cost per claim must be minimized while preserving accuracy.",
+          "Fraud decisions must include an explainable reasoning trail that survives audit.",
+          "Settlements above $50,000 must require human approval and leave a tamper-evident record of who approved and when.",
+          "Carrier A's documents, memory, and retrieved knowledge must never be retrievable while serving Carrier B.",
+          "The system must detect quality drift in the fraud-scoring agent over time."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "An Azure AI Foundry hub with the Agent Service and a single project.",
+          "Azure AI Search used as the vector store for policy and claims knowledge.",
+          "Azure Cosmos DB storing claim records and long-term memory.",
+          "Azure Key Vault for secrets; agents already use managed identities.",
+          "A multi-tenant architecture where all carriers currently share one search index and one memory store with no tenant scoping.",
+          "The fraud-scoring agent has drifted recently, occasionally returning scores with invented justifications."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai-500-case-3-q1",
+        "domain": "Architect multi-agent solutions",
+        "prompt": "Which orchestration design keeps each specialist focused and minimizes token cost per claim?",
+        "options": [
+          "An orchestrator-subagent pattern where a lightweight router delegates each stage to a narrow specialist agent that owns only its own tools.",
+          "A single generalist agent that holds every tool and a very long system prompt describing all five stages.",
+          "A peer-to-peer mesh where every agent broadcasts to every other agent for every claim.",
+          "A parallel fan-out that runs all five stages for every claim and merges whichever results arrive first."
+        ],
+        "answer": 0,
+        "explanation": "The orchestrator-subagent pattern decomposes the goal into narrow specialists that own only their own tools, so each subagent's context and token usage stay small. A single generalist with a giant prompt inflates cost and misroutes tools; a peer-to-peer mesh and unconditional parallel fan-out run every stage for every claim, wasting tokens and breaking the sequential dependency between verification and fraud scoring.",
+        "docs": [
+          { "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" },
+          { "label": "Azure AI Foundry Agent Service overview", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/agent-service/" }
+        ]
+      },
+      {
+        "id": "ai-500-case-3-q2",
+        "domain": "Develop multi-agent solutions in Azure",
+        "prompt": "How should the fraud-scoring agent make its decisions explainable and auditable?",
+        "options": [
+          "Raise the model temperature so the agent produces more elaborate justifications.",
+          "Log only the final fraud score and discard the intermediate reasoning.",
+          "Emit a structured reasoning trace (captured in spans and logs) alongside the score, and persist it with the claim record for audit.",
+          "Hide the reasoning from logs to protect the scoring model as intellectual property."
+        ],
+        "answer": 2,
+        "explanation": "Explainable and auditable fraud decisions require capturing the agent's reasoning path in structured logs or spans and storing it with the claim, not just the final score. Raising temperature increases randomness and hallucination, logging only the score loses the rationale, and hiding reasoning removes the audit trail the requirement demands.",
+        "docs": [
+          { "label": "Trace in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/trace" },
+          { "label": "Responsible AI use in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/responsible-use/" }
+        ]
+      },
+      {
+        "id": "ai-500-case-3-q3",
+        "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+        "prompt": "How should Fabrikam detect the fraud-scoring agent's drift and trigger remediation?",
+        "options": [
+          "Monitor only the number of claims processed per day.",
+          "Run a golden-dataset evaluation on a schedule and on every deployment, compare fraud-scoring metrics against a baseline, and alert or roll back when metrics regress.",
+          "Wait for underwriters to complain about wrong scores.",
+          "Disable logging for fraud scoring to protect privacy and skip evaluation."
+        ],
+        "answer": 1,
+        "explanation": "Behavioral drift and quality regression detection requires evaluating a fixed golden dataset against a baseline and acting on regression, not watching volume or waiting for complaints. Disabling logging removes the evidence needed to detect and diagnose drift in the first place.",
+        "docs": [
+          { "label": "Evaluation metrics (built-in)", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-metrics-built-in" },
+          { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+        ]
+      },
+      {
+        "id": "ai-500-case-3-q4",
+        "domain": "Secure, govern, and deploy multi-agent solutions",
+        "prompt": "How should Fabrikam enforce strict tenant isolation for the shared search index and memory store?",
+        "options": [
+          "Keep one shared index with no filtering and rely on the system prompt to avoid mentioning other tenants.",
+          "Store all tenants' data together in a single global prompt that the model reads on every turn.",
+          "Give all agents one shared identity with full access to the entire index and memory store.",
+          "Partition the search index and memory store per tenant (or use a shared index with a mandatory tenant-id filter on every retrieval) and grant each agent tenant-scoped identities so retrieval can never cross tenant boundaries."
+        ],
+        "answer": 3,
+        "explanation": "Tenant isolation must be structural: partition the store per tenant or enforce a mandatory tenant-id filter on every retrieval, and scope identities per tenant so no agent can ever read another carrier's data. Prompt-only separation, a global in-prompt store, and a shared full-access identity all allow cross-tenant recall.",
+        "docs": [
+          { "label": "What is memory in Azure AI Foundry agents", "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory" },
+          { "label": "Enterprise security in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/enterprise-security" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ai-500-case-4",
+    "title": "Contoso Bank — Regulated customer onboarding (KYC)",
+    "scenario": "Contoso Bank is building a regulated customer-onboarding multi-agent system in Microsoft Foundry. The flow is document extraction, identity verification, risk classification, and account approval. A risk classification can reject the application and send it back to extraction with a reason. The system must use least privilege per agent, provide full observability with replay for audits, and deploy through staged environments with rollback.",
+    "context": [
+      "Extract data from identity documents of varying types.",
+      "A compliance rejection must loop the application back to extraction with a reason.",
+      "Each agent must have least privilege and a scoped identity.",
+      "Every run must be replayable for audit and debugging.",
+      "New versions must deploy through staged environments with rollback."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Four agents run in sequence: document extraction, identity verification, risk classification, and account approval.",
+          "Document extraction must handle different document types (passport, driver license, utility bill) that are only identified after an initial classification step.",
+          "Risk classification can reject an application and send it back to extraction with a written reason.",
+          "Account approval is a high-impact action that completes the onboarding.",
+          "The bank is regulated and must be able to replay any run for audit."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Rejected applications must loop back to document extraction with the reason.",
+          "Extraction must select the correct tool based on the detected document type.",
+          "Each agent must use a scoped identity with least privilege; no agent may read data outside its role.",
+          "Every run must capture full execution detail (prompts, tool calls, responses) for replay.",
+          "Releases must move through development, test, and acceptance before production, with rollback."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "An Azure AI Foundry hub with the Agent Service.",
+          "Agents currently share a single service principal with combined permissions.",
+          "Logs currently record only each agent's final answer, with no correlation across agents.",
+          "Deployments are pushed directly to production from developer workstations.",
+          "A compliance audit recently failed because the bank could not reconstruct why an application was approved."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai-500-case-4-q1",
+        "domain": "Architect multi-agent solutions",
+        "prompt": "Which orchestration pattern supports a rejection loop-back from risk classification to document extraction?",
+        "options": [
+          "A parallel fan-out where all four agents run at once and results are merged.",
+          "A sequential orchestrator with explicit control flow that routes a rejection from risk classification back to extraction with the reason.",
+          "A peer-to-peer design where agents message each other with no central flow.",
+          "A single generalist agent that performs all four stages in one pass."
+        ],
+        "answer": 1,
+        "explanation": "A rejection loop-back is a conditional control-flow requirement that a sequential orchestrator handles natively by routing the risk agent's rejection (with its reason) back to extraction. Parallel fan-out breaks the dependency, peer-to-peer lacks a central flow to enforce the loop, and a single generalist cannot reliably implement the auditable loop-back.",
+        "docs": [
+          { "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" },
+          { "label": "Develop with AutoGen (human-in-the-loop)", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/agent-service/how-to/develop/autogen" }
+        ]
+      },
+      {
+        "id": "ai-500-case-4-q2",
+        "domain": "Develop multi-agent solutions in Azure",
+        "prompt": "How should document extraction choose the correct tool when the document type is unknown until classification?",
+        "options": [
+          "Classify the document first, then use dynamic tool use to select and call the extraction tool that matches the detected document type.",
+          "Register only a passport tool and force every document through it.",
+          "Ask the model to invent the extracted fields without calling any tool.",
+          "Call every extraction tool for every document and merge the outputs."
+        ],
+        "answer": 0,
+        "explanation": "Because the document type is only known after classification, the agent must select the tool dynamically at runtime. A single static passport tool mis-handles other document types, hallucinating fields is unsafe, and calling every tool for every document wastes tokens and can produce conflicting results.",
+        "docs": [
+          { "label": "Agent tools in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/agent-service/how-to/tools" },
+          { "label": "Build your own MCP server", "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server" }
+        ]
+      },
+      {
+        "id": "ai-500-case-4-q3",
+        "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+        "prompt": "How should Contoso Bank capture full execution detail so any run can be replayed for audit?",
+        "options": [
+          "Log only each agent's final answer with a timestamp.",
+          "Give each agent an independent random trace ID so runs stay separate.",
+          "Propagate a single correlation ID across all agents and persist the full span tree (prompts, tool calls, and responses) so a run can be replayed.",
+          "Capture only the orchestrator's input and output and assume subagents behaved correctly."
+        ],
+        "answer": 2,
+        "explanation": "Replayable auditing requires propagating one correlation ID across the whole run and persisting the full span tree with prompts, tool calls, and responses. Final-answer-only logs, per-agent random IDs, and orchestrator-only capture all lose the causal chain needed to reconstruct why an application was approved.",
+        "docs": [
+          { "label": "Trace in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/trace" },
+          { "label": "Tracing in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/tracing" }
+        ]
+      },
+      {
+        "id": "ai-500-case-4-q4",
+        "domain": "Secure, govern, and deploy multi-agent solutions",
+        "prompt": "How should Contoso Bank replace the shared service principal to achieve least privilege per agent?",
+        "options": [
+          "Keep one shared identity with combined permissions so delegation never fails.",
+          "Give the account-approval agent the union of all permissions as a fallback.",
+          "Use a single shared API key copied into every agent's configuration.",
+          "Give each agent its own scoped managed identity with only its own permissions, and give the orchestrator a delegation-only identity with no direct access to sensitive data."
+        ],
+        "answer": 3,
+        "explanation": "Least privilege and minimized blast radius require per-agent scoped identities, with the orchestrator holding delegation-only permissions rather than accumulated or shared rights. A shared identity, a union-of-permissions agent, and a shared key all widen the blast radius and break per-agent attribution.",
+        "docs": [
+          { "label": "Managed identities for Azure resources", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" },
+          { "label": "Azure role-based access control", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" }
+        ]
+      }
+    ]
+  }
+]

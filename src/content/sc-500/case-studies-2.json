@@ -1,0 +1,219 @@
+[
+  {
+    "id": "sc-500-case-3",
+    "title": "Contoso Healthcare — Securing a generative AI clinical copilot",
+    "scenario": "Contoso Healthcare is building a clinical copilot built on Azure OpenAI that answers clinician questions using internal patient records indexed in Azure AI Search and stored in Azure Blob Storage. The copilot is accessed only over a private network. Contoso must prevent patient data from leaving the tenant, detect prompt-injection and jailbreak attacks, and continuously monitor where AI applications access sensitive data.",
+    "context": [
+      "Azure OpenAI and Azure AI Search must not be reachable from the public internet.",
+      "The copilot must authenticate to Azure OpenAI, Azure AI Search, and Azure Blob Storage without any stored credentials.",
+      "Attempts to manipulate the model using prompt injection or jailbreak prompts must generate security alerts.",
+      "The organization must discover all generative AI apps in use and the sensitive data each app can access."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Contoso Healthcare operates a single Azure subscription with a hub-and-spoke network topology.",
+          "The clinical copilot is a web application that calls the Azure OpenAI service and reads patient documents from Azure Blob Storage through an Azure AI Search index.",
+          "Patient data is classified as highly confidential and is subject to strict data residency and non-disclosure requirements.",
+          "The security team currently has no visibility into which AI applications exist or what data they touch."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "All AI and search resources must be reachable only over private network paths.",
+          "No connection strings, API keys, or secrets may be stored in application code or configuration.",
+          "Security operations must receive alerts for prompt-injection and jailbreak attempts against the model.",
+          "The organization must maintain a continuously updated inventory of generative AI apps and assess the sensitive data each app can access, without deploying agents."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "The Azure OpenAI resource and the Azure AI Search service currently accept requests from public endpoints.",
+          "The copilot web app currently authenticates to Azure OpenAI and Azure Storage using keys stored in application settings.",
+          "No threat detection or data-security controls are currently configured for the AI resources.",
+          "The copilot web app runs in an App Service plan inside the spoke virtual network."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "sc-500-case-3-q1",
+        "domain": "Manage identity, access, and governance",
+        "prompt": "The copilot web app must call Azure OpenAI and read documents from Azure Blob Storage and Azure AI Search without storing any keys or connection strings. You must grant the least privilege necessary. What should you do?",
+        "options": [
+          "Enable a system-assigned managed identity on the web app and grant it the Azure AI Inference role for Azure OpenAI plus the Storage Blob Data Reader and Search Index Data Reader roles scoped to the specific resources.",
+          "Store the Azure OpenAI API key, the storage account key, and the search admin key in the web app application settings.",
+          "Create one shared service principal with the Contributor role across the entire subscription and embed its secret in the app.",
+          "Store all keys and connection strings in Key Vault and grant the web app the Key Vault Secrets User role."
+        ],
+        "answer": 0,
+        "explanation": "A system-assigned managed identity provides passwordless authentication with no secrets to store or rotate. Granting the narrow Azure AI Inference role (for model access), Storage Blob Data Reader, and Search Index Data Reader roles scoped only to the specific resources enforces least privilege. Storing keys in application settings or Key Vault still leaves credentials to manage, and Contributor across the entire subscription is far too broad.",
+        "docs": [
+          { "label": "Managed identities for Azure resources", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" },
+          { "label": "Role-based access control for Azure OpenAI", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/role-based-access-control" }
+        ]
+      },
+      {
+        "id": "sc-500-case-3-q2",
+        "domain": "Secure storage, databases, and networking",
+        "prompt": "Azure OpenAI and Azure AI Search must accept traffic only from the private virtual network and must never expose a public endpoint, while the copilot web app continues to reach them. What should you configure?",
+        "options": [
+          "Leave public network access enabled and add the web app outbound public IP to the firewall of each service.",
+          "Create private endpoints for Azure OpenAI and Azure AI Search, integrate the private DNS zones, and set public network access to Disabled on both resources.",
+          "Enable the Allow trusted Microsoft services firewall bypass and keep public network access enabled.",
+          "Deploy Azure Firewall with DNAT rules to expose both services to the internal network."
+        ],
+        "answer": 1,
+        "explanation": "A private endpoint places each service on a private IP inside the virtual network, and setting public network access to Disabled removes internet exposure entirely while the web app still connects over the private path. IP allow-listing and the trusted-services bypass keep a public endpoint in place, and DNAT rules expose services rather than isolate them.",
+        "docs": [
+          { "label": "Azure Private Endpoint", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" },
+          { "label": "Configure network isolation for Microsoft Foundry", "url": "https://learn.microsoft.com/en-us/azure/foundry/how-to/configure-private-link" }
+        ]
+      },
+      {
+        "id": "sc-500-case-3-q3",
+        "domain": "Manage and monitor security posture",
+        "prompt": "The security team must be alerted when a clinician or an automated process attempts prompt injection or a jailbreak against the Azure OpenAI model. Which capability should you enable?",
+        "options": [
+          "Azure OpenAI content filtering alone.",
+          "A network security group with a deny rule on port 443.",
+          "AI threat protection in Microsoft Defender for Cloud, which detects prompt-injection and jailbreak attempts against Azure OpenAI and raises security alerts.",
+          "Azure Monitor request-count metrics only."
+        ],
+        "answer": 2,
+        "explanation": "Defender for Cloud AI threat protection detects adversarial threats such as prompt injection and jailbreak against Azure OpenAI and raises security alerts. Content filtering governs model inputs and outputs but is not an alerting system, network security groups cannot inspect prompt content, and request-count metrics do not detect adversarial prompts.",
+        "docs": [
+          { "label": "AI threat protection in Microsoft Defender for Cloud", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-threat-protection" }
+        ]
+      },
+      {
+        "id": "sc-500-case-3-q4",
+        "domain": "Manage and monitor security posture",
+        "prompt": "Contoso must inventory every generative AI application in use and continuously assess the sensitive data each app can access, without deploying agents. Which solution should you use?",
+        "options": [
+          "Azure Policy with a custom initiative that audits AI resource SKUs.",
+          "Microsoft Sentinel with a Syslog data connector.",
+          "Azure Monitor with Application Insights only.",
+          "Microsoft Defender for Cloud AI security posture management to discover generative AI apps, combined with Microsoft Purview data security posture management for AI to assess the sensitive data those apps can access."
+        ],
+        "answer": 3,
+        "explanation": "Defender for Cloud AI security posture management discovers generative AI applications and surfaces their attack paths, while Microsoft Purview DSPM for AI assesses the sensitive data AI interactions can access. Azure Policy governs resource configuration rather than inventorying AI apps and their data access, Sentinel ingests logs rather than assessing data exposure, and Application Insights monitors telemetry, not data exposure.",
+        "docs": [
+          { "label": "AI security posture management", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/ai-security-posture" },
+          { "label": "Microsoft Purview data security posture management", "url": "https://learn.microsoft.com/en-us/purview/data-security-posture-management" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sc-500-case-4",
+    "title": "Fabrikam — Securing compute workloads and privileged access",
+    "scenario": "Fabrikam runs containerized microservices on Azure Kubernetes Service (AKS) alongside legacy virtual machines. Regulated workloads process payment card data that must remain protected even while it is in use in memory. Administrators currently hold permanent Global Administrator accounts and manage VMs through public RDP. Fabrikam must harden compute, protect data in use, and eliminate standing privileged access.",
+    "context": [
+      "Container images must be scanned for vulnerabilities before deployment, and runtime threats in the cluster must be detected.",
+      "Admission control and least-privilege Kubernetes RBAC must be continuously enforced.",
+      "Regulated data must remain encrypted even while a compromised host or hypervisor is reading memory.",
+      "Administrators must receive just-in-time elevated access, and emergency access must never be blocked."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Fabrikam runs 40 microservices in AKS and 20 legacy virtual machines in the same virtual network.",
+          "The payment processing service handles cardholder data and must satisfy a strict PCI DSS requirement to protect data in use.",
+          "Today, administrators sign in with permanently assigned Global Administrator accounts and manage VMs through public RDP endpoints.",
+          "Container images are currently built and pushed to Azure Container Registry without any vulnerability scanning."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Scan every container image for vulnerabilities before it is deployed and detect runtime threats inside the cluster.",
+          "Continuously enforce admission control and least-privilege Kubernetes role-based access control.",
+          "Protect cardholder data while it is being processed in memory, so that even the cloud host cannot read it.",
+          "Remove standing privileged access, and guarantee two cloud-only emergency accounts remain usable during any outage."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "The AKS cluster has a public API endpoint, and cluster access uses a single shared kubeconfig credential.",
+          "VMs without public IPs cannot currently be managed remotely, and legacy VMs with public IPs have permanent inbound RDP rules.",
+          "No just-in-time access, threat detection, or image scanning is configured for compute resources.",
+          "All administrators hold the Global Administrator role permanently with no Conditional Access exclusions."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "sc-500-case-4-q1",
+        "domain": "Secure compute",
+        "prompt": "Which combination scans container images in the registry, detects runtime threats in AKS, and continuously enforces admission control and least-privilege Kubernetes RBAC?",
+        "options": [
+          "Microsoft Defender for Containers for image scanning and runtime protection, plus Azure Policy for Kubernetes to enforce admission control and RBAC.",
+          "Azure Container Instances behind a public load balancer.",
+          "Azure Bastion and a network security group on the node pool.",
+          "Just-in-time VM access applied to the AKS nodes."
+        ],
+        "answer": 0,
+        "explanation": "Defender for Containers scans registry images and detects runtime threats in AKS, while Azure Policy for Kubernetes enforces admission control (for example, Gatekeeper) and least-privilege RBAC. The other options address compute placement or connectivity controls rather than image scanning, runtime threat detection, or Kubernetes policy.",
+        "docs": [
+          { "label": "Microsoft Defender for Containers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction" }
+        ]
+      },
+      {
+        "id": "sc-500-case-4-q2",
+        "domain": "Secure compute",
+        "prompt": "The payment processing service must keep cardholder data encrypted while it is in use, so that even the cloud host cannot read it. Which compute configuration should you choose?",
+        "options": [
+          "Standard VMs with Azure Disk Encryption and a trusted launch image.",
+          "Azure confidential VMs or confidential containers with hardware-based secure enclaves and encrypted memory.",
+          "Standard VMs with storage service encryption using platform-managed keys.",
+          "Standard VMs placed behind Azure Firewall."
+        ],
+        "answer": 1,
+        "explanation": "Confidential computing protects data in use via hardware-based trusted execution environments and encrypted memory. Azure Disk Encryption and storage service encryption protect data at rest, trusted launch protects the boot chain, and Azure Firewall protects network traffic. None of those protect data while it is being processed in memory.",
+        "docs": [
+          { "label": "Azure confidential computing", "url": "https://learn.microsoft.com/en-us/azure/confidential-computing/overview" }
+        ]
+      },
+      {
+        "id": "sc-500-case-4-q3",
+        "domain": "Manage identity, access, and governance",
+        "prompt": "Fabrikam must remove permanent privileged access, require just-in-time activation with MFA and approval for Global Administrators, and guarantee two cloud-only emergency accounts remain usable during any outage. What should you do?",
+        "options": [
+          "Assign all Global Administrators permanently and disable Conditional Access entirely.",
+          "Make every account, including the break-glass accounts, PIM-eligible for Global Administrator.",
+          "Make administrators PIM-eligible for the Global Administrator role with MFA and approval on activation, and keep two cloud-only break-glass accounts with a permanent Global Administrator role excluded from Conditional Access.",
+          "Store break-glass credentials in a shared mailbox and remove MFA for all administrators."
+        ],
+        "answer": 2,
+        "explanation": "PIM-eligible assignments with MFA and approval deliver just-in-time access with oversight, while dedicated cloud-only break-glass accounts with a permanent Global Administrator role excluded from Conditional Access remain usable during authentication outages. Permanent assignments retain standing access, making break-glass accounts PIM-eligible risks lockout during an outage, and a shared mailbox is insecure.",
+        "docs": [
+          { "label": "Configure Privileged Identity Management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure" },
+          { "label": "Manage emergency access accounts", "url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access" }
+        ]
+      },
+      {
+        "id": "sc-500-case-4-q4",
+        "domain": "Secure storage, databases, and networking",
+        "prompt": "Administrators must manage VMs that have no public IP addresses, and Fabrikam must not open RDP or SSH to the internet. Legacy VMs with a public IP must allow RDP only from the corporate IP range for a maximum of two hours. Which two controls meet these requirements?",
+        "options": [
+          "Assign public IP addresses to every VM and open RDP from any source.",
+          "Create a single permanent NSG rule allowing RDP from 0.0.0.0/0 on all VMs.",
+          "Remove all NSG rules and rely on strong passwords.",
+          "Azure Bastion for the VMs without public IPs, and Defender for Cloud just-in-time VM access for the legacy public-IP VMs."
+        ],
+        "answer": 3,
+        "explanation": "Azure Bastion provides browser-based RDP/SSH over TLS to VMs without public IPs and without open management ports. Just-in-time VM access opens the management port only for an approved request, restricted to the corporate IP range, and closes it automatically after two hours. The other options expose RDP broadly or remove network controls entirely.",
+        "docs": [
+          { "label": "Azure Bastion overview", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" },
+          { "label": "Just-in-time VM access", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview" }
+        ]
+      }
+    ]
+  }
+]

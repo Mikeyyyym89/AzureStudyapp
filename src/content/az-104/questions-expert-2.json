@@ -1,0 +1,477 @@
+[
+  {
+    "id": "az-104-q168",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "Your security team requires a quarterly attestation of who still needs the Contributor role on the Production subscription. Reviewers must have 14 days to respond, and if a reviewer does not respond, the user's access must be removed automatically. You must minimize administrative effort. What should you configure?",
+    "options": [
+      "A custom Azure Policy with the Audit effect on role assignments",
+      "An Azure resource lock on the Production subscription",
+      "A Microsoft Entra access review of the Contributor role assignments on the Production subscription, with auto-apply enabled and a 14-day review duration",
+      "A Privileged Identity Management activation schedule with no approval"
+    ],
+    "answer": 2,
+    "explanation": "Microsoft Entra access reviews can periodically review Azure resource role assignments (such as Contributor on a subscription), with a configurable duration and the ability to auto-apply results, which removes access when reviewers do not respond. Azure Policy cannot attest or remove role assignments, a resource lock does not review access, and a PIM activation schedule with no approval does not remove standing access.",
+    "docs": [
+      {
+        "label": "What are Microsoft Entra access reviews?",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q169",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "You assigned a policy with the Deny effect that requires secure transfer (HTTPS) on all storage accounts at the management group scope. A legacy application requires one storage account to allow HTTP temporarily. You must not weaken the policy for any other account, and the exception must be time-bound and reviewable. What should you create?",
+    "options": [
+      "An Azure Policy exemption scoped to the specific storage account, with an expiration date",
+      "Remove the policy assignment from the management group",
+      "Change the policy effect from Deny to Audit",
+      "Create a new management group and move the storage account into it"
+    ],
+    "answer": 0,
+    "explanation": "An Azure Policy exemption scopes an exception to a single resource without changing the assignment for everything else, and supports an expiration date and review metadata. Removing the assignment or changing the effect weakens the policy for all accounts, and moving the account to another management group does not by itself grant the exception.",
+    "docs": [
+      {
+        "label": "Azure Policy exemptions",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/exemption-structure"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q170",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "A management group named Finance contains three subscriptions. A reporting team needs read-only access to every current and future resource in those subscriptions, and any new subscription added to Finance must inherit the access automatically. You must minimize administrative effort. What should you do?",
+    "options": [
+      "Assign the Reader role to each subscription individually",
+      "Assign the Reader role to each resource group individually",
+      "Create an Azure Policy with the DeployIfNotExists effect",
+      "Assign the Reader role at the Finance management group scope"
+    ],
+    "answer": 3,
+    "explanation": "RBAC assignments at a management group scope are inherited by all child subscriptions and any subscriptions added later. Assigning per subscription or per resource group is more effort and misses future subscriptions, and Azure Policy does not grant RBAC roles.",
+    "docs": [
+      {
+        "label": "Azure RBAC overview",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q171",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "An external auditor needs read-only access to Azure resources for exactly 30 days, after which the access must expire automatically without manual removal. The auditor must never be able to modify resources. You must minimize standing privilege and administrative effort. What should you do?",
+    "options": [
+      "Assign the Reader role permanently and create a calendar reminder to remove it",
+      "Create a time-bound Reader assignment in Microsoft Entra Privileged Identity Management with a specified start and end date for the auditor",
+      "Assign the Contributor role with a 30-day calendar reminder",
+      "Add the auditor to the Global Administrators role temporarily"
+    ],
+    "answer": 1,
+    "explanation": "Privileged Identity Management supports time-bound assignments for Azure resource roles with explicit start and end dates, so the Reader access expires automatically. A permanent Reader assignment requires manual removal, Contributor grants write access, and Global Administrator is excessive and unrelated to Azure resource scope.",
+    "docs": [
+      {
+        "label": "Configure Privileged Identity Management",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q172",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "You must prevent virtual machines from being created outside the East US and West Europe regions, even by users who hold the Owner role, while flagging (but not deleting) any existing VMs in other regions. What should you configure?",
+    "options": [
+      "Apply a ReadOnly lock to the subscription",
+      "Create a custom role that omits region-write permissions and assign it to all users",
+      "Assign the built-in Allowed locations policy with the Deny effect at the subscription scope",
+      "Assign the Allowed locations policy with the Audit effect at the subscription scope"
+    ],
+    "answer": 2,
+    "explanation": "An Allowed locations policy with the Deny effect blocks deployments in disallowed regions regardless of the caller's RBAC role (policy evaluation is not an RBAC check), while existing out-of-policy resources are reported as non-compliant rather than deleted. A ReadOnly lock prevents changes but not new deployments in other regions, a custom role cannot override an Owner's permissions, and Audit only reports without blocking.",
+    "docs": [
+      {
+        "label": "Azure Policy effects",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q173",
+    "domain": "Implement and manage storage",
+    "prompt": "A storage account holds backups. Access must be allowed only from a single subnet in a virtual network and from no other source, including the Azure portal from a public IP address. You must minimize cost. What should you configure?",
+    "options": [
+      "Enable a service endpoint for Microsoft.Storage on the subnet and configure the storage account firewall to allow access only from that subnet",
+      "Enable a private endpoint and disable all other access, then assign a public IP address to the subnet",
+      "Allow access from all networks and protect the data with a shared key",
+      "Enable the Trusted Azure services firewall bypass only"
+    ],
+    "answer": 0,
+    "explanation": "A service endpoint routes traffic from the subnet to the storage service over the Microsoft backbone, and the storage firewall restricted to that subnet rejects all other sources, including the public portal. A private endpoint would also work but costs more and does not require a public IP on the subnet, allowing access from all networks defeats the restriction, and the Trusted services bypass alone does not scope access to the subnet.",
+    "docs": [
+      {
+        "label": "Configure Azure Storage firewalls and virtual networks",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q174",
+    "domain": "Implement and manage storage",
+    "prompt": "You need to asynchronously copy blobs from a source storage account in East US to a destination account in West Europe, with changes replicated within 15 minutes and support for failing over to the destination. The copy must be incremental and automatic. What should you configure?",
+    "options": [
+      "An AzCopy sync command scheduled hourly",
+      "Azure Data Box",
+      "A blob lifecycle management policy",
+      "Object replication with versioning enabled on both storage accounts"
+    ],
+    "answer": 3,
+    "explanation": "Object replication asynchronously copies new and updated block blobs between accounts (including across regions) in near-real time, requires versioning on both accounts, and supports failover scenarios. AzCopy sync is a manual/scheduled tool rather than an automatic continuous replica, Data Box is for one-time offline transfer, and lifecycle management tiers or deletes blobs rather than replicating them.",
+    "docs": [
+      {
+        "label": "Object replication for block blobs",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/object-replication-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q175",
+    "domain": "Implement and manage storage",
+    "prompt": "A partner needs write access to a single blob container for six months, but you must be able to revoke that access immediately at any time without rotating the storage account key. What should you issue?",
+    "options": [
+      "The storage account access key",
+      "A service shared access signature scoped to the container and associated with a stored access policy that you can revoke",
+      "A user delegation shared access signature with no stored access policy",
+      "An account shared access signature for the entire storage account"
+    ],
+    "answer": 1,
+    "explanation": "A service SAS scoped to the container grants limited access, and binding it to a stored access policy lets you revoke all tokens under that policy immediately by deleting the policy, without rotating the key. Sharing the account key grants full account control, a user delegation SAS without a stored access policy cannot be revoked except by key rotation or expiry, and an account SAS is over-broad.",
+    "docs": [
+      {
+        "label": "Grant limited access with shared access signatures",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q176",
+    "domain": "Implement and manage storage",
+    "prompt": "Windows users must mount an Azure file share using their existing on-premises Active Directory credentials and enforce NTFS-style permissions. The share must be reachable only over the private network, with no public endpoint. What should you do?",
+    "options": [
+      "Enable anonymous SMB access with a shared access signature",
+      "Use an NFS file share exposed through a public endpoint",
+      "Enable Active Directory Domain Services identity-based authentication on the storage account and access the share through a private endpoint",
+      "Store the storage account key in a file and map the drive with it"
+    ],
+    "answer": 2,
+    "explanation": "Azure Files identity-based authentication for on-premises AD DS lets users authenticate over SMB with their existing AD credentials and apply NTFS permissions, and a private endpoint exposes the share only on a private IP. Anonymous SMB and account-key mapping bypass identity, and NFS with a public endpoint neither supports AD DS SMB authentication nor meets the private-only requirement.",
+    "docs": [
+      {
+        "label": "Overview of Azure Files identity-based authentication",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-active-directory-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q177",
+    "domain": "Implement and manage storage",
+    "prompt": "Blobs older than 180 days have been moved to the Archive tier. A compliance audit requires reading several archived blobs within one hour. Reading directly from Archive is not supported and standard rehydration can take up to 15 hours. What should you do for those blobs?",
+    "options": [
+      "Rehydrate the required blobs to the Hot tier using high-priority rehydration",
+      "Read the blobs directly from the Archive tier",
+      "Delete and re-upload the blobs",
+      "Move the entire container back to the Hot tier"
+    ],
+    "answer": 0,
+    "explanation": "High-priority rehydration can restore small numbers of archived blobs to the Hot tier in about an hour, and archived blobs cannot be read until they are rehydrated. Deleting and re-uploading changes the data and timestamps, and moving the whole container rehydrates far more data than needed at greater cost.",
+    "docs": [
+      {
+        "label": "Rehydrate blob data from the Archive tier",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/archive-rehydrate-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q178",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "A virtual machine runs a steady, always-on workload 24 hours a day for the next three years. You must minimize compute cost and are able to commit upfront, but you also need the flexibility to change to a different VM size if the workload grows without losing the discount. What should you purchase?",
+    "options": [
+      "A spot virtual machine",
+      "A reserved virtual machine instance with instance size flexibility",
+      "Pay-as-you-go pricing with no commitment",
+      "A spot-priority Virtual Machine Scale Set"
+    ],
+    "answer": 1,
+    "explanation": "A reserved virtual machine instance with instance size flexibility gives an upfront discount while allowing the reservation to apply to a range of VM sizes in the same size group. Spot VMs are evictable and unsuitable for a steady workload, and pay-as-you-go has no discount.",
+    "docs": [
+      {
+        "label": "What are Azure Reservations?",
+        "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/reservations/save-compute-costs-reservations"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q179",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "Two containers must share the same network namespace, share a common file volume, and start and stop together as one unit. You must minimize cost and avoid managing any VM or Kubernetes cluster. What should you deploy?",
+    "options": [
+      "Two separate Azure Container Instances joined by a virtual network",
+      "An Azure Kubernetes Service cluster with two pods",
+      "Two container instances that share a public IP address",
+      "A single container group that includes both containers and a shared volume"
+    ],
+    "answer": 3,
+    "explanation": "Containers in a single Azure Container Instances container group share a lifecycle, network namespace (localhost), and storage volumes, and are billed together without a VM or cluster. Separate ACI instances are isolated, AKS adds an entire managed cluster, and two instances sharing one public IP does not share a network namespace or lifecycle.",
+    "docs": [
+      {
+        "label": "Container groups in Azure Container Instances",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q180",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You must encrypt a VM's OS and data disks at rest using a customer-managed key that your team rotates, without installing BitLocker or DM-Crypt inside the guest operating system. The key must be stored in Azure Key Vault. What should you configure?",
+    "options": [
+      "Enable Azure Disk Encryption with a platform-managed key",
+      "Enable transparent data encryption inside the VM",
+      "Create a disk encryption set backed by a Key Vault customer-managed key and configure the managed disks to use it for server-side encryption",
+      "Encrypt each disk with BitLocker manually inside the OS"
+    ],
+    "answer": 2,
+    "explanation": "Server-side encryption (SSE) with a customer-managed key uses a disk encryption set referencing a Key Vault key to encrypt managed disks at rest without guest-OS encryption software. Azure Disk Encryption uses BitLocker/DM-Crypt inside the OS (excluded by the requirement), TDE is a database feature, and manual BitLocker also installs guest-OS encryption.",
+    "docs": [
+      {
+        "label": "Server-side encryption of Azure Disk Storage",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q181",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You need to deploy a new version of an App Service web app with zero downtime, route 20 percent of production traffic to the new version for validation first, and then cut over completely. What should you configure?",
+    "options": [
+      "Create a deployment slot, set the traffic routing to 20 percent, verify the new version, then swap the slots",
+      "Redeploy directly to the production slot during off-hours",
+      "Create a second App Service plan and use Azure Front Door",
+      "Stop the app, upload the new version, then restart it"
+    ],
+    "answer": 0,
+    "explanation": "Deployment slots let you stage a new version, route a percentage of traffic to it for testing, and then swap slots for a zero-downtime cutover. Redeploying to production risks downtime, a second plan with Front Door is heavier than needed, and stopping the app causes downtime.",
+    "docs": [
+      {
+        "label": "Set up staging environments in Azure App Service",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q182",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You need to create a reusable VM image that includes the operating system, latest patches, and an installed application, then use it to deploy multiple identical VMs. What must you do to the source VM BEFORE capturing the image?",
+    "options": [
+      "Create a snapshot of the OS disk",
+      "Generalize the VM (run Sysprep for Windows or waagent -deprovision for Linux) before capturing the image",
+      "Resize the VM to a larger size",
+      "Attach the VM's data disks to another VM"
+    ],
+    "answer": 1,
+    "explanation": "An image used for multiple VMs must be generalized (Sysprep on Windows, waagent -deprovision on Linux) to remove machine-specific identity; capture fails or produces non-functional VMs otherwise. A snapshot is not generalized, resizing is unrelated, and attaching disks elsewhere does not produce an image.",
+    "docs": [
+      {
+        "label": "Create a managed image of a generalized VM",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/capture-image-resource"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q183",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "A three-tier application runs in one virtual network. The web tier must reach only the application tier on port 443, and the application tier must reach only the database tier on port 1433, with all other traffic blocked. New VMs added to each tier must inherit the rules automatically. What should you use?",
+    "options": [
+      "Individual NSG rules with hard-coded IP addresses for each VM",
+      "Service endpoints for SQL",
+      "Azure Firewall with DNAT rules",
+      "Network security groups that use application security groups for each tier as source and destination"
+    ],
+    "answer": 3,
+    "explanation": "Application security groups let you group NICs by tier and use them as source/destination in NSG rules, so new VMs added to an ASG automatically inherit the rules without hard-coded IPs. Hard-coded IPs do not scale, service endpoints control access to Azure services rather than tier-to-tier filtering, and Azure Firewall with DNAT is for inbound translation, not this east-west filtering.",
+    "docs": [
+      {
+        "label": "Application security groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q184",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "A subnet has a user-defined route that sends 0.0.0.0/0 to a firewall for inspection. You need traffic to a specific public range (203.0.113.0/24) to bypass the firewall and go directly to the internet, while all other internet traffic is still inspected. What should you do?",
+    "options": [
+      "Add a user-defined route for 203.0.113.0/24 with next hop Internet; the more specific prefix takes precedence over the default route",
+      "Delete the 0.0.0.0/0 route",
+      "Increase the metric of the firewall route",
+      "Create an NSG rule that allows the 203.0.113.0/24 range"
+    ],
+    "answer": 0,
+    "explanation": "Azure selects routes by longest prefix match, so a /24 route to the Internet for 203.0.113.0/24 takes precedence over the 0.0.0.0/0 route to the firewall, while all other traffic still follows the default route. Deleting the default route removes inspection for everything, route metrics are not a supported user configurable concept for this in Azure UDRs, and an NSG rule filters but does not route traffic.",
+    "docs": [
+      {
+        "label": "Virtual network traffic routing",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-udr-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q185",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "VNet1 uses 10.0.0.0/16 and VNet2 uses 10.0.0.0/24. You attempt to peer them but the peering fails because the address spaces overlap. You must resolve this so the two VNets can communicate. What should you do first?",
+    "options": [
+      "Enable gateway transit on the peering",
+      "Add a route table to both virtual networks",
+      "Change one of the virtual networks' address spaces so they no longer overlap",
+      "Enable accelerated networking on the VMs"
+    ],
+    "answer": 2,
+    "explanation": "Virtual networks must have non-overlapping address spaces to be peered, so one address space must be changed before peering can succeed. Gateway transit, route tables, and accelerated networking do not resolve an address overlap.",
+    "docs": [
+      {
+        "label": "Virtual network peering",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q186",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "An Azure private DNS zone (contoso.internal) is linked to a virtual network. On-premises DNS servers must resolve names in that zone, but they cannot reach the Azure DNS service directly over the existing VPN. What should you deploy in Azure?",
+    "options": [
+      "Add the Azure public DNS servers to the on-premises DNS forwarders",
+      "Deploy an Azure DNS Private Resolver with an inbound endpoint in the virtual network, and configure the on-premises DNS servers to conditionally forward contoso.internal to that endpoint IP",
+      "Disable automatic registration on the private DNS zone",
+      "Create a public DNS zone for contoso.internal"
+    ],
+    "answer": 1,
+    "explanation": "An Azure DNS Private Resolver provides an inbound endpoint (a private IP) that on-premises DNS servers can conditionally forward to over the VPN, enabling resolution of the private zone. Azure public DNS cannot resolve private zone names, disabling auto-registration removes name registration rather than enabling resolution, and a public zone would not expose private IPs correctly.",
+    "docs": [
+      {
+        "label": "Azure DNS Private Resolver",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q187",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "You need to load balance all TCP and UDP ports across a pair of network virtual appliances for high availability, and the NVAs must see the original client source IP address for logging. Which configuration should you use?",
+    "options": [
+      "A Basic load balancer with a single NAT rule",
+      "An Azure Application Gateway with path-based routing",
+      "A public Load Balancer with session persistence enabled",
+      "A Standard internal load balancer with HA ports enabled and floating IP enabled"
+    ],
+    "answer": 3,
+    "explanation": "HA ports on a Standard internal load balancer load balance every TCP/UDP port, and enabling floating IP (Direct Server Return) preserves the original client source IP for the NVAs. A Basic load balancer cannot use HA ports, Application Gateway is an HTTP/S reverse proxy that does not preserve L4 source IP for all ports, and session persistence affects affinity rather than passing all ports or preserving source IP.",
+    "docs": [
+      {
+        "label": "HA ports and Azure Load Balancer",
+        "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-ha-ports-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q188",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You must retain the Azure activity log for 365 days and query it with Kusto Query Language. The default retention is only 90 days. What should you do?",
+    "options": [
+      "Export the activity log to a Log Analytics workspace configured with 365-day retention",
+      "Rely on the default 90-day retention in the portal",
+      "Export the activity log to an event hub only",
+      "Create a metric alert on the activity log"
+    ],
+    "answer": 0,
+    "explanation": "Exporting the activity log to a Log Analytics workspace lets you set longer retention (up to 730 days or more) and query the data with KQL. The portal default is 90 days, an event hub is for streaming (not long-term queryable retention), and a metric alert does not extend retention.",
+    "docs": [
+      {
+        "label": "Azure Monitor activity log",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q189",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "Your Azure VMs are backed up to a geo-redundant Recovery Services vault in East US. You need the ability to restore a VM in West US during a complete East US regional outage. What should you enable?",
+    "options": [
+      "Change the vault redundancy to LRS",
+      "Create a second VM manually in West US",
+      "Enable cross-region restore on the geo-redundant Recovery Services vault",
+      "Restore the VM within East US"
+    ],
+    "answer": 2,
+    "explanation": "Cross-region restore allows you to restore Azure VMs in a secondary paired region using the geo-replicated backup data in a GRS/RA-GRS vault, which is essential during a primary-region outage. LRS has no secondary copy, a manually created VM has no backup history, and restoring within East US is impossible during its outage.",
+    "docs": [
+      {
+        "label": "Cross-region restore for Azure VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/tutorial-cross-region-restore"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q190",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "A web app intermittently returns HTTP 500 errors. You need end-to-end request tracing, exception details, and dependency calls, plus an alert when the failure rate spikes abnormally. What should you enable?",
+    "options": [
+      "Azure Advisor recommendations",
+      "Application Insights with auto-instrumentation and failure anomaly detection",
+      "Network Watcher packet capture",
+      "Activity log queries"
+    ],
+    "answer": 1,
+    "explanation": "Application Insights captures request traces, exceptions, and dependency telemetry with auto-instrumentation, and its failure anomaly detection alerts when the failure rate deviates from normal. Advisor only recommends, packet capture is for network traffic, and activity log queries track control-plane events, not application failures.",
+    "docs": [
+      {
+        "label": "Application Insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q191",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You must alert when any production VM's free disk space falls below 10 percent. Guest-OS performance counters are not collected by default, and you need a single query that covers all VMs with minimal false positives. What should you do?",
+    "options": [
+      "Create a static metric alert on CPU percentage",
+      "Create an Azure Service Health alert",
+      "Create an activity log alert for disk operations",
+      "Configure the Azure Monitor Agent to collect the Logical Disk percent-free-space counter and create a log query alert that fires when it drops below 10 percent"
+    ],
+    "answer": 3,
+    "explanation": "Free disk space is a guest-OS metric that must be collected by the Azure Monitor Agent into a Log Analytics workspace, after which a log query alert can evaluate it across all VMs. CPU metrics are unrelated, Service Health reports platform issues, and activity log alerts track control-plane operations rather than disk space.",
+    "docs": [
+      {
+        "label": "Collect guest OS metrics with the Azure Monitor Agent",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q192",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You need to send an email and a Microsoft Teams message and create a ServiceNow incident whenever any VM in a resource group is deallocated. You also want to reuse this same set of notification actions across many different alert rules. What should you create?",
+    "options": [
+      "An action group with email, Teams, and ITSM connector actions, referenced by the relevant alert rules",
+      "A separate action group for each alert rule",
+      "An activity log query with no action group",
+      "Configure each VM to send notifications directly"
+    ],
+    "answer": 0,
+    "explanation": "An action group bundles reusable notification and action destinations (email, Teams, ITSM connector) that any number of alert rules can reference, and an activity log alert for the deallocation event invokes it. Separate per-rule action groups duplicate configuration, a query with no action group takes no action, and VMs cannot self-notify on deallocation.",
+    "docs": [
+      {
+        "label": "Action groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
+    ]
+  }
+]

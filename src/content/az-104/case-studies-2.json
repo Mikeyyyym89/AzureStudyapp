@@ -1,0 +1,242 @@
+[
+  {
+    "id": "az-104-case-3",
+    "title": "Northwind Traders — Migrating a customer portal to Azure",
+    "scenario": "Northwind Traders is migrating its on-premises customer portal to Azure. The portal is a three-tier application: an IIS web tier, an application tier, and a SQL Server database tier. The portal is used by employees on the corporate network and by external customers over the internet. Customers upload supporting documents that are accessed frequently for the first 30 days and then rarely accessed, but the documents must be preserved for seven years for compliance. The IT team currently manages the on-premises servers over public RDP, which security has flagged as a risk.",
+    "context": [
+      "The web tier must remain available during planned OS updates and survive a single availability zone failure.",
+      "Finalized customer documents must be immutable for seven years, even against administrators.",
+      "Administrators must manage VMs without exposing RDP/SSH to the public internet.",
+      "External customers need TLS termination and web application firewall protection at a global edge."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Three-tier customer portal (IIS web, application, SQL Server database) migrating to Azure.",
+          "Accessed by employees over the corporate network and by external customers over the internet.",
+          "Customer-uploaded documents are hot for 30 days, then rarely accessed, but retained seven years.",
+          "On-premises servers are currently managed over public RDP, which must be replaced."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Web tier must stay available during planned OS updates and survive a single availability zone failure.",
+          "Finalized customer documents must be immutable for seven years, protected even from Owner-role users.",
+          "Administrators must securely manage VMs without public RDP/SSH exposure.",
+          "Internet traffic must be load balanced globally with edge TLS termination and a web application firewall."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "Single Azure subscription with resource groups RG-Web, RG-App, and RG-Data.",
+          "On-premises datacenter connects to a hub VNet via a site-to-site VPN gateway.",
+          "A storage account (general-purpose v2, Hot tier) already holds customer documents.",
+          "Existing network security groups allow RDP (3389) from a public IP address."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "az-104-case-3-q1",
+        "domain": "Deploy and manage Azure compute resources",
+        "prompt": "Which configuration satisfies the requirement that the web tier remain available during planned OS updates AND survive a single availability zone failure?",
+        "options": [
+          "Place the web VMs in a single availability set",
+          "Deploy the web tier in one availability zone with a Basic load balancer",
+          "Deploy a Virtual Machine Scale Set with zone spanning across all availability zones and the maximum spreading algorithm",
+          "Deploy standalone VMs, each on its own managed disk, with automatic shutdown schedules"
+        ],
+        "answer": 2,
+        "explanation": "A scale set spanning availability zones provides isolation so the tier survives the loss of an entire zone, and its update/fault domains (with maximum spreading) keep instances available during planned OS updates. An availability set protects against fault/update domains within a zone but cannot survive a full zone failure, a single-zone deployment loses the whole tier if that zone fails, and standalone VMs with shutdown schedules provide no high availability.",
+        "docs": [
+          {
+            "label": "Virtual Machine Scale Sets and availability zones",
+            "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
+          }
+        ]
+      },
+      {
+        "id": "az-104-case-3-q2",
+        "domain": "Implement and manage storage",
+        "prompt": "How should Northwind ensure finalized customer documents are immutable for seven years, even against users holding the Owner role?",
+        "options": [
+          "Enable blob soft delete with a seven-year retention period",
+          "Apply a ReadOnly resource lock to the storage account",
+          "Assign read-only RBAC roles to all administrators",
+          "Configure a version-level time-based retention immutability policy on the container"
+        ],
+        "answer": 3,
+        "explanation": "Version-level time-based retention (WORM) immutability prevents a blob version from being modified or deleted for the retention period, even by the Owner role. Soft delete still allows deletion and modification, a ReadOnly lock can be removed by an Owner and does not protect blob content, and read-only RBAC is overridden by Owner permissions.",
+        "docs": [
+          {
+            "label": "Immutable storage for blob data",
+            "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview"
+          }
+        ]
+      },
+      {
+        "id": "az-104-case-3-q3",
+        "domain": "Implement and manage virtual networking",
+        "prompt": "How should administrators securely manage the migrated VMs without exposing RDP/SSH to the public internet?",
+        "options": [
+          "Connect through Azure Bastion",
+          "Allow RDP (3389) and SSH (22) to the public internet in the NSG",
+          "Assign a public IP address to every VM",
+          "Open port 3389 only on the application-tier VMs"
+        ],
+        "answer": 0,
+        "explanation": "Azure Bastion provides secure, browser-based RDP and SSH to VMs directly from the Azure portal without exposing the VMs to the public internet or requiring public IPs on the VMs. Opening RDP/SSH to the internet or assigning public IPs re-introduces the exact exposure security flagged, and opening 3389 on application-tier VMs does not address the web tier and still exposes management traffic.",
+        "docs": [
+          {
+            "label": "Azure Bastion overview",
+            "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+          }
+        ]
+      },
+      {
+        "id": "az-104-case-3-q4",
+        "domain": "Implement and manage virtual networking",
+        "prompt": "Which service should Northwind use to give external customers global load balancing, edge TLS termination, and web application firewall protection for the portal?",
+        "options": [
+          "Azure Front Door",
+          "Azure Traffic Manager",
+          "An Azure Load Balancer in one region",
+          "An Azure VPN gateway"
+        ],
+        "answer": 0,
+        "explanation": "Azure Front Door is a global, anycast service that provides latency-based routing to the nearest healthy region, edge TLS termination, an integrated web application firewall, and caching. Traffic Manager only performs DNS-based routing without TLS/WAF, a Load Balancer is regional and Layer 4 only, and a VPN gateway is for hybrid connectivity, not public-facing load balancing.",
+        "docs": [
+          {
+            "label": "Azure Front Door overview",
+            "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "az-104-case-4",
+    "title": "Fabrikam Medical — Governance, identity, and monitoring for regulated workloads",
+    "scenario": "Fabrikam Medical operates regulated healthcare workloads in Azure across two subscriptions (Dev/Test and Production) under a single management group. Multiple engineering teams deploy resources into Dev/Test, and the finance team requires a cost-center tag on every resource. Production hosts virtual machines running a patient-scheduling application and a SQL database, with sensitive patient data in both blob storage and on the VMs. Security requires least-privilege access, and operations must proactively alert on abnormal VM behavior and keep all VMs patched.",
+    "context": [
+      "Enforce and automatically remediate a cost-center tag on all new resources.",
+      "A support engineer must restart VMs without being able to create or delete resources.",
+      "Alert when a VM's CPU deviates abnormally from its own historical baseline and create an ITSM ticket.",
+      "Centrally assess and schedule patching across Windows and Linux VMs."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Two subscriptions (Dev/Test and Production) under the Fabrikam-Root management group.",
+          "Engineering teams hold Contributor in Dev/Test and deploy resources frequently.",
+          "Production hosts a patient-scheduling app (VMs) and a SQL database with sensitive patient data.",
+          "Finance requires a cost-center tag on every resource; security requires least privilege."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Enforce the cost-center tag on all new resources and remediate existing non-compliant resources automatically.",
+          "A support engineer must be able to restart VMs but NOT create, modify, or delete any resource.",
+          "Alert only when a VM's CPU deviates abnormally from its own recent pattern and open an incident ticket automatically.",
+          "Assess missing OS updates and schedule patching centrally for both Windows and Linux VMs."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "Log Analytics workspace deployed in the Production subscription.",
+          "Azure Monitor Agent already installed on all Production VMs.",
+          "Storage accounts use geo-redundant storage; several do not enforce HTTPS-only.",
+          "No tagging policy, no update schedule, and no custom roles are currently defined."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "az-104-case-4-q1",
+        "domain": "Manage Azure identities and governance",
+        "prompt": "Which solution both enforces the cost-center tag on new resources and automatically adds it to existing non-compliant resources?",
+        "options": [
+          "An Azure Policy with the Modify effect that sets the cost-center tag, assigned at the management group scope",
+          "A resource lock on each resource group",
+          "A custom role that grants tag-write permission to the finance team",
+          "A policy with the Audit effect only"
+        ],
+        "answer": 0,
+        "explanation": "An Azure Policy with the Modify effect can enforce a required tag and automatically remediate existing resources by adding the tag (through a managed identity with the necessary permissions). Assigning it at the management group scope inherits to both subscriptions. A resource lock prevents changes but does not add tags, a custom role does not enforce tagging, and Audit only reports non-compliance without remediating.",
+        "docs": [
+          {
+            "label": "Azure Policy effects",
+            "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects"
+          }
+        ]
+      },
+      {
+        "id": "az-104-case-4-q2",
+        "domain": "Manage Azure identities and governance",
+        "prompt": "How should you grant a support engineer the ability to restart VMs without letting them create, modify, or delete any resource?",
+        "options": [
+          "Assign the Virtual Machine Contributor role at the subscription scope",
+          "Create a custom role with the virtual machine restart action and read actions, and assign it to the engineer",
+          "Assign the Contributor role at the Production subscription scope",
+          "Assign the Reader role and give the engineer local administrator access on each VM"
+        ],
+        "answer": 1,
+        "explanation": "No built-in role grants only restart-and-read, so a custom role with the restart/action and read permissions is the least-privilege choice. Virtual Machine Contributor can create and delete VMs, Contributor grants full control over the subscription, and Reader plus local admin neither grants the Azure restart action nor is scalable.",
+        "docs": [
+          {
+            "label": "Azure custom roles",
+            "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles"
+          }
+        ]
+      },
+      {
+        "id": "az-104-case-4-q3",
+        "domain": "Monitor and maintain Azure resources",
+        "prompt": "Which configuration alerts only on abnormal CPU deviation from each VM's own historical pattern and opens an incident ticket automatically?",
+        "options": [
+          "A static metric alert with a fixed 80 percent threshold and a one-minute aggregation",
+          "A metric alert rule using dynamic thresholds, with an action group that contains an ITSM connector",
+          "An activity log alert for scale operations",
+          "A service health alert for the subscription"
+        ],
+        "answer": 1,
+        "explanation": "Dynamic thresholds learn the resource's own historical CPU pattern and alert only on abnormal deviation, reducing false positives, and the action group's ITSM connector creates the incident ticket. A static threshold ignores time-of-day variation and causes false alarms, and activity log and service health alerts monitor different signals.",
+        "docs": [
+          {
+            "label": "Metric alerts with dynamic thresholds",
+            "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-dynamic-thresholds"
+          },
+          {
+            "label": "Action groups",
+            "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+          }
+        ]
+      },
+      {
+        "id": "az-104-case-4-q4",
+        "domain": "Monitor and maintain Azure resources",
+        "prompt": "What should Fabrikam use to centrally assess missing OS updates and schedule patching for both Windows and Linux VMs?",
+        "options": [
+          "Manually run the native update tool on each VM",
+          "Azure Advisor recommendations only",
+          "Azure Update Manager with maintenance configurations and dynamic scopes",
+          "An Azure Policy with the DeployIfNotExists effect and no schedule"
+        ],
+        "answer": 2,
+        "explanation": "Azure Update Manager centrally assesses updates across Windows and Linux VMs, schedules installation via maintenance configurations, and reports compliance; dynamic scopes automatically include machines by tag or subscription. Manual patching does not scale, Advisor only recommends, and DeployIfNotExists configures an extension but does not schedule or assess patch compliance.",
+        "docs": [
+          {
+            "label": "Azure Update Manager overview",
+            "url": "https://learn.microsoft.com/en-us/azure/update-manager/overview"
+          }
+        ]
+      }
+    ]
+  }
+]
