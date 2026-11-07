@@ -94,13 +94,14 @@ src/content/
 ├── courses.json            # course list & metadata (name, domains, colors, links)
 ├── az-104/
 │   ├── flashcards.json     # { term, definition, domain }[]
-│   ├── questions.json      # multiple-choice questions + explanations + doc links
+│   ├── questions.json      # practice questions + explanations + doc links
+│   ├── questions-2.json    # (optional) extra question batches — loader merges them all
 │   ├── case-studies.json   # scenario + requirements + questions
 │   └── docs.json           # supporting docs grouped by domain
-├── az-305/  (same 4 files)
-├── sc-500/  (same 4 files)
-├── ai-200/  (same 4 files)
-└── ai-500/  (same 4 files)
+├── az-305/  (same files)
+├── sc-500/  (same files)
+├── ai-200/  (same files)
+└── ai-500/  (same files)
 ```
 
 ### Adding questions / flashcards
@@ -121,6 +122,8 @@ Edit the relevant JSON file. A question looks like:
 
 - `answer` is the **zero-based index** of the correct option.
 - `docs` are the "supporting documents" links shown when a user misses the question.
+
+To add a large batch of questions, create `questions-2.json` (or `questions-3.json`, …) in the same folder, then add its import and spread it into the `questions` array in `src/lib/content.ts`. The app merges every `questions*.json` file for a course.
 
 ### Adding a whole new course
 

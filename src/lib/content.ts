@@ -33,36 +33,42 @@ import ai500Questions from "@/content/ai-500/questions.json";
 import ai500Cases from "@/content/ai-500/case-studies.json";
 import ai500Docs from "@/content/ai-500/docs.json";
 
+import az104Questions2 from "@/content/az-104/questions-2.json";
+import az305Questions2 from "@/content/az-305/questions-2.json";
+import sc500Questions2 from "@/content/sc-500/questions-2.json";
+import ai200Questions2 from "@/content/ai-200/questions-2.json";
+import ai500Questions2 from "@/content/ai-500/questions-2.json";
+
 export const courses: Course[] = coursesData as Course[];
 
 export const courseContent: Record<string, CourseContent> = {
   "az-104": {
     flashcards: az104Flashcards as Flashcard[],
-    questions: az104Questions as Question[],
+    questions: [...az104Questions, ...az104Questions2] as Question[],
     caseStudies: az104Cases as CaseStudy[],
     docs: az104Docs as DocGroup[],
   },
   "az-305": {
     flashcards: az305Flashcards as Flashcard[],
-    questions: az305Questions as Question[],
+    questions: [...az305Questions, ...az305Questions2] as Question[],
     caseStudies: az305Cases as CaseStudy[],
     docs: az305Docs as DocGroup[],
   },
   "sc-500": {
     flashcards: sc500Flashcards as Flashcard[],
-    questions: sc500Questions as Question[],
+    questions: [...sc500Questions, ...sc500Questions2] as Question[],
     caseStudies: sc500Cases as CaseStudy[],
     docs: sc500Docs as DocGroup[],
   },
   "ai-200": {
     flashcards: ai200Flashcards as Flashcard[],
-    questions: ai200Questions as Question[],
+    questions: [...ai200Questions, ...ai200Questions2] as Question[],
     caseStudies: ai200Cases as CaseStudy[],
     docs: ai200Docs as DocGroup[],
   },
   "ai-500": {
     flashcards: ai500Flashcards as Flashcard[],
-    questions: ai500Questions as Question[],
+    questions: [...ai500Questions, ...ai500Questions2] as Question[],
     caseStudies: ai500Cases as CaseStudy[],
     docs: ai500Docs as DocGroup[],
   },
