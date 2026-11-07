@@ -1,0 +1,51 @@
+[
+  {
+    "domain": "Manage identity, access, and governance",
+    "links": [
+      { "label": "Privileged Identity Management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure" },
+      { "label": "Conditional Access overview", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" },
+      { "label": "MFA in Microsoft Entra ID", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks" },
+      { "label": "Passwordless authentication", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless" },
+      { "label": "Managed identities overview", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" },
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" },
+      { "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" }
+    ]
+  },
+  {
+    "domain": "Secure storage, databases, and networking",
+    "links": [
+      { "label": "Configure storage firewall and virtual networks", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security" },
+      { "label": "Defender for Storage", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction" },
+      { "label": "SQL Database auditing", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/auditing-overview" },
+      { "label": "Defender for SQL", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-introduction" },
+      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" },
+      { "label": "Azure Private Endpoint", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" },
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" },
+      { "label": "Azure DDoS Protection", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    ]
+  },
+  {
+    "domain": "Secure compute",
+    "links": [
+      { "label": "Azure Bastion", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" },
+      { "label": "Just-in-time VM access", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview" },
+      { "label": "Azure Disk Encryption", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview" },
+      { "label": "Defender for Servers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction" },
+      { "label": "Trusted launch for VMs", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch" },
+      { "label": "Defender for Containers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction" },
+      { "label": "Azure Arc overview", "url": "https://learn.microsoft.com/en-us/azure/azure-arc/overview" }
+    ]
+  },
+  {
+    "domain": "Manage and monitor security posture",
+    "links": [
+      { "label": "Microsoft Defender for Cloud", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-cloud-introduction" },
+      { "label": "Defender CSPM", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management" },
+      { "label": "Microsoft Sentinel overview", "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview" },
+      { "label": "Microsoft Sentinel data connectors", "url": "https://learn.microsoft.com/en-us/azure/sentinel/connect-data-sources" },
+      { "label": "Microsoft Sentinel automation", "url": "https://learn.microsoft.com/en-us/azure/sentinel/automation/automation" },
+      { "label": "Microsoft Security Copilot", "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot" },
+      { "label": "Defender EASM overview", "url": "https://learn.microsoft.com/en-us/azure/external-attack-surface-management/" }
+    ]
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "id": "sc-500-case-1",
+    "title": "Northwind — Securing a PaaS web application",
+    "scenario": "Northwind is deploying a web app (App Service) and an Azure SQL Database to Azure. The solution must not expose the database or the web app directly to the public internet, and secrets must never be stored in code.",
+    "context": [
+      "The SQL database must be reachable only from within the virtual network.",
+      "The web app must authenticate to the database without hard-coded credentials.",
+      "Database access must be audited.",
+      "Threat detection is required for the database."
+    ],
+    "questions": [
+      {
+        "id": "sc-500-case-1-q1",
+        "domain": "Secure storage, databases, and networking",
+        "prompt": "How should Northwind make the SQL database reachable only from within the VNet?",
+        "options": [
+          "Use a private endpoint for the SQL database",
+          "Allow all Azure services through the SQL firewall",
+          "Assign the database a public IP",
+          "Disable the VNet"
+        ],
+        "answer": 0,
+        "explanation": "A private endpoint gives the SQL database a private IP inside the VNet, removing public exposure.",
+        "docs": [{ "label": "Azure Private Endpoint", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" }]
+      },
+      {
+        "id": "sc-500-case-1-q2",
+        "domain": "Manage identity, access, and governance",
+        "prompt": "How should the web app authenticate to the database without hard-coded credentials?",
+        "options": [
+          "Enable a system-assigned managed identity on the App Service and grant it database access",
+          "Store the password in the web.config file",
+          "Embed the connection string in the front-end HTML",
+          "Share the SQL admin password"
+        ],
+        "answer": 0,
+        "explanation": "A managed identity provides Entra-based authentication to Azure resources with no stored credentials.",
+        "docs": [{ "label": "Managed identities overview", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" }]
+      },
+      {
+        "id": "sc-500-case-1-q3",
+        "domain": "Secure storage, databases, and networking",
+        "prompt": "Which two capabilities satisfy the auditing and threat-detection requirements?",
+        "options": [
+          "Enable SQL auditing and Defender for Databases",
+          "Enable Azure Bastion and Network Watcher",
+          "Enable Azure Front Door and CDN",
+          "Enable Key Vault and Event Hubs only"
+        ],
+        "answer": 0,
+        "explanation": "SQL auditing records database events, and Defender for Databases provides threat detection and vulnerability assessment.",
+        "docs": [{ "label": "Defender for SQL", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-introduction" }]
+      }
+    ]
+  },
+  {
+    "id": "sc-500-case-2",
+    "title": "Tailwind Traders — Identity hardening and monitoring",
+    "scenario": "Tailwind Traders wants to reduce standing privileged access and improve visibility into security events. They also need automated responses to high-severity incidents.",
+    "context": [
+      "Administrators should get elevated permissions only when needed and only for a limited time.",
+      "Risky or unusual sign-ins must prompt additional verification.",
+      "Centralize security logs from Azure and Microsoft 365 for analysis.",
+      "Automatically isolate a compromised VM when a high-severity alert fires."
+    ],
+    "questions": [
+      {
+        "id": "sc-500-case-2-q1",
+        "domain": "Manage identity, access, and governance",
+        "prompt": "What should be used to grant administrators elevated permissions only when needed?",
+        "options": [
+          "Privileged Identity Management (PIM)",
+          "Permanent Global Administrator assignment",
+          "A shared admin account",
+          "Azure Policy"
+        ],
+        "answer": 0,
+        "explanation": "PIM provides just-in-time, time-bound, approval-based role activation.",
+        "docs": [{ "label": "Privileged Identity Management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure" }]
+      },
+      {
+        "id": "sc-500-case-2-q2",
+        "domain": "Manage identity, access, and governance",
+        "prompt": "How should risky or unusual sign-ins be handled?",
+        "options": [
+          "Create a Conditional Access policy that requires MFA for risky sign-ins",
+          "Block all users permanently",
+          "Disable MFA to reduce friction",
+          "Ignore the risk signals"
+        ],
+        "answer": 0,
+        "explanation": "Conditional Access can use sign-in risk as a signal and challenge with MFA or block.",
+        "docs": [{ "label": "Conditional Access overview", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" }]
+      },
+      {
+        "id": "sc-500-case-2-q3",
+        "domain": "Manage and monitor security posture",
+        "prompt": "What should Tailwind Traders use to centralize logs and automatically respond to incidents?",
+        "options": [
+          "Microsoft Sentinel with data connectors and automation rules (playbooks)",
+          "A spreadsheet of logs",
+          "Azure Front Door only",
+          "Azure Bastion"
+        ],
+        "answer": 0,
+        "explanation": "Sentinel is a SIEM/SOAR that ingests logs via connectors and automates response with playbooks.",
+        "docs": [{ "label": "Microsoft Sentinel overview", "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview" }]
+      }
+    ]
+  }
+]

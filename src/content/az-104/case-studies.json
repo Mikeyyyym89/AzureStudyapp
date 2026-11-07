@@ -1,0 +1,112 @@
+[
+  {
+    "id": "az-104-case-1",
+    "title": "Contoso Ltd. — Migrating an e-commerce app to Azure",
+    "scenario": "Contoso is migrating an on-premises e-commerce application to Azure. The application has a web tier of IIS servers and a SQL Server database. Product images are uploaded by customers, are accessed frequently for the first 30 days, and are then rarely accessed.",
+    "context": [
+      "The web tier must remain available during planned OS updates.",
+      "The database tier must survive a single datacenter failure.",
+      "Customer-uploaded images older than 30 days must automatically move to the cheapest storage.",
+      "Administrators must be able to securely manage the VMs without exposing RDP/SSH to the public internet."
+    ],
+    "questions": [
+      {
+        "id": "az-104-case-1-q1",
+        "domain": "Deploy and manage Azure compute resources",
+        "prompt": "What should you use to keep the web tier available during planned OS updates?",
+        "options": [
+          "Place the VMs in an availability set",
+          "Place the VMs in a single fault domain",
+          "Add an NSG rule allowing update traffic",
+          "Deploy an ExpressRoute circuit"
+        ],
+        "answer": 0,
+        "explanation": "An availability set spreads VMs across update domains, so planned maintenance/reboots affect only one update domain at a time.",
+        "docs": [{ "label": "Availability sets", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+      },
+      {
+        "id": "az-104-case-1-q2",
+        "domain": "Implement and manage storage",
+        "prompt": "How should Contoso automatically move images older than 30 days to the cheapest storage?",
+        "options": [
+          "Use a blob lifecycle management policy to transition to Cool, then Archive",
+          "Store all images in the Hot tier indefinitely",
+          "Manually copy blobs to a second storage account",
+          "Use Azure Files snapshots"
+        ],
+        "answer": 0,
+        "explanation": "A lifecycle management policy automatically transitions blobs between tiers (e.g., Hot → Cool → Archive) based on age, minimizing cost.",
+        "docs": [{ "label": "Blob lifecycle management", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview" }]
+      },
+      {
+        "id": "az-104-case-1-q3",
+        "domain": "Implement and manage virtual networking",
+        "prompt": "How should administrators securely access the VMs for management?",
+        "options": [
+          "Connect through Azure Bastion",
+          "Allow RDP (3389) to the public internet in the NSG",
+          "Assign a public IP to every VM",
+          "Use VNet peering to the on-premises network"
+        ],
+        "answer": 0,
+        "explanation": "Azure Bastion provides secure, browser-based RDP/SSH to VMs without exposing them to the public internet.",
+        "docs": [{ "label": "Azure Bastion", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" }]
+      }
+    ]
+  },
+  {
+    "id": "az-104-case-2",
+    "title": "Adventure Works — Governance and identity at scale",
+    "scenario": "Adventure Works has separate subscriptions for Development and Production. Multiple teams deploy resources into Development. The finance team requires every new resource to carry a cost-center tag, and auditors need read-only visibility into all resources.",
+    "context": [
+      "Enforce a cost-center tag on every new resource.",
+      "Prevent the Development team from deploying resources into the Production subscription.",
+      "Grant auditors read-only access to all resources in Production.",
+      "Track ongoing tagging compliance."
+    ],
+    "questions": [
+      {
+        "id": "az-104-case-2-q1",
+        "domain": "Manage Azure identities and governance",
+        "prompt": "How should you enforce the cost-center tag on new resources?",
+        "options": [
+          "Create and assign an Azure Policy that requires the tag",
+          "Create a resource lock on each resource",
+          "Assign the Contributor role to the finance team",
+          "Add the tag to the subscription display name"
+        ],
+        "answer": 0,
+        "explanation": "An Azure Policy (e.g., 'require a tag on resources') enforces tagging and reports compliance.",
+        "docs": [{ "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" }]
+      },
+      {
+        "id": "az-104-case-2-q2",
+        "domain": "Manage Azure identities and governance",
+        "prompt": "How should you prevent the Development team from deploying resources into the Production subscription?",
+        "options": [
+          "Grant the Development team the Contributor role only on the Development subscription",
+          "Grant the Development team the Owner role on Production",
+          "Grant Contributor on both subscriptions",
+          "Delete the Production subscription"
+        ],
+        "answer": 0,
+        "explanation": "RBAC is additive (no deny). By granting Contributor only at the Development subscription scope, the team cannot act in Production. There is no assignment that grants Production access.",
+        "docs": [{ "label": "Azure RBAC overview", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" }]
+      },
+      {
+        "id": "az-104-case-2-q3",
+        "domain": "Manage Azure identities and governance",
+        "prompt": "How should you grant auditors read-only access to all resources in the Production subscription?",
+        "options": [
+          "Assign the Reader role at the Production subscription scope",
+          "Assign the Reader role to each resource group individually",
+          "Assign the Contributor role at the subscription scope",
+          "Add auditors to the Owners group"
+        ],
+        "answer": 0,
+        "explanation": "Assigning the Reader role at the subscription scope provides read-only access to everything within it (and is inherited by all child scopes).",
+        "docs": [{ "label": "Azure RBAC overview", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" }]
+      }
+    ]
+  }
+]

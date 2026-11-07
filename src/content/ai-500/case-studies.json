@@ -1,0 +1,112 @@
+[
+  {
+    "id": "ai-500-case-1",
+    "title": "Contoso Support — Customer-service multi-agent system",
+    "scenario": "Contoso is designing a customer-support assistant that routes requests to specialized agents (billing, technical, refunds). High-impact actions such as issuing refunds must be approved by a human. The system must remember customer context across sessions.",
+    "context": [
+      "Requests must be routed to the most appropriate specialized agent.",
+      "Refund issuance must require human approval.",
+      "Customer history and preferences must persist across sessions.",
+      "Agents must access CRM and knowledge-base tools safely."
+    ],
+    "questions": [
+      {
+        "id": "ai-500-case-1-q1",
+        "domain": "Develop multi-agent solutions in Azure",
+        "prompt": "Which orchestration pattern best routes requests to specialized agents?",
+        "options": [
+          "Orchestrator-subagent (hub-and-spoke)",
+          "Peer-to-peer",
+          "Parallel",
+          "Sequential only"
+        ],
+        "answer": 0,
+        "explanation": "A central orchestrator routes each request to the right specialized subagent (billing, technical, refunds).",
+        "docs": [{ "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }]
+      },
+      {
+        "id": "ai-500-case-1-q2",
+        "domain": "Develop multi-agent solutions in Azure",
+        "prompt": "How should the refund action be controlled?",
+        "options": [
+          "Add a human-in-the-loop approval step before executing refunds",
+          "Let the agent issue refunds autonomously",
+          "Disable refunds entirely",
+          "Log refunds but never act"
+        ],
+        "answer": 0,
+        "explanation": "Human-in-the-loop approval ensures high-impact actions like refunds are authorized by a person.",
+        "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+      },
+      {
+        "id": "ai-500-case-1-q3",
+        "domain": "Architect multi-agent solutions",
+        "prompt": "How should customer history persist across sessions?",
+        "options": [
+          "Use long-term memory with lifecycle and tenant-isolation policies",
+          "Store everything in the prompt context only",
+          "Reset memory every session",
+          "Share memory globally with no scoping"
+        ],
+        "answer": 0,
+        "explanation": "Long-term semantic memory persists customer context with proper lifecycle and tenant isolation.",
+        "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+      }
+    ]
+  },
+  {
+    "id": "ai-500-case-2",
+    "title": "Northwind AI — Productionizing a governed RAG agent",
+    "scenario": "Northwind is moving a RAG assistant into production for a regulated industry. The assistant must be secure, its outputs must be safe, and releases must be low-risk with easy rollback.",
+    "context": [
+      "Prevent unsafe or off-policy outputs.",
+      "Protect secrets and enforce per-agent least privilege.",
+      "Test the system for adversarial prompts before release.",
+      "Deploy new versions with minimal risk and easy rollback."
+    ],
+    "questions": [
+      {
+        "id": "ai-500-case-2-q1",
+        "domain": "Secure, govern, and deploy multi-agent solutions",
+        "prompt": "How should Northwind prevent unsafe outputs?",
+        "options": [
+          "Implement a multi-intervention guardrail strategy covering inputs, tool calls, and outputs",
+          "Remove all filters to reduce latency",
+          "Only monitor outputs after release",
+          "Disable logging"
+        ],
+        "answer": 0,
+        "explanation": "Guardrails should cover inputs, tool calls, tool responses, and outputs with multiple interventions.",
+        "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+      },
+      {
+        "id": "ai-500-case-2-q2",
+        "domain": "Secure, govern, and deploy multi-agent solutions",
+        "prompt": "How should the system be tested for adversarial prompts before release?",
+        "options": [
+          "Run AI Red Teaming exercises",
+          "Ship without testing",
+          "Test only in production",
+          "Ignore prompt injection risks"
+        ],
+        "answer": 0,
+        "explanation": "AI Red Teaming adversarially probes the system for safety/security failures pre-release.",
+        "docs": [{ "label": "AI Red Teaming", "url": "https://learn.microsoft.com/en-us/security/ai-red-team/" }]
+      },
+      {
+        "id": "ai-500-case-2-q3",
+        "domain": "Secure, govern, and deploy multi-agent solutions",
+        "prompt": "Which deployment strategy gives minimal risk and easy rollback?",
+        "options": [
+          "Blue/green or canary deployment",
+          "Direct overwrite in production",
+          "Manual FTP upload",
+          "Single environment only"
+        ],
+        "answer": 0,
+        "explanation": "Blue/green keeps two environments for instant rollback; canary rolls out gradually to a subset.",
+        "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+      }
+    ]
+  }
+]

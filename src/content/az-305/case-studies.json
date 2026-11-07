@@ -1,0 +1,112 @@
+[
+  {
+    "id": "az-305-case-1",
+    "title": "Global Retailer — Highly available e-commerce platform",
+    "scenario": "A global retailer is designing a new e-commerce platform on Azure. The platform has a web front end, a REST API layer, and a relational database. It must serve customers worldwide with low latency and remain available even if an entire Azure region fails.",
+    "context": [
+      "Route users to the closest healthy region.",
+      "Front end must scale automatically to handle traffic spikes.",
+      "Database must survive a regional outage with minimal data loss.",
+      "API layer must be secured, throttled, and monitored."
+    ],
+    "questions": [
+      {
+        "id": "az-305-case-1-q1",
+        "domain": "Design infrastructure solutions",
+        "prompt": "What should the retailer use to route users to the closest healthy region?",
+        "options": [
+          "Azure Front Door",
+          "Azure Load Balancer",
+          "A single-region Application Gateway",
+          "Network security groups"
+        ],
+        "answer": 0,
+        "explanation": "Azure Front Door provides global Layer-7 routing and health-based failover across regions.",
+        "docs": [{ "label": "Azure Front Door overview", "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview" }]
+      },
+      {
+        "id": "az-305-case-1-q2",
+        "domain": "Design business continuity solutions",
+        "prompt": "Which database configuration best meets the 'survive a regional outage with minimal data loss' requirement?",
+        "options": [
+          "Azure SQL Database with active geo-replication (or failover groups)",
+          "A single Azure SQL Database in one region",
+          "SQL Database with locally redundant backups only",
+          "An on-premises SQL Server"
+        ],
+        "answer": 0,
+        "explanation": "Active geo-replication (or auto-failover groups) maintains a readable replica in a secondary region with low RPO.",
+        "docs": [{ "label": "Azure SQL active geo-replication", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/active-geo-replication-overview" }]
+      },
+      {
+        "id": "az-305-case-1-q3",
+        "domain": "Design infrastructure solutions",
+        "prompt": "What should be used to secure, throttle, and monitor the REST API layer?",
+        "options": [
+          "Azure API Management",
+          "Azure Load Balancer",
+          "Azure Data Box",
+          "Azure Site Recovery"
+        ],
+        "answer": 0,
+        "explanation": "API Management provides the gateway for authentication, rate limiting (throttling), and analytics for APIs.",
+        "docs": [{ "label": "Azure API Management concepts", "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts" }]
+      }
+    ]
+  },
+  {
+    "id": "az-305-case-2",
+    "title": "Fabrikam Finance — Hybrid identity and governance",
+    "scenario": "Fabrikam Finance runs on-premises Active Directory and is adopting Azure. They need a single sign-on experience, centralized policy enforcement across many subscriptions, and a disaster-recovery plan with a clear data-loss budget.",
+    "context": [
+      "Users must sign in with their existing on-premises credentials.",
+      "Security policies must apply uniformly to all subscriptions.",
+      "Finance requires an RPO of 15 minutes for critical VMs.",
+      "Management wants to trace application performance in production."
+    ],
+    "questions": [
+      {
+        "id": "az-305-case-2-q1",
+        "domain": "Design identity, governance, and monitoring solutions",
+        "prompt": "How should Fabrikam enable single sign-on with on-premises credentials?",
+        "options": [
+          "Deploy Microsoft Entra Connect sync",
+          "Deploy Azure AD B2C",
+          "Create separate cloud-only accounts",
+          "Use Azure Key Vault for passwords"
+        ],
+        "answer": 0,
+        "explanation": "Microsoft Entra Connect syncs on-premises AD identities to Entra ID for a single sign-on hybrid identity.",
+        "docs": [{ "label": "What is Microsoft Entra Connect?", "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect" }]
+      },
+      {
+        "id": "az-305-case-2-q2",
+        "domain": "Design identity, governance, and monitoring solutions",
+        "prompt": "How should security policies be applied uniformly to all subscriptions?",
+        "options": [
+          "Assign policies at a management group that contains all subscriptions",
+          "Assign policies to each resource individually",
+          "Assign policies only to the root subscription",
+          "Use resource locks instead of policies"
+        ],
+        "answer": 0,
+        "explanation": "Applying policy at a management group scope inherits down to all member subscriptions.",
+        "docs": [{ "label": "Azure management groups", "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview" }]
+      },
+      {
+        "id": "az-305-case-2-q3",
+        "domain": "Design business continuity solutions",
+        "prompt": "Which service best meets a 15-minute RPO for critical VMs?",
+        "options": [
+          "Azure Site Recovery with continuous replication",
+          "Weekly Azure Backup only",
+          "A manual export script",
+          "Locally redundant storage alone"
+        ],
+        "answer": 0,
+        "explanation": "Azure Site Recovery provides continuous (near real-time) replication with low RPO to a secondary region.",
+        "docs": [{ "label": "Azure Site Recovery overview", "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" }]
+      }
+    ]
+  }
+]

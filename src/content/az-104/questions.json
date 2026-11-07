@@ -1,0 +1,220 @@
+[
+  {
+    "id": "az-104-q1",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "Which Azure service provides identity management, authentication, and single sign-on for cloud applications?",
+    "options": ["Azure Policy", "Microsoft Entra ID", "Azure Key Vault", "Microsoft Defender for Cloud"],
+    "answer": 1,
+    "explanation": "Microsoft Entra ID (formerly Azure AD) is the cloud identity and access management service for authentication, authorization, and SSO. Azure Policy governs resources, Key Vault stores secrets, and Defender for Cloud is a security posture tool.",
+    "docs": [{ "label": "What is Microsoft Entra ID?", "url": "https://learn.microsoft.com/en-us/entra/fundamentals/whatis" }]
+  },
+  {
+    "id": "az-104-q2",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "You need to grant a contractor read-only access to all resources in a resource group. What should you do?",
+    "options": [
+      "Assign the Reader role to the contractor at the resource group scope",
+      "Assign the Contributor role to the contractor at the subscription scope",
+      "Add the contractor to the Owners group",
+      "Create a shared account and grant it the Viewer role"
+    ],
+    "answer": 0,
+    "explanation": "RBAC assigns the built-in Reader role at the resource-group scope for least-privilege read-only access. Contributor would grant write access, and Owner grants full control.",
+    "docs": [{ "label": "Azure RBAC overview", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" }]
+  },
+  {
+    "id": "az-104-q3",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "Which resource lock level prevents a resource from being modified but still allows it to be deleted?",
+    "options": ["ReadOnly", "CanNotDelete", "DenyWrite", "NoDelete"],
+    "answer": 1,
+    "explanation": "CanNotDelete prevents deletion but allows reads and modification. ReadOnly allows reading but prevents both modification and deletion.",
+    "docs": [{ "label": "Lock resources to prevent changes", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources" }]
+  },
+  {
+    "id": "az-104-q4",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "Which type of managed identity is tied to a single Azure resource and is deleted when that resource is deleted?",
+    "options": ["User-assigned", "System-assigned", "Service principal", "Group-assigned"],
+    "answer": 1,
+    "explanation": "A system-assigned managed identity is created for a single resource and shares its lifecycle. A user-assigned identity is independent and can be shared across multiple resources.",
+    "docs": [{ "label": "Managed identities overview", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" }]
+  },
+  {
+    "id": "az-104-q5",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "Which tool would you use to enforce that all storage accounts have secure transfer (HTTPS) enabled across a subscription?",
+    "options": ["Azure Policy", "Azure RBAC", "Resource locks", "Azure Advisor"],
+    "answer": 0,
+    "explanation": "Azure Policy enforces compliance by auditing or denying non-compliant resources. RBAC controls who can act; locks prevent changes; Advisor gives recommendations.",
+    "docs": [{ "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" }]
+  },
+  {
+    "id": "az-104-q6",
+    "domain": "Implement and manage storage",
+    "prompt": "Which blob access tier should you choose for data accessed about once a month that must be retrievable immediately?",
+    "options": ["Hot", "Cool", "Archive", "Premium"],
+    "answer": 1,
+    "explanation": "Cool is for infrequently accessed data with immediate retrieval at lower storage cost but higher access cost. Hot is for frequent access; Archive is for rare access with hours-long retrieval.",
+    "docs": [{ "label": "Blob access tiers", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" }]
+  },
+  {
+    "id": "az-104-q7",
+    "domain": "Implement and manage storage",
+    "prompt": "A storage account's data is replicated to a secondary region AND you can read from the secondary. Which redundancy does this describe?",
+    "options": ["LRS", "ZRS", "GRS", "RA-GRS"],
+    "answer": 3,
+    "explanation": "RA-GRS (Read-Access Geo-Redundant Storage) replicates to a secondary region and provides read access to the secondary copy. GRS replicates but is readable only after a failover.",
+    "docs": [{ "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }]
+  },
+  {
+    "id": "az-104-q8",
+    "domain": "Implement and manage storage",
+    "prompt": "Which mechanism grants a client application time-limited, scoped access to a single blob without exposing account keys?",
+    "options": ["Account access key", "SAS token", "Storage connection string", "A managed identity only"],
+    "answer": 1,
+    "explanation": "A SAS token grants limited, time-bound, scoped access to a resource. Account keys grant full account-wide access and should not be shared.",
+    "docs": [{ "label": "Shared access signatures", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview" }]
+  },
+  {
+    "id": "az-104-q9",
+    "domain": "Implement and manage storage",
+    "prompt": "Which Azure service provides fully managed SMB file shares that can be mounted from both Azure VMs and on-premises servers?",
+    "options": ["Blob storage", "Azure Files", "Azure Disk Storage", "Queue storage"],
+    "answer": 1,
+    "explanation": "Azure Files provides managed SMB/NFS file shares accessible from cloud and on-premises. Blob storage is object storage; disks are block storage for VMs.",
+    "docs": [{ "label": "Azure Files introduction", "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction" }]
+  },
+  {
+    "id": "az-104-q10",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "An availability set distributes VMs across which two types of domains?",
+    "options": [
+      "Fault domains and update domains",
+      "Regions and availability zones",
+      "Subnets and network security groups",
+      "Scale units and stamps"
+    ],
+    "answer": 0,
+    "explanation": "Availability sets spread VMs across fault domains (separate physical hardware) and update domains (maintenance groups) to improve availability within a datacenter.",
+    "docs": [{ "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+  },
+  {
+    "id": "az-104-q11",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You need VMs to survive the outage of an entire datacenter within a region. What should you use?",
+    "options": ["Availability set", "Availability zones", "Proximity placement group", "VNet peering"],
+    "answer": 1,
+    "explanation": "Availability zones are physically separate datacenters within a region. Availability sets protect only within a single datacenter.",
+    "docs": [{ "label": "Availability zones", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }]
+  },
+  {
+    "id": "az-104-q12",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "Which Azure Functions hosting model scales to zero and bills only for executions?",
+    "options": ["Consumption plan", "Premium plan", "Dedicated (App Service) plan", "Container Apps"],
+    "answer": 0,
+    "explanation": "The Consumption plan scales automatically (including to zero) and bills per execution and resources consumed.",
+    "docs": [{ "label": "Azure Functions scale", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale" }]
+  },
+  {
+    "id": "az-104-q13",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You need to host several web apps that share scaling behavior and a common pricing tier. What defines this shared configuration?",
+    "options": ["App Service plan", "Availability set", "VM scale set", "Resource group"],
+    "answer": 0,
+    "explanation": "An App Service plan defines the region, instance size, and pricing tier shared by the apps it hosts.",
+    "docs": [{ "label": "Azure App Service overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview" }]
+  },
+  {
+    "id": "az-104-q14",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "Which resource filters inbound and outbound traffic for a VM by evaluating allow/deny rules?",
+    "options": ["Network security group (NSG)", "Azure Firewall", "Application Gateway", "VPN gateway"],
+    "answer": 0,
+    "explanation": "An NSG filters traffic using security rules. Azure Firewall is a managed, stateful service for broader filtering; Application Gateway is an L7 load balancer.",
+    "docs": [{ "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" }]
+  },
+  {
+    "id": "az-104-q15",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "Two VNets in the same region need low-latency private connectivity without traversing the public internet. What should you configure?",
+    "options": ["VNet peering", "Site-to-site VPN", "ExpressRoute", "Azure Bastion"],
+    "answer": 0,
+    "explanation": "VNet peering connects two VNets directly over the Microsoft backbone with no gateway and no public internet.",
+    "docs": [{ "label": "VNet peering overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview" }]
+  },
+  {
+    "id": "az-104-q16",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "Which load balancer operates at Layer 7 and can route requests based on the URL path?",
+    "options": ["Azure Load Balancer", "Application Gateway", "Traffic Manager", "Network security group"],
+    "answer": 1,
+    "explanation": "Application Gateway is a Layer-7 load balancer with path-based routing, TLS termination, and WAF. Azure Load Balancer is Layer-4.",
+    "docs": [{ "label": "Application Gateway overview", "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview" }]
+  },
+  {
+    "id": "az-104-q17",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "You need private, dedicated connectivity between on-premises and Azure with guaranteed low latency. Which service should you use?",
+    "options": ["ExpressRoute", "Site-to-site VPN", "Point-to-site VPN", "VNet peering"],
+    "answer": 0,
+    "explanation": "ExpressRoute provides private, dedicated connectivity that does not traverse the public internet, with predictable latency. VPNs go over the internet.",
+    "docs": [{ "label": "ExpressRoute overview", "url": "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction" }]
+  },
+  {
+    "id": "az-104-q18",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "Which object must you configure to assign a static private IP address to a VM within a subnet?",
+    "options": [
+      "The VNet address space",
+      "The network interface (NIC) IP configuration",
+      "A public IP address resource",
+      "An NSG rule"
+    ],
+    "answer": 1,
+    "explanation": "A static private IP is assigned on the VM's network interface (NIC) IP configuration within the subnet.",
+    "docs": [{ "label": "Private IP addresses", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-addresses" }]
+  },
+  {
+    "id": "az-104-q19",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "Which service collects, analyzes, and alerts on metrics and logs across your Azure resources?",
+    "options": ["Azure Monitor", "Azure Policy", "Azure Advisor", "Azure Blueprints"],
+    "answer": 0,
+    "explanation": "Azure Monitor is the platform service that collects metrics and logs and provides alerting. Policy governs resources; Advisor gives recommendations.",
+    "docs": [{ "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }]
+  },
+  {
+    "id": "az-104-q20",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "Which query language is used to query data in a Log Analytics workspace?",
+    "options": ["SQL", "Kusto Query Language (KQL)", "PowerShell", "YAML"],
+    "answer": 1,
+    "explanation": "Log Analytics data is queried with Kusto Query Language (KQL).",
+    "docs": [{ "label": "Log Analytics workspace overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview" }]
+  },
+  {
+    "id": "az-104-q21",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "Which resource stores Azure Backup data and can also be used with Azure Site Recovery?",
+    "options": ["Recovery Services vault", "Log Analytics workspace", "Storage account", "Azure Key Vault"],
+    "answer": 0,
+    "explanation": "A Recovery Services vault stores backup copies and manages both Azure Backup and Azure Site Recovery.",
+    "docs": [{ "label": "Recovery Services vault overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview" }]
+  },
+  {
+    "id": "az-104-q22",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You need to be notified when a VM's CPU exceeds 80% for five minutes. What should you create?",
+    "options": [
+      "An alert rule with a metric condition and an action group",
+      "An Azure Policy and a resource lock",
+      "An NSG rule and a log query",
+      "A workbook and a dashboard"
+    ],
+    "answer": 0,
+    "explanation": "An Azure Monitor alert rule evaluates a metric condition and triggers an action group (which sends the notification).",
+    "docs": [{ "label": "Azure Monitor alerts overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview" }]
+  }
+]

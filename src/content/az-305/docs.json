@@ -1,0 +1,49 @@
+[
+  {
+    "domain": "Design identity, governance, and monitoring solutions",
+    "links": [
+      { "label": "Azure Well-Architected Framework", "url": "https://learn.microsoft.com/en-us/azure/well-architected/" },
+      { "label": "Azure management groups", "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview" },
+      { "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" },
+      { "label": "Azure RBAC overview", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" },
+      { "label": "What is Microsoft Entra Connect?", "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect" },
+      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" },
+      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+    ]
+  },
+  {
+    "domain": "Design data storage solutions",
+    "links": [
+      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" },
+      { "label": "Azure SQL Database overview", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/sql-database-paas-overview" },
+      { "label": "Azure SQL Managed Instance overview", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview" },
+      { "label": "Azure Cosmos DB introduction", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/introduction" },
+      { "label": "Azure Data Box overview", "url": "https://learn.microsoft.com/en-us/azure/databox/data-box-overview" },
+      { "label": "Get started with AzCopy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azcopy-v10" }
+    ]
+  },
+  {
+    "domain": "Design business continuity solutions",
+    "links": [
+      { "label": "Azure reliability overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/overview" },
+      { "label": "Cross-region replication in Azure", "url": "https://learn.microsoft.com/en-us/azure/reliability/cross-region-replication-azure" },
+      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" },
+      { "label": "Azure Site Recovery overview", "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" },
+      { "label": "Azure Backup overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-overview" }
+    ]
+  },
+  {
+    "domain": "Design infrastructure solutions",
+    "links": [
+      { "label": "Azure Load Balancer overview", "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview" },
+      { "label": "Application Gateway overview", "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview" },
+      { "label": "Azure Front Door overview", "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview" },
+      { "label": "Azure App Service overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview" },
+      { "label": "What is Azure Kubernetes Service?", "url": "https://learn.microsoft.com/en-us/azure/aks/what-is-aks" },
+      { "label": "Azure Service Bus messaging", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview" },
+      { "label": "Azure Event Grid overview", "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview" },
+      { "label": "Azure API Management concepts", "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts" },
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  }
+]

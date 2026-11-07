@@ -1,0 +1,93 @@
+[
+  {
+    "id": "az-104",
+    "code": "AZ-104",
+    "name": "Azure Administrator Associate",
+    "shortName": "Azure Administrator",
+    "role": "Administrator",
+    "level": "Associate",
+    "description": "Implement, manage, and monitor an organization's Azure environment — identity, governance, storage, compute, and virtual networking.",
+    "domains": [
+      "Manage Azure identities and governance",
+      "Implement and manage storage",
+      "Deploy and manage Azure compute resources",
+      "Implement and manage virtual networking",
+      "Monitor and maintain Azure resources"
+    ],
+    "examUrl": "https://learn.microsoft.com/en-us/credentials/certifications/exams/az-104/",
+    "studyGuideUrl": "https://aka.ms/AZ104-StudyGuide",
+    "accent": "#2563eb"
+  },
+  {
+    "id": "az-305",
+    "code": "AZ-305",
+    "name": "Azure Solutions Architect Expert",
+    "shortName": "Solutions Architect",
+    "role": "Solutions Architect",
+    "level": "Expert",
+    "description": "Design cloud and hybrid Azure solutions that align with the Well-Architected Framework, translating business requirements into infrastructure.",
+    "domains": [
+      "Design identity, governance, and monitoring solutions",
+      "Design data storage solutions",
+      "Design business continuity solutions",
+      "Design infrastructure solutions"
+    ],
+    "examUrl": "https://learn.microsoft.com/en-us/credentials/certifications/exams/az-305/",
+    "studyGuideUrl": "https://aka.ms/AZ305-StudyGuide",
+    "accent": "#7c3aed"
+  },
+  {
+    "id": "sc-500",
+    "code": "SC-500",
+    "name": "Implementing End-to-End Security Controls for Cloud and AI Workloads",
+    "shortName": "Cloud & AI Security",
+    "role": "Security Engineer",
+    "level": "Associate",
+    "description": "Protect organizational systems and data across cloud and hybrid environments — identity, storage, networking, compute, and AI security posture.",
+    "domains": [
+      "Manage identity, access, and governance",
+      "Secure storage, databases, and networking",
+      "Secure compute",
+      "Manage and monitor security posture"
+    ],
+    "examUrl": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-500",
+    "studyGuideUrl": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/sc-500",
+    "accent": "#dc2626"
+  },
+  {
+    "id": "ai-200",
+    "code": "AI-200",
+    "name": "Developing AI Cloud Solutions on Azure",
+    "shortName": "Azure AI Cloud Developer",
+    "role": "Developer",
+    "level": "Associate",
+    "description": "Build and implement AI solutions on Azure with a focus on back-end services: containers, data management services, messaging, and secure, monitored code.",
+    "domains": [
+      "Develop containerized solutions on Azure",
+      "Develop AI solutions by using Azure data management services",
+      "Connect to and consume Azure services",
+      "Secure, monitor, and troubleshoot Azure solutions"
+    ],
+    "examUrl": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-cloud-developer-associate/",
+    "studyGuideUrl": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-200",
+    "accent": "#0d9488"
+  },
+  {
+    "id": "ai-500",
+    "code": "AI-500",
+    "name": "Designing and Implementing Multi-Agent AI Solutions",
+    "shortName": "Multi-Agent AI Solutions",
+    "role": "AI Engineer",
+    "level": "Expert",
+    "description": "Design, build, optimize, and secure production-ready multi-agent AI systems and workflows using Microsoft Foundry and the Agent Framework.",
+    "domains": [
+      "Architect multi-agent solutions",
+      "Develop multi-agent solutions in Azure",
+      "Evaluate, optimize, and monitor multi-agent solutions",
+      "Secure, govern, and deploy multi-agent solutions"
+    ],
+    "examUrl": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500",
+    "studyGuideUrl": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500",
+    "accent": "#ea580c"
+  }
+]

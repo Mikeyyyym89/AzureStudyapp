@@ -1,0 +1,46 @@
+[
+  {
+    "domain": "Develop containerized solutions on Azure",
+    "links": [
+      { "label": "Azure Container Registry introduction", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-intro" },
+      { "label": "ACR Tasks overview", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview" },
+      { "label": "Azure Container Apps overview", "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview" },
+      { "label": "Scale Azure Container Apps (KEDA)", "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app" },
+      { "label": "What is Azure Kubernetes Service?", "url": "https://learn.microsoft.com/en-us/azure/aks/what-is-aks" },
+      { "label": "Azure App Service overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview" }
+    ]
+  },
+  {
+    "domain": "Develop AI solutions by using Azure data management services",
+    "links": [
+      { "label": "Azure Cosmos DB for NoSQL", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/" },
+      { "label": "Request Units in Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units" },
+      { "label": "Cosmos DB indexing policy", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/index-policy" },
+      { "label": "Cosmos DB consistency levels", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels" },
+      { "label": "Vector search in Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search" },
+      { "label": "Change feed in Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/change-feed" },
+      { "label": "Use pgvector with Flexible Server", "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector" },
+      { "label": "Azure Managed Redis overview", "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/managed-redis/managed-redis-overview" }
+    ]
+  },
+  {
+    "domain": "Connect to and consume Azure services",
+    "links": [
+      { "label": "Azure Service Bus messaging", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview" },
+      { "label": "Service Bus dead-letter queues", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues" },
+      { "label": "Azure Event Grid overview", "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview" },
+      { "label": "Azure Functions overview", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview" },
+      { "label": "Azure Functions triggers and bindings", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings" }
+    ]
+  },
+  {
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "links": [
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" },
+      { "label": "Azure App Configuration overview", "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview" },
+      { "label": "OpenTelemetry in Azure Monitor", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview" },
+      { "label": "Kusto Query Language overview", "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/" },
+      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+    ]
+  }
+]

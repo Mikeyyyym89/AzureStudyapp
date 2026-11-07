@@ -1,0 +1,55 @@
+[
+  {
+    "domain": "Manage Azure identities and governance",
+    "links": [
+      { "label": "What is Microsoft Entra ID?", "url": "https://learn.microsoft.com/en-us/entra/fundamentals/whatis" },
+      { "label": "Azure role-based access control (RBAC)", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" },
+      { "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" },
+      { "label": "Lock resources to prevent changes", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources" },
+      { "label": "Azure management groups", "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview" },
+      { "label": "Managed identities for Azure resources", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" }
+    ]
+  },
+  {
+    "domain": "Implement and manage storage",
+    "links": [
+      { "label": "Azure Storage account overview", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview" },
+      { "label": "Blob access tiers", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" },
+      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" },
+      { "label": "Shared access signatures (SAS)", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview" },
+      { "label": "Azure Files introduction", "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction" }
+    ]
+  },
+  {
+    "domain": "Deploy and manage Azure compute resources",
+    "links": [
+      { "label": "Virtual machines in Azure", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/overview" },
+      { "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" },
+      { "label": "Virtual Machine Scale Sets", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview" },
+      { "label": "Azure App Service overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview" },
+      { "label": "Azure Functions scale", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale" }
+    ]
+  },
+  {
+    "domain": "Implement and manage virtual networking",
+    "links": [
+      { "label": "Azure Virtual Network", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" },
+      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" },
+      { "label": "VNet peering overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview" },
+      { "label": "Azure Load Balancer overview", "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview" },
+      { "label": "Application Gateway overview", "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview" },
+      { "label": "VPN Gateway", "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways" },
+      { "label": "ExpressRoute overview", "url": "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction" }
+    ]
+  },
+  {
+    "domain": "Monitor and maintain Azure resources",
+    "links": [
+      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" },
+      { "label": "Log Analytics workspace overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview" },
+      { "label": "Azure Monitor alerts overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview" },
+      { "label": "Recovery Services vault overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview" },
+      { "label": "Azure Backup overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-overview" }
+    ]
+  }
+]

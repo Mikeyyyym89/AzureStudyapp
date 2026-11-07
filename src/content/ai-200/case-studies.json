@@ -1,0 +1,112 @@
+[
+  {
+    "id": "ai-200-case-1",
+    "title": "Woodgrove — AI document processing pipeline",
+    "scenario": "Woodgrove is building an AI pipeline that ingests scanned documents, extracts text and embeddings, stores them for semantic search, and processes them asynchronously as they arrive.",
+    "context": [
+      "Container images must be built and stored centrally.",
+      "Documents must be searchable by meaning (semantic similarity).",
+      "Incoming documents must be queued and processed reliably in the background.",
+      "The processing component must scale automatically based on queue depth."
+    ],
+    "questions": [
+      {
+        "id": "ai-200-case-1-q1",
+        "domain": "Develop containerized solutions on Azure",
+        "prompt": "Where should Woodgrove build and store its container images centrally?",
+        "options": [
+          "Azure Container Registry with ACR Tasks",
+          "Azure Blob Storage",
+          "Azure Service Bus",
+          "Azure Event Grid"
+        ],
+        "answer": 0,
+        "explanation": "ACR stores images and ACR Tasks builds them in the cloud.",
+        "docs": [{ "label": "Azure Container Registry introduction", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-intro" }]
+      },
+      {
+        "id": "ai-200-case-1-q2",
+        "domain": "Develop AI solutions by using Azure data management services",
+        "prompt": "How should documents be stored so they can be found by semantic similarity?",
+        "options": [
+          "Store embeddings in Cosmos DB for NoSQL and use vector search",
+          "Store them as flat files in Azure Files without metadata",
+          "Store them in a Service Bus queue",
+          "Store them in Azure Front Door"
+        ],
+        "answer": 0,
+        "explanation": "Cosmos DB supports storing embeddings and vector similarity search for semantic retrieval.",
+        "docs": [{ "label": "Vector search in Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search" }]
+      },
+      {
+        "id": "ai-200-case-1-q3",
+        "domain": "Connect to and consume Azure services",
+        "prompt": "Which two services best queue documents and scale processing by queue depth?",
+        "options": [
+          "Azure Service Bus queue with KEDA scaling on Container Apps",
+          "Azure SQL Database with a cron job",
+          "Azure Front Door with CDN",
+          "Azure Bastion with NSG"
+        ],
+        "answer": 0,
+        "explanation": "Service Bus queues documents reliably, and KEDA scales Container Apps based on queue length.",
+        "docs": [{ "label": "Azure Service Bus messaging", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview" }]
+      }
+    ]
+  },
+  {
+    "id": "ai-200-case-2",
+    "title": "Litware — Scalable RAG chat application",
+    "scenario": "Litware is building a retrieval-augmented generation (RAG) chat app. Responses must be grounded in a knowledge base stored in PostgreSQL, frequently accessed vectors must be cached, and secrets must be managed securely.",
+    "context": [
+      "Store and search vector embeddings in a relational database.",
+      "Reduce latency for repeated vector lookups.",
+      "Rotate API keys and connection strings automatically.",
+      "Trace requests across the app for troubleshooting."
+    ],
+    "questions": [
+      {
+        "id": "ai-200-case-2-q1",
+        "domain": "Develop AI solutions by using Azure data management services",
+        "prompt": "Which combination enables vector search in a relational database?",
+        "options": [
+          "Azure Database for PostgreSQL with pgvector",
+          "Azure Blob Storage with a flat file",
+          "Azure Service Bus with sessions",
+          "Azure Container Registry with manifests"
+        ],
+        "answer": 0,
+        "explanation": "Azure Database for PostgreSQL with the pgvector extension stores and searches vectors.",
+        "docs": [{ "label": "Use pgvector with Flexible Server", "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector" }]
+      },
+      {
+        "id": "ai-200-case-2-q2",
+        "domain": "Develop AI solutions by using Azure data management services",
+        "prompt": "How should Litware reduce latency for repeated vector lookups?",
+        "options": [
+          "Cache embeddings and results in Azure Managed Redis",
+          "Disable indexing",
+          "Store everything on the web server disk",
+          "Use a single global variable"
+        ],
+        "answer": 0,
+        "explanation": "Azure Managed Redis provides low-latency caching (and can also do vector similarity search).",
+        "docs": [{ "label": "Azure Managed Redis overview", "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/managed-redis/managed-redis-overview" }]
+      },
+      {
+        "id": "ai-200-case-2-q3",
+        "domain": "Secure, monitor, and troubleshoot Azure solutions",
+        "prompt": "How should Litware manage and rotate its API keys, and trace requests?",
+        "options": [
+          "Store keys in Azure Key Vault and instrument with OpenTelemetry",
+          "Hard-code keys and skip tracing",
+          "Store keys in the database and use SQL logs",
+          "Use public GitHub secrets and manual logs"
+        ],
+        "answer": 0,
+        "explanation": "Key Vault manages/rotates secrets; OpenTelemetry instruments distributed tracing.",
+        "docs": [{ "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }]
+      }
+    ]
+  }
+]

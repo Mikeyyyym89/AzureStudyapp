@@ -1,0 +1,37 @@
+[
+  {
+    "domain": "Architect multi-agent solutions",
+    "links": [
+      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" },
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" },
+      { "label": "Multiple-agent workflow automation (architecture)", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" },
+      { "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }
+    ]
+  },
+  {
+    "domain": "Develop multi-agent solutions in Azure",
+    "links": [
+      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" },
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" },
+      { "label": "Azure developer documentation", "url": "https://learn.microsoft.com/en-us/azure/developer/" },
+      { "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }
+    ]
+  },
+  {
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "links": [
+      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" },
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" },
+      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+    ]
+  },
+  {
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "links": [
+      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" },
+      { "label": "AI Red Teaming", "url": "https://learn.microsoft.com/en-us/security/ai-red-team/" },
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" },
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ]
+  }
+]
