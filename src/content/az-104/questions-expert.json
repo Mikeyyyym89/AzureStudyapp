@@ -1,0 +1,743 @@
+[
+  {
+    "id": "az-104-q133",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "You have an Azure subscription linked to a Microsoft Entra tenant. A support engineer must be able to restart virtual machines and read activity logs, but must NOT be able to create, modify, or delete virtual machines, disks, or any other resources. You need to grant the minimum permissions with the least administrative effort. What should you do?",
+    "options": [
+      "Create a custom role that includes the virtual machine restart and read actions and the activity log read action, then assign it to the engineer at the subscription scope",
+      "Assign the Virtual Machine Contributor role to the engineer at the subscription scope",
+      "Assign the Contributor role to the engineer at the subscription scope",
+      "Assign the Reader role to the engineer and grant them local administrator access on each virtual machine"
+    ],
+    "answer": 0,
+    "explanation": "No built-in role grants only the ability to restart VMs, so a custom role with the restart/action and read permissions is the least-privilege choice. Virtual Machine Contributor can create and delete VMs (too much), Contributor grants full control over the subscription, and Reader plus local admin neither grants the Azure restart action nor is scalable.",
+    "docs": [
+      {
+        "label": "Azure custom roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles"
+      },
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q134",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "Your subscription is used by several development teams that hold the Contributor role. A compliance requirement states that resources may be deployed only in the East US and West Europe regions, except for a single resource group used for a disaster-recovery replica, which must be allowed in the South Central US region. You need to enforce this for both new and existing teams without reducing their existing permissions. What should you do?",
+    "options": [
+      "Remove the Contributor role from the teams and assign a custom role",
+      "Apply a CanNotDelete lock to the resource groups in all other regions",
+      "Create an Azure Policy that restricts allowed locations with the Deny effect, assign it at the subscription scope, and add an exclusion for the disaster-recovery resource group",
+      "Apply a ReadOnly lock to the subscription"
+    ],
+    "answer": 2,
+    "explanation": "An Azure Policy with the Deny effect overrides even Contributor permissions and blocks deployments in disallowed regions, while a scope exclusion permits the disaster-recovery group. Removing the teams' roles is disruptive and does not itself guarantee compliance, and resource locks restrict modification/deletion rather than controlling where new resources can be created.",
+    "docs": [
+      {
+        "label": "Azure Policy effects",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects"
+      },
+      {
+        "label": "Allowed locations policy",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-policies"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q135",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "A security operations engineer occasionally needs a high-privilege Microsoft Entra role to remediate incidents. Standing access to this role is prohibited, and each elevation must require approval from a manager and automatically expire after two hours. You must minimize standing privilege and administrative effort. What should you configure?",
+    "options": [
+      "Assign the engineer a permanent Global Administrator role",
+      "Add the engineer as an eligible assignment for the required role in Microsoft Entra Privileged Identity Management, with approval required and a two-hour activation duration",
+      "Assign the engineer the Security Administrator role permanently",
+      "Create a service principal and store its client secret in the engineer's profile"
+    ],
+    "answer": 1,
+    "explanation": "Privileged Identity Management provides just-in-time, approval-gated, time-bound elevation of Microsoft Entra roles. Permanent Global Administrator or Security Administrator assignments create standing privilege, and storing a client secret in a user profile is insecure and reintroduces standing credentials.",
+    "docs": [
+      {
+        "label": "Privileged Identity Management",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q136",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "An Azure Function App reads a secret from Azure Key Vault and then reads a blob from a storage account. You must eliminate hard-coded credentials and grant only the minimum access to the function. The secret and blob permissions must follow the function automatically if it is moved to another resource group. What should you do?",
+    "options": [
+      "Enable a system-assigned managed identity on the function, grant it the Key Vault get-secret permission and the Storage Blob Data Reader role",
+      "Store the Key Vault secret and the storage account key in the function's application settings",
+      "Create a shared access signature and place it in the Key Vault secret",
+      "Register a service principal and hard-code its client secret in the function code"
+    ],
+    "answer": 0,
+    "explanation": "A system-assigned managed identity is tied to the function, requires no stored credentials, and moves with the resource, so its Key Vault and Storage Blob Data Reader grants follow it. Storing the account key or a SAS reintroduces secrets, and hard-coding a service principal client secret violates the no-credentials requirement.",
+    "docs": [
+      {
+        "label": "Managed identities for Azure resources",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"
+      },
+      {
+        "label": "Assign an Azure role for blob data access",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/assign-azure-role-data-access"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q137",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "You plan to move a storage account from one resource group to another resource group in the same subscription. A ReadOnly lock is currently applied to the source resource group. You need to ensure the move succeeds. What should you do FIRST?",
+    "options": [
+      "Assign the Contributor role at the destination resource group scope",
+      "Create a snapshot of every container in the storage account",
+      "Register the Microsoft.Storage resource provider in the destination resource group",
+      "Remove the ReadOnly lock from the source resource group before moving the resources"
+    ],
+    "answer": 3,
+    "explanation": "A lock, including a ReadOnly lock, prevents resources from being moved out of a locked resource group, so it must be removed first. Assigning Contributor at the destination does not remove the lock, taking container snapshots is unnecessary for a move, and the storage provider is already registered in the subscription.",
+    "docs": [
+      {
+        "label": "Lock resources to prevent unexpected changes",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
+      },
+      {
+        "label": "Move Azure resources to a new resource group",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/move-resource-group-and-subscription"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q138",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "You must enforce two requirements across several environments that use different Log Analytics workspaces: (1) every new virtual machine must deploy the Azure Monitor Agent connected to its environment's workspace, and (2) storage accounts must allow only HTTPS traffic. Existing non-compliant VMs must be remediated automatically. You need a single reusable assignment whose workspace value can be set per environment. What should you create?",
+    "options": [
+      "Two separate custom policy definitions that use the Audit effect",
+      "A policy initiative that contains the DeployIfNotExists agent policy and the Deny HTTPS policy, assigned at each management group scope with the workspace as a parameter",
+      "A single custom policy with the Modify effect that configures both the agent and HTTPS",
+      "An Azure Blueprint that includes only the workspace value"
+    ],
+    "answer": 1,
+    "explanation": "A policy initiative groups multiple policies into one reusable assignment, and its parameters let you supply a different workspace per scope. DeployIfNotExists remediates existing VMs by deploying the agent, while Deny enforces HTTPS on storage. Audit only reports, a single Modify policy cannot cleanly express the Deny-for-storage requirement, and Blueprints are deprecated for this use.",
+    "docs": [
+      {
+        "label": "Azure Policy initiative definition",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/initiative-definition-structure"
+      },
+      {
+        "label": "DeployIfNotExists effect",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effect-deploy-if-not-exists"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q139",
+    "domain": "Manage Azure identities and governance",
+    "prompt": "A new administrator must be able to create users and groups and reset passwords in the Microsoft Entra tenant, and must also be able to create and manage virtual networks and network security groups in an Azure subscription. You need to grant the least privilege using the fewest assignments. What should you do?",
+    "options": [
+      "Assign the Global Administrator role to the administrator in the tenant only",
+      "Assign the User Administrator role to the administrator at the subscription scope",
+      "Assign the User Administrator role in Microsoft Entra, and assign the Network Contributor role at the subscription scope",
+      "Assign the Contributor role at the tenant root scope and at the subscription scope"
+    ],
+    "answer": 2,
+    "explanation": "User and group management plus password reset is a Microsoft Entra role (User Administrator), while virtual network and NSG management is an Azure RBAC role (Network Contributor); the two are assigned in different control planes. Global Administrator is excessive, User Administrator cannot be assigned at the Azure subscription scope, and Contributor is not a tenant-scoped role.",
+    "docs": [
+      {
+        "label": "Microsoft Entra built-in roles",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/permissions-reference"
+      },
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q140",
+    "domain": "Implement and manage storage",
+    "prompt": "A storage account holds customer media that must remain readable from a secondary region during a complete regional outage, and the primary copy must survive the failure of a single availability zone. You do not need to fail over the account, but read access to the replicated copy is required. You must minimize cost while meeting both requirements. Which redundancy option should you choose?",
+    "options": [
+      "GRS",
+      "GZRS",
+      "RA-GRS",
+      "RA-GZRS"
+    ],
+    "answer": 3,
+    "explanation": "RA-GZRS provides zone-redundancy in the primary region plus geo-replication to a secondary region with read access to the secondary copy. GRS has neither zone redundancy nor secondary read access, GZRS adds zone redundancy but no read access to the secondary, and RA-GRS has secondary read access but no primary-zone redundancy.",
+    "docs": [
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q141",
+    "domain": "Implement and manage storage",
+    "prompt": "A blob container stores telemetry. Blobs are accessed frequently for the first 30 days, occasionally for the next six months, and then never again but must be retained for ten years. You need to reduce storage cost automatically while avoiding early deletion fees. What should you configure?",
+    "options": [
+      "A lifecycle management policy that transitions blobs to Cool after 30 days, to Archive after 180 days, and deletes them after 3,650 days",
+      "A lifecycle management policy that transitions blobs directly to Archive after 30 days and deletes them after 3,650 days",
+      "Set the container's default access tier to Archive and rely on manual rehydration",
+      "A single manual operation that moves all blobs to Cool now"
+    ],
+    "answer": 0,
+    "explanation": "Cool has a 30-day minimum retention and Archive has a 180-day minimum retention, so the correct policy tiers to Cool after 30 days and Archive after 180 days, then deletes at ten years. Transitioning straight to Archive after 30 days triggers early-deletion fees; a default Archive tier makes frequently accessed data expensive to rehydrate; and a single Cool move neither archives nor deletes.",
+    "docs": [
+      {
+        "label": "Blob lifecycle management",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview"
+      },
+      {
+        "label": "Access tiers for blob data",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q142",
+    "domain": "Implement and manage storage",
+    "prompt": "An on-premises backup process must upload nightly data to a single blob container. Access must be restricted to the container only, allowed only from a specific public IP address, require HTTPS, and expire automatically after 24 hours. You must not reveal the storage account key to the on-premises process. What should you issue?",
+    "options": [
+      "A stored access policy applied to the container",
+      "A service shared access signature scoped to the container, signed with the account key, and specifying the allowed IP address, HTTPS-only, and a 24-hour expiry",
+      "The storage account access key together with a storage firewall rule",
+      "A user delegation SAS with no IP address restriction"
+    ],
+    "answer": 1,
+    "explanation": "A service SAS can be scoped to a single container and enforce IP, protocol, and expiry directly on the token, without sharing the account key. Stored access policies cannot enforce IP restrictions (only SAS token fields can), sharing the account key grants full account control, and a user delegation SAS without an IP restriction fails the IP requirement.",
+    "docs": [
+      {
+        "label": "Grant limited access with shared access signatures",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview"
+      },
+      {
+        "label": "Create a service SAS",
+        "url": "https://learn.microsoft.com/en-us/rest/api/storageservices/create-service-sas"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q143",
+    "domain": "Implement and manage storage",
+    "prompt": "A company has an on-premises Windows file server that users access over SMB with Active Directory authentication and NTFS permissions. You need to keep a local copy for low-latency access on premises while centralizing the authoritative data in Azure, with bidirectional synchronization of changes. You must minimize cost and preserve existing ACLs and AD authentication. What should you deploy?",
+    "options": [
+      "An Azure Blob container with NFS v3 access",
+      "An Azure NetApp Files volume mounted over ExpressRoute",
+      "Azure File Sync with a Storage Sync Service, a cloud endpoint in an Azure file share, and a server endpoint on the on-premises server",
+      "AzCopy scheduled to copy files to the cloud nightly"
+    ],
+    "answer": 2,
+    "explanation": "Azure File Sync tiers an on-premises server to an Azure file share, synchronizing changes bidirectionally while retaining SMB access, AD authentication, and NTFS ACLs. Blob NFS is not SMB/AD, Azure NetApp Files is far more expensive, and one-way scheduled AzCopy copies do not synchronize bidirectionally.",
+    "docs": [
+      {
+        "label": "Azure File Sync overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-planning"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q144",
+    "domain": "Implement and manage storage",
+    "prompt": "A storage account contains financial records that must be protected from both modification and deletion for seven years after each record is created, even from users who hold the Owner role. Some blobs under litigation must be retained indefinitely until the litigation is resolved. What should you configure?",
+    "options": [
+      "Enable blob soft delete with a seven-year retention period",
+      "Apply a ReadOnly resource lock to the storage account",
+      "Assign read-only RBAC roles to all users",
+      "A version-level time-based retention immutability policy on the container, and a legal hold on the specific blobs"
+    ],
+    "answer": 3,
+    "explanation": "WORM immutability with version-level time-based retention prevents deletion and modification even by the Owner role, and a legal hold retains specific blobs indefinitely until released. Soft delete still permits deletion and modification, a ReadOnly lock can be removed by an Owner and does not protect blob content, and RBAC read-only roles are overridden by Owner.",
+    "docs": [
+      {
+        "label": "Immutable storage for blob data",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/immutable-storage-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q145",
+    "domain": "Implement and manage storage",
+    "prompt": "You need to move 40 TB of sensitive data from an on-premises datacenter to Azure Blob storage within three days. The available WAN connection is shared and can sustain at most 500 Mbps, and the data must be encrypted in transit. You must minimize time and effort. What should you use?",
+    "options": [
+      "AzCopy over the existing WAN connection",
+      "Azure Data Box",
+      "Azure ExpressRoute plus AzCopy",
+      "The Azure Import/Export service using your own disks"
+    ],
+    "answer": 1,
+    "explanation": "At 500 Mbps, transferring 40 TB takes more than seven days, so any network-based transfer (AzCopy or ExpressRoute) misses the three-day deadline. Azure Data Box ships a Microsoft-provided encrypted device for fast offline transfer with minimal effort. Import/Export also works offline but requires you to procure, prepare, and BitLocker-encrypt your own disks, which is more effort at this scale.",
+    "docs": [
+      {
+        "label": "Azure Data Box overview",
+        "url": "https://learn.microsoft.com/en-us/azure/databox/data-box-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q146",
+    "domain": "Implement and manage storage",
+    "prompt": "An application reads and writes files in an Azure file share. Users must be able to restore individual files as they existed at any point during the previous 30 days, and the entire share must be recoverable if someone accidentally deletes it. You must minimize cost and administrative effort. What should you do?",
+    "options": [
+      "Enable Azure Backup for the Azure file share with a daily backup and 30-day retention, and enable soft delete on the file share",
+      "Manually create a share snapshot whenever a file changes",
+      "Enable object replication to a second storage account in another region",
+      "Enable blob versioning on the storage account"
+    ],
+    "answer": 0,
+    "explanation": "Azure Backup for Azure Files provides scheduled snapshots and file-level restore over the retention window, and share soft delete recovers an accidentally deleted share. Manual snapshots are high effort and unreliable, object replication is for cross-account/cross-region replication rather than point-in-time restore, and blob versioning does not apply to file shares.",
+    "docs": [
+      {
+        "label": "Back up Azure file shares",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/azure-file-share-backup-overview"
+      },
+      {
+        "label": "Soft delete for Azure file shares",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-prevent-file-share-deletion"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q147",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You need to deploy a stateless web tier on Azure Virtual Machine Scale Sets. The tier must remain available if an entire availability zone fails, and instances must automatically spread across failure domains as the set scales out. The region supports availability zones, and you must minimize cost. Which configuration should you use?",
+    "options": [
+      "A scale set in a single zone with a separately managed availability set",
+      "A scale set with a proximity placement group but no zone configuration",
+      "A scale set deployed with zone spanning across all available zones and the maximum spreading algorithm",
+      "Standalone VMs each on their own managed disk with automatic repair"
+    ],
+    "answer": 2,
+    "explanation": "Deploying a scale set across all availability zones provides zone-level fault isolation for a datacenter failure, and the maximum spreading algorithm distributes instances across fault and update domains as the set scales. A single-zone scale set cannot survive a full zone failure, a proximity placement group optimizes latency rather than fault tolerance, and standalone VMs do not auto-scale.",
+    "docs": [
+      {
+        "label": "Virtual Machine Scale Sets and availability zones",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q148",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "A Virtual Machine Scale Set processes messages from an Azure Storage queue. You need it to scale out when the queue depth exceeds 10 messages for at least five minutes, and to scale in only the oldest instances after the queue has been empty for at least 15 minutes, to avoid repeated churn. What should you configure?",
+    "options": [
+      "A CPU-percentage autoscale rule only",
+      "A scheduled scale profile that adds instances at fixed times",
+      "Instance protection on all current instances",
+      "A custom metric autoscale rule based on queue depth with a five-minute scale-out window, a 15-minute scale-in cool-down, and the oldest-instance scale-in policy"
+    ],
+    "answer": 3,
+    "explanation": "Queue depth is a custom metric (for example, from Azure Monitor custom metrics), so the autoscale rule must read it with a scale-out window and a scale-in cool-down to prevent churn. The oldest-instance scale-in policy removes the longest-running instances. CPU rules do not reflect queue depth, a fixed schedule ignores demand, and instance protection prevents scale-in entirely.",
+    "docs": [
+      {
+        "label": "Autoscale with custom metrics",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-custom-metric"
+      },
+      {
+        "label": "Scale-in policy for Virtual Machine Scale Sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q149",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "A web application has a compliance requirement for dedicated, single-tenant hosting and must be isolated from other customers. It also needs to support a very large number of scale-out instances across availability zones. You must meet the isolation requirement while minimizing operational complexity. Which App Service hosting option should you use?",
+    "options": [
+      "An App Service Environment v3 with an Isolated plan",
+      "A Premium V3 plan in a multi-tenant App Service",
+      "A Standard S1 plan",
+      "A Free F1 plan"
+    ],
+    "answer": 0,
+    "explanation": "App Service Environment v3 runs App Service plans on dedicated, single-tenant infrastructure and supports very high scale-out counts, satisfying the isolation requirement. Premium V3, Standard, and Free plans are all multi-tenant and therefore do not provide dedicated isolation.",
+    "docs": [
+      {
+        "label": "App Service Environment overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q150",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You need to run a containerized batch job nightly. The job pulls an image from Azure Container Registry, runs for about 20 minutes, and then exits. You must avoid managing any VM or Kubernetes cluster, minimize cost, and authenticate to the registry without embedding credentials in code. What should you deploy?",
+    "options": [
+      "An Azure Kubernetes Service cluster with a CronJob",
+      "An Azure Container Instance with a user-assigned managed identity granted the ACR pull role, and a restart policy of Never",
+      "An Azure App Service WebJob with the ACR admin password in app settings",
+      "A virtual machine with Docker and the registry admin password stored locally"
+    ],
+    "answer": 1,
+    "explanation": "Azure Container Instances runs a container on demand without a cluster or VM, a restart policy of Never stops it after the job exits, and a user-assigned managed identity with the AcrPull role authenticates without credentials. AKS adds an entire managed cluster, and storing the ACR admin password in app settings or on a VM embeds credentials.",
+    "docs": [
+      {
+        "label": "Azure Container Instances overview",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview"
+      },
+      {
+        "label": "Authenticate with Azure Container Registry from Container Instances",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-using-azure-container-registry"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q151",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You manage hundreds of virtual machines, a mix of Windows and Linux, across several subscriptions. You need a single, centralized solution to assess missing operating system updates, schedule patching during each machine's maintenance window, and view compliance in one place. You must minimize administrative effort. What should you implement?",
+    "options": [
+      "Manually run the native update tool on each virtual machine",
+      "Azure Advisor recommendations only",
+      "Azure Update Manager with maintenance configurations and dynamic scopes based on tags or subscriptions",
+      "An Azure Policy with the DeployIfNotExists effect but no schedule"
+    ],
+    "answer": 2,
+    "explanation": "Azure Update Manager centrally assesses updates across Windows and Linux VMs, schedules installation via maintenance configurations, and reports compliance; dynamic scopes automatically include machines by tag or subscription. Manual patching does not scale, Advisor only recommends, and DeployIfNotExists configures an extension but does not schedule or assess patch compliance.",
+    "docs": [
+      {
+        "label": "Azure Update Manager overview",
+        "url": "https://learn.microsoft.com/en-us/azure/update-manager/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q152",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "A running virtual machine uses a Standard HDD operating system disk and is hitting disk-performance limits. You need to migrate the disk to Premium SSD with minimal downtime and without deleting the VM. What should you do FIRST?",
+    "options": [
+      "Change the disk type while the VM is running",
+      "Create a snapshot and attach it as a second data disk to the same VM",
+      "Resize the VM to a larger size",
+      "Stop (deallocate) the VM, then change the disk type to Premium SSD"
+    ],
+    "answer": 3,
+    "explanation": "Changing a managed disk's type requires the VM to be in the stopped (deallocated) state; you cannot change the disk type of a running VM. A snapshot does not change the OS disk type, and resizing the VM changes compute size but not the underlying disk type.",
+    "docs": [
+      {
+        "label": "Azure managed disk types",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disks-types"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q153",
+    "domain": "Deploy and manage Azure compute resources",
+    "prompt": "You need to roll out a new image to a Virtual Machine Scale Set running a stateful application. The update must cause no downtime, and if new instances fail health checks, the update must stop and roll back automatically. You must minimize the number of additional instances provisioned during the update. What should you configure?",
+    "options": [
+      "A rolling upgrade policy with the max surge setting and health monitoring that automatically rolls back on unhealthy instances",
+      "A manual upgrade policy that deletes and re-creates each instance one at a time",
+      "Reimage all instances simultaneously",
+      "Set the scale-in policy to delete the newest instances and redeploy the image"
+    ],
+    "answer": 0,
+    "explanation": "A rolling upgrade policy updates a batch of instances at a time with a max surge to keep capacity available, and health monitoring stops and rolls back the update if new instances are unhealthy. A manual policy requires you to orchestrate and provides no automatic rollback, reimaging all instances at once causes downtime, and a scale-in policy does not perform upgrades.",
+    "docs": [
+      {
+        "label": "Rolling upgrades for Virtual Machine Scale Sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q154",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "A hub virtual network contains a VPN gateway connected to an on-premises datacenter. Several spoke virtual networks are peered to the hub. Virtual machines in the spokes must reach on-premises resources through the hub gateway, and the spokes must not deploy their own VPN gateways. What should you configure on the peerings?",
+    "options": [
+      "Deploy a VPN gateway in each spoke virtual network",
+      "Enable 'Allow gateway transit' on the hub-to-spoke peering and 'Use remote gateways' on each spoke-to-hub peering",
+      "Enable 'Allow gateway transit' on the spoke-to-hub peering only",
+      "Convert the peering to a site-to-site VPN between every pair of virtual networks"
+    ],
+    "answer": 1,
+    "explanation": "Gateway transit lets spoke VMs route through the hub's VPN gateway: the hub peering enables 'Allow gateway transit' and each spoke peering enables 'Use remote gateways'. Deploying gateways in each spoke is costly and unnecessary, enabling transit only on the spoke-to-hub side is backwards, and site-to-site VPNs between VNets add latency and cost.",
+    "docs": [
+      {
+        "label": "Virtual network peering and gateway transit",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q155",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "A web-tier subnet hosts VMs that must be able to initiate outbound connections to Azure Storage and Azure SQL Database in the same region, and receive responses, but must be blocked from all other outbound internet traffic. You must minimize configuration and administrative effort. What should you use?",
+    "options": [
+      "An Azure Firewall with DNAT rules for each destination",
+      "Application security groups that include the storage account and SQL database",
+      "Network security group outbound rules that use the Storage and Sql service tags as the destination, followed by a Deny rule for all other outbound traffic",
+      "A user-defined route that sends 0.0.0.0/0 to a network virtual appliance"
+    ],
+    "answer": 2,
+    "explanation": "NSG outbound rules using the Storage and Sql service tags allow traffic to those regional services, and a final Deny-all-outbound rule blocks everything else. Service tags cannot be placed in application security groups, a firewall with DNAT rules addresses inbound NAT rather than outbound service filtering, and a UDR to an NVA is heavier than needed here.",
+    "docs": [
+      {
+        "label": "Virtual network service tags",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/service-tags-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q156",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "Virtual machines in a subnet must be able to reach one specific storage account and must be denied access to all other storage accounts in the same region. Traffic must stay on the Microsoft backbone, and you do not want to assign a private IP address to the storage account. Which combination meets all requirements at the lowest cost?",
+    "options": [
+      "A private endpoint for the specific storage account",
+      "A storage firewall rule that allows the subnet, with no service endpoint policy",
+      "An NSG rule using the Storage service tag",
+      "A service endpoint for Microsoft.Storage on the subnet, plus a service endpoint policy that allows only the specific storage account"
+    ],
+    "answer": 3,
+    "explanation": "A service endpoint keeps traffic on the Microsoft backbone without assigning the storage account a private IP, and a service endpoint policy restricts which storage accounts are reachable through it. A private endpoint assigns a private IP (excluded by the requirement) and costs more, a firewall rule alone allows all accounts in the region, and an NSG service tag cannot scope to a single account.",
+    "docs": [
+      {
+        "label": "Virtual network service endpoints",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview"
+      },
+      {
+        "label": "Service endpoint policies",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoint-policies-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q157",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "A web application is deployed in two Azure regions behind a single custom domain. You must route users to the nearest healthy region, terminate TLS at the edge, protect the app with a web application firewall, and serve a cached copy of static content to reduce origin load. You must minimize global latency. What should you deploy?",
+    "options": [
+      "Azure Front Door",
+      "Azure Traffic Manager",
+      "An Azure Application Gateway in each region",
+      "An Azure Load Balancer in each region"
+    ],
+    "answer": 0,
+    "explanation": "Azure Front Door is a global, anycast service that provides latency-based routing, edge TLS termination, an integrated WAF, and caching. Traffic Manager only performs DNS-based routing with none of the other features, Application Gateway is regional (not global) with no caching, and Load Balancer is regional Layer 4 with no path or TLS features.",
+    "docs": [
+      {
+        "label": "Azure Front Door overview",
+        "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q158",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "You connect an on-premises network to an Azure virtual network using a site-to-site VPN. On-premises machines must resolve the private hostnames of Azure virtual machines, and Azure virtual machines must resolve on-premises hostnames using the existing on-premises DNS servers. You must minimize changes and preserve automatic registration of new Azure VMs. What should you do?",
+    "options": [
+      "Set the virtual network's DNS servers to the Azure-provided resolver (168.63.129.16) and add public DNS records for the private IPs",
+      "Link a private DNS zone with automatic registration to the virtual network, and configure an Azure DNS forwarder or conditional forwarding so the on-premises DNS can resolve Azure names",
+      "Configure Azure Front Door to resolve the private names",
+      "Add entries to the hosts file on every on-premises machine"
+    ],
+    "answer": 1,
+    "explanation": "A private DNS zone linked to the VNet with automatic registration resolves Azure VM names, and an Azure DNS Private Resolver (or conditional forwarding) lets on-premises DNS forward queries for that zone over the VPN. Public DNS cannot hold private IPs meaningfully, Front Door is a traffic-routing service, and hosts files do not scale.",
+    "docs": [
+      {
+        "label": "Azure Private DNS overview",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview"
+      },
+      {
+        "label": "Azure DNS Private Resolver",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/dns-private-resolver-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q159",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "You need to enforce FQDN-based outbound allow-lists, block traffic to known malicious IP addresses using threat intelligence, and log every denied connection in one central location. Network security groups cannot filter by FQDN. You also need all internet-bound traffic from spoke subnets to pass through this enforcement point. What should you implement in the hub?",
+    "options": [
+      "Network security groups with FQDN rules on every spoke subnet",
+      "Azure DDoS Protection Standard only",
+      "An Azure Firewall with application and network rules and threat intelligence enabled, and user-defined routes (0.0.0.0/0) from the spokes pointing to the firewall",
+      "A network virtual appliance without threat-intelligence feeds"
+    ],
+    "answer": 2,
+    "explanation": "Azure Firewall enforces FQDN-based application rules, network rules, and threat-intelligence-based blocking with central logging, and a 0.0.0.0/0 UDR forces spoke internet traffic through it. NSGs cannot filter by FQDN, DDoS Protection only mitigates volumetric attacks, and an NVA without threat-intelligence feeds misses the malicious-IP requirement.",
+    "docs": [
+      {
+        "label": "Azure Firewall overview",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      },
+      {
+        "label": "Azure Firewall threat intelligence",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/threat-intel"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q160",
+    "domain": "Implement and manage virtual networking",
+    "prompt": "A three-tier application places its web, application, and database tiers in three separate virtual networks. All tier-to-tier traffic must stay on the Microsoft backbone with low latency, the application tier must reach an Azure SQL database over a private IP address, and the address spaces do not overlap. You must minimize cost. Which combination meets all requirements?",
+    "options": [
+      "VPN gateways between all three virtual networks and a public endpoint for the SQL database",
+      "ExpressRoute circuits between the virtual networks and a service endpoint for SQL",
+      "Global virtual network peering between the three VNets and a public SQL endpoint",
+      "Regional virtual network peering between the three virtual networks, and a private endpoint for the SQL database"
+    ],
+    "answer": 3,
+    "explanation": "VNet peering provides low-latency backbone connectivity between the tiers at minimal cost, and a private endpoint gives the SQL database a private IP in the app-tier VNet. VPN gateways add latency and cost, ExpressRoute is for on-premises connectivity and is far more expensive, and a public SQL endpoint violates the private-IP requirement.",
+    "docs": [
+      {
+        "label": "Virtual network peering",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview"
+      },
+      {
+        "label": "What is a private endpoint?",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q161",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "A virtual machine's CPU usage normally varies significantly with the time of day. You need to be alerted only when CPU deviates abnormally from the VM's own recent historical pattern, with minimal false positives, and automatically create an incident ticket in your ITSM system. What should you configure?",
+    "options": [
+      "A metric alert rule using dynamic thresholds with high sensitivity and an action group containing an ITSM connector",
+      "A static metric alert with a fixed 80 percent threshold and a one-minute aggregation",
+      "An activity log alert for scale-set scale operations",
+      "A service health alert for the subscription"
+    ],
+    "answer": 0,
+    "explanation": "Dynamic thresholds learn the resource's historical CPU pattern and alert only on abnormal deviation, reducing false positives, and the action group's ITSM connector creates the ticket. A static threshold ignores time-of-day variation and causes false alarms, and activity log and service health alerts monitor different signals entirely.",
+    "docs": [
+      {
+        "label": "Metric alerts with dynamic thresholds",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-dynamic-thresholds"
+      },
+      {
+        "label": "Action groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q162",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You need to be notified when a specific virtual machine is deallocated more than three times within a single hour. The activity log is already exported to a Log Analytics workspace. When the condition is met, an Azure Automation runbook must run automatically to collect diagnostics. What should you create?",
+    "options": [
+      "A metric alert rule based on the VM's CPU percentage",
+      "A log query alert rule that counts deallocation events in the last hour with a threshold of 3, and an action group that runs the runbook",
+      "A resource health alert rule",
+      "A log query alert rule with no action group"
+    ],
+    "answer": 1,
+    "explanation": "Deallocation is a control-plane event recorded in the activity log, so a log query alert over the exported activity log data can count the events, and the action group invokes the runbook. CPU metrics do not capture deallocation, a resource health alert reports availability states rather than counting stop events, and a log alert with no action group takes no action.",
+    "docs": [
+      {
+        "label": "Log query alert rules",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types"
+      },
+      {
+        "label": "Action groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q163",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You need a single monitoring solution that collects guest OS performance counters and running processes from both Windows and Linux virtual machines into a Log Analytics workspace, maps dependencies between services automatically, and provides a prebuilt performance dashboard. What should you enable?",
+    "options": [
+      "Application Insights only",
+      "Network Watcher connection monitor only",
+      "VM insights using the Azure Monitor Agent and the Dependency agent",
+      "Azure Advisor"
+    ],
+    "answer": 2,
+    "explanation": "VM insights combines the Azure Monitor Agent (performance counters and processes) with the Dependency agent (service map) and a curated dashboard. Application Insights is for application telemetry, connection monitor only tests network connectivity, and Advisor provides recommendations rather than live telemetry.",
+    "docs": [
+      {
+        "label": "VM insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/vm/vminsights-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q164",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You must back up on-premises Windows servers (files and folders) and Azure virtual machines to Azure, storing everything in a single vault with ten-year retention. Backups must be protected from deletion even if an administrator's credentials are compromised. What should you configure?",
+    "options": [
+      "A Backup vault for both the on-premises servers and the Azure VMs",
+      "AzCopy scheduled to copy files to a blob container, with no vault",
+      "A Recovery Services vault with a daily policy but soft delete disabled",
+      "A Recovery Services vault using the MARS agent for on-premises servers and the IaaS VM extension for Azure VMs, a ten-year retention policy, and soft delete enabled on the vault"
+    ],
+    "answer": 3,
+    "explanation": "A Recovery Services vault supports both the MARS agent (on-premises files and folders) and Azure VM backups, and enabling vault soft delete protects backups from deletion even by a compromised administrator. A Backup vault is for newer datasource types (blobs, AKS, PostgreSQL) rather than MARS/VM, AzCopy has no backup or restore management, and disabling soft delete removes the deletion protection.",
+    "docs": [
+      {
+        "label": "Recovery Services vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview"
+      },
+      {
+        "label": "Soft delete for Azure Backup",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-security-feature-cloud"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q165",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You need to stream virtual machine resource logs and platform metrics to a third-party SIEM in near-real time, and also retain the same data for two years for compliance audits. You must minimize cost. What should you configure?",
+    "options": [
+      "A diagnostic setting that sends the logs and metrics to both an event hub (for the SIEM) and a storage account (for two-year archive)",
+      "A diagnostic setting that sends the data only to a Log Analytics workspace with two-year retention",
+      "Export the data from Azure Monitor metrics explorer manually",
+      "Enable Application Insights sampling and forward it to the SIEM"
+    ],
+    "answer": 0,
+    "explanation": "A diagnostic setting can stream to an event hub for near-real-time SIEM ingestion while archiving to a storage account, which is the lowest-cost option for long-term retention. Log Analytics with two-year retention is more expensive for archive-only data, manual export is not near-real-time, and Application Insights sampling is for application telemetry, not resource logs.",
+    "docs": [
+      {
+        "label": "Diagnostic settings in Azure Monitor",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q166",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You receive many false-positive alerts during a nightly maintenance window when virtual machines are routinely stopped. You must suppress notifications only during that window without modifying the alert rules themselves and without losing alerts generated outside the window. What should you create?",
+    "options": [
+      "Delete the alert rules during the maintenance window",
+      "An alert processing rule (suppression) scoped to the relevant alert rules, scheduled to run during the maintenance window",
+      "A new action group with no actions and assign it permanently",
+      "Disable the virtual machine metric collection"
+    ],
+    "answer": 1,
+    "explanation": "An alert processing rule with a suppression action can be scheduled to silence notifications from specific alert rules only during the maintenance window, leaving the rules unchanged. Deleting rules loses alerts outside the window and requires recreation, a permanent no-action group suppresses forever, and disabling metrics stops all monitoring rather than just notifications.",
+    "docs": [
+      {
+        "label": "Alert processing rules",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-processing-rules"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q167",
+    "domain": "Monitor and maintain Azure resources",
+    "prompt": "You need to notify one team by email when Azure plans maintenance that could affect the virtual machines in a region, and notify a different team when a specific virtual machine becomes unavailable because of an underlying Azure platform issue. What should you configure?",
+    "options": [
+      "A single metric alert rule on the virtual machine's CPU",
+      "A log query alert rule on the activity log",
+      "A service health alert for planned maintenance scoped to the subscription and region, and a resource health alert on the specific virtual machine, each with its own action group",
+      "An Azure Advisor recommendation email subscription"
+    ],
+    "answer": 2,
+    "explanation": "Service health alerts report platform-wide planned maintenance at the subscription/region level, while resource health alerts report the availability state of a specific resource, so each maps to a different team with its own action group. CPU metrics, activity-log queries, and Advisor do not surface platform maintenance or resource availability.",
+    "docs": [
+      {
+        "label": "Create service health alerts",
+        "url": "https://learn.microsoft.com/en-us/azure/service-health/alerts-activity-log-service-notifications-portal"
+      },
+      {
+        "label": "Resource health overview",
+        "url": "https://learn.microsoft.com/en-us/azure/service-health/resource-health-overview"
+      }
+    ]
+  }
+]

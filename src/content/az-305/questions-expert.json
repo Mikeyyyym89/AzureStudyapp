@@ -1,0 +1,562 @@
+[
+  {
+    "id": "az-305-q131",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A company runs a stateless web application that must meet a 99.95% availability SLA. Traffic is highly variable, with long periods of near-zero traffic overnight. The application is packaged in a Docker container, requires sub-second scale-out during bursts, must scale to zero when idle to minimize cost, and the operations team does not want to manage a Kubernetes control plane or worker nodes. Which compute service should you recommend?",
+    "options": [
+      "Azure Kubernetes Service (AKS) with a cluster autoscaler and a spot node pool",
+      "Azure Container Apps",
+      "Azure Functions on a Consumption plan with a custom Docker container",
+      "Azure App Service with autoscale rules and a minimum instance count of 1"
+    ],
+    "answer": 1,
+    "explanation": "Azure Container Apps runs containers on a serverless, managed foundation with KEDA-based event-driven autoscaling, including scale-to-zero, and no control-plane or node management, meeting all constraints. AKS requires node management and cannot scale to zero natively; Azure Functions on the Consumption plan does not support custom Docker containers (containers require the Premium/Dedicated plans); and App Service with a minimum instance count of 1 never scales to zero, so it keeps billing during idle periods.",
+    "docs": [
+      { "label": "Azure Container Apps overview", "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q132",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "An enterprise is scaling Azure adoption across 50 application teams. Requirements include per-team billing and access isolation (one team must not see or modify another team's resources), consistent security guardrails (approved regions, mandatory tags) applied automatically to every subscription, and the ability to let application teams create their own subscriptions while a central platform team retains policy control and a shared hub network. Which governance design meets all requirements?",
+    "options": [
+      "A management group hierarchy (root → per-team or per-workload management groups → subscriptions), with policies assigned at the root and subscription-creation delegated to teams with scoped RBAC",
+      "A single subscription with one resource group per team and tags used for chargeback",
+      "Separate subscriptions for each team with no management group structure, so each team governs itself independently",
+      "Azure Blueprints applied individually to each team's subscription with no management group hierarchy"
+    ],
+    "answer": 0,
+    "explanation": "A management group hierarchy places each team's subscriptions under its own management group (providing hard billing/access isolation), while root-scoped Azure Policy assignments are inherited automatically by every subscription, and subscription vending/delegation lets teams self-serve within centrally enforced guardrails. A single subscription shares billing and cannot hard-isolate teams; subscriptions without a management group structure lose central policy inheritance; and Blueprints is a deprecated mechanism that does not by itself provide the hierarchy or inherited assignments.",
+    "docs": [
+      { "label": "Azure management groups", "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q133",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A company is building a customer-facing mobile application for millions of consumers. Requirements include self-service registration with email or sign-in using Google and Facebook identities, self-service password reset and profile editing, fully branded and localized sign-in pages, and isolation of consumer identities from the company's workforce directory. The company does not want to manage these consumers as guest users in its own tenant. Which identity solution should you recommend?",
+    "options": [
+      "Microsoft Entra B2B collaboration guest accounts in the corporate tenant",
+      "Microsoft Entra Connect Sync replicating an on-premises consumer directory",
+      "Microsoft Entra External ID (customer identity and access management, formerly Azure AD B2C)",
+      "Microsoft Entra Domain Services"
+    ],
+    "answer": 2,
+    "explanation": "Microsoft Entra External ID (customer IAM / Azure AD B2C) is a separate consumer directory that provides self-service sign-up/sign-in, social identity provider federation, self-service password reset, and branded custom pages, while keeping consumers isolated from the workforce tenant. B2B collaboration is for granting partners guest access to corporate resources, not self-service consumer registration; Connect Sync is for hybrid workforce identity; and Entra Domain Services provides legacy LDAP/Kerberos for workloads, not consumer identity.",
+    "docs": [
+      { "label": "Microsoft Entra External ID overview", "url": "https://learn.microsoft.com/en-us/entra/external-id/external-identities-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q134",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A multi-national company operates Azure resources in three regions across two business units. Requirements include letting each business unit's operations team query only its own logs (least privilege), letting a central security team query logs from both units in a single query for threat hunting, and minimizing the number of workspaces to reduce administrative overhead. Which Log Analytics workspace design should you recommend?",
+    "options": [
+      "A single workspace for all resources across all regions and both business units",
+      "One workspace per region (three workspaces), with both business units' logs mixed together",
+      "One workspace per business unit per region (six workspaces)",
+      "One workspace per business unit (two workspaces), each collecting from all regions, with the security team granted access to both for cross-workspace queries"
+    ],
+    "answer": 3,
+    "explanation": "One workspace per business unit gives each operations team workspace-scoped RBAC (least privilege), while a central security team with reader access to both can run a single cross-workspace query spanning both, and only two workspaces minimizes administrative overhead. A single workspace cannot cleanly isolate the two business units without complex table-level RBAC; one workspace per region mixes business units and does not align to access boundaries; and six workspaces are over-fragmented with higher overhead.",
+    "docs": [
+      { "label": "Log Analytics workspace architecture", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/workspace-design" }
+    ]
+  },
+  {
+    "id": "az-305-q135",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You must automatically detect unexpected Azure spending without manual report review. Requirements include an alert when the forecasted monthly cost is predicted to exceed a set amount, an alert when spending is trending higher than the account's own historical pattern, and automatic notification to the finance team by email. Which configuration meets all requirements?",
+    "options": [
+      "Azure Cost Management cost analysis reviewed manually each month",
+      "Azure Cost Management budgets with a forecast-based alert plus a cost anomaly alert",
+      "A Log Analytics query alert on AzureActivity log entries",
+      "Azure Advisor cost recommendations"
+    ],
+    "answer": 1,
+    "explanation": "Budgets can alert when forecasted cost is predicted to exceed a threshold, and cost anomaly alerts detect abnormal spending relative to the account's own trend and notify configured recipients. Cost analysis is a manual, non-alerting view; an activity-log query alert cannot forecast or model spend; and Azure Advisor provides optimization recommendations rather than spend alerts.",
+    "docs": [
+      { "label": "Monitor usage and spending with cost alerts", "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending" }
+    ]
+  },
+  {
+    "id": "az-305-q136",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A support team must be able to restart virtual machines and attach or detach managed disks, but must NOT be able to create, delete, or resize VMs or disks, and must NOT modify networking. All built-in roles grant too much access, and the permission set must be reusable across many resource groups. Which approach enforces least privilege?",
+    "options": [
+      "Assign the Virtual Machine Contributor built-in role to the support team",
+      "Assign the Contributor role at the resource group scope with a deny assignment",
+      "Create a custom Azure RBAC role containing only the required actions (for example, Microsoft.Compute/virtualMachines/restart/action and disk attach/detach) and assign it at the appropriate scope",
+      "Use Microsoft Entra Privileged Identity Management to elevate the support team to Owner only when needed"
+    ],
+    "answer": 2,
+    "explanation": "A custom Azure RBAC role scoped to only the needed actions (restart, disk attach/detach) grants the minimum required permissions and is reusable. Virtual Machine Contributor allows create/delete/resize of VMs and disks (too broad); Contributor grants nearly full control within the scope (defeating least privilege); and PIM provides just-in-time elevation, not fine-grained restriction of which actions a role permits.",
+    "docs": [
+      { "label": "Azure custom roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" }
+    ]
+  },
+  {
+    "id": "az-305-q137",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A company collaborates with many external partners who need temporary access to specific Azure resources. Requirements include a self-service catalog so partners can request access, an approval workflow, automatic removal of access when the assignment expires, and periodic re-certification of access by the resource owner. Which capability should you implement?",
+    "options": [
+      "Azure RBAC with permanent guest role assignments",
+      "Microsoft Entra Conditional Access policies",
+      "Azure Policy with a Deny effect",
+      "Microsoft Entra entitlement management (access packages) combined with access reviews"
+    ],
+    "answer": 3,
+    "explanation": "Entitlement management provides access packages that external users can request through a self-service portal, subject to approval, with time-bound assignments that expire automatically, and it integrates with access reviews for periodic re-certification. Permanent RBAC assignments lack self-service, approval, and expiry; Conditional Access gates sign-in signals rather than granting resource access; and Azure Policy governs resource configuration, not user access.",
+    "docs": [
+      { "label": "Microsoft Entra entitlement management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/entitlement-management-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q138",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A compliance requirement mandates that all Microsoft Entra sign-in and audit logs be retained for seven years and remain searchable with KQL for forensic investigation. Microsoft Entra ID retains sign-in logs for only 30 days by default. You must meet the requirement at the lowest cost while keeping recent logs interactive and older logs in low-cost storage. Which design should you recommend?",
+    "options": [
+      "Stream Microsoft Entra logs to a Log Analytics workspace and configure a retention policy that keeps recent data interactive and archives older data, with total retention of seven years",
+      "Purchase Microsoft Entra ID Governance licenses, which extend built-in sign-in log retention to seven years",
+      "Export the logs to an Azure Blob storage account in the Hot access tier and retain them for seven years",
+      "Rely on the default retention and export an ad-hoc CSV monthly"
+    ],
+    "answer": 0,
+    "explanation": "Routing Entra logs to Log Analytics and configuring interactive plus archive retention (up to 12 years total) retains logs for seven years at low cost while keeping them KQL-queryable (older data via search jobs or restore). No Entra license extends native sign-in log retention to seven years; Blob Hot tier is the most expensive tier for seven-year retention and is not natively KQL-searchable; and relying on the 30-day default or ad-hoc exports fails the compliance requirement.",
+    "docs": [
+      { "label": "Configure data retention and archive policies in Log Analytics", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/data-retention-configure" }
+    ]
+  },
+  {
+    "id": "az-305-q139",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A Zero Trust policy requires that all administrator access to the Azure portal and Microsoft 365 admin centers be protected by multi-factor authentication, and that access from untrusted network locations be blocked unless the device is compliant or Entra hybrid joined. Regular users signing in from trusted locations must not be prompted for MFA on every sign-in. Which design satisfies the requirements?",
+    "options": [
+      "Azure RBAC role assignments with a custom role that requires MFA",
+      "Conditional Access policies: one requiring MFA for administrative roles, and another blocking non-compliant or unmanaged devices from untrusted locations",
+      "Microsoft Entra Privileged Identity Management with permanent (standing) role activation",
+      "A network security group that restricts access to the portal endpoints"
+    ],
+    "answer": 1,
+    "explanation": "Conditional Access evaluates sign-in signals (user role, network location, device compliance) to require MFA for administrative roles and to block access from untrusted locations using non-compliant devices, while leaving trusted-location users unencumbered. RBAC cannot impose MFA or device/location conditions; PIM controls role activation timing, not device- or location-based access; and an NSG cannot govern access to Entra ID/Microsoft 365 control planes.",
+    "docs": [
+      { "label": "Microsoft Entra Conditional Access overview", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q140",
+    "domain": "Design data storage solutions",
+    "prompt": "A SaaS provider hosts hundreds of small customer databases on Azure SQL Database. Each customer's database has intermittent, variable usage that rarely peaks at the same time as other customers. The provider must minimize total cost while giving each database predictable, individually configurable performance and avoiding noisy-neighbor interference. Which design should you recommend?",
+    "options": [
+      "One Azure SQL Managed Instance per customer",
+      "A single large Azure SQL Database with one schema per customer",
+      "An Azure SQL Database elastic pool containing many single databases that share pooled vCores",
+      "SQL Server on Azure Virtual Machines with one instance per customer"
+    ],
+    "answer": 2,
+    "explanation": "An elastic pool shares provisioned vCores across many databases whose peaks do not coincide, lowering aggregate cost while still allowing per-database minimum/maximum vCore settings for predictable performance. A Managed Instance per customer is expensive and operationally heavy; a single database with per-tenant schemas creates noisy-neighbor risk and weak isolation; and VM-hosted SQL Server re-introduces IaaS management and licensing overhead.",
+    "docs": [
+      { "label": "Azure SQL Database elastic pools", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/elastic-pool-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q141",
+    "domain": "Design data storage solutions",
+    "prompt": "A globally distributed application must accept writes in two Azure regions, provide a 99.999% availability SLA for both reads and writes, and avoid write conflicts during concurrent updates. Reads may return slightly stale data for a short, bounded window. Which Azure Cosmos DB configuration should you choose?",
+    "options": [
+      "A single-region account with Strong consistency",
+      "A multi-region account with a single write region and Session consistency",
+      "A multi-region account with multi-region writes and Strong consistency",
+      "A multi-region account with multi-region writes and Bounded staleness consistency"
+    ],
+    "answer": 3,
+    "explanation": "A 99.999% read/write SLA requires multi-region writes, and multi-region writes do not support Strong consistency; Bounded staleness supports multi-region writes while allowing reads to lag by a bounded window, satisfying the read-staleness requirement and avoiding conflicts via conflict resolution. A single-region account provides only 99.99% and cannot serve writes in two regions; a single-write-region Session account fails the two-region-write and 99.999% requirements; and Strong consistency requires a single write region.",
+    "docs": [
+      { "label": "Azure Cosmos DB consistency levels", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels" }
+    ]
+  },
+  {
+    "id": "az-305-q142",
+    "domain": "Design data storage solutions",
+    "prompt": "A new Azure Cosmos DB workload has unpredictable traffic with sudden spikes and long idle periods. You must ensure the database scales automatically to meet demand without manual intervention and without throttling during spikes, while not overpaying during idle periods. Which throughput mode should you configure?",
+    "options": [
+      "Autoscale throughput",
+      "Manual (standard) provisioned throughput set to the peak level",
+      "Manual (standard) provisioned throughput set to the average level",
+      "Serverless (consumption-based) throughput"
+    ],
+    "answer": 0,
+    "explanation": "Autoscale throughput automatically scales between a configured maximum and 10% of that maximum based on demand, absorbing spikes without throttling and scaling down (and reducing cost) during idle periods. Setting manual throughput to peak overpays during idle; setting it to average throttles during spikes; and serverless suits intermittent, low-traffic, latency-tolerant workloads but has cold-start latency, lower throughput ceilings, and no guaranteed capacity for sustained or spiky demand.",
+    "docs": [
+      { "label": "Provisioned throughput and autoscale in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/provisioned-throughput" }
+    ]
+  },
+  {
+    "id": "az-305-q143",
+    "domain": "Design data storage solutions",
+    "prompt": "A company performs operational analytics on Azure Cosmos DB data. The analytics workload must not consume the transactional store's provisioned request units, must be queryable using Azure Synapse Analytics serverless SQL, and must reflect near-real-time changes to the transactional data without building or maintaining a separate ETL pipeline. Which feature should you enable?",
+    "options": [
+      "The Cosmos DB change feed processed by an Azure Function into a separate SQL database",
+      "Azure Synapse Link for Azure Cosmos DB (the analytical store)",
+      "A Cosmos DB container with a higher provisioned throughput",
+      "The Azure Cosmos DB Data Migration tool on a daily schedule"
+    ],
+    "answer": 1,
+    "explanation": "Synapse Link automatically replicates data to a columnar analytical store that is updated near-real-time and queried by Synapse serverless SQL without consuming transactional request units or requiring ETL. The change-feed approach requires building and operating a pipeline and reading the change feed consumes RUs; increasing throughput does not isolate the analytics load from the transactional store; and the Data Migration tool is for one-time migrations, not continuous analytics.",
+    "docs": [
+      { "label": "Azure Synapse Link for Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/synapse-link" }
+    ]
+  },
+  {
+    "id": "az-305-q144",
+    "domain": "Design data storage solutions",
+    "prompt": "A team needs a single storage service that can (1) serve objects to a web application through the Azure Blob Storage REST API and SDKs, and (2) run Apache Spark and Hadoop jobs that require a hierarchical namespace with POSIX-style access control lists and efficient directory operations, all without maintaining two copies of the same data. Which storage should you use?",
+    "options": [
+      "A standard general-purpose v2 storage account with a flat (non-hierarchical) namespace",
+      "Azure Files with SMB access",
+      "Azure Table storage",
+      "Azure Data Lake Storage Gen2 with hierarchical namespace enabled"
+    ],
+    "answer": 3,
+    "explanation": "Azure Data Lake Storage Gen2 with a hierarchical namespace enabled exposes both the Blob and Data Lake (DFS) endpoints through multi-protocol access, so the same underlying data serves Blob-based web apps and Spark/Hadoop analytics with POSIX ACLs and directory semantics. A flat-namespace GPv2 account cannot provide POSIX directory operations; Azure Files is an SMB/NFS file-share service, not object or analytics storage; and Table storage is a NoSQL key-value store.",
+    "docs": [
+      { "label": "Introduction to Azure Data Lake Storage Gen2", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction" }
+    ]
+  },
+  {
+    "id": "az-305-q145",
+    "domain": "Design data storage solutions",
+    "prompt": "A storage account holds data that must remain available within the same region even if a single availability zone (data center) fails. The company has no requirement for a second region and wants to avoid paying for geo-replication. The data must also survive a single rack or server failure. Which redundancy option meets these requirements at the lowest cost?",
+    "options": [
+      "Locally redundant storage (LRS)",
+      "Geo-redundant storage (GRS)",
+      "Zone-redundant storage (ZRS)",
+      "Read-access geo-redundant storage (RA-GRS)"
+    ],
+    "answer": 2,
+    "explanation": "Zone-redundant storage (ZRS) synchronously replicates across three availability zones within the primary region, surviving a zone failure (and thus any single rack/server failure) without paying for a second region. LRS replicates within a single data center and cannot survive a full-zone failure; GRS and RA-GRS add an asynchronous secondary region, incurring extra cost that the scenario does not require.",
+    "docs": [
+      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+    ]
+  },
+  {
+    "id": "az-305-q146",
+    "domain": "Design data storage solutions",
+    "prompt": "An Azure SQL Database must retain monthly backups for five years to satisfy a regulatory requirement, while keeping automated backups for point-in-time restore for the last 14 days. The long-term backups must also be stored in a second region for disaster recovery. Which feature should you configure?",
+    "options": [
+      "Long-term retention (LTR) policies retaining monthly backups for five years in the paired/secondary region",
+      "Increasing the short-term point-in-time-restore backup retention to five years",
+      "Azure Backup with a five-year vault retention applied to the Azure SQL Database",
+      "Manual monthly database exports to Azure Blob storage"
+    ],
+    "answer": 0,
+    "explanation": "Azure SQL Database long-term retention (LTR) automatically writes full backups to geo-redundant storage for up to 10 years (weekly/monthly/yearly), optionally in a secondary region, complementing the 14-day PITR window. PITR retention is capped at 35 days, so it cannot reach five years; Azure Backup does not natively back up Azure SQL Database (PaaS) the way it does SQL Server in VMs; and manual exports are error-prone, non-automated, and not geo-redundant by default.",
+    "docs": [
+      { "label": "Long-term retention for Azure SQL Database", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/long-term-retention-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q147",
+    "domain": "Design data storage solutions",
+    "prompt": "You are migrating a large, continuously updated on-premises SQL Server database to Azure SQL Managed Instance. Downtime must be limited to a few minutes at cutover, and the on-premises database must remain fully operational while the initial data copy and ongoing changes are synchronized. Which migration approach should you use?",
+    "options": [
+      "An offline migration using backup and restore to Managed Instance",
+      "An online (minimal-downtime) migration using the Azure SQL migration extension for Azure Data Studio / Azure Database Migration Service",
+      "Export to a BACPAC and import into Managed Instance",
+      "Azure Migrate server assessment only"
+    ],
+    "answer": 1,
+    "explanation": "An online migration continuously replicates the source database and its changes to the target and then performs a short cutover, achieving minimal downtime while the source stays operational. Offline backup/restore and BACPAC export/import both stop writes for the duration of the final copy (long downtime); and Azure Migrate assessment only evaluates servers and does not migrate databases.",
+    "docs": [
+      { "label": "Migrate SQL Server to Azure SQL Managed Instance online", "url": "https://learn.microsoft.com/en-us/azure/dms/tutorial-sql-server-to-managed-instance" }
+    ]
+  },
+  {
+    "id": "az-305-q148",
+    "domain": "Design data storage solutions",
+    "prompt": "A regulatory requirement states that an Azure Storage account must be reachable only from a specific virtual network with no public endpoint, that all traffic to it must stay on the Microsoft backbone, and that the keys encrypting the data at rest must be under the customer's control with the ability to revoke access by disabling the key. Which design meets all requirements?",
+    "options": [
+      "A storage account with a service endpoint and Microsoft-managed keys",
+      "A storage account with a public endpoint protected by an IP allow-list and platform-managed keys",
+      "A storage account with a network security group and Storage Service Encryption using platform keys",
+      "A storage account with a private endpoint (Private Link) and customer-managed keys stored in Key Vault"
+    ],
+    "answer": 3,
+    "explanation": "A private endpoint gives the storage account a private IP inside the VNet and removes public exposure, keeping traffic on the Microsoft backbone, while customer-managed keys in Key Vault provide key control and the ability to revoke access by disabling the key. Service endpoints keep the resource on its public endpoint (not fully private, and not routable from on-premises); IP allow-lists still leave a public endpoint exposed; and network security groups do not apply to storage, and platform-managed keys are not customer-controlled.",
+    "docs": [
+      { "label": "Azure Private Link and private endpoints", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q149",
+    "domain": "Design business continuity solutions",
+    "prompt": "A financial application running on Azure SQL Database has recovery objectives of RPO = 0 (zero data loss) and RTO = 15 minutes for a regional outage. Which configuration best meets both objectives while remaining operationally manageable?",
+    "options": [
+      "An auto-failover group with synchronous-commit active geo-replication to the paired region and automatic failover",
+      "Geo-restore from a daily geo-redundant backup",
+      "Azure Backup with hourly transaction-log backups and cross-region restore",
+      "A single Azure SQL Database in the primary region only"
+    ],
+    "answer": 0,
+    "explanation": "An auto-failover group with synchronous-commit geo-replication (Premium/Business Critical) and automatic failover delivers RPO of zero and failover measured in minutes, meeting both objectives. Geo-restore from a daily backup has an RPO of up to 24 hours; hourly Azure Backup log backups give an RPO of about one hour plus a slower manual restore; and a single-region database offers no regional disaster recovery at all.",
+    "docs": [
+      { "label": "Failover groups and active geo-replication for Azure SQL Database", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q150",
+    "domain": "Design business continuity solutions",
+    "prompt": "A company runs VMware virtual machines on-premises and must protect them against a site-wide disaster by replicating them to Azure. Requirements include the ability to run non-disruptive recovery drills without affecting production, an orchestrated failover sequence, the ability to fail back to on-premises after the disaster, and the option to migrate the VMs permanently if needed. Which service should you recommend?",
+    "options": [
+      "Azure Backup with the MARS agent",
+      "Azure Migrate (Discovery and assessment)",
+      "Azure Site Recovery for VMware-to-Azure replication with recovery plans and test failover",
+      "Azure Database Migration Service"
+    ],
+    "answer": 2,
+    "explanation": "Azure Site Recovery continuously replicates VMware VMs to Azure, supports test failover that does not disrupt production, recovery plans for ordered failover, failback to on-premises, and can also be used to migrate workloads. Azure Backup with the MARS agent backs up files/folders and System State rather than replicating full VMs for site failover; Azure Migrate assesses (and can help migrate) but is not a DR replication/orchestration engine; and Database Migration Service is for databases, not VMs.",
+    "docs": [
+      { "label": "About Azure Site Recovery", "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q151",
+    "domain": "Design business continuity solutions",
+    "prompt": "A stateless application must continue serving users even if an entire Azure region fails, with automatic global traffic failover based on endpoint health. Which design provides the required regional disaster recovery?",
+    "options": [
+      "Deploy the application in a single region across three availability zones",
+      "Deploy the application in a single region in a single availability set",
+      "Use a zone-redundant Virtual Machine Scale Set in one region behind a regional Load Balancer",
+      "Deploy the application in two regions and use Azure Front Door (or Traffic Manager) for health-based global failover"
+    ],
+    "answer": 3,
+    "explanation": "Only a multi-region deployment with a global traffic manager that fails over on health checks can survive a full regional outage. Availability zones and availability sets protect against data-center or hardware failures within a single region, and a zone-redundant scale set behind a regional Load Balancer remains within one region, so none of them protects against a region-wide failure.",
+    "docs": [
+      { "label": "Azure cross-region replication and region pairs", "url": "https://learn.microsoft.com/en-us/azure/reliability/cross-region-replication-azure" }
+    ]
+  },
+  {
+    "id": "az-305-q152",
+    "domain": "Design business continuity solutions",
+    "prompt": "You back up Azure virtual machines with Azure Backup. Requirements include retaining daily backups for 30 days for point-in-time restore, protecting deleted backups against accidental removal for 14 days after deletion, and the ability to restore data to a different region if the primary region fails. Which combination of features should you configure?",
+    "options": [
+      "A daily-retention backup policy with instant-restore snapshots only",
+      "A daily-retention backup policy with soft delete enabled (14 days) and cross-region restore enabled",
+      "A daily-retention backup policy with an immutable vault only",
+      "Azure Site Recovery replication with a recovery plan"
+    ],
+    "answer": 1,
+    "explanation": "A daily-retention policy provides 30 days of recovery points; soft delete retains deleted backups for the configured period (14 days by default) to guard against accidental or malicious deletion; and cross-region restore (CRR) enables restores to the paired/secondary region. Instant-restore snapshots only accelerate restore and do not provide soft delete or cross-region restore; an immutable vault prevents deletion but does not itself enable cross-region restore; and Site Recovery provides replication/failover, not 30-day backup retention.",
+    "docs": [
+      { "label": "Cross-region restore for Azure Backup", "url": "https://learn.microsoft.com/en-us/azure/backup/tutorial-restore-disk" }
+    ]
+  },
+  {
+    "id": "az-305-q153",
+    "domain": "Design business continuity solutions",
+    "prompt": "An application stores session state in Azure SQL Database and must, during a regional outage, fail over with no more than five minutes of data loss (RPO ≤ 5 minutes) and return to service within 30 minutes (RTO ≤ 30 minutes), with no manual intervention during failover. Which solution should you recommend?",
+    "options": [
+      "Point-in-time restore of the database within the same region",
+      "A single database with locally redundant storage",
+      "An auto-failover group with geo-replication to the paired region and an automatic failover policy",
+      "Restore from a long-term-retention backup to a new server"
+    ],
+    "answer": 2,
+    "explanation": "An auto-failover group with geo-replication and an automatic failover policy delivers seconds-to-minutes RPO and minutes-level RTO without manual steps during a regional outage. Point-in-time restore is same-region and does not protect against a regional outage; a single LRS database has no cross-region copy; and restoring from an LTR backup is a manual, slow operation that violates the RTO.",
+    "docs": [
+      { "label": "Failover groups and active geo-replication for Azure SQL Database", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q154",
+    "domain": "Design business continuity solutions",
+    "prompt": "A storage account uses read-access geo-redundant storage (RA-GRS). During a primary-region outage, applications must continue reading from the secondary endpoint, and you also want the ability to initiate a failover yourself in the rare case that the primary region becomes unavailable but Microsoft has not yet declared a failover. Which capability should you use?",
+    "options": [
+      "Customer-managed (account) failover, reading from the secondary endpoint during the outage",
+      "Locally redundant storage",
+      "Zone-redundant storage",
+      "Geo-redundant storage without read access"
+    ],
+    "answer": 0,
+    "explanation": "RA-GRS provides a readable secondary endpoint so applications keep reading during a primary-region outage, and customer-managed (account) failover lets you fail over the account yourself when the primary region is unavailable but a Microsoft-initiated failover has not occurred. LRS and ZRS are single-region and offer no secondary copy, and GRS without read access cannot be read during the outage.",
+    "docs": [
+      { "label": "Disaster recovery and storage account failover", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-disaster-recovery-guidance" }
+    ]
+  },
+  {
+    "id": "az-305-q155",
+    "domain": "Design business continuity solutions",
+    "prompt": "You must back up files, folders, and System State from a few standalone on-premises Windows servers directly to Azure, with encryption, and be able to restore the data to the same server or a different server. There is no requirement for application-consistent backups of SQL Server or Exchange and no central management server. Which solution should you use?",
+    "options": [
+      "Azure Backup Server (MABS) with a Storage Account",
+      "System Center Data Protection Manager",
+      "Azure Site Recovery",
+      "Azure Backup with the Microsoft Azure Recovery Services (MARS) agent"
+    ],
+    "answer": 3,
+    "explanation": "The MARS agent backs up files/folders and System State from on-premises Windows servers directly to a Recovery Services vault with encryption and supports restore to the same or a different server, requiring no central management server. MABS and DPM add a management server for larger estates and application-consistent workloads, which are not needed here; and Site Recovery replicates VMs for disaster recovery rather than backing up files and System State.",
+    "docs": [
+      { "label": "About the MARS agent for Azure Backup", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-mars-agent" }
+    ]
+  },
+  {
+    "id": "az-305-q156",
+    "domain": "Design business continuity solutions",
+    "prompt": "A three-tier application (web, application, and SQL tiers) runs on Azure VMs in the primary region and must fail over to the secondary region in a specific order — SQL first, then the application tier, then the web tier — with custom scripts running between tiers. Failover can be initiated manually. Which feature should you use?",
+    "options": [
+      "Azure Backup with cross-region restore",
+      "Azure Site Recovery recovery plans (with ordered groups and scripts)",
+      "Azure Traffic Manager with priority routing",
+      "An Azure Load Balancer with health probes"
+    ],
+    "answer": 1,
+    "explanation": "Azure Site Recovery recovery plans group VMs into ordered groups and run custom scripts or manual actions between groups, enabling the exact failover sequence (SQL → application → web) required. Azure Backup restores data but cannot orchestrate ordered multi-tier failover or run scripts between tiers; Traffic Manager routes traffic but does not order VM failover or run scripts; and a Load Balancer is a single-region Layer 4 service.",
+    "docs": [
+      { "label": "About recovery plans in Azure Site Recovery", "url": "https://learn.microsoft.com/en-us/azure/site-recovery/recovery-plan-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q157",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A legacy monolithic application requires a Windows Server 2019 host, a persistent stateful filesystem attached to a single virtual machine, and 24/7 operation. The team wants to minimize cost using reserved capacity and existing Windows Server licenses, does not want to refactor for containers, and the application must survive planned maintenance and unexpected hardware failure. Which compute design should you recommend?",
+    "options": [
+      "Azure Virtual Machines in an availability set, with reserved instances and Azure Hybrid Benefit",
+      "Azure Kubernetes Service with a Windows node pool",
+      "Azure Functions running on Windows",
+      "Azure Container Apps"
+    ],
+    "answer": 0,
+    "explanation": "A stateful, non-refactorable monolithic Windows application with an attached persistent disk fits Azure Virtual Machines; an availability set protects against hardware failure and planned maintenance; and reserved instances plus Azure Hybrid Benefit minimize cost. AKS requires containerizing the application and does not suit a single-VM persistent-disk monolith; Functions and Container Apps are serverless/container platforms unsuitable for an always-on, stateful single-host workload.",
+    "docs": [
+      { "label": "Availability options for Azure Virtual Machines", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q158",
+    "domain": "Design infrastructure solutions",
+    "prompt": "An internal web application in a virtual network must be reachable only by other VMs in the same virtual network. You need Layer 4 load balancing with a static private front-end IP address and high availability across availability zones, with the backend VMs placed in an availability set. Which resource should you deploy?",
+    "options": [
+      "Azure Application Gateway v2",
+      "Azure Front Door",
+      "Azure Traffic Manager",
+      "Azure Load Balancer (Standard SKU, internal)"
+    ],
+    "answer": 3,
+    "explanation": "An internal Standard Load Balancer provides Layer 4 load balancing with a static private front-end IP and zone/high availability, matching the requirement. Application Gateway is a Layer 7 service (unnecessary overhead here); Front Door and Traffic Manager are global, public-facing services that cannot provide a private front-end inside a single virtual network.",
+    "docs": [
+      { "label": "Azure Load Balancer overview", "url": "https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q159",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You must secure outbound internet traffic from a hub virtual network by centralizing filtering in one place. Requirements include allowing outbound traffic only to a specific set of fully qualified domain names (for example, *.microsoft.com), logging all outbound connections, and blocking traffic based on threat-intelligence feeds. Which resource should you deploy?",
+    "options": [
+      "Network security groups on each subnet",
+      "Azure DDoS Protection Standard",
+      "Azure Firewall with a firewall policy containing application and network rules plus threat intelligence",
+      "A user-defined route to a third-party network virtual appliance"
+    ],
+    "answer": 2,
+    "explanation": "Azure Firewall provides centralized outbound filtering by fully qualified domain name (application rules), connection logging, and threat-intelligence-based blocking across the hub. Network security groups filter only by IP address, port, and service tag and cannot match FQDNs; DDoS Protection defends against volumetric attacks rather than outbound filtering; and while a third-party NVA could filter, Azure Firewall is the managed PaaS service that natively provides FQDN rules and threat intelligence without third-party management.",
+    "docs": [
+      { "label": "What is Azure Firewall?", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q160",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A company uses an ExpressRoute circuit as its primary private connection to Azure. To meet availability requirements, you must provide an automatic failover path that uses an encrypted tunnel over the internet when the ExpressRoute circuit or its provider edge fails. Which configuration should you recommend?",
+    "options": [
+      "A second ExpressRoute circuit from the same provider as a hot standby",
+      "An ExpressRoute circuit with a coexisting site-to-site VPN gateway for automatic failover",
+      "Point-to-site VPN only",
+      "Azure Front Door for private connectivity"
+    ],
+    "answer": 1,
+    "explanation": "Deploying a site-to-site VPN gateway on the same gateway subnet as the ExpressRoute circuit provides an encrypted internet fallback that fails over automatically when ExpressRoute becomes unavailable. A second circuit from the same provider may share a failure domain and does not provide an internet-based encrypted backup; point-to-site VPN is per-user connectivity, not a site-level fallback; and Front Door is a public service that cannot provide private hybrid connectivity.",
+    "docs": [
+      { "label": "Configure ExpressRoute and site-to-site VPN coexistence", "url": "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-howto-coexist-resource-manager" }
+    ]
+  },
+  {
+    "id": "az-305-q161",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A developer team must access an Azure Storage account and an Azure SQL Database from an on-premises network over ExpressRoute/site-to-site VPN and from a virtual network, without exposing the PaaS resources to the public internet. Traffic must use private IP addresses from the virtual network, and the PaaS fully qualified domain names must resolve to those private addresses. Which feature should you implement?",
+    "options": [
+      "Service endpoints with a firewall rule on each PaaS resource",
+      "Public endpoints with network security group rules",
+      "Private endpoints (Azure Private Link) with private DNS zones",
+      "Azure Bastion"
+    ],
+    "answer": 2,
+    "explanation": "Private endpoints assign a private IP from the virtual network to each PaaS resource (removing public exposure and enabling on-premises access over ExpressRoute/VPN), and private DNS zones resolve the PaaS FQDNs to those private IPs. Service endpoints keep the resource on its public endpoint and are not reachable from on-premises over ExpressRoute; NSG rules cannot restrict PaaS public endpoints; and Bastion is for secure VM administration, not PaaS connectivity.",
+    "docs": [
+      { "label": "Azure Private Link and private endpoints", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-link-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q162",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A serverless application must react to events raised by many Azure services (for example, when a blob is created or a resource is modified) by triggering Azure Functions through a publish-subscribe model. There is no requirement for message ordering, sessions, or transactional processing. Which service should you use?",
+    "options": [
+      "Azure Event Grid",
+      "Azure Service Bus",
+      "Azure Event Hubs",
+      "Azure Queue Storage"
+    ],
+    "answer": 0,
+    "explanation": "Azure Event Grid is the event-routing (publish-subscribe) service designed to react to Azure resource events and deliver them to serverless handlers such as Azure Functions with fan-out. Service Bus targets enterprise messaging with sessions/transactions (unneeded overhead); Event Hubs is for high-throughput streaming telemetry ingestion rather than discrete resource events; and Queue Storage is a simple point-to-point queue.",
+    "docs": [
+      { "label": "Azure Event Grid overview", "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q163",
+    "domain": "Design infrastructure solutions",
+    "prompt": "Millions of IoT devices send telemetry at very high throughput. Requirements include reliably ingesting and buffering the data, retaining it for later replay, automatically capturing the raw stream to Azure Data Lake Storage Gen2 for batch processing, and supporting multiple independent consumers that each read the full stream. Which service should you use?",
+    "options": [
+      "Azure Event Grid",
+      "Azure Service Bus (Standard tier)",
+      "Azure Queue Storage",
+      "Azure Event Hubs with Capture enabled"
+    ],
+    "answer": 3,
+    "explanation": "Azure Event Hubs is built for high-throughput telemetry ingestion and buffering, supports retention and replay, Event Hubs Capture automatically writes the stream to Blob/ADLS Gen2, and consumer groups let multiple independent consumers each read the full stream. Event Grid handles discrete events, not sustained telemetry streams; Service Bus has message-size and throughput limits unsuitable for IoT telemetry at scale; and Queue Storage is a simple, low-throughput queue.",
+    "docs": [
+      { "label": "Azure Event Hubs features and terminology", "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features" }
+    ]
+  },
+  {
+    "id": "az-305-q164",
+    "domain": "Design infrastructure solutions",
+    "prompt": "An organization uses Azure API Management. A backend API is hosted in an isolated on-premises network that cannot be reached directly from the cloud. You must expose that on-premises API through the existing API Management service's developer portal and policies, while keeping API traffic flowing through the on-premises network. Which approach should you recommend?",
+    "options": [
+      "Deploy a second API Management service in the cloud with a public IP address",
+      "Deploy the self-hosted API Management gateway on-premises, connected to the Azure API Management service",
+      "Move the on-premises API to Azure Functions",
+      "Use Azure Front Door to reach the on-premises API"
+    ],
+    "answer": 1,
+    "explanation": "The self-hosted gateway is a containerized version of the API Management gateway that runs inside the customer's network, allowing on-premises APIs to be exposed through the cloud API Management control plane, developer portal, and policies while traffic stays local. A cloud-only API Management service cannot reach an isolated on-premises API; moving to Azure Functions relocates the API rather than exposing it in place; and Front Door cannot reach a private, isolated on-premises backend.",
+    "docs": [
+      { "label": "Self-hosted API Management gateway", "url": "https://learn.microsoft.com/en-us/azure/api-management/self-hosted-gateway-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q165",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are migrating several on-premises IIS web applications to Azure. Requirements include minimal code changes, integrated authentication with Microsoft Entra ID, automatic operating-system patching, built-in autoscaling, deployment slots for zero-downtime deployments, and integration with a virtual network. Which compute service should you recommend?",
+    "options": [
+      "Azure App Service",
+      "Azure Virtual Machines running IIS",
+      "Azure Kubernetes Service",
+      "Azure Virtual Machine Scale Sets running IIS"
+    ],
+    "answer": 0,
+    "explanation": "Azure App Service is the PaaS platform for IIS web applications, providing Entra ID authentication, automatic OS patching, autoscaling, deployment slots, and virtual network integration with minimal code changes. Virtual Machines and Virtual Machine Scale Sets re-introduce IIS and OS management/patching burden; and Azure Kubernetes Service requires containerizing and refactoring the applications.",
+    "docs": [
+      { "label": "Azure App Service overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview" }
+    ]
+  }
+]
