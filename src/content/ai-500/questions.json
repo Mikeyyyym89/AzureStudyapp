@@ -11,16 +11,31 @@
     ],
     "answer": 0,
     "explanation": "You begin by decomposing the goal into workflows, agents, subagents, and tools before choosing components.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
   },
   {
     "id": "ai-500-q2",
     "domain": "Architect multi-agent solutions",
     "prompt": "Which agent attribute defines its role, scope, boundaries, and autonomy level?",
-    "options": ["Persona", "Endpoint", "Region", "Tag"],
+    "options": [
+      "Persona",
+      "Endpoint",
+      "Region",
+      "Tag"
+    ],
     "answer": 0,
     "explanation": "An agent persona specifies role, scope, boundaries, autonomy level, and behavioral guidelines.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
   },
   {
     "id": "ai-500-q3",
@@ -34,7 +49,12 @@
     ],
     "answer": 0,
     "explanation": "MCP is an open standard for agent-to-tool and agent-to-knowledge-source communication.",
-    "docs": [{ "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }]
+    "docs": [
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
+    ]
   },
   {
     "id": "ai-500-q4",
@@ -48,7 +68,12 @@
     ],
     "answer": 0,
     "explanation": "Short-term memory is working/context memory; long-term memory persists semantic knowledge with lifecycle policies.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
+    ]
   },
   {
     "id": "ai-500-q5",
@@ -62,25 +87,50 @@
     ],
     "answer": 0,
     "explanation": "Zero Trust for agents means per-agent identity scoping, least privilege, and preventing lateral movement.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
   },
   {
     "id": "ai-500-q6",
     "domain": "Develop multi-agent solutions in Azure",
     "prompt": "Which advanced prompt engineering technique injects relevant information at runtime based on the current context?",
-    "options": ["Dynamic context injection", "Static hard-coding", "Random sampling", "Token truncation"],
+    "options": [
+      "Dynamic context injection",
+      "Static hard-coding",
+      "Random sampling",
+      "Token truncation"
+    ],
     "answer": 0,
     "explanation": "Dynamic context injection adds relevant data into the prompt at runtime, alongside examples and defensive guidelines.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
   },
   {
     "id": "ai-500-q7",
     "domain": "Develop multi-agent solutions in Azure",
     "prompt": "Which factors affect retrieval quality in a multi-agent RAG architecture?",
-    "options": ["Chunking strategy and embedding quality", "The color of the UI", "The number of CPUs", "The DNS provider"],
+    "options": [
+      "Chunking strategy and embedding quality",
+      "The color of the UI",
+      "The number of CPUs",
+      "The DNS provider"
+    ],
     "answer": 0,
     "explanation": "Chunking, embedding quality, and retrieval precision directly determine RAG answer quality.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
   },
   {
     "id": "ai-500-q8",
@@ -94,34 +144,69 @@
     ],
     "answer": 0,
     "explanation": "MCP servers can be built on Azure Functions, Logic Apps, or API Management.",
-    "docs": [{ "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }]
+    "docs": [
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
+    ]
   },
   {
     "id": "ai-500-q9",
     "domain": "Develop multi-agent solutions in Azure",
     "prompt": "Which orchestration pattern uses a central coordinator that delegates to specialized subagents?",
-    "options": ["Orchestrator-subagent (hub-and-spoke)", "Peer-to-peer", "Sequential", "Parallel"],
+    "options": [
+      "Orchestrator-subagent (hub-and-spoke)",
+      "Peer-to-peer",
+      "Sequential",
+      "Parallel"
+    ],
     "answer": 0,
     "explanation": "In orchestrator-subagent (hub-and-spoke), a central orchestrator routes work to specialized subagents.",
-    "docs": [{ "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }]
+    "docs": [
+      {
+        "label": "Multiple-agent workflow automation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
+    ]
   },
   {
     "id": "ai-500-q10",
     "domain": "Develop multi-agent solutions in Azure",
     "prompt": "Which mechanism lets a human approve or override a high-impact agent action?",
-    "options": ["Human-in-the-loop approval workflow", "Fully autonomous execution", "Removing all controls", "Disabling logging"],
+    "options": [
+      "Human-in-the-loop approval workflow",
+      "Fully autonomous execution",
+      "Removing all controls",
+      "Disabling logging"
+    ],
     "answer": 0,
     "explanation": "Human-in-the-loop workflows insert approval/override steps for high-impact or edge-case actions.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
   },
   {
     "id": "ai-500-q11",
     "domain": "Develop multi-agent solutions in Azure",
     "prompt": "Which caching strategy reuses answers for semantically similar requests?",
-    "options": ["Semantic caching", "Prompt caching only", "Response caching only", "No caching"],
+    "options": [
+      "Semantic caching",
+      "Prompt caching only",
+      "Response caching only",
+      "No caching"
+    ],
     "answer": 0,
     "explanation": "Semantic caching matches similar-meaning requests; prompt and response caching handle exact/repeated tokens.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
+    ]
   },
   {
     "id": "ai-500-q12",
@@ -135,7 +220,12 @@
     ],
     "answer": 0,
     "explanation": "Agent2Agent (A2A) is for inter-agent communication; MCP connects agents to tools and data.",
-    "docs": [{ "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }]
+    "docs": [
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
+    ]
   },
   {
     "id": "ai-500-q13",
@@ -149,7 +239,12 @@
     ],
     "answer": 0,
     "explanation": "LLM-as-a-judge uses a model to score/evaluate other outputs, enabling automated continuous improvement.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
   },
   {
     "id": "ai-500-q14",
@@ -163,7 +258,12 @@
     ],
     "answer": 0,
     "explanation": "Synthetic data enables safe evaluation, testing, and fine-tuning without exposing real data.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
   },
   {
     "id": "ai-500-q15",
@@ -177,7 +277,12 @@
     ],
     "answer": 0,
     "explanation": "Sliding-window amnesia occurs when earlier context is dropped as the window slides, harming continuity.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
   },
   {
     "id": "ai-500-q16",
@@ -191,7 +296,12 @@
     ],
     "answer": 0,
     "explanation": "Trace correlation links spans across services, and replay capture lets you reproduce agent reasoning paths.",
-    "docs": [{ "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }]
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
   },
   {
     "id": "ai-500-q17",
@@ -205,33 +315,68 @@
     ],
     "answer": 0,
     "explanation": "Guardrails should intervene on inputs, tool calls, tool responses, and final outputs.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Guardrails in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
+      }
+    ]
   },
   {
     "id": "ai-500-q18",
     "domain": "Secure, govern, and deploy multi-agent solutions",
     "prompt": "Which technique adversarially tests an AI system for vulnerabilities before release?",
-    "options": ["AI Red Teaming", "Blue/green deployment", "Semantic caching", "Chunking"],
+    "options": [
+      "AI Red Teaming",
+      "Blue/green deployment",
+      "Semantic caching",
+      "Chunking"
+    ],
     "answer": 0,
     "explanation": "AI Red Teaming proactively probes for safety and security failures before deployment.",
-    "docs": [{ "label": "AI Red Teaming", "url": "https://learn.microsoft.com/en-us/security/ai-red-team/" }]
+    "docs": [
+      {
+        "label": "AI Red Teaming",
+        "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
+      }
+    ]
   },
   {
     "id": "ai-500-q19",
     "domain": "Secure, govern, and deploy multi-agent solutions",
     "prompt": "Which OAuth flow lets an agent access a downstream API on behalf of the signed-in user?",
-    "options": ["On-behalf-of (OBO)", "Client credentials", "Device code", "Password grant"],
+    "options": [
+      "On-behalf-of (OBO)",
+      "Client credentials",
+      "Device code",
+      "Password grant"
+    ],
     "answer": 0,
     "explanation": "The on-behalf-of flow exchanges the user's token for a token to a downstream API, preserving user identity.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
+    ]
   },
   {
     "id": "ai-500-q20",
     "domain": "Secure, govern, and deploy multi-agent solutions",
     "prompt": "Which deployment strategy rolls a new version out to a small subset of users first?",
-    "options": ["Canary", "Big-bang only", "Manual copy", "No testing"],
+    "options": [
+      "Canary",
+      "Big-bang only",
+      "Manual copy",
+      "No testing"
+    ],
     "answer": 0,
     "explanation": "Canary releases route a small percentage of traffic to the new version before full rollout; blue/green runs parallel environments.",
-    "docs": [{ "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }]
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
+    ]
   }
 ]

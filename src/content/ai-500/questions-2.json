@@ -12,7 +12,10 @@
     "answer": 1,
     "explanation": "Multi-agent architecture starts with task decomposition into discrete, well-scoped units. Each agent is then assigned a bounded responsibility, which reduces ambiguity, improves reliability, and simplifies testing and security.",
     "docs": [
-      { "label": "Multi-agent workflow automation architecture", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multi-agent workflow automation architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ]
   },
   {
@@ -28,7 +31,10 @@
     "answer": 2,
     "explanation": "Persona and boundaries establish an agent's identity and the limits of its authority. Clear boundaries reduce scope creep and help enforce least-privilege access and safe behavior.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -44,7 +50,10 @@
     "answer": 0,
     "explanation": "Least privilege minimizes the blast radius if an agent is compromised or errs. Scoping tools per role is a core Zero Trust practice in multi-agent systems.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -60,7 +69,10 @@
     "answer": 3,
     "explanation": "MCP is an open standard that defines a client-server protocol so applications and agents can consistently access tools and data. This reduces bespoke integration work across providers.",
     "docs": [
-      { "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
     ]
   },
   {
@@ -76,7 +88,10 @@
     "answer": 1,
     "explanation": "A2A targets direct communication and discovery between agents across vendors and frameworks. MCP, by contrast, centers on connecting applications and agents to tools and data.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -92,7 +107,10 @@
     "answer": 2,
     "explanation": "Irreversible or high-impact actions should require explicit human confirmation to prevent costly errors. Low-risk, reversible operations can be automated with higher autonomy.",
     "docs": [
-      { "label": "Multi-agent workflow automation architecture", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multi-agent workflow automation architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ]
   },
   {
@@ -108,7 +126,10 @@
     "answer": 0,
     "explanation": "Responsible AI must be enforced end-to-end, not just at one agent. Consistent guardrails across all agents reduce compounding risks from agent-to-agent interactions.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -124,7 +145,10 @@
     "answer": 3,
     "explanation": "Short-term (working) memory is ephemeral and session-scoped; long-term memory provides durable storage such as semantic or episodic memory across interactions.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
     ]
   },
   {
@@ -140,7 +164,10 @@
     "answer": 1,
     "explanation": "Different tasks have different latency, cost, and capability needs. Reasoning-optimized models handle multi-step logic while smaller models satisfy simple, latency-sensitive jobs efficiently.",
     "docs": [
-      { "label": "Azure AI Foundry models", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models" }
+      {
+        "label": "Azure AI Foundry models",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models"
+      }
     ]
   },
   {
@@ -156,7 +183,10 @@
     "answer": 2,
     "explanation": "Per-agent identities with least privilege limit what a compromised agent can access. This containment is central to preventing lateral movement between agents and resources.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -172,7 +202,10 @@
     "answer": 0,
     "explanation": "Session memory scopes state to a single interaction, team memory enables collaboration state among agents, and semantic memory persists structured or embedded knowledge over time.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
     ]
   },
   {
@@ -188,7 +221,10 @@
     "answer": 3,
     "explanation": "Serverless compute scales elastically and charges per execution, fitting bursty agent workloads. Dedicated always-on infrastructure wastes cost during idle periods.",
     "docs": [
-      { "label": "Azure Functions overview", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview" }
+      {
+        "label": "Azure Functions overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview"
+      }
     ]
   },
   {
@@ -204,7 +240,10 @@
     "answer": 1,
     "explanation": "Prompts and agent configs behave like code and must be versioned, tested, and deployed via CI/CD. This enables reproducibility, rollback, and evaluation before release.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -220,7 +259,10 @@
     "answer": 2,
     "explanation": "Distributed tracing attaches a correlation ID across every agent and tool call, letting you reconstruct the full execution path. This is essential for pinpointing multi-agent failures.",
     "docs": [
-      { "label": "Trace with the Azure AI Foundry SDK", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk" }
+      {
+        "label": "Trace with the Azure AI Foundry SDK",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk"
+      }
     ]
   },
   {
@@ -236,7 +278,10 @@
     "answer": 0,
     "explanation": "A2A is designed for agent-to-agent communication and discovery, while MCP standardizes connections to tools and data. Together they cover interoperability and integration cleanly.",
     "docs": [
-      { "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
     ]
   },
   {
@@ -252,7 +297,10 @@
     "answer": 3,
     "explanation": "Autonomy should be risk-proportional. Low-risk reversible actions can run autonomously while high-impact actions trigger human review, balancing speed and safety.",
     "docs": [
-      { "label": "Multi-agent workflow automation architecture", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multi-agent workflow automation architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ]
   },
   {
@@ -268,7 +316,10 @@
     "answer": 1,
     "explanation": "Zero Trust assumes breach and enforces explicit verification, least privilege, and segmentation. These controls contain an attacker's ability to move laterally between agents.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -284,7 +335,10 @@
     "answer": 2,
     "explanation": "Tools should be narrow, well-defined, and independently permissioned. This improves reliability, testability, and the ability to enforce least privilege per tool.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -300,7 +354,10 @@
     "answer": 0,
     "explanation": "Sharing only relevant state minimizes token usage and reduces context-window pressure. A shared memory or message bus provides efficient coordination without duplication.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -316,7 +373,10 @@
     "answer": 3,
     "explanation": "Hub-and-spoke uses a central orchestrator (hub) that fans out to specialized agents (spokes) and aggregates results. It is a common and controllable multi-agent pattern.",
     "docs": [
-      { "label": "Multi-agent workflow automation architecture", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multi-agent workflow automation architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ]
   },
   {
@@ -332,7 +392,10 @@
     "answer": 2,
     "explanation": "Dynamic context injection pulls task-relevant, current data at request time instead of static text. This keeps prompts focused and reduces stale or irrelevant content.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ]
   },
   {
@@ -348,7 +411,10 @@
     "answer": 0,
     "explanation": "Defensive guidelines harden prompts against injection and misuse, such as treating external content as untrusted data. They help prevent prompt-injection attacks from retrieved or tool content.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -364,7 +430,10 @@
     "answer": 1,
     "explanation": "Fine-tuning adapts a model to a consistent pattern using labeled examples. It suits stable, specialized behaviors; RAG or prompting is better for frequently changing data.",
     "docs": [
-      { "label": "Azure AI Foundry models", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models" }
+      {
+        "label": "Azure AI Foundry models",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/models"
+      }
     ]
   },
   {
@@ -380,7 +449,10 @@
     "answer": 3,
     "explanation": "Compaction summarizes or trims history to stay within context limits. Good compaction preserves essential entities and decisions while dropping redundant detail.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -396,7 +468,10 @@
     "answer": 2,
     "explanation": "Chunk size and overlap directly shape how much semantic context each retrieved unit carries. Balanced chunking improves relevance and reduces missed or noisy results.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ]
   },
   {
@@ -412,7 +487,10 @@
     "answer": 0,
     "explanation": "Embedding quality, sensible chunking, and re-ranking together sharpen retrieval precision. Weak embeddings or poor chunking degrade the relevance of returned context.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ]
   },
   {
@@ -428,7 +506,10 @@
     "answer": 1,
     "explanation": "Knowledge integration connects the model to authoritative data so answers are grounded rather than purely parametric. This is typically done through RAG or tool calls.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ]
   },
   {
@@ -444,7 +525,10 @@
     "answer": 3,
     "explanation": "Agents must validate tool outputs and handle failures gracefully. Checking schemas, applying bounded retries, and escalating on persistent errors improve reliability.",
     "docs": [
-      { "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
     ]
   },
   {
@@ -460,7 +544,10 @@
     "answer": 2,
     "explanation": "A sequential pipeline chains agents so each receives the previous step's output. It is ideal when tasks have dependencies and must be ordered.",
     "docs": [
-      { "label": "Multi-agent workflow automation architecture", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multi-agent workflow automation architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ]
   },
   {
@@ -476,7 +563,10 @@
     "answer": 0,
     "explanation": "Compliance-sensitive actions need explicit human approval gates. Pausing for confirmation preserves accountability and prevents unauthorized execution.",
     "docs": [
-      { "label": "Multi-agent workflow automation architecture", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multi-agent workflow automation architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ]
   },
   {
@@ -492,7 +582,10 @@
     "answer": 1,
     "explanation": "Semantic caching matches incoming requests by meaning, enabling reuse of prior responses and reducing cost and latency. Prompt caching instead reduces the cost of re-sending the same prefix.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Prompt caching",
+        "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
+      }
     ]
   },
   {
@@ -508,7 +601,10 @@
     "answer": 3,
     "explanation": "Azure Functions and Container Apps provide serverless or containerized hosting well suited to exposing MCP servers. They scale and integrate with Azure networking and identity.",
     "docs": [
-      { "label": "Azure Functions overview", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview" }
+      {
+        "label": "Azure Functions overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview"
+      }
     ]
   },
   {
@@ -524,7 +620,10 @@
     "answer": 2,
     "explanation": "API Management acts as a front door for APIs, adding security, throttling, and observability. This is valuable when many agents call shared endpoints.",
     "docs": [
-      { "label": "Azure API Management concepts", "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts" }
+      {
+        "label": "Azure API Management concepts",
+        "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts"
+      }
     ]
   },
   {
@@ -540,7 +639,10 @@
     "answer": 0,
     "explanation": "Logic Apps automates workflow orchestration and service integration with little code. It can connect agent actions to downstream business systems.",
     "docs": [
-      { "label": "Azure Logic Apps overview", "url": "https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview" }
+      {
+        "label": "Azure Logic Apps overview",
+        "url": "https://learn.microsoft.com/en-us/azure/logic-apps/logic-apps-overview"
+      }
     ]
   },
   {
@@ -556,7 +658,10 @@
     "answer": 1,
     "explanation": "Function calling lets a model signal which tool to run with structured arguments. The application executes the tool and returns results to continue reasoning.",
     "docs": [
-      { "label": "Model Context Protocol", "url": "https://modelcontextprotocol.io/" }
+      {
+        "label": "Model Context Protocol (MCP) servers",
+        "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
+      }
     ]
   },
   {
@@ -572,7 +677,10 @@
     "answer": 3,
     "explanation": "Fan-out concurrency spawns multiple agents to process independent subtasks simultaneously. This reduces total latency when tasks do not depend on each other.",
     "docs": [
-      { "label": "Multi-agent workflow automation architecture", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multi-agent workflow automation architecture",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ]
   },
   {
@@ -588,7 +696,10 @@
     "answer": 2,
     "explanation": "These frameworks provide abstractions for building agents, chaining steps, and managing state. Azure AI Foundry offers its own Agent Framework and also supports open-source options.",
     "docs": [
-      { "label": "Azure AI Foundry overview", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-ai-foundry" }
+      {
+        "label": "Azure AI Foundry overview",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/what-is-ai-foundry"
+      }
     ]
   },
   {
@@ -604,7 +715,10 @@
     "answer": 0,
     "explanation": "Middleware intercepts calls to apply cross-cutting concerns uniformly. This keeps agent logic clean and centralizes security and observability.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -620,7 +734,10 @@
     "answer": 1,
     "explanation": "Batching groups independent requests to amortize overhead and improve throughput. It is less suitable for strictly real-time, latency-sensitive paths.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -636,7 +753,10 @@
     "answer": 3,
     "explanation": "Guardrails like step limits, budget thresholds, or a supervisor prevent infinite agent loops. These controls are essential for cost and correctness.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ]
   },
   {
@@ -652,7 +772,10 @@
     "answer": 1,
     "explanation": "Human reviewers catch nuances that numeric metrics miss, such as tone or factual subtlety. Combining human review with automated metrics yields a fuller quality picture.",
     "docs": [
-      { "label": "Evaluate models in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk" }
+      {
+        "label": "Evaluate models in Azure AI Foundry",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk"
+      }
     ]
   },
   {
@@ -668,7 +791,10 @@
     "answer": 2,
     "explanation": "Component-level evaluations isolate where quality drops, whether in retrieval, tool use, or prompt clarity. This enables focused fixes rather than blanket changes.",
     "docs": [
-      { "label": "Evaluate models in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk" }
+      {
+        "label": "Evaluate models in Azure AI Foundry",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk"
+      }
     ]
   },
   {
@@ -684,7 +810,10 @@
     "answer": 0,
     "explanation": "Rate limits require graceful backpressure. Exponential backoff with jitter avoids thundering-herd retries and respects service throttling.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -700,7 +829,10 @@
     "answer": 3,
     "explanation": "As a conversation grows beyond the context window, earlier turns are trimmed or summarized. This can make the agent lose critical early details.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -716,7 +848,10 @@
     "answer": 1,
     "explanation": "Each summarization pass can introduce small inaccuracies that accumulate over time. Repeatedly summarizing summaries tends to drift from the source meaning.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -732,7 +867,10 @@
     "answer": 2,
     "explanation": "Vector search excels at semantic similarity but may miss exact identifiers, codes, or rare factual details. Hybrid search combining keyword and vector improves such cases.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ]
   },
   {
@@ -748,7 +886,10 @@
     "answer": 0,
     "explanation": "Entity continuity ensures the system tracks who or what is being discussed without confusion. Losing continuity causes misattributed facts or actions.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -764,7 +905,10 @@
     "answer": 3,
     "explanation": "LLM-as-a-judge uses a model to score qualities hard to measure with exact-match metrics. It scales evaluation of subjective or open-ended responses.",
     "docs": [
-      { "label": "Evaluate models in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk" }
+      {
+        "label": "Evaluate models in Azure AI Foundry",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk"
+      }
     ]
   },
   {
@@ -780,7 +924,10 @@
     "answer": 1,
     "explanation": "Synthetic data produces diverse test cases and labels quickly, including adversarial or rare scenarios. This broadens coverage for automated evaluation.",
     "docs": [
-      { "label": "Evaluate models in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk" }
+      {
+        "label": "Evaluate models in Azure AI Foundry",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk"
+      }
     ]
   },
   {
@@ -796,7 +943,10 @@
     "answer": 2,
     "explanation": "A semantic optimization loop turns evaluation signals into iterative improvements. This closed loop steadily raises quality and reliability.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -812,7 +962,10 @@
     "answer": 0,
     "explanation": "User feedback reflects production reality and surfaces issues automated tests miss. It feeds prioritization and regression detection.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -828,7 +981,10 @@
     "answer": 3,
     "explanation": "Agent replay reconstructs prior runs using captured traces, letting developers reproduce and diagnose failures deterministically.",
     "docs": [
-      { "label": "Trace with the Azure AI Foundry SDK", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk" }
+      {
+        "label": "Trace with the Azure AI Foundry SDK",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk"
+      }
     ]
   },
   {
@@ -844,7 +1000,10 @@
     "answer": 1,
     "explanation": "Drift detection monitors whether the model's inputs, outputs, or quality change over time. It signals when retraining, re-evaluation, or data refresh is needed.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -860,7 +1019,10 @@
     "answer": 2,
     "explanation": "Trace correlation ties every step of a request together via a shared trace ID. This provides an end-to-end picture across distributed components.",
     "docs": [
-      { "label": "Trace with the Azure AI Foundry SDK", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk" }
+      {
+        "label": "Trace with the Azure AI Foundry SDK",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk"
+      }
     ]
   },
   {
@@ -876,7 +1038,10 @@
     "answer": 0,
     "explanation": "Trimming unnecessary context and retrieving only relevant data directly lowers input tokens. Input tokens are a major cost driver for long conversations.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -892,7 +1057,10 @@
     "answer": 3,
     "explanation": "Foundry tracing records model calls, tool invocations, and retrievals for inspection. It underpins debugging, replay, and evaluation workflows.",
     "docs": [
-      { "label": "Trace with the Azure AI Foundry SDK", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk" }
+      {
+        "label": "Trace with the Azure AI Foundry SDK",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/trace-production-sdk"
+      }
     ]
   },
   {
@@ -908,7 +1076,10 @@
     "answer": 1,
     "explanation": "Keeping only recent turns drops earlier information, which is sliding-window amnesia. This differs from drift, which concerns gradual distortion through summarization.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -924,7 +1095,10 @@
     "answer": 2,
     "explanation": "Cost control combines model rightsizing, reuse via caching, efficient batching, and explicit budgets. These levers reduce spend without sacrificing needed quality.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -940,7 +1114,10 @@
     "answer": 0,
     "explanation": "Disagreements highlight metric limitations or prompt ambiguity. Investigating them improves both the evaluation harness and the solution.",
     "docs": [
-      { "label": "Evaluate models in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk" }
+      {
+        "label": "Evaluate models in Azure AI Foundry",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk"
+      }
     ]
   },
   {
@@ -956,7 +1133,10 @@
     "answer": 3,
     "explanation": "Groundedness measures whether responses are supported by retrieved or provided context. It helps detect ungrounded or hallucinated claims.",
     "docs": [
-      { "label": "Evaluate models in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk" }
+      {
+        "label": "Evaluate models in Azure AI Foundry",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk"
+      }
     ]
   },
   {
@@ -972,7 +1152,10 @@
     "answer": 2,
     "explanation": "Managed identities avoid secrets and pair with RBAC for fine-grained, auditable access. Least privilege limits the blast radius of a compromised agent.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   },
   {
@@ -988,7 +1171,10 @@
     "answer": 0,
     "explanation": "OBO lets a service exchange a user token for downstream tokens, preserving the user's identity and permissions across calls. It supports user impersonation scenarios.",
     "docs": [
-      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
     ]
   },
   {
@@ -1004,7 +1190,10 @@
     "answer": 1,
     "explanation": "Impersonation (via flows like OBO) lets the agent perform actions under the user's authority. This keeps access tied to the actual user's entitlements.",
     "docs": [
-      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
     ]
   },
   {
@@ -1020,7 +1209,10 @@
     "answer": 3,
     "explanation": "Key Vault centralizes and protects secrets with access policies or RBAC, auditing, and rotation. Agents retrieve secrets at runtime instead of embedding them in code.",
     "docs": [
-      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
     ]
   },
   {
@@ -1036,7 +1228,10 @@
     "answer": 2,
     "explanation": "Shift-left applies security earlier, such as during design and CI, so issues are found cheaply before they reach production.",
     "docs": [
-      { "label": "AI Red Teaming", "url": "https://learn.microsoft.com/en-us/security/ai-red-team/" }
+      {
+        "label": "AI Red Teaming",
+        "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
+      }
     ]
   },
   {
@@ -1052,7 +1247,10 @@
     "answer": 0,
     "explanation": "AI Red Teaming systematically attacks a system to uncover safety and security vulnerabilities, complementing traditional security testing.",
     "docs": [
-      { "label": "AI Red Teaming", "url": "https://learn.microsoft.com/en-us/security/ai-red-team/" }
+      {
+        "label": "AI Red Teaming",
+        "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
+      }
     ]
   },
   {
@@ -1068,7 +1266,10 @@
     "answer": 1,
     "explanation": "Multi-intervention uses defense-in-depth across the pipeline. Layered controls catch harms that any single filter might miss.",
     "docs": [
-      { "label": "Azure AI Content Safety overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+      {
+        "label": "Azure AI Content Safety overview",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview"
+      }
     ]
   },
   {
@@ -1084,7 +1285,10 @@
     "answer": 3,
     "explanation": "Custom guardrails let organizations detect risks unique to their domain using tailored detection and blocking logic.",
     "docs": [
-      { "label": "Azure AI Content Safety overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+      {
+        "label": "Azure AI Content Safety overview",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview"
+      }
     ]
   },
   {
@@ -1100,7 +1304,10 @@
     "answer": 2,
     "explanation": "Synthetic adversarial tests systematically exercise guardrails against known failure modes. This validates safety before real users are exposed.",
     "docs": [
-      { "label": "AI Red Teaming", "url": "https://learn.microsoft.com/en-us/security/ai-red-team/" }
+      {
+        "label": "AI Red Teaming",
+        "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
+      }
     ]
   },
   {
@@ -1116,7 +1323,10 @@
     "answer": 0,
     "explanation": "DTAP stands for Development, Test, Acceptance, Production. It separates environments to progressively de-risk releases.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   },
   {
@@ -1132,7 +1342,10 @@
     "answer": 1,
     "explanation": "Blue/green maintains a standby environment and cuts over traffic after validation, enabling fast rollback. This minimizes downtime and risk.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   },
   {
@@ -1148,7 +1361,10 @@
     "answer": 3,
     "explanation": "Canary exposes the change to a small user group and expands once healthy. This limits the impact of a bad release.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   },
   {
@@ -1164,7 +1380,10 @@
     "answer": 2,
     "explanation": "Versioned, reproducible deployments enable quick restoration of a prior good state. Infrastructure-as-code makes the rollback consistent and auditable.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   },
   {
@@ -1180,7 +1399,10 @@
     "answer": 0,
     "explanation": "Regression tests re-verify existing functionality after changes. They catch unintended breakage across prompts, tools, and integrations.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ]
   },
   {
@@ -1196,7 +1418,10 @@
     "answer": 1,
     "explanation": "Auto-eval runs metric- and judge-based checks as part of the pipeline. It provides a fast quality gate before promotion.",
     "docs": [
-      { "label": "Evaluate models in Azure AI Foundry", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk" }
+      {
+        "label": "Evaluate models in Azure AI Foundry",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/evaluate-sdk"
+      }
     ]
   },
   {
@@ -1212,7 +1437,10 @@
     "answer": 3,
     "explanation": "Infrastructure-as-code defines infrastructure in code, making environments repeatable and reviewable. This supports consistent multi-environment deployments and rollbacks.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   },
   {
@@ -1228,7 +1456,10 @@
     "answer": 2,
     "explanation": "Network segmentation and private endpoints restrict communication to authorized paths. This reduces lateral movement and data exfiltration risk.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   },
   {
@@ -1244,7 +1475,10 @@
     "answer": 0,
     "explanation": "On-behalf-of preserves the user's delegated identity and scopes when a service calls Microsoft Graph. Client credentials would lose the per-user context.",
     "docs": [
-      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
     ]
   },
   {
@@ -1260,7 +1494,10 @@
     "answer": 1,
     "explanation": "API keys are sensitive credentials and must be stored securely and rotated. Committing them to source control exposes them broadly.",
     "docs": [
-      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
     ]
   },
   {
@@ -1276,7 +1513,10 @@
     "answer": 3,
     "explanation": "Integration tests exercise the interactions between components. They catch contract and connectivity issues that unit tests alone miss.",
     "docs": [
-      { "label": "AI-500 study guide", "url": "https://learn.microsoft.com/credentials/certifications/resources/study-guides/ai-500" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/azure/foundry/"
+      }
     ]
   }
 ]
