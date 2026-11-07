@@ -40,7 +40,9 @@ export default function CaseStudiesView({
         ))}
       </aside>
 
-      {active && <CaseStudyDetail courseId={courseId} study={active} />}
+      {active && (
+        <CaseStudyDetail key={active.id} courseId={courseId} study={active} />
+      )}
     </div>
   );
 }

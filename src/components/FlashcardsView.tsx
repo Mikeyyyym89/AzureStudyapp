@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Flashcard } from "@/lib/types";
 import { getCourseProgress, toggleKnown } from "@/lib/store";
 
@@ -30,7 +30,11 @@ export default function FlashcardsView({
   }
 
   if (!card) {
-    return <p className="text-slate-500">No flashcards for this course yet.</p>;
+    return (
+      <p className="text-slate-500">
+        {flashcards.length ? "Loading flashcards…" : "No flashcards for this course yet."}
+      </p>
+    );
   }
 
   const isKnown = known.includes(card.term);

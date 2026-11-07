@@ -38,7 +38,11 @@ export default function QuestionsView({
     return <p className="text-slate-500">No questions for this course yet.</p>;
   }
 
-  if (finished || !q) {
+  if (!q) {
+    return <p className="text-slate-500">Loading questions…</p>;
+  }
+
+  if (finished) {
     const total = order.length;
     const pct = total === 0 ? 0 : Math.round((correctCount / total) * 100);
     return (
