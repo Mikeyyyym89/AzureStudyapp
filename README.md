@@ -53,30 +53,35 @@ They don't install anything. Once the app is deployed (below), you share **one l
 
 ## Deploying (free, easy, no server)
 
-The app builds to a plain static site (`out/`), so it runs on any static host. Pick one:
+The app builds to a plain static site (`out/`). The recommended path — especially since you want **invite-only** — is **Cloudflare Pages + Cloudflare Access**.
 
-### GitHub Pages (recommended — GitHub-native, zero config)
+### Cloudflare Pages + Cloudflare Access (recommended)
 
-This repo already includes a GitHub Actions workflow that builds and deploys the site for you.
+Deploy (auto-builds from GitHub on every push):
 
-1. Push this repo to GitHub (on the `main` branch).
-2. In the repo: **Settings → Pages → Build and deployment → Source = "GitHub Actions"**.
-3. The workflow runs automatically and publishes to `https://<user>.github.io/<repo>/`.
+1. Open the [Cloudflare dashboard](https://dash.cloudflare.com) → **Workers & Pages → Create → Pages → Connect to Git**.
+2. Select the `AzureStudyapp` repo.
+3. Build settings: build command `npm run build`, output directory `out` (root directory `/`).
+4. **Save and deploy** — you get a URL like `https://azure-study-app.pages.dev`.
 
-The sub-path (`/<repo>/`) is handled automatically via `BASE_PATH` — no config changes needed. Every push redeploys.
+Make it invite-only (only the people you invite can even reach it):
 
-### Vercel
+5. In the Pages project, open **Settings → Access policy → Enable Access** (or from **Zero Trust → Access → Applications → Add an application → Self-hosted** and enter your `*.pages.dev` URL).
+6. Add a policy that allows the email addresses (or email domain) of the friends you want to invite.
 
-1. Push to GitHub → [vercel.com](https://vercel.com) → **Add New → Project** → import the repo.
-2. Vercel auto-detects Next.js. Framework preset **Next.js**, leave the rest default.
-3. Deploy. You get a clean URL at the root, and every `git push` redeploys automatically.
+After that, invited users get a one-time PIN by email — no shared access code needed (though you can keep the built-in code too for a second layer).
 
-### Netlify
+### Vercel (alternative)
 
-1. Push to GitHub → [netlify.com](https://netlify.com) → **Add new site → Import**.
-2. The included `netlify.toml` already sets build command `npm run build` and publish directory `out` — no manual settings needed.
+1. Go to [vercel.com](https://vercel.com) → **Add New → Project** → import the repo.
+2. Vercel auto-detects Next.js; leave defaults and deploy. Clean root URL, auto-redeploys on push.
 
-> Note: any static host (including GitHub Pages) is **public** at its URL. The access code is your gate — see below.
+### Netlify (alternative)
+
+1. Go to [netlify.com](https://netlify.com) → **Add new site → Import** the repo.
+2. The included `netlify.toml` sets the build command and output directory automatically.
+
+> Note: without Cloudflare Access, any static host is **public** at its URL — the app's built-in access code is your only gate.
 
 ## The access code (invite-only gate)
 
