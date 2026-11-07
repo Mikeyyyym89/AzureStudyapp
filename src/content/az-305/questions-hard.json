@@ -1,0 +1,482 @@
+[
+  {
+    "id": "az-305-q101",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "A global enterprise has several business units. Requirements include hard billing isolation between business units, independent resource control so one unit cannot view or modify another's resources, and a central security team that must apply a common baseline of Azure Policy (for example, approved regions and mandatory tags) to every unit without having to replicate it manually. Which governance design meets all requirements?",
+    "options": [
+      "A management group hierarchy (root → one management group per business unit → subscriptions), with a common policy initiative assigned at the root and role assignments scoped to each unit's management group",
+      "A single subscription with one resource group per business unit and tags used for chargeback",
+      "Separate subscriptions for each business unit with no management group structure, so each unit manages governance independently",
+      "One management group per subscription, governed entirely through Azure Blueprints with no inherited policy assignments"
+    ],
+    "answer": 0,
+    "explanation": "A management group hierarchy with subscriptions under each business unit provides hard billing and access isolation, while assigning the security policy initiative at the root makes it inherited by every unit automatically (central, non-duplicated control). A single subscription shares billing and cannot hard-isolate access; subscriptions with no management group structure lose central policy inheritance; and Blueprints are a deprecated orchestration mechanism that does not by itself provide the hierarchy or inherited assignment.",
+    "docs": [
+      { "label": "Azure management groups", "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q102",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing hybrid identity for a company with an on-premises Active Directory Domain Services forest. Users must sign in to Microsoft Entra ID with their existing on-premises credentials. Requirements include a minimal on-premises footprint (no federation servers and no always-on authentication agents) and the ability for users to continue signing in to cloud applications even during a temporary on-premises AD or network outage. Which authentication method should you recommend?",
+    "options": [
+      "Pass-through authentication with redundant on-premises agents",
+      "Password hash synchronization",
+      "Active Directory Federation Services (AD FS) federation",
+      "Microsoft Entra Domain Services"
+    ],
+    "answer": 1,
+    "explanation": "Password hash synchronization replicates password hashes to Entra ID, so cloud sign-in does not depend on on-premises infrastructure and keeps working during an on-premises outage, while requiring no agents or federation servers. Pass-through authentication requires reachable on-premises agents (failing the outage requirement), AD FS adds federation servers and an on-premises dependency, and Entra Domain Services is for legacy LDAP/Kerberos workloads, not for hybrid sign-in of Entra users.",
+    "docs": [
+      { "label": "What is password hash synchronization?", "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-phs" }
+    ]
+  },
+  {
+    "id": "az-305-q103",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "Your company needs external users from partner organizations to access an internal line-of-business application. Each partner user must authenticate using their own existing corporate identity, and your tenant should hold only a lightweight guest record for each user rather than provisioning new accounts. Least privilege is required. Which capability should you recommend?",
+    "options": [
+      "Microsoft Entra B2C",
+      "A second Entra ID tenant with Microsoft Entra Connect Sync replicating partner accounts",
+      "Microsoft Entra B2B collaboration (external identities / guest users)",
+      "Microsoft Entra Domain Services"
+    ],
+    "answer": 2,
+    "explanation": "Microsoft Entra B2B collaboration lets external users sign in with their own corporate (federated) identity and be represented in your tenant as guest users, with least-privilege scoping. B2C is for self-service consumer/customer identities rather than corporate SSO; a second tenant with Connect Sync is for replicating your own on-premises identities, not partner accounts; and Entra Domain Services provides legacy LDAP/Kerberos authentication for workloads.",
+    "docs": [
+      { "label": "What is Microsoft Entra B2B collaboration?", "url": "https://learn.microsoft.com/en-us/entra/external-id/what-is-b2b" }
+    ]
+  },
+  {
+    "id": "az-305-q104",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You must guarantee that new virtual machines can be created only in a set of approved Azure regions and that any deployment attempting an unapproved region is blocked automatically, without relying on the person who creates the resource to comply. Which governance mechanism should you use?",
+    "options": [
+      "An Azure RBAC custom role that lists only the approved regions",
+      "Azure resource locks applied to each resource group",
+      "Microsoft Entra Privileged Identity Management",
+      "Azure Policy with the allowed locations built-in and a Deny effect"
+    ],
+    "answer": 3,
+    "explanation": "Only Azure Policy can enforce a resource's configuration (such as its location) and block non-compliant deployments with a Deny effect. RBAC governs who can perform actions but cannot restrict resource properties like region; resource locks prevent deletion/modification, not deployment configuration; and Privileged Identity Management controls just-in-time role activation, not resource properties.",
+    "docs": [
+      { "label": "Understand Azure Policy effects", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects" }
+    ]
+  },
+  {
+    "id": "az-305-q105",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You are designing monitoring for several hundred VMs. You need to be alerted when a VM's CPU usage becomes anomalous relative to its own historical baseline, without configuring and maintaining a fixed threshold for every VM. Alerts must be delivered to an operations team by email and to an ITSM system. Which monitoring configuration should you recommend?",
+    "options": [
+      "A metric alert rule with dynamic thresholds and an action group that sends email and triggers the ITSM connector",
+      "An activity log alert on VM write operations",
+      "A Log Analytics query alert with a single static CPU threshold applied to all VMs",
+      "A service health alert for the subscription"
+    ],
+    "answer": 0,
+    "explanation": "Metric alert rules with dynamic thresholds use machine learning to learn each metric's historical pattern and alert on anomalies without per-VM thresholds; an action group routes the alert to email and ITSM. Activity log alerts respond to administrative operations, not performance metrics; a single static threshold cannot capture per-VM baselines; and service health alerts report Azure platform incidents rather than guest CPU telemetry.",
+    "docs": [
+      { "label": "Metric alerts with dynamic thresholds", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-dynamic-thresholds" }
+    ]
+  },
+  {
+    "id": "az-305-q106",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You discover many existing resources are missing a required CostCenter tag. The requirement is to automatically add the correct tag to these already-deployed resources (and keep it correct going forward) rather than only reporting or blocking them. Which Azure Policy effect should you use?",
+    "options": [
+      "Audit",
+      "Modify",
+      "Deny",
+      "AuditIfNotExists"
+    ],
+    "answer": 1,
+    "explanation": "The Modify effect changes a property (such as adding or correcting a tag) on existing resources during evaluation, remediating them automatically. Audit only reports non-compliance; Deny blocks new non-compliant resources but cannot fix existing ones; and AuditIfNotExists detects a missing related resource but does not modify the target.",
+    "docs": [
+      { "label": "Azure Policy Modify effect", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects" }
+    ]
+  },
+  {
+    "id": "az-305-q107",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "You need to roll out a consistent set of governance artifacts — policy definitions and assignments, role assignments, and resource groups — to many subscriptions at scale. The deployment must be repeatable and idempotent, and must remain manageable from a single source of truth so that future updates propagate to all subscriptions. Which capability should you recommend?",
+    "options": [
+      "Manually replicate the same configuration in each subscription",
+      "An Azure Policy initiative alone",
+      "Azure deployment stacks applied at management group scope",
+      "Azure Resource Graph queries"
+    ],
+    "answer": 2,
+    "explanation": "Azure deployment stacks manage a collection of resources (including policy/role assignments and resource groups) as a single unit at management group or subscription scope, enabling repeatable, idempotent, and centrally managed governance. A policy initiative only groups policy definitions and cannot carry role assignments or resource groups; manual replication is error-prone and not a single source of truth; and Azure Resource Graph only queries resource state.",
+    "docs": [
+      { "label": "Azure deployment stacks", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/deployment-stacks" }
+    ]
+  },
+  {
+    "id": "az-305-q108",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "prompt": "To meet a least-privilege requirement, administrators must not hold standing privileged roles. Elevated roles must be assigned only when needed, for a limited time, require approval before activation, and require multi-factor authentication at activation. Which feature should you implement?",
+    "options": [
+      "Azure RBAC role assignments",
+      "Conditional Access policies",
+      "Microsoft Entra access reviews",
+      "Microsoft Entra Privileged Identity Management (PIM)"
+    ],
+    "answer": 3,
+    "explanation": "Privileged Identity Management provides just-in-time, time-bound role activation with approval workflow and optional MFA at activation. Standard Azure RBAC assignments are standing (permanent) and lack activation workflows; Conditional Access gates access signals but does not perform time-bound elevation; and access reviews audit and remove stale access but do not implement just-in-time activation.",
+    "docs": [
+      { "label": "What is Microsoft Entra Privileged Identity Management?", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure" }
+    ]
+  },
+  {
+    "id": "az-305-q109",
+    "domain": "Design data storage solutions",
+    "prompt": "You are designing a globally distributed NoSQL application on Azure Cosmos DB. All writes originate from a single region, and the application must guarantee that every read in every region returns the most recently committed write (linearizable reads). The account must provide a 99.99% availability SLA for reads and writes. Which consistency level should you configure?",
+    "options": [
+      "Strong",
+      "Bounded staleness",
+      "Session",
+      "Eventual"
+    ],
+    "answer": 0,
+    "explanation": "Strong consistency guarantees linearizable reads (every reader always sees the latest committed write) but requires a single write region, which the scenario satisfies. Bounded staleness, Session, and Eventual all permit readers to observe stale data and therefore fail the strong-consistency requirement. A single-region Cosmos DB account with strong consistency meets the 99.99% SLA.",
+    "docs": [
+      { "label": "Azure Cosmos DB consistency levels", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels" }
+    ]
+  },
+  {
+    "id": "az-305-q110",
+    "domain": "Design data storage solutions",
+    "prompt": "A catalog application stores items in an Azure Cosmos DB container. Each item has the fields id, category, vendorId, sku, and createdDate. Nearly all queries filter on vendorId and then sort by createdDate. You must choose a partition key that yields even request-unit distribution (no hot partitions) and minimizes cross-partition queries. Which field should you select as the partition key?",
+    "options": [
+      "id",
+      "vendorId",
+      "category",
+      "createdDate"
+    ],
+    "answer": 1,
+    "explanation": "vendorId has high cardinality, so it distributes items and request units evenly across logical partitions, and because queries filter on it, those queries stay within a single partition. id produces one item per logical partition (many tiny partitions and no filtering benefit), category is low-cardinality and causes hot partitions, and createdDate is monotonic, so all new writes would target the same hot partition.",
+    "docs": [
+      { "label": "Partitioning and horizontal scaling in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q111",
+    "domain": "Design data storage solutions",
+    "prompt": "You are migrating a legacy SQL Server application that uses cross-database queries, SQL Server Agent jobs, and linked servers. The target must be a platform-as-a-service offering with near-100 percent SQL Server surface-area compatibility and no operating system patching. Which Azure service should you choose?",
+    "options": [
+      "Azure SQL Database",
+      "SQL Server on Azure Virtual Machines",
+      "Azure SQL Managed Instance",
+      "Azure Cosmos DB"
+    ],
+    "answer": 2,
+    "explanation": "Azure SQL Managed Instance provides near-100 percent SQL Server compatibility including cross-database queries, SQL Server Agent, and linked servers, while remaining a managed PaaS service. Azure SQL Database lacks SQL Agent and has limited cross-database query support; SQL Server on Azure VMs is IaaS and requires OS management; and Cosmos DB is a NoSQL service that cannot run this SQL Server workload.",
+    "docs": [
+      { "label": "What is Azure SQL Managed Instance?", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/managed-instance/sql-managed-instance-paas-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q112",
+    "domain": "Design data storage solutions",
+    "prompt": "An application writes logs to an Azure Storage account. Requirements state the data must survive a failure of a single availability zone, survive a full regional outage, and remain readable from the secondary region during a primary-region outage. Which redundancy option meets all three requirements?",
+    "options": [
+      "Geo-redundant storage (GRS)",
+      "Zone-redundant storage (ZRS)",
+      "Locally redundant storage (LRS)",
+      "Read-access geo-zone-redundant storage (RA-GZRS)"
+    ],
+    "answer": 3,
+    "explanation": "RA-GZRS combines synchronous zone-level replication in the primary region (surviving a zone failure) with asynchronous geo-replication to a secondary region (surviving a regional outage) and read access to the secondary copy. GRS provides geo-replication but no zone redundancy and no secondary read access (that would be RA-GRS); ZRS is zone-redundant but not geo-replicated; and LRS provides neither zone nor region protection.",
+    "docs": [
+      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+    ]
+  },
+  {
+    "id": "az-305-q113",
+    "domain": "Design data storage solutions",
+    "prompt": "A data platform team runs Apache Spark and Hadoop analytics jobs and needs object storage with a hierarchical namespace and POSIX-like access control lists, optimized for big-data analytics at low cost. Which storage service should you recommend?",
+    "options": [
+      "Azure Data Lake Storage Gen2",
+      "Azure Files",
+      "Azure Managed Disks",
+      "Azure Table storage"
+    ],
+    "answer": 0,
+    "explanation": "Azure Data Lake Storage Gen2 adds a hierarchical namespace and POSIX-like ACLs to Azure Blob storage, making it the recommended low-cost object store for Spark/Hadoop analytics. Azure Files is for SMB/NFS file shares, Azure Managed Disks are single-attach block volumes for VMs, and Azure Table storage is a NoSQL key-value store rather than an analytics data lake.",
+    "docs": [
+      { "label": "Introduction to Azure Data Lake Storage Gen2", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/data-lake-storage-introduction" }
+    ]
+  },
+  {
+    "id": "az-305-q114",
+    "domain": "Design data storage solutions",
+    "prompt": "A company stores compliance records in Azure Blob storage that are accessed roughly once per quarter. The records must be retrievable within a few minutes when needed (not hours), and storage cost must be minimized. A lifecycle management policy should move the blobs automatically after 30 days of inactivity. Which access tier should the lifecycle policy target?",
+    "options": [
+      "Archive",
+      "Cool",
+      "Premium block blob",
+      "Hot"
+    ],
+    "answer": 1,
+    "explanation": "The Cool tier is designed for infrequently accessed data with lower storage cost than Hot but immediate (sub-minute) retrieval, meeting the 'retrievable within minutes' requirement. Archive has the lowest cost but rehydration takes hours, violating the retrieval-time requirement; Premium block blob and Hot are optimized for frequent access and cost more for this workload.",
+    "docs": [
+      { "label": "Access tiers for blob data", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q115",
+    "domain": "Design data storage solutions",
+    "prompt": "Several Windows virtual machines that are joined to an on-premises Active Directory domain must mount the same file share over SMB and enforce granular NTFS permissions using the existing on-premises AD identities. You want a fully managed, low-effort, low-cost solution. Which service should you use?",
+    "options": [
+      "Azure NetApp Files",
+      "Azure Blob storage over NFS",
+      "Azure Files with AD DS (on-premises) authentication",
+      "Azure shared disks"
+    ],
+    "answer": 2,
+    "explanation": "Azure Files provides a fully managed SMB file share that can be mounted by multiple VMs and supports authentication with on-premises AD DS, enabling granular NTFS ACLs with existing identities at low cost and effort. Azure NetApp Files supports similar scenarios but is a premium, higher-cost offering; Azure Blob over NFS is not SMB and does not provide NTFS ACLs; and Azure shared disks are shared block storage for clustered workloads, not general multi-VM SMB file shares.",
+    "docs": [
+      { "label": "Azure Files AD DS authentication", "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable" }
+    ]
+  },
+  {
+    "id": "az-305-q116",
+    "domain": "Design data storage solutions",
+    "prompt": "You need to transfer 60 TB of data from an on-premises datacenter to Azure. The existing network link would take more than six weeks, which is unacceptable. You need an offline transfer mechanism. Which option should you recommend?",
+    "options": [
+      "AzCopy over the existing network link",
+      "Azure File Sync",
+      "ExpressRoute",
+      "Azure Data Box"
+    ],
+    "answer": 3,
+    "explanation": "Azure Data Box is a physical appliance shipped to your site so you can copy large amounts of data offline and ship it back to Azure, avoiding the slow network transfer. AzCopy and Azure File Sync rely on the network, and ExpressRoute only adds private bandwidth but still transfers over the wire, none of which address the six-week constraint.",
+    "docs": [
+      { "label": "What is Azure Data Box?", "url": "https://learn.microsoft.com/en-us/azure/databox/data-box-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q117",
+    "domain": "Design business continuity solutions",
+    "prompt": "A set of business-critical Azure VMs has a recovery point objective (RPO) of 15 minutes and a recovery time objective (RTO) of 2 hours. You need near-continuous replication to a secondary region with orchestrated failover. Which service should you use?",
+    "options": [
+      "Azure Site Recovery",
+      "Azure Backup with a daily backup policy",
+      "Azure Migrate",
+      "Azure Traffic Manager alone"
+    ],
+    "answer": 0,
+    "explanation": "Azure Site Recovery continuously replicates VMs to a secondary region (supporting RPOs as low as seconds/minutes) and orchestrates failover through recovery plans, meeting both the 15-minute RPO and 2-hour RTO. A daily Azure Backup policy has an RPO of up to 24 hours, failing the requirement; Azure Migrate is for one-time migrations; and Traffic Manager routes traffic but does not replicate data.",
+    "docs": [
+      { "label": "About Azure Site Recovery", "url": "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q118",
+    "domain": "Design business continuity solutions",
+    "prompt": "You have an Azure SQL Database that must fail over automatically to a secondary region. Applications must keep using a single connection string that does not change during failover, and the secondary must be readable for reporting during normal operation. Which feature should you implement?",
+    "options": [
+      "Active geo-replication alone",
+      "An auto-failover group",
+      "Azure Backup geo-restore",
+      "Azure SQL Managed Instance link"
+    ],
+    "answer": 1,
+    "explanation": "An auto-failover group provides automatic failover, a readable secondary, and a single listener endpoint so the connection string stays the same across failover. Active geo-replication alone gives readable secondaries but lacks automatic failover and the shared listener abstraction; Azure Backup geo-restore is a manual restore with higher RTO; and the Managed Instance link targets Managed Instance to SQL Server scenarios, not this requirement.",
+    "docs": [
+      { "label": "Failover groups and active geo-replication", "url": "https://learn.microsoft.com/en-us/azure/azure-sql/database/auto-failover-group-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q119",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need protection against a regional-scale disaster with the assurance that, in a broad Azure incident affecting multiple regions, your region will be among the first to be recovered, and that Azure platform updates are sequenced so that at most one region in the pair is updated at a time. Which Azure concept provides these guarantees?",
+    "options": [
+      "Availability zones",
+      "Availability sets",
+      "Region pairs",
+      "Proximity placement groups"
+    ],
+    "answer": 2,
+    "explanation": "Region pairs provide cross-region disaster recovery with prioritized recovery during a broad outage and sequenced platform updates so the two regions in a pair are never updated simultaneously. Availability zones protect against data-center failures within a region, availability sets protect against hardware/maintenance within a single data center, and proximity placement groups optimize inter-VM latency rather than disaster recovery.",
+    "docs": [
+      { "label": "Azure cross-region replication and region pairs", "url": "https://learn.microsoft.com/en-us/azure/reliability/cross-region-replication-azure" }
+    ]
+  },
+  {
+    "id": "az-305-q120",
+    "domain": "Design business continuity solutions",
+    "prompt": "A stateless web tier runs on Azure and must remain available if a full data center fails, while staying within the same region. Traffic must be distributed automatically across the surviving instances. Which configuration should you recommend?",
+    "options": [
+      "Virtual machines placed in a single availability set",
+      "A Virtual Machine Scale Set pinned to a single availability zone",
+      "A proximity placement group",
+      "A zone-redundant Virtual Machine Scale Set spread across availability zones"
+    ],
+    "answer": 3,
+    "explanation": "A zone-redundant Virtual Machine Scale Set distributes instances across availability zones (physically separate data centers) and routes traffic automatically, surviving a full data-center failure while remaining in the region. An availability set spans fault/update domains within a single data center and does not protect against a data-center failure; a single-zone scale set has the same limitation; and a proximity placement group only optimizes latency.",
+    "docs": [
+      { "label": "Virtual Machine Scale Sets and availability zones", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-use-availability-zones" }
+    ]
+  },
+  {
+    "id": "az-305-q121",
+    "domain": "Design business continuity solutions",
+    "prompt": "A storage account holds mission-critical data. The requirement is the highest possible durability, combining synchronous replication across availability zones in the primary region with asynchronous replication to a secondary region. Cost is not a constraint. Which redundancy should you select?",
+    "options": [
+      "Geo-zone-redundant storage (GZRS)",
+      "Geo-redundant storage (GRS)",
+      "Zone-redundant storage (ZRS)",
+      "Locally redundant storage (LRS)"
+    ],
+    "answer": 0,
+    "explanation": "GZRS provides the highest durability by combining synchronous zone-level replication in the primary region with asynchronous geo-replication to a secondary region. GRS lacks zone redundancy, ZRS lacks geo-replication, and LRS provides only local replication within a single data center.",
+    "docs": [
+      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+    ]
+  },
+  {
+    "id": "az-305-q122",
+    "domain": "Design business continuity solutions",
+    "prompt": "You must protect backup data against both accidental and malicious deletion, including by a compromised administrator with full Azure permissions. The requirement is that backup recovery points cannot be deleted by anyone during a defined retention window. Which capability should you enable?",
+    "options": [
+      "Cross-region restore",
+      "Immutable vault (backup vault immutability)",
+      "Azure Backup soft delete",
+      "Instant restore"
+    ],
+    "answer": 1,
+    "explanation": "Immutable vault (backup vault immutability) locks backup recovery points so they cannot be deleted even by administrators with full permissions during the immutability/retention period, protecting against ransomware and malicious insiders. Soft delete retains data after deletion but the soft-deleted data can still be purged; cross-region restore is about restoring to a secondary region; and instant restore is a recovery-speed feature.",
+    "docs": [
+      { "label": "Immutable vault for Azure Backup", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-immutable-vault-concept" }
+    ]
+  },
+  {
+    "id": "az-305-q123",
+    "domain": "Design business continuity solutions",
+    "prompt": "A web application is deployed in two Azure regions. When the primary region becomes unhealthy, users must be routed automatically to the secondary region based on health checks. You need DNS-based routing with no requirement for TLS termination or HTTP-level inspection. Which service should you use?",
+    "options": [
+      "Azure Load Balancer",
+      "Azure Application Gateway",
+      "Azure Traffic Manager",
+      "Azure Front Door"
+    ],
+    "answer": 2,
+    "explanation": "Azure Traffic Manager is a DNS-based global traffic router that uses health probes to fail over between regional endpoints, with no TLS termination or HTTP inspection. Load Balancer and Application Gateway are regional services, and Front Door is a global Layer 7 service that terminates TLS and adds capabilities beyond the stated requirement.",
+    "docs": [
+      { "label": "What is Traffic Manager?", "url": "https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview" }
+    ]
+  },
+  {
+    "id": "az-305-q124",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A regional web application needs SSL termination, URL path-based routing to different backend pools, a Web Application Firewall, and cookie-based session affinity, all contained within a single region. Which service should you recommend?",
+    "options": [
+      "Azure Front Door",
+      "Azure Load Balancer",
+      "Azure Traffic Manager",
+      "Azure Application Gateway"
+    ],
+    "answer": 3,
+    "explanation": "Azure Application Gateway is a regional Layer 7 load balancer that provides SSL offload, URL path-based routing, Web Application Firewall, and cookie-based session affinity. Load Balancer is Layer 4 and cannot perform path routing or WAF; Traffic Manager is DNS-only; and Front Door is a global service, exceeding the single-region requirement.",
+    "docs": [
+      { "label": "What is Azure Application Gateway?", "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q125",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need a private connection between an on-premises datacenter and Azure with predictable, guaranteed bandwidth and low latency. The connection must not traverse the public internet and must be dedicated to your organization. Which service should you recommend?",
+    "options": [
+      "Azure ExpressRoute",
+      "Site-to-site VPN over the public internet",
+      "Azure Front Door",
+      "Point-to-site VPN"
+    ],
+    "answer": 0,
+    "explanation": "Azure ExpressRoute provides a private, dedicated connection through a connectivity provider with guaranteed bandwidth and low latency, and does not traverse the public internet. Site-to-site and point-to-site VPNs encrypt traffic over the public internet and do not guarantee bandwidth; Front Door is a public Layer 7 service, not private connectivity.",
+    "docs": [
+      { "label": "What is Azure ExpressRoute?", "url": "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-introduction" }
+    ]
+  },
+  {
+    "id": "az-305-q126",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You must enforce centralized outbound network filtering across multiple virtual networks and subscriptions, including allow-listing outbound traffic by fully qualified domain name (for example, only *.contoso.com) and blocking traffic based on threat-intelligence feeds. Which service should you deploy?",
+    "options": [
+      "Network security groups on each subnet",
+      "Azure Firewall with a firewall policy",
+      "Azure Front Door with a Web Application Firewall policy",
+      "Azure Application Gateway WAF"
+    ],
+    "answer": 1,
+    "explanation": "Azure Firewall provides centralized, stateful filtering with FQDN-based rules and threat-intelligence-based filtering across virtual networks and subscriptions. Network security groups filter only by IP address, port, and service tags and cannot match fully qualified domain names; Front Door and Application Gateway WAFs protect inbound web traffic at Layer 7 rather than providing general outbound filtering.",
+    "docs": [
+      { "label": "What is Azure Firewall?", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q127",
+    "domain": "Design infrastructure solutions",
+    "prompt": "An order-processing system passes messages between decoupled services. Requirements include first-in-first-out (FIFO) ordering of related messages, duplicate detection, dead-lettering of messages that cannot be processed, and competing-consumer delivery where each message is consumed by exactly one receiver. Which messaging service should you recommend?",
+    "options": [
+      "Azure Event Hubs",
+      "Azure Event Grid",
+      "Azure Service Bus (with sessions)",
+      "Azure Queue Storage"
+    ],
+    "answer": 2,
+    "explanation": "Azure Service Bus with sessions provides FIFO ordering within a session, plus duplicate detection, dead-lettering, and competing-consumer delivery. Event Hubs is for high-throughput streaming telemetry with partition-level (not session-level) ordering and replay; Event Grid delivers discrete events to subscribers without session ordering or Service Bus-style duplicate detection; and Azure Queue Storage is a simple queue lacking sessions and duplicate detection.",
+    "docs": [
+      { "label": "Azure Service Bus message sessions", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions" }
+    ]
+  },
+  {
+    "id": "az-305-q128",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You are designing a containerized microservices platform. Requirements include event-driven autoscaling down to zero when idle (to minimize cost), no management of a Kubernetes control plane or worker nodes, built-in Dapr integration, and revision-based deployments. Which compute service should you choose?",
+    "options": [
+      "Azure Kubernetes Service (AKS)",
+      "Azure Virtual Machine Scale Sets",
+      "Azure Functions",
+      "Azure Container Apps"
+    ],
+    "answer": 3,
+    "explanation": "Azure Container Apps runs containerized apps on a managed, serverless Kubernetes foundation with KEDA-based scale-to-zero, built-in Dapr, and revision management, with no cluster or node management. AKS requires you to manage nodes and is not natively serverless; VM Scale Sets are VM-based, not a container serverless platform; and Azure Functions targets code (or single containers) rather than full microservices with Dapr and revisions.",
+    "docs": [
+      { "label": "Azure Container Apps overview", "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview" }
+    ]
+  },
+  {
+    "id": "az-305-q129",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to expose internal APIs to external partners with per-subscription rate limiting and throttling, OAuth 2.0 and OpenID Connect authentication, request and response transformation, per-API-key usage analytics, and a self-service developer portal. Which service should you recommend?",
+    "options": [
+      "Azure API Management",
+      "Azure Front Door",
+      "Azure Application Gateway",
+      "Azure Load Balancer"
+    ],
+    "answer": 0,
+    "explanation": "Azure API Management is the API gateway that provides rate limiting/throttling, OAuth2/OIDC authentication, request/response policies for transformation, per-key analytics, and a developer portal. Front Door, Application Gateway, and Load Balancer are network/web load balancers and do not provide API key management, a developer portal, or per-API throttling.",
+    "docs": [
+      { "label": "Azure API Management concepts", "url": "https://learn.microsoft.com/en-us/azure/api-management/api-management-key-concepts" }
+    ]
+  },
+  {
+    "id": "az-305-q130",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A globally distributed web application must route each user to the nearest healthy region, support URL path-based routing, apply a global Web Application Firewall, terminate TLS at the edge, and cache static content via a content delivery network. Which service should you recommend?",
+    "options": [
+      "Azure Traffic Manager",
+      "Azure Front Door",
+      "Azure Application Gateway",
+      "Azure Load Balancer"
+    ],
+    "answer": 1,
+    "explanation": "Azure Front Door is a global Layer 7 service that provides performance-based routing to the nearest healthy region, path-based routing, a global Web Application Firewall, edge TLS termination, and integrated CDN caching. Traffic Manager is DNS-only and lacks path routing, WAF, TLS, and CDN; Application Gateway and Load Balancer are regional services.",
+    "docs": [
+      { "label": "What is Azure Front Door?", "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview" }
+    ]
+  }
+]

@@ -39,36 +39,42 @@ import sc500Questions2 from "@/content/sc-500/questions-2.json";
 import ai200Questions2 from "@/content/ai-200/questions-2.json";
 import ai500Questions2 from "@/content/ai-500/questions-2.json";
 
+import az104Hard from "@/content/az-104/questions-hard.json";
+import az305Hard from "@/content/az-305/questions-hard.json";
+import sc500Hard from "@/content/sc-500/questions-hard.json";
+import ai200Hard from "@/content/ai-200/questions-hard.json";
+import ai500Hard from "@/content/ai-500/questions-hard.json";
+
 export const courses: Course[] = coursesData as Course[];
 
 export const courseContent: Record<string, CourseContent> = {
   "az-104": {
     flashcards: az104Flashcards as Flashcard[],
-    questions: [...az104Questions, ...az104Questions2] as Question[],
+    questions: [...az104Questions, ...az104Questions2, ...az104Hard] as Question[],
     caseStudies: az104Cases as CaseStudy[],
     docs: az104Docs as DocGroup[],
   },
   "az-305": {
     flashcards: az305Flashcards as Flashcard[],
-    questions: [...az305Questions, ...az305Questions2] as Question[],
+    questions: [...az305Questions, ...az305Questions2, ...az305Hard] as Question[],
     caseStudies: az305Cases as CaseStudy[],
     docs: az305Docs as DocGroup[],
   },
   "sc-500": {
     flashcards: sc500Flashcards as Flashcard[],
-    questions: [...sc500Questions, ...sc500Questions2] as Question[],
+    questions: [...sc500Questions, ...sc500Questions2, ...sc500Hard] as Question[],
     caseStudies: sc500Cases as CaseStudy[],
     docs: sc500Docs as DocGroup[],
   },
   "ai-200": {
     flashcards: ai200Flashcards as Flashcard[],
-    questions: [...ai200Questions, ...ai200Questions2] as Question[],
+    questions: [...ai200Questions, ...ai200Questions2, ...ai200Hard] as Question[],
     caseStudies: ai200Cases as CaseStudy[],
     docs: ai200Docs as DocGroup[],
   },
   "ai-500": {
     flashcards: ai500Flashcards as Flashcard[],
-    questions: [...ai500Questions, ...ai500Questions2] as Question[],
+    questions: [...ai500Questions, ...ai500Questions2, ...ai500Hard] as Question[],
     caseStudies: ai500Cases as CaseStudy[],
     docs: ai500Docs as DocGroup[],
   },

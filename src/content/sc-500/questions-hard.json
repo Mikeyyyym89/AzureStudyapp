@@ -1,0 +1,572 @@
+[
+  {
+    "id": "sc-500-q101",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Your organization uses Microsoft Entra ID and enforces Conditional Access and MFA on all administrators. You must guarantee that at least one 'break-glass' Global Administrator can still sign in if Conditional Access, MFA, or federated authentication becomes unavailable, while keeping normal administrators on just-in-time access to reduce standing privileges. What should you do?",
+    "options": [
+      "Create dedicated cloud-only emergency access accounts with a permanent Global Administrator assignment and exclude them from all Conditional Access policies.",
+      "Assign the Global Administrator role as eligible in Privileged Identity Management to every administrator and require MFA on activation.",
+      "Exclude all Global Administrators from Conditional Access and rely on MFA registration.",
+      "Store break-glass credentials in Key Vault and grant all administrators read access to them."
+    ],
+    "answer": 0,
+    "explanation": "Microsoft recommends dedicated, cloud-only emergency access accounts that hold a permanent Global Administrator role and are excluded from Conditional Access so they remain usable during an authentication outage. Normal administrators should instead use just-in-time PIM activation, not permanent standing access. Excluding all Global Admins from Conditional Access defeats the purpose of protecting them.",
+    "docs": [
+      {
+        "label": "Manage emergency access accounts in Microsoft Entra ID",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q102",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must allow access to a business application only from organization-managed devices that are compliant or Microsoft Entra hybrid joined, and require the user to authenticate with one of two phishing-resistant methods (Windows Hello for Business or a passkey in Microsoft Authenticator), with no password fallback. Which Conditional Access configuration satisfies all requirements?",
+    "options": [
+      "A grant control requiring multifactor authentication, combined with a device filter for 'trusted devices'.",
+      "A grant control requiring a compliant device and MFA, with the session control set to a persistent browser session.",
+      "A grant control requiring the device to be marked compliant or hybrid joined AND requiring one of the selected controls (Windows Hello for Business or Authenticator passkey).",
+      "A grant control requiring hybrid Azure AD joined device only, plus per-user MFA for each user."
+    ],
+    "answer": 2,
+    "explanation": "The grant control 'Require one of the selected controls' lets you require specific phishing-resistant authentication strengths (WHfB or passkey) while a separate grant control enforces device state (compliant or hybrid joined). A generic MFA requirement would still allow weaker password-based methods, and device filters do not enforce device compliance.",
+    "docs": [
+      {
+        "label": "Conditional Access grant controls",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-grant"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q103",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A team of developers occasionally needs the Virtual Machine Contributor role on a resource group. Requirements: the role must be active only when a developer requests it, activation must be approved by a manager, and access must never exceed four hours. The developers must not hold standing access. What should you configure?",
+    "options": [
+      "Assign the role directly to each developer as active and set a four-hour expiration.",
+      "Add the developers to a group, make the role assignment eligible for that group in PIM for Azure resources, and require approval with a maximum four-hour activation duration.",
+      "Use an Entitlement Management access package with the role as a resource and no expiration.",
+      "Create a Conditional Access policy that blocks developer access after four hours."
+    ],
+    "answer": 1,
+    "explanation": "Making the role eligible for a group in PIM for Azure resources gives just-in-time, approval-gated, time-bound activation with a defined maximum duration. Direct active assignments grant standing access, access packages without review/expiration do not provide the same approval and duration control, and Conditional Access cannot limit role activation windows.",
+    "docs": [
+      {
+        "label": "Privileged Identity Management for Azure resources",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q104",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You migrate an Azure Key Vault to the Azure RBAC permission model. An application's service principal must be able to read and list only the secret values in one vault, and must not be able to read keys, certificates, or modify anything. Which single built-in role satisfies least privilege?",
+    "options": [
+      "Key Vault Secrets Officer",
+      "Key Vault Reader",
+      "Key Vault Contributor",
+      "Key Vault Secrets User"
+    ],
+    "answer": 3,
+    "explanation": "Key Vault Secrets User grants the data-plane permissions to get and list secret values only. Key Vault Secrets Officer can also modify secrets, Key Vault Reader is a management-plane role that reads metadata rather than secret values, and Key Vault Contributor grants broad management access.",
+    "docs": [
+      {
+        "label": "Azure RBAC for Key Vault",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q105",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must roll out phishing-resistant, passwordless authentication for all employees. Requirements: no reliance on SMS or phone calls, support for both managed and unmanaged (BYOD) devices, and minimal per-user hardware cost. Which method should you deploy as the primary credential?",
+    "options": [
+      "Passkeys in Microsoft Authenticator for passwordless sign-in.",
+      "FIDO2 security keys issued to every employee.",
+      "SMS-based one-time passcodes.",
+      "OATH time-based one-time password (TOTP) hardware tokens."
+    ],
+    "answer": 0,
+    "explanation": "Device-bound passkeys in Microsoft Authenticator are phishing-resistant, work on managed and unmanaged devices, and require no additional per-user hardware. FIDO2 security keys are also phishing-resistant but add hardware cost per user. SMS and OATH TOTP are not phishing-resistant and still rely on a password as the primary credential.",
+    "docs": [
+      {
+        "label": "Passkeys in Microsoft Authenticator",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/how-to-enable-passkey-authenticator"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q106",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A user is flagged with High user risk because their credentials appear in a known breach. You must automatically remediate the risk and require the user to reset their password before the risk is cleared, without involving the helpdesk. What should you configure?",
+    "options": [
+      "A Conditional Access policy that blocks the user entirely.",
+      "A Microsoft Entra ID Protection user risk policy that requires a password change when user risk is High, with self-service password reset enabled.",
+      "A sign-in risk policy that requires multifactor authentication.",
+      "Manually reset the password and revoke sessions each time a breach occurs."
+    ],
+    "answer": 1,
+    "explanation": "A user risk policy that requires a password change remediates the leaked-credential risk and, with self-service password reset enabled, lets the user recover without IT intervention. A sign-in risk policy (which triggers on sign-in signals like anonymous IP) would only require MFA and does not remediate compromised credentials. Blocking or manual resets are not self-remediating.",
+    "docs": [
+      {
+        "label": "Configure and enable risk policies",
+        "url": "https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-risk-policies"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q107",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Guest users are granted access to a Microsoft 365 group that provides SharePoint and Teams access. You must periodically certify that each guest still needs access and automatically remove access for guests who do not respond to the certification. What should you configure?",
+    "options": [
+      "A Conditional Access policy that blocks guest access after 90 days.",
+      "An eligible assignment for all guests in Privileged Identity Management.",
+      "An access review of the group with 'auto-apply results' enabled to remove access for non-responders.",
+      "An access package assignment policy with no review or expiration."
+    ],
+    "answer": 2,
+    "explanation": "Access reviews let you periodically certify guest access to groups, and the auto-apply setting automatically removes access for users who do not respond, enforcing least privilege over time. Conditional Access controls sign-in conditions rather than membership, PIM is for privileged roles, and an access package without review does not enforce ongoing certification.",
+    "docs": [
+      {
+        "label": "Microsoft Entra access reviews",
+        "url": "https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q108",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Administrators must sign in to the Microsoft Entra admin center using only phishing-resistant authentication methods (FIDO2, certificate-based authentication, or Windows Hello for Business), and no password-based MFA methods may be accepted. What should you configure?",
+    "options": [
+      "Enable per-user MFA for all administrator accounts.",
+      "Create a Conditional Access policy with the grant control 'require MFA' targeting administrators.",
+      "Configure Microsoft Entra Password Protection.",
+      "Create a custom authentication strength for phishing-resistant MFA and require it in a Conditional Access policy targeting administrator roles."
+    ],
+    "answer": 3,
+    "explanation": "A custom authentication strength defines exactly which methods are acceptable (phishing-resistant ones only), and a Conditional Access policy requires that strength for administrator roles. A generic 'require MFA' grant would accept weaker password-based methods, per-user MFA does not restrict method type, and Password Protection only blocks weak passwords.",
+    "docs": [
+      {
+        "label": "Conditional Access authentication strength",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-strengths"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q109",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must ensure an Azure SQL Database is reachable only from one virtual network, is never exposed on the public internet, and that an App Service can query it without credentials stored in code, while all access is audited. What should you configure?",
+    "options": [
+      "A service endpoint and a SQL login whose connection string is stored in application settings.",
+      "A private endpoint, a managed identity for the App Service, and SQL Database auditing.",
+      "A public firewall rule for the App Service outbound IP and a shared account key.",
+      "A network security group on the database subnet allowlisting the App Service IP."
+    ],
+    "answer": 1,
+    "explanation": "A private endpoint gives the database a private IP reachable only from the VNet, a managed identity provides passwordless authentication without stored credentials, and auditing records access for compliance. Service endpoints still traverse the Microsoft backbone to the public endpoint, public firewall rules leave the database publicly reachable, and NSGs cannot isolate an Azure SQL logical server from the internet.",
+    "docs": [
+      {
+        "label": "Azure Private Link for Azure SQL Database",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q110",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An application VM must upload blobs to a storage account. The storage account must not be reachable over the public internet, access must use Microsoft Entra identity rather than shared keys, and you must detect anomalous access such as connections from unexpected locations. What should you configure?",
+    "options": [
+      "A private endpoint, disable public network access, disable shared key access, grant the VM's managed identity Storage Blob Data Contributor, and enable Defender for Storage.",
+      "A service endpoint, keep shared key access enabled, and add a firewall rule for the VM's public IP.",
+      "A SAS token with the VM's public IP allowlisted in the storage firewall.",
+      "Public access enabled with a storage account key rotated monthly."
+    ],
+    "answer": 0,
+    "explanation": "A private endpoint plus disabled public access removes internet exposure, disabling shared key access enforces Entra ID authorization, the managed identity grants least-privilege data-plane access, and Defender for Storage detects anomalies and malware. Service endpoints and SAS/shared-key approaches still involve credentials or the public endpoint.",
+    "docs": [
+      {
+        "label": "Configure Azure Storage firewalls and virtual networks",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q111",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must centralize and log all traffic between subnets in a hub-and-spoke topology and enforce application-layer (L7) filtering based on fully qualified domain names, while minimizing the number of rules managed on individual subnets. What should you deploy?",
+    "options": [
+      "Network security groups on every subnet using service tags.",
+      "Application security groups applied to each network interface.",
+      "Service endpoints on each subnet.",
+      "Azure Firewall in the hub with user-defined routes forcing spoke traffic through it."
+    ],
+    "answer": 3,
+    "explanation": "Azure Firewall provides centralized L7 FQDN filtering, east-west traffic inspection, and logging. NSGs are L3/L4 and would require many distributed rules; application security groups only group resources for NSG rules and add no L7 filtering; service endpoints expose PaaS services to subnets but do not filter traffic.",
+    "docs": [
+      {
+        "label": "Azure Firewall overview",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q112",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must restrict a Key Vault so its secrets are accessible only to resources inside one virtual network and to specific trusted Azure services (an App Service with a system-assigned identity), while blocking all other public access. Which combination meets these requirements with least privilege?",
+    "options": [
+      "Enable the Key Vault firewall to allow all networks and rely on RBAC.",
+      "Configure a service endpoint and add the App Service outbound IP to the firewall allowlist.",
+      "Configure a private endpoint and enable 'Allow trusted Microsoft services to bypass this firewall', with RBAC granting the App Service identity secret access.",
+      "Disable the firewall entirely and rely on access policies."
+    ],
+    "answer": 2,
+    "explanation": "A private endpoint removes public exposure, the trusted-services bypass permits the App Service with a managed identity to reach the vault, and RBAC grants the identity least-privilege data-plane access. Allowing all networks or disabling the firewall leaves the vault publicly reachable, and a service endpoint plus IP allowlist still relies on the public endpoint and does not cover trusted-service exceptions cleanly.",
+    "docs": [
+      {
+        "label": "Azure Key Vault virtual network service endpoints",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview-vnet-service-endpoints"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q113",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must be alerted in near real time when a potentially malicious file is uploaded to an Azure Blob container, and when unusual access patterns occur, with remediation guidance included. What should you enable?",
+    "options": [
+      "Defender for Storage with malware scanning and activity monitoring.",
+      "An Azure Policy definition that denies public blob access.",
+      "A storage firewall rule with monthly shared key rotation.",
+      "Microsoft Sentinel with a Syslog connector."
+    ],
+    "answer": 0,
+    "explanation": "Defender for Storage provides malware scanning of uploaded blobs and detects anomalous data access patterns with alerts and remediation guidance. Azure Policy and firewall rules enforce posture but do not detect malware or anomalies, and a Syslog connector does not ingest blob telemetry.",
+    "docs": [
+      {
+        "label": "Microsoft Defender for Storage",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q114",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An Azure SQL Database holds sensitive data. You must continuously detect SQL injection attempts, identify misconfigurations and excessive permissions, and receive alerts without modifying application code. What should you enable?",
+    "options": [
+      "SQL Database auditing to a Log Analytics workspace only.",
+      "Microsoft Defender for SQL with vulnerability assessment and advanced threat protection.",
+      "A network security group rule blocking port 1433.",
+      "Transparent Data Encryption only."
+    ],
+    "answer": 1,
+    "explanation": "Defender for SQL provides advanced threat protection (SQL injection and anomalous access alerts) plus vulnerability assessment that finds misconfigurations and excessive permissions, without code changes. Auditing only records events, an NSG rule just blocks a port, and TDE only encrypts data at rest.",
+    "docs": [
+      {
+        "label": "Microsoft Defender for SQL",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-sql-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q115",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An on-premises application must access an Azure Storage account privately over ExpressRoute, and the storage account must not be reachable from the internet. Service endpoints would still traverse the public endpoint, which is insufficient. What should you configure?",
+    "options": [
+      "A service endpoint on the virtual network and an on-premises route to it.",
+      "A public endpoint with the on-premises public IP in the storage firewall.",
+      "An Application Gateway in front of the storage account.",
+      "A private endpoint with a private DNS zone integrated into on-premises DNS."
+    ],
+    "answer": 3,
+    "explanation": "A private endpoint assigns the storage account a private IP that on-premises clients can reach over ExpressRoute, and the private DNS zone must be resolvable on-premises so the FQDN resolves to that private IP. Service endpoints only work from VNet subnets and do not provide private access from on-premises, and public endpoints or Application Gateway still expose the service to the internet path.",
+    "docs": [
+      {
+        "label": "Private endpoint DNS integration",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q116",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must eliminate the use of storage account access keys and SAS tokens for a team, requiring Microsoft Entra authorization for all data-plane access, while keeping existing applications that use managed identities working. What should you configure?",
+    "options": [
+      "Rotate the storage account keys every 30 days.",
+      "Enable 'Allow storage account key access' and generate new SAS tokens.",
+      "Disable 'Allow storage account key access' (disable shared key) on the storage account and ensure callers use Entra ID and RBAC.",
+      "Move all data into a Key Vault."
+    ],
+    "answer": 2,
+    "explanation": "Disabling shared key access on the storage account forces all data-plane requests to authenticate with Microsoft Entra ID (managed identities and RBAC), eliminating keys and SAS tokens. Key rotation and SAS tokens still use the shared key path, and Key Vault is for secrets, not for storing the blob data itself.",
+    "docs": [
+      {
+        "label": "Prevent shared key authorization for a storage account",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q117",
+    "domain": "Secure compute",
+    "prompt": "Administrative RDP access to a VM must be available only when an administrator requests it, for a limited time, and only from a specific IP address, without leaving a permanently open management port. What should you configure?",
+    "options": [
+      "Microsoft Defender for Cloud just-in-time (JIT) VM access with an IP-restricted, time-bound rule.",
+      "A permanent NSG rule allowing RDP from any IP.",
+      "A public IP address with a strong administrator password.",
+      "Azure Bastion with a public IP on the VM itself."
+    ],
+    "answer": 0,
+    "explanation": "Just-in-time VM access opens the management port only for an approved request, from a specified source IP, and for a limited time, then closes it. A permanent NSG rule leaves the port open, a public IP plus password is not least privilege, and Bastion does not use a public IP on the VM nor time-bound IP restrictions in the same way.",
+    "docs": [
+      {
+        "label": "Just-in-time VM access",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q118",
+    "domain": "Secure compute",
+    "prompt": "Administrators must manage VMs that have no public IP addresses, and you must avoid exposing RDP or SSH ports to the internet while still providing RDP/SSH from the Azure portal. What should you deploy?",
+    "options": [
+      "Assign public IP addresses to each VM and allow RDP.",
+      "Azure Bastion in the virtual network to provide browser-based RDP/SSH without public IPs on the VMs.",
+      "A site-to-site VPN only.",
+      "Just-in-time VM access on the public IPs."
+    ],
+    "answer": 1,
+    "explanation": "Azure Bastion provides RDP/SSH connectivity from the portal to VMs over a private IP through TLS, without the VMs having public IPs or exposed management ports. Public IPs expose the ports, a VPN alone does not provide portal-based management, and JIT still requires public IPs and open ports.",
+    "docs": [
+      {
+        "label": "Azure Bastion overview",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q119",
+    "domain": "Secure compute",
+    "prompt": "You must encrypt the OS and data disks of existing Windows and Linux VMs at rest with an additional guest-level encryption layer using BitLocker and DM-Crypt, on top of the already-enabled Azure Storage Service Encryption, without downtime or converting data to a new disk type. What should you enable?",
+    "options": [
+      "Rely on Storage Service Encryption with platform-managed keys only.",
+      "Enable infrastructure-level double encryption on new disks.",
+      "Migrate the disks to a Managed HSM.",
+      "Azure Disk Encryption using BitLocker/DM-Crypt with a key in Key Vault on the existing VMs."
+    ],
+    "answer": 3,
+    "explanation": "Azure Disk Encryption adds a guest-level encryption layer (BitLocker on Windows, DM-Crypt on Linux) using a key in Key Vault, and can be applied to existing VMs. Relying on SSE alone provides only the platform layer, infrastructure double encryption requires new disks, and Managed HSM is for key storage, not the encryption mechanism itself.",
+    "docs": [
+      {
+        "label": "Azure Disk Encryption overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q120",
+    "domain": "Secure compute",
+    "prompt": "You need continuous endpoint detection and response (EDR), vulnerability assessment for servers, and file integrity monitoring across both Azure VMs and on-premises servers connected via Azure Arc, with minimal licensing complexity. Which Defender for Cloud plan should you enable?",
+    "options": [
+      "Defender for Cloud foundational CSPM only.",
+      "Defender for Containers.",
+      "Defender for Servers Plan 2.",
+      "Azure Disk Encryption."
+    ],
+    "answer": 2,
+    "explanation": "Defender for Servers Plan 2 includes Microsoft Defender for Endpoint integration (EDR), Qualys vulnerability assessment, and file integrity monitoring, and covers both Azure VMs and Arc-enabled on-premises servers. Foundational CSPM has no EDR, Defender for Containers is for Kubernetes, and Azure Disk Encryption is unrelated to EDR.",
+    "docs": [
+      {
+        "label": "Microsoft Defender for Servers",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-servers-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q121",
+    "domain": "Secure compute",
+    "prompt": "To protect VMs against boot kits, rootkits, and firmware attacks, and to enable guest attestation, you must deploy VMs with Secure Boot and a virtual TPM. What should you configure when creating the VMs?",
+    "options": [
+      "Enable Azure Disk Encryption.",
+      "Configure the VMs with trusted launch (Secure Boot and vTPM).",
+      "Enable accelerated networking.",
+      "Use a confidential computing VM with encryption only."
+    ],
+    "answer": 1,
+    "explanation": "Trusted launch provides Secure Boot and a virtual TPM, protecting the boot chain and enabling guest attestation. Azure Disk Encryption protects data at rest, accelerated networking improves performance, and confidential computing protects data in use but is not required for Secure Boot/vTPM.",
+    "docs": [
+      {
+        "label": "Trusted launch for Azure VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q122",
+    "domain": "Secure compute",
+    "prompt": "You must scan container images for vulnerabilities in the registry, detect runtime threats in Azure Kubernetes Service (AKS), and enforce Kubernetes admission control and least-privilege role-based access. Which capability should you enable?",
+    "options": [
+      "Microsoft Defender for Containers, with Azure Policy for Kubernetes admission control and least-privilege RBAC enforcement.",
+      "Azure Bastion for cluster access.",
+      "A public load balancer with a network security group.",
+      "Just-in-time VM access on AKS nodes."
+    ],
+    "answer": 0,
+    "explanation": "Defender for Containers scans images in registries and detects runtime threats in AKS, while Azure Policy for Kubernetes enforces admission control and least-privilege RBAC. Bastion, load balancers, and JIT VM access address network access, not container image scanning, runtime threat detection, or Kubernetes policy.",
+    "docs": [
+      {
+        "label": "Microsoft Defender for Containers",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q123",
+    "domain": "Secure compute",
+    "prompt": "You must encrypt VM OS and data disks with customer-managed keys (CMK) stored in a dedicated FIPS 140-2 Level 3 validated hardware security module, and grant the disk encryption set the least privilege to unwrap the key. What should you use?",
+    "options": [
+      "Platform-managed keys with Storage Service Encryption.",
+      "Azure Disk Encryption with BitLocker and a key in a standard Key Vault.",
+      "A shared SAS token to the key.",
+      "Azure Managed HSM for the CMK and a disk encryption set whose managed identity holds the Managed HSM Crypto Service Encryption User role."
+    ],
+    "answer": 3,
+    "explanation": "Azure Managed HSM provides FIPS 140-2 Level 3 validated key storage, and a disk encryption set references the key while its managed identity needs only the Crypto Service Encryption User role to unwrap it. Platform-managed keys are not customer-managed, ADE uses BitLocker/DM-Crypt rather than the CMK-based Disk Encryption Set flow, and SAS tokens are not an encryption key mechanism.",
+    "docs": [
+      {
+        "label": "Server-side encryption of Azure Disk Storage",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q124",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must centralize security logs from Azure, on-premises, and Microsoft 365; generate an alert whenever a user is added to the Global Administrator role; and automatically disable that user in response. What should you configure?",
+    "options": [
+      "Microsoft Defender for Cloud only, with no additional connector.",
+      "A standalone Log Analytics workspace without Sentinel.",
+      "Deploy Microsoft Sentinel, connect the Microsoft Entra ID data connector, create an analytics rule for role changes, and attach an automation rule or playbook to disable the user.",
+      "Azure Monitor with an alert rule that sends an email notification only."
+    ],
+    "answer": 2,
+    "explanation": "Microsoft Sentinel ingests the Entra ID audit logs through the data connector, an analytics rule detects the role-change event, and an automation rule or playbook performs the automated response. Defender for Cloud, Log Analytics alone, and Azure Monitor email alerts do not provide the SIEM correlation and SOAR automation required.",
+    "docs": [
+      {
+        "label": "Microsoft Sentinel overview",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q125",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need to ingest Microsoft 365 Defender incidents and Microsoft Entra ID sign-in logs into Microsoft Sentinel with minimal configuration and full correlation. Which connectors should you enable?",
+    "options": [
+      "The Microsoft 365 Defender connector and the Microsoft Entra ID connector.",
+      "The Azure Activity connector only.",
+      "The Common Event Format (CEF) connector via a Linux forwarder for Microsoft 365 logs.",
+      "The Syslog connector only."
+    ],
+    "answer": 0,
+    "explanation": "The Microsoft 365 Defender connector brings in cross-product incidents and alerts, and the Microsoft Entra ID connector ingests sign-in and audit logs. Azure Activity, CEF, and Syslog connectors do not provide Microsoft 365 Defender or Entra ID sign-in data.",
+    "docs": [
+      {
+        "label": "Connect Microsoft 365 Defender to Microsoft Sentinel",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/connect-microsoft-365-defender"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q126",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must automatically enrich a Microsoft Sentinel incident with user and host information and post a message to a Microsoft Teams channel when a high-severity incident is created, while minimizing cost and avoiding premium connectors. What should you use?",
+    "options": [
+      "A logic app that uses a premium connector.",
+      "A Sentinel automation rule that triggers a Logic Apps playbook using standard connectors, scoped to high-severity incidents.",
+      "A scheduled KQL query that sends email directly.",
+      "A data connector that forwards incidents to Teams."
+    ],
+    "answer": 1,
+    "explanation": "An automation rule can trigger a playbook automatically when a high-severity incident is created, and a Logic Apps playbook with standard (non-premium) connectors keeps cost low. Premium connectors increase cost, KQL queries cannot send messages, and data connectors ingest data rather than respond to incidents.",
+    "docs": [
+      {
+        "label": "Automate threat response in Microsoft Sentinel",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/automation/automation"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q127",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You need a KQL query that returns user accounts with more than 50 failed sign-in attempts in a single day from the SigninLogs table, sorted by the number of failures. Which query is correct?",
+    "options": [
+      "SigninLogs | where ResultType == \"0\" | count",
+      "SigninLogs | summarize by UserPrincipalName",
+      "SigninLogs | where ResultType != \"0\" | project UserPrincipalName",
+      "SigninLogs | where ResultType != \"0\" | summarize FailedCount = count() by UserPrincipalName | where FailedCount > 50 | sort by FailedCount desc"
+    ],
+    "answer": 3,
+    "explanation": "The correct query filters out successful sign-ins (ResultType != \"0\"), counts failures per user, keeps users with more than 50 failures, and sorts descending. The other options either count total rows, summarize without an aggregation, or project without counting or filtering by threshold.",
+    "docs": [
+      {
+        "label": "Kusto Query Language overview",
+        "url": "https://learn.microsoft.com/en-us/kusto/query/"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q128",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must continuously assess security posture across Azure and AWS, identify attack paths between resources, and report compliance against NIST and CIS benchmarks without installing agents. What should you enable?",
+    "options": [
+      "Azure Policy with built-in initiatives only.",
+      "Microsoft Sentinel with Syslog connectors.",
+      "The Microsoft Defender for Cloud CSPM plan with agentless scanning.",
+      "Microsoft Entra ID Protection user risk policies."
+    ],
+    "answer": 2,
+    "explanation": "The Defender for Cloud CSPM plan provides agentless multicloud posture assessment, attack path analysis, and regulatory compliance reporting (NIST, CIS). Azure Policy is Azure-only and lacks attack paths, Sentinel Syslog connectors ingest logs rather than assess posture, and Entra ID Protection handles identity risk only.",
+    "docs": [
+      {
+        "label": "Cloud security posture management",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q129",
+    "domain": "Manage and monitor security posture",
+    "prompt": "Security analysts must be able to summarize an incident, ask natural-language questions about it, and generate a remediation script, while keeping data within the tenant and controlling access through role-based authorization. Which solution should you integrate with Microsoft Sentinel?",
+    "options": [
+      "Microsoft Security Copilot embedded in the Sentinel portal, with role permissions scoping data access.",
+      "A public large language model API integrated through a custom connector.",
+      "Azure OpenAI accessed over a public endpoint.",
+      "A third-party SOAR tool."
+    ],
+    "answer": 0,
+    "explanation": "Microsoft Security Copilot is embedded in the Sentinel experience, keeps data within the tenant, and respects the user's RBAC permissions when answering and generating scripts. Public LLM APIs or public Azure OpenAI endpoints can exfiltrate tenant data, and a generic SOAR tool does not provide natural-language investigation.",
+    "docs": [
+      {
+        "label": "Microsoft Security Copilot",
+        "url": "https://learn.microsoft.com/en-us/copilot/security/microsoft-security-copilot"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q130",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must discover, classify, and protect sensitive data across Microsoft 365, Azure, and a third-party cloud (AWS S3), assess data security posture, and identify oversharing, all without deploying agents. Which solution should you use?",
+    "options": [
+      "Microsoft Defender for Cloud CSPM only.",
+      "Microsoft Purview with Data Security Posture Management (DSPM) for multicloud data.",
+      "Azure Key Vault for data classification.",
+      "Microsoft Sentinel data connectors only."
+    ],
+    "answer": 1,
+    "explanation": "Microsoft Purview DSPM discovers and classifies sensitive data across Microsoft 365, Azure, and third-party clouds, reports data security posture, and surfaces oversharing without agents. Defender CSPM focuses on infrastructure posture, Key Vault stores secrets rather than classifying data, and Sentinel connectors ingest logs rather than assess data posture.",
+    "docs": [
+      {
+        "label": "Microsoft Purview Data Security Posture Management",
+        "url": "https://learn.microsoft.com/en-us/purview/concept-data-security-posture-management"
+      }
+    ]
+  }
+]

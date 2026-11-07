@@ -1,0 +1,482 @@
+[
+  {
+    "id": "ai-200-q101",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You maintain several container images derived from a shared base image stored in Azure Container Registry (ACR). Whenever a new, patched version of the base image is published, every dependent image must be rebuilt and repushed automatically, without any manual step or an external CI server. What should you configure?",
+    "options": [
+      "A scheduled ACR Task that rebuilds every image hourly",
+      "An ACR Task with a base image update trigger on each dependent image",
+      "An ACR webhook that posts to an external Jenkins server",
+      "A container app that polls the registry and runs az acr import"
+    ],
+    "answer": 1,
+    "explanation": "A base image update trigger automatically rebuilds a dependent image whenever its base image is updated, requiring no manual step or external CI server. A scheduled task rebuilds on a timer rather than in response to the update, a webhook plus Jenkins reintroduces external infrastructure, and polling with az acr import does not build images from source.",
+    "docs": [
+      { "label": "ACR Tasks overview", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview/" }
+    ]
+  },
+  {
+    "id": "ai-200-q102",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building an AI inference microservice. It must scale to zero when there is no work, scale out automatically based on the length of an Azure Service Bus queue and a custom metric, and you must minimize infrastructure management overhead. Which compute option should you use?",
+    "options": [
+      "Azure Container Apps with KEDA-based scale rules",
+      "Azure Kubernetes Service with the cluster autoscaler",
+      "Azure Container Instances with a manual restart policy",
+      "Azure Kubernetes Service with the Horizontal Pod Autoscaler on CPU only"
+    ],
+    "answer": 0,
+    "explanation": "Azure Container Apps provides managed KEDA event-driven scaling that can scale to zero and react to queue length and custom metrics with minimal operational overhead. The cluster autoscaler scales nodes, not pods, and cannot react to queue depth. Azure Container Instances has no autoscaling. An HPA targeting CPU alone cannot scale to zero or scale on queue length.",
+    "docs": [
+      { "label": "Scale Azure Container Apps (KEDA)", "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app" }
+    ]
+  },
+  {
+    "id": "ai-200-q103",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You deploy a containerized app to Azure Container Apps. The image is stored in a private Azure Container Registry (ACR). You must follow least privilege and avoid embedding or storing any registry credential in the deployment or in Key Vault. What should you do?",
+    "options": [
+      "Enable the registry admin user and place the generated password in an app secret",
+      "Store a service principal secret in Key Vault and reference it from the container",
+      "Enable a managed identity on the Container App and grant it the AcrPull role on the registry",
+      "Set the image pull secret in the container environment variables"
+    ],
+    "answer": 2,
+    "explanation": "A managed identity on the Container App, granted the AcrPull role, authenticates to ACR with Azure AD and no stored credentials, satisfying least privilege. The registry admin user is a broad credential, a service principal secret still stores a credential in Key Vault, and environment variables expose the secret in the container.",
+    "docs": [
+      { "label": "Use a managed identity with Azure Container Registry", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication-managed-identity" }
+    ]
+  },
+  {
+    "id": "ai-200-q104",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You run a stateful event-processing workload on Azure Kubernetes Service. Pod replicas must scale based on the number of messages in an Azure Service Bus queue, including scaling down to zero when the queue is empty. What should you configure?",
+    "options": [
+      "Install KEDA and create a ScaledObject with a Service Bus scaler",
+      "Enable the AKS cluster autoscaler with a minimum node count of zero",
+      "Configure a Horizontal Pod Autoscaler targeting average CPU utilization",
+      "Set the deployment replica count to a fixed high value"
+    ],
+    "answer": 0,
+    "explanation": "A KEDA ScaledObject with a Service Bus scaler scales pods based on queue depth and supports scaling to zero. The cluster autoscaler scales nodes, not pods, and does not react to queue depth. An HPA on CPU cannot scale to zero or scale on queue length. A fixed replica count defeats autoscaling.",
+    "docs": [
+      { "label": "KEDA scalers (Azure Service Bus)", "url": "https://keda.sh/docs/latest/scalers/azure-service-bus/" }
+    ]
+  },
+  {
+    "id": "ai-200-q105",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You deploy an updated version of a Container App. You must gradually shift 10% of traffic to the new revision while keeping the remaining 90% on the current stable revision, and you must be able to instantly roll back to 100% on the old revision. What should you use?",
+    "options": [
+      "Two separate Container Apps placed behind Azure Front Door",
+      "An AKS canary release using an Istio service mesh",
+      "An App Service deployment slot for a container",
+      "Container Apps revisions with weighted traffic splitting"
+    ],
+    "answer": 3,
+    "explanation": "Container Apps natively supports revision management with weighted traffic splitting, enabling gradual rollouts and instant rollback. Two apps behind Front Door add unnecessary infrastructure. Istio introduces operational overhead beyond what Container Apps provides. App Service slots support swap-based staging, not weighted canary routing.",
+    "docs": [
+      { "label": "Manage revisions in Azure Container Apps", "url": "https://learn.microsoft.com/en-us/azure/container-apps/revisions" }
+    ]
+  },
+  {
+    "id": "ai-200-q106",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need ACR Tasks to build a container image, run unit tests inside a separate container, and push the image to the registry only if the tests succeed. Which approach should you use?",
+    "options": [
+      "Run az acr build and rely on RUN instructions in the Dockerfile to execute the tests",
+      "Use az acr import to pull a pre-built, pre-tested image",
+      "Configure a scheduled task and manually verify test output before pushing",
+      "Define a multi-step ACR task (a task file) with build, test, and push steps"
+    ],
+    "answer": 3,
+    "explanation": "A multi-step ACR task runs build, test, and push as sequential steps and only pushes after the test step succeeds. az acr build builds a single image from a Dockerfile, and tests via RUN would bake test tooling into the image and still push regardless of outcome. az acr import does not build, and a scheduled task with manual verification is not an automatic conditional push.",
+    "docs": [
+      { "label": "ACR Tasks multi-step tasks", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-multi-step" }
+    ]
+  },
+  {
+    "id": "ai-200-q107",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are building several microservices on Azure Container Apps. They need resilient service-to-service invocation, publish/subscribe messaging, and state management, all without embedding provider-specific client SDKs in each service. What should you enable?",
+    "options": [
+      "Deploy the services to AKS and install Istio for traffic management",
+      "Call the Azure Service Bus SDK directly from every service",
+      "Enable Dapr on the Container Apps environment and use its building-block APIs",
+      "Use Azure Functions with HTTP triggers for every service"
+    ],
+    "answer": 2,
+    "explanation": "Dapr integrates with Container Apps and provides portable building blocks (service invocation, pub/sub, state management) through a sidecar, so services do not embed provider-specific SDKs. Istio is a service mesh for traffic management, not a state or pub/sub abstraction. Direct SDK calls embed provider specifics, and HTTP-triggered Functions do not provide those abstractions by default.",
+    "docs": [
+      { "label": "Dapr integration with Azure Container Apps", "url": "https://learn.microsoft.com/en-us/azure/container-apps/dapr-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q108",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "Your AKS clusters in three Azure regions each pull the same images from a single Azure Container Registry. You must minimize image pull latency in each region and survive a regional outage of the registry. What should you do?",
+    "options": [
+      "Deploy a separate registry in each region and manually push images to all three",
+      "Enable geo-replication on the registry for all three regions (a Premium feature)",
+      "Place Azure Front Door in front of the registry endpoint",
+      "Upgrade the registry to Premium SKU but keep a single region"
+    ],
+    "answer": 1,
+    "explanation": "Geo-replication replicates the registry to regional endpoints, reducing pull latency and providing resilience against a regional outage. Separate registries with manual pushes add operational overhead and consistency risk. Azure Front Door is not used to front ACR, and a Premium SKU without geo-replication still has only one regional endpoint.",
+    "docs": [
+      { "label": "Geo-replication in Azure Container Registry", "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication" }
+    ]
+  },
+  {
+    "id": "ai-200-q109",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "An AI application queries Azure Cosmos DB for NoSQL. One query filters on a property that is not the partition key, and that property is excluded from indexing. The query consumes high Request Units and is slow. You must reduce cost and latency without changing the partition key or increasing throughput. What should you do?",
+    "options": [
+      "Set the account consistency level to Strong",
+      "Add the filtered property to the indexing policy with an appropriate index type",
+      "Increase the provisioned throughput for the container",
+      "Change the partition key to the filtered property"
+    ],
+    "answer": 1,
+    "explanation": "Adding the filtered property to the indexing policy lets the query use an index instead of a full scan, reducing RUs and latency. Strong consistency increases cost and does not fix an unindexed scan. Increasing throughput raises cost without fixing the scan, and changing the partition key requires recreating the container and migrating data.",
+    "docs": [
+      { "label": "Indexing policy in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/index-policy" }
+    ]
+  },
+  {
+    "id": "ai-200-q110",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A globally distributed recommendation service writes user activity to Cosmos DB and immediately reads it back to serve the same user. It can tolerate reading stale data from other regions, but it must never read a value older than its own most recent write. You want the lowest cost and latency that still meets this guarantee. Which consistency level should you use?",
+    "options": [
+      "Strong",
+      "Bounded staleness",
+      "Session",
+      "Eventual"
+    ],
+    "answer": 2,
+    "explanation": "Session consistency guarantees read-your-own-writes within a session at the same low cost and latency tier as consistent prefix, while tolerating cross-region staleness. Strong is the highest cost and latency. Bounded staleness monitors a staleness window, adding RU cost. Eventual does not guarantee reading your own writes.",
+    "docs": [
+      { "label": "Consistency levels in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels" }
+    ]
+  },
+  {
+    "id": "ai-200-q111",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "An AI app must retrieve contextually similar documents with sub-100 ms latency, support filtering by metadata (such as tenant and region) before similarity ranking, and enforce tenant isolation. You must minimize operational overhead. Which data design meets the requirements?",
+    "options": [
+      "Azure Cosmos DB for NoSQL with vector search, metadata filters, and a tenant-based partition key",
+      "Azure Database for PostgreSQL with pgvector and manual sharding across regions",
+      "Azure Blob Storage with full-text search over the document text",
+      "Azure Managed Redis with lists used for round-robin retrieval"
+    ],
+    "answer": 0,
+    "explanation": "Cosmos DB for NoSQL vector search supports sub-100 ms similarity ranking combined with metadata pre-filters and a partition key for tenant isolation, all managed. pgvector with manual sharding adds significant operational complexity. Blob full-text search is keyword-based, not vector similarity. Redis lists are not a vector store.",
+    "docs": [
+      { "label": "Vector search in Azure Cosmos DB for NoSQL", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search" }
+    ]
+  },
+  {
+    "id": "ai-200-q112",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You have an existing relational workload with complex SQL joins, foreign keys, and ACID transactions. You now need to add vector similarity search over embeddings that are co-located with relational metadata, all in a single database with minimal operational change. Which option should you choose?",
+    "options": [
+      "Migrate all data to Azure Cosmos DB for NoSQL and use its vector search",
+      "Store embeddings in Azure AI Search and metadata in Cosmos DB",
+      "Use Azure Managed Redis as the sole system of record for vectors and relational rows",
+      "Add the pgvector extension to your Azure Database for PostgreSQL Flexible Server"
+    ],
+    "answer": 3,
+    "explanation": "pgvector adds vector columns and similarity operators to an existing PostgreSQL database, preserving joins, foreign keys, and transactions in one place with minimal change. Migrating to Cosmos loses the relational model, splitting across AI Search and Cosmos adds synchronization complexity, and Redis is not a relational system of record.",
+    "docs": [
+      { "label": "Use pgvector with Azure Database for PostgreSQL Flexible Server", "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector" }
+    ]
+  },
+  {
+    "id": "ai-200-q113",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You must process every new and updated item in a Cosmos DB container in near real time, distribute the work across multiple consumer instances, and resume automatically after a failure without reprocessing already-handled items. What should you use?",
+    "options": [
+      "The change feed processor with a lease container",
+      "A timer-triggered Azure Function that queries the full container on a schedule",
+      "An Azure Service Bus queue populated by a manual export job",
+      "An Event Grid system topic that fires only on new-item creation"
+    ],
+    "answer": 0,
+    "explanation": "The change feed processor provides ordered, distributed, checkpointed consumption of both inserts and updates, resuming without reprocessing. A timer query is not real time and can miss or duplicate changes. A manual export misses updates, and the Event Grid Cosmos DB system topic only emits a limited set of events rather than the full change feed.",
+    "docs": [
+      { "label": "Change feed processor in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/change-feed-processor" }
+    ]
+  },
+  {
+    "id": "ai-200-q114",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "An AI chat application calls a large language model for each user query, incurring token costs. You want to reuse cached responses when a new query is semantically similar to a previously answered query. Which capability should you use?",
+    "options": [
+      "Azure Cosmos DB change feed to store cached replies",
+      "Azure Event Hubs to buffer incoming queries",
+      "Azure App Configuration to store key-value prompt/response pairs",
+      "Azure Managed Redis with vector search to perform a semantic similarity lookup"
+    ],
+    "answer": 3,
+    "explanation": "Azure Managed Redis vector search performs in-memory semantic similarity lookups with low latency, making it ideal for a semantic response cache. The change feed is for change processing, not similarity search. Event Hubs is a streaming service, not a cache. App Configuration is for settings and feature flags, not semantic caching.",
+    "docs": [
+      { "label": "Vector search in Azure Managed Redis", "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/managed-redis/managed-redis-vector-search" }
+    ]
+  },
+  {
+    "id": "ai-200-q115",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "An AI data-ingestion pipeline writes to Cosmos DB in large daily bursts at 9:00 AM and midnight, with very little traffic at other times. You must avoid throttling during the bursts while minimizing cost during idle periods. Which throughput option should you choose?",
+    "options": [
+      "Serverless throughput",
+      "A fixed provisioned throughput equal to the peak requirement",
+      "Autoscale throughput with a maximum set to the peak requirement",
+      "A fixed provisioned throughput equal to the average requirement"
+    ],
+    "answer": 2,
+    "explanation": "Autoscale throughput automatically scales between 10% and the configured maximum, absorbing bursts and dropping to 10% when idle to minimize cost. Serverless is intended for sporadic low-throughput workloads and can throttle under large sustained bursts. Fixed peak throughput wastes money during idle, and fixed average throughput throttles during bursts.",
+    "docs": [
+      { "label": "Autoscale throughput in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/provisioned-throughput" }
+    ]
+  },
+  {
+    "id": "ai-200-q116",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You design a multi-tenant Cosmos DB for NoSQL container. Queries always filter by tenant ID, and data volume varies widely between tenants. You need even request distribution, efficient queries, and no hot partitions. What should you choose as the partition key?",
+    "options": [
+      "A monotonically increasing timestamp field",
+      "The tenant ID",
+      "The document ID (a random GUID)",
+      "The vector embedding array"
+    ],
+    "answer": 1,
+    "explanation": "Using the tenant ID as the partition key aligns with the query filter (enabling single-partition reads) and provides tenant isolation and even distribution. A monotonically increasing timestamp concentrates writes on one hot partition. A random GUID scatters every query across all partitions, and an embedding array is a poor partition key.",
+    "docs": [
+      { "label": "Partitioning and horizontal scaling in Azure Cosmos DB", "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q117",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need to ingest telemetry from millions of IoT devices at very high throughput (millions of events per second) for near-real-time analytics. Consumers must read each event at least once, and independent consumers must be able to read the stream with ordered per-partition processing. Which service should you use?",
+    "options": [
+      "Azure Event Hubs",
+      "Azure Event Grid",
+      "Azure Service Bus topics and subscriptions",
+      "Azure Service Bus queues"
+    ],
+    "answer": 0,
+    "explanation": "Event Hubs is built for high-throughput streaming ingestion with consumer groups and per-partition ordering. Event Grid is for discrete event routing, not high-volume streaming. Service Bus is a messaging service with richer semantics but far lower throughput limits.",
+    "docs": [
+      { "label": "Azure Event Hubs overview", "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about" }
+    ]
+  },
+  {
+    "id": "ai-200-q118",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A serverless workflow must react to Azure resource events (for example, a new blob being uploaded) and push each event to multiple independent subscribers, with built-in retry and dead-lettering. The publishers must not manage subscriber endpoints. Which service should you use?",
+    "options": [
+      "Azure Event Hubs with multiple consumer groups",
+      "Azure Service Bus topic with a shared subscription",
+      "Azure Event Grid with a system topic and multiple event subscriptions",
+      "Azure Service Bus queue with a single receiver"
+    ],
+    "answer": 2,
+    "explanation": "Event Grid natively emits Azure resource lifecycle events and fans them out via push to multiple event subscriptions with retry and dead-lettering, so publishers never manage subscribers. Event Hubs is a pull-based streaming service and does not emit resource lifecycle events. Service Bus requires you to publish messages yourself, and a shared subscription means competing consumers rather than a copy for each.",
+    "docs": [
+      { "label": "Azure Event Grid overview", "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q119",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A payment-processing application consumes messages from an Azure Service Bus queue. Some messages repeatedly fail processing and, after many attempts, block the queue. You must isolate these poison messages automatically so healthy messages continue to flow. What should you configure?",
+    "options": [
+      "Disable message retries on the client",
+      "Enable dead-lettering on the maximum delivery count for the queue",
+      "Create a second subscription on the queue",
+      "Enable duplicate detection"
+    ],
+    "answer": 1,
+    "explanation": "Enabling dead-lettering on the maximum delivery count automatically moves poison messages to the dead-letter queue after the retry limit, keeping the main queue flowing. Disabling retries abandons messages. Queues do not support subscriptions. Duplicate detection addresses duplicate sends, not poison messages.",
+    "docs": [
+      { "label": "Service Bus dead-letter queues", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues" }
+    ]
+  },
+  {
+    "id": "ai-200-q120",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need an Azure Function that reads each message from an Azure Service Bus queue and writes a transformed document to Cosmos DB, without writing connection or SDK code manually. What should you use?",
+    "options": [
+      "An Event Grid trigger with manual SDK calls to Cosmos DB",
+      "An HTTP trigger that a client calls with the message",
+      "A Durable Functions orchestrator that polls a SQL table",
+      "A Service Bus trigger with a Cosmos DB output binding"
+    ],
+    "answer": 3,
+    "explanation": "A Service Bus trigger consumes queue messages, and a Cosmos DB output binding writes documents declaratively via bindings, so no connection or SDK code is needed. An Event Grid trigger does not consume queue messages, manual SDK calls defeat the goal, an HTTP trigger does not consume the queue, and polling a SQL table is unrelated.",
+    "docs": [
+      { "label": "Azure Service Bus trigger for Azure Functions", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger" }
+    ]
+  },
+  {
+    "id": "ai-200-q121",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "Several independent downstream applications must each read the complete stream of events from the same Azure Event Hub and maintain their own independent progress and offsets. What should you use?",
+    "options": [
+      "A separate consumer group for each application, with per-consumer checkpointing",
+      "One shared consumer group that all applications join",
+      "A single partition with all applications attached",
+      "Azure Service Bus sessions to deduplicate the events"
+    ],
+    "answer": 0,
+    "explanation": "Each consumer group is an independent view of the stream with its own offsets, and checkpointing tracks progress so each application can read the full stream independently. A shared consumer group makes consumers compete and skip events. A single partition removes parallelism, and Service Bus sessions are unrelated to Event Hubs.",
+    "docs": [
+      { "label": "Event Hubs features (consumer groups)", "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features" }
+    ]
+  },
+  {
+    "id": "ai-200-q122",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "An order-processing system consumes messages from an Azure Service Bus queue. Messages for the same customer must be processed in first-in, first-out order, while messages for different customers can be processed in parallel. Which feature should you use?",
+    "options": [
+      "Partitioning",
+      "Duplicate detection",
+      "Sessions",
+      "Auto-forwarding"
+    ],
+    "answer": 2,
+    "explanation": "Sessions provide FIFO ordering within a session (per customer) while allowing parallelism across sessions. Partitioning does not guarantee cross-partition ordering. Duplicate detection removes duplicates rather than ordering. Auto-forwarding routes messages to another queue or topic.",
+    "docs": [
+      { "label": "Message sessions in Azure Service Bus", "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions" }
+    ]
+  },
+  {
+    "id": "ai-200-q123",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need to orchestrate a long-running workflow that calls several external services both sequentially and in parallel, waits for an external event, and survives process restarts without losing state. What should you use?",
+    "options": [
+      "Multiple timer-triggered Azure Functions with a polling loop",
+      "Durable Functions with an orchestrator and activity functions",
+      "An Azure Service Bus topic with a fan-out rule",
+      "An Azure Event Grid subscription that chains events"
+    ],
+    "answer": 1,
+    "explanation": "Durable Functions orchestrators manage durable state, sequencing, fan-out/fan-in, and waiting for external events, and they survive restarts via replay and checkpoints. Timer polling does not coordinate or persist workflow state. Service Bus and Event Grid fan out events but do not orchestrate or persist workflow state.",
+    "docs": [
+      { "label": "Durable Functions overview", "url": "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q124",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "An application retrieves a database password from Azure Key Vault. The secret must be rotated automatically, and the application must use the new value without redeployment or a manual restart. What should you do?",
+    "options": [
+      "Enable automatic rotation on the secret and have the app retrieve the secret on each use (or subscribe to rotation events)",
+      "Rotate the secret manually with a scheduled script and restart the app afterward",
+      "Read the secret once at startup and cache it for the process lifetime",
+      "Hard-code the new password into app settings each rotation"
+    ],
+    "answer": 0,
+    "explanation": "Automatic rotation updates the secret, but the application must fetch the current version on each use or respond to the rotation event; otherwise it keeps using a stale cached value. Manual rotation plus restart is not automatic, caching for the process lifetime retains the old value, and hard-coding defeats the purpose of Key Vault.",
+    "docs": [
+      { "label": "Key Vault secret rotation", "url": "https://learn.microsoft.com/en-us/azure/key-vault/secrets/tutorial-rotation" }
+    ]
+  },
+  {
+    "id": "ai-200-q125",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to centralize non-secret application settings and feature flags across environments, and allow settings to change at runtime without restarting. Sensitive connection strings must remain in Azure Key Vault. What should you use?",
+    "options": [
+      "Store all settings, including secrets, in Azure Key Vault only",
+      "Store settings as environment variables baked into each deployment",
+      "Store secrets and flags directly in Azure App Configuration",
+      "Azure App Configuration for settings and feature flags, with Key Vault references for secrets"
+    ],
+    "answer": 3,
+    "explanation": "App Configuration centralizes non-secret settings and feature flags with dynamic refresh, while Key Vault references keep sensitive values in Key Vault. Storing secrets in App Configuration is less secure, Key Vault does not manage feature flags, and environment variables baked into a deployment do not update dynamically.",
+    "docs": [
+      { "label": "Use Key Vault references in Azure App Configuration", "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core" }
+    ]
+  },
+  {
+    "id": "ai-200-q126",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A solution spans Azure Container Apps, Azure Functions, and a managed database. You need end-to-end distributed traces correlated across all components, with metrics and logs exported to Azure Monitor, without writing vendor-specific instrumentation. What should you use?",
+    "options": [
+      "Add custom console logging to each service and export them manually",
+      "Enable Azure VM Diagnostics on each compute resource",
+      "Instrument each component with the OpenTelemetry SDK and export to Azure Monitor",
+      "Run KQL queries directly against each service's local log file"
+    ],
+    "answer": 2,
+    "explanation": "OpenTelemetry provides vendor-neutral instrumentation for traces, metrics, and logs with a single correlated trace context that can be exported to Azure Monitor. Console logging lacks cross-service correlation. Azure VM Diagnostics targets virtual machines, not these PaaS/serverless resources. KQL is for querying collected data, not instrumenting applications.",
+    "docs": [
+      { "label": "OpenTelemetry in Azure Monitor", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview" }
+    ]
+  },
+  {
+    "id": "ai-200-q127",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to determine the 90th percentile request duration for an API over the last hour, grouped by operation name, ordered from slowest to fastest. Which KQL query should you use?",
+    "options": [
+      "requests | where timestamp > ago(1h) | summarize avg(duration) by name",
+      "requests | where timestamp > ago(1h) | summarize p90 = percentile(duration, 90) by name | sort by p90 desc",
+      "requests | where timestamp > ago(1h) | count by name",
+      "requests | where timestamp > ago(1h) | project name, duration | take 100"
+    ],
+    "answer": 1,
+    "explanation": "percentile(duration, 90) computes the 90th percentile, summarize ... by name groups by operation, and sort by p90 desc orders slowest first. avg computes a mean rather than a percentile, count tallies requests, and project/take only samples rows without aggregating.",
+    "docs": [
+      { "label": "Kusto Query Language (percentile and summarize)", "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/percentile-aggregation-function" }
+    ]
+  },
+  {
+    "id": "ai-200-q128",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "An Azure Function must read secrets from Key Vault and read/write data in Cosmos DB. You must avoid storing any credentials in code or configuration and follow least privilege. What should you use?",
+    "options": [
+      "Store the connection strings in the Function's application settings",
+      "Use a single service principal with a long-lived client secret shared by all functions",
+      "Generate SAS tokens and store them in Key Vault for the function to read",
+      "Assign a managed identity to the function and grant it RBAC roles on Key Vault and Cosmos DB"
+    ],
+    "answer": 3,
+    "explanation": "A managed identity authenticates with Azure AD using no stored credentials, and per-resource RBAC roles enforce least privilege. Application settings store credentials, a shared long-lived service principal is a broad static credential, and SAS tokens still require storing and rotating credentials.",
+    "docs": [
+      { "label": "Managed identities in Azure Functions", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-managed-identity" }
+    ]
+  },
+  {
+    "id": "ai-200-q129",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A Container App intermittently fails. You need to view container logs and CPU/memory metrics and query them over time to diagnose the issue. What should you configure?",
+    "options": [
+      "Use kubectl exec to shell into the running container during each failure",
+      "Configure Azure Monitor with a Log Analytics workspace and enable logs/metrics collection for the container",
+      "Add a print statement to the container and observe the console",
+      "Disable Application Insights sampling so every trace is collected"
+    ],
+    "answer": 1,
+    "explanation": "A Log Analytics workspace with Azure Monitor centralizes container logs and metrics so they can be queried over time. Shelling into the container is reactive and impractical for intermittent failures. Console printing is not persisted or queryable, and sampling affects trace volume rather than log and metric collection.",
+    "docs": [
+      { "label": "Monitor Azure Container Apps", "url": "https://learn.microsoft.com/en-us/azure/container-apps/monitor" }
+    ]
+  },
+  {
+    "id": "ai-200-q130",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A web API occasionally returns HTTP 500 responses due to an exception. You need to identify, for the failing requests, all the downstream dependency calls and exception records that occurred during those same requests. What should you do?",
+    "options": [
+      "Filter the traces table for messages containing 'error'",
+      "Restart the application and watch the live metrics stream",
+      "Query requests, dependencies, and exceptions joined on operation_Id for the failed requests",
+      "Sample all requests and count the exceptions"
+    ],
+    "answer": 2,
+    "explanation": "The operation_Id field correlates all telemetry (requests, dependencies, and exceptions) within a single operation, so joining on it surfaces everything that occurred during the failing requests. Filtering traces for 'error' misses the structured correlation, restarting does not diagnose root cause, and counting exceptions does not link them to requests.",
+    "docs": [
+      { "label": "Correlate data in Application Insights", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/correlation" }
+    ]
+  }
+]
