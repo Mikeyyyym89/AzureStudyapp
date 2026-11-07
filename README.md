@@ -47,25 +47,36 @@ You can preview the production build with any static server, e.g.:
 npx serve out
 ```
 
+## How your friends use it
+
+They don't install anything. Once the app is deployed (below), you share **one link + the access code**, and they open it in a browser. Their progress is saved in their own browser automatically. No Node, no npm, no accounts.
+
 ## Deploying (free, easy, no server)
 
-The app is a static export, so it runs on any static host. Pick one:
+The app builds to a plain static site (`out/`), so it runs on any static host. Pick one:
 
-### Vercel (recommended)
+### GitHub Pages (recommended — GitHub-native, zero config)
 
-1. Push this repo to GitHub.
-2. Go to [vercel.com](https://vercel.com) → **Add New → Project** → import the repo.
-3. Vercel auto-detects Next.js. Framework preset **Next.js**, leave the rest default.
-4. Deploy. Every `git push` redeploys automatically.
+This repo already includes a GitHub Actions workflow that builds and deploys the site for you.
+
+1. Push this repo to GitHub (on the `main` branch).
+2. In the repo: **Settings → Pages → Build and deployment → Source = "GitHub Actions"**.
+3. The workflow runs automatically and publishes to `https://<user>.github.io/<repo>/`.
+
+The sub-path (`/<repo>/`) is handled automatically via `BASE_PATH` — no config changes needed. Every push redeploys.
+
+### Vercel
+
+1. Push to GitHub → [vercel.com](https://vercel.com) → **Add New → Project** → import the repo.
+2. Vercel auto-detects Next.js. Framework preset **Next.js**, leave the rest default.
+3. Deploy. You get a clean URL at the root, and every `git push` redeploys automatically.
 
 ### Netlify
 
 1. Push to GitHub → [netlify.com](https://netlify.com) → **Add new site → Import**.
-2. Build command `npm run build`, publish directory `out`.
+2. The included `netlify.toml` already sets build command `npm run build` and publish directory `out` — no manual settings needed.
 
-### GitHub Pages
-
-The site is served at `https://<user>.github.io/<repo>/`, which is a sub-path, so set `basePath` in `next.config.ts` to your repo name (e.g. `basePath: "/azure-cert-prep"`) before building. GitHub Pages is fully public — the access code is your only gate.
+> Note: any static host (including GitHub Pages) is **public** at its URL. The access code is your gate — see below.
 
 ## The access code (invite-only gate)
 
