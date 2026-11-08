@@ -31,3 +31,5 @@ export const STORAGE_KEYS = {
   unlocked: "acp.unlocked",
   progress: "acp.progress",
 } as const;
+
+export const REPORT_REPO = "Mikeyyyym89/AzureStudyapp";
