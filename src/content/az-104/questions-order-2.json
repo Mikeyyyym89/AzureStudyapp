@@ -1,0 +1,178 @@
+[
+  {
+    "id": "az-104-q347",
+    "domain": "Deploy and manage Azure compute resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to deploy a web app with a validated staged release using App Service.",
+    "options": [],
+    "steps": [
+      "Create the App Service plan",
+      "Create the web app in the App Service plan",
+      "Create a staging deployment slot and deploy the new version",
+      "Swap the staging slot into production"
+    ],
+    "answer": 0,
+    "explanation": "The App Service plan defines the region, pricing tier, and scaling and is created first. The web app runs inside the plan, so it comes second. A staging slot is then created to validate the new version, and only after validation is the slot swapped into production to make it live.",
+    "hint": "Plan → Web app → Staging slot → Swap.",
+    "docs": [
+      {
+        "label": "App Service deployment slots",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q348",
+    "domain": "Deploy and manage Azure compute resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to create a new virtual machine from an Azure Marketplace image.",
+    "options": [],
+    "steps": [
+      "Select the Marketplace image and VM size",
+      "Configure administration, disk, and region settings",
+      "Configure networking, subnet, public IP, and NSG settings",
+      "Review and create the VM, then connect and verify it boots"
+    ],
+    "answer": 0,
+    "explanation": "The image and size are chosen first because they determine the OS and capacity. Administration and disk settings come second, networking third so the VM can be reached, and finally the VM is reviewed, created, and verified.",
+    "hint": "Image/size → Admin & disks → Networking → Review/Create.",
+    "docs": [
+      {
+        "label": "Quickstart: Create a Windows VM in the portal",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-portal"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q349",
+    "domain": "Deploy and manage Azure compute resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to configure autoscale on a virtual machine scale set.",
+    "options": [],
+    "steps": [
+      "Open the scale set's Scaling configuration",
+      "Set the minimum, maximum, and default instance counts",
+      "Create a scale-out rule on a metric such as CPU percentage with a threshold and time window",
+      "Create a scale-in rule and save, then verify scaling occurs"
+    ],
+    "answer": 0,
+    "explanation": "You open the scaling settings first, define the instance boundaries second, then add a scale-out rule that increases capacity on high load, and finally a scale-in rule that reduces capacity. Rules are evaluated against the configured minimum and maximum limits.",
+    "hint": "Scaling settings → Instance limits → Scale-out rule → Scale-in rule.",
+    "docs": [
+      {
+        "label": "Autoscale overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/autoscale/autoscale-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q350",
+    "domain": "Implement and manage virtual networking",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to set up Azure Firewall to inspect traffic in a hub virtual network.",
+    "options": [],
+    "steps": [
+      "Create a dedicated AzureFirewallSubnet in the hub virtual network",
+      "Deploy the Azure Firewall resource with a public IP address",
+      "Create firewall policy rules for network and application filtering",
+      "Configure route tables to force traffic through the firewall"
+    ],
+    "answer": 0,
+    "explanation": "The dedicated subnet must exist before the firewall can be deployed into it. The firewall is deployed with a public IP next, then rule collections are authored, and finally route tables direct traffic through the firewall for inspection.",
+    "hint": "AzureFirewallSubnet → Firewall + public IP → Policy rules → Route traffic.",
+    "docs": [
+      {
+        "label": "Azure Firewall overview",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q351",
+    "domain": "Implement and manage virtual networking",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to set up virtual network peering between two virtual networks.",
+    "options": [],
+    "steps": [
+      "Create the two virtual networks with non-overlapping address spaces",
+      "Create the peering from VNet1 to VNet2",
+      "Create the reciprocal peering from VNet2 to VNet1",
+      "Verify connectivity between resources in the two virtual networks"
+    ],
+    "answer": 0,
+    "explanation": "The two VNets must exist with non-overlapping address space first. A peering is then created from each direction because peering requires both sides to be configured. Once both peerings are established, connectivity is verified over the private backbone.",
+    "hint": "Non-overlapping VNets → Peer VNet1→VNet2 → Peer VNet2→VNet1 → Verify.",
+    "docs": [
+      {
+        "label": "Virtual network peering overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q352",
+    "domain": "Monitor and maintain Azure resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to configure backup for an Azure virtual machine.",
+    "options": [],
+    "steps": [
+      "Create a Recovery Services vault in the VM's region",
+      "Define a backup policy with frequency and retention settings",
+      "Enable backup and select the virtual machine to protect",
+      "Trigger the initial backup and verify a recovery point is created"
+    ],
+    "answer": 0,
+    "explanation": "A Recovery Services vault stores backups and must be created first. The backup policy defining schedule and retention is set next, then backup is enabled on the VM, and finally an initial backup is triggered and verified to confirm recovery points exist.",
+    "hint": "Recovery Services vault → Backup policy → Enable on VM → Verify recovery point.",
+    "docs": [
+      {
+        "label": "Back up Azure VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-arm-vms"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q353",
+    "domain": "Manage Azure identities and governance",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to join a Windows device to Microsoft Entra ID.",
+    "options": [],
+    "steps": [
+      "Open Settings, then Access work or school and select Connect",
+      "Choose to join the device to Microsoft Entra ID",
+      "Sign in with a Microsoft Entra ID account and complete MFA",
+      "Confirm the device is registered and enrolled in management (MDM)"
+    ],
+    "answer": 0,
+    "explanation": "The user starts the join from the device's work or school settings, selects the Entra ID join option, authenticates with MFA, and finally confirms the device appears in Entra ID and is enrolled in MDM for management.",
+    "hint": "Connect → Join to Entra ID → Sign in/MFA → Enroll MDM.",
+    "docs": [
+      {
+        "label": "Microsoft Entra joined devices",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/devices/concept-azure-ad-join"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q354",
+    "domain": "Implement and manage virtual networking",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to set up a point-to-site VPN connection to an Azure virtual network.",
+    "options": [],
+    "steps": [
+      "Create a virtual network with a GatewaySubnet",
+      "Create a route-based VPN gateway with a public IP address",
+      "Generate a root certificate and configure point-to-site settings such as tunnel type and address pool",
+      "Install the VPN client on the workstation and connect"
+    ],
+    "answer": 0,
+    "explanation": "The GatewaySubnet must be in place before the VPN gateway can be created. The gateway is deployed with a public IP next, then point-to-site authentication and address pool settings are configured, and finally the client is installed and connects to the gateway.",
+    "hint": "GatewaySubnet → VPN gateway + public IP → Root cert & P2S settings → Install client.",
+    "docs": [
+      {
+        "label": "Point-to-site VPN overview",
+        "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/point-to-site-about"
+      }
+    ]
+  }
+]

@@ -60,6 +60,13 @@ import az305Order from "@/content/az-305/questions-order.json";
 import sc500Topic from "@/content/sc-500/questions-topic.json";
 import sc500Order from "@/content/sc-500/questions-order.json";
 
+import az104Order2 from "@/content/az-104/questions-order-2.json";
+import az305Order2 from "@/content/az-305/questions-order-2.json";
+import sc500Order2 from "@/content/sc-500/questions-order-2.json";
+import ai103Order from "@/content/ai-103/questions-order.json";
+import ai200Order from "@/content/ai-200/questions-order.json";
+import ai500Order from "@/content/ai-500/questions-order.json";
+
 function tag(qs: Question[], difficulty: Difficulty): Question[] {
   return qs.map((q) => ({ ...q, difficulty }));
 }
@@ -73,6 +80,7 @@ export const courseContent: Record<string, CourseContent> = {
       ...tag(az104Official as Question[], "expert"),
       ...tag(az104Topic as Question[], "expert"),
       ...tag(az104Order as Question[], "expert"),
+      ...tag(az104Order2 as Question[], "expert"),
     ],
     caseStudies: [...az104Cases, ...az104Cases2] as CaseStudy[],
     docs: az104Docs as DocGroup[],
@@ -84,6 +92,7 @@ export const courseContent: Record<string, CourseContent> = {
       ...tag(az305Official as Question[], "expert"),
       ...tag(az305Topic as Question[], "expert"),
       ...tag(az305Order as Question[], "expert"),
+      ...tag(az305Order2 as Question[], "expert"),
     ],
     caseStudies: [...az305Cases, ...az305Cases2] as CaseStudy[],
     docs: az305Docs as DocGroup[],
@@ -95,6 +104,7 @@ export const courseContent: Record<string, CourseContent> = {
       ...tag(sc500Official as Question[], "expert"),
       ...tag(sc500Topic as Question[], "expert"),
       ...tag(sc500Order as Question[], "expert"),
+      ...tag(sc500Order2 as Question[], "expert"),
     ],
     caseStudies: [...sc500Cases, ...sc500Cases2] as CaseStudy[],
     docs: sc500Docs as DocGroup[],
@@ -102,21 +112,30 @@ export const courseContent: Record<string, CourseContent> = {
   },
   "ai-103": {
     flashcards: ai103Flashcards as Flashcard[],
-    questions: [...tag(ai103Official as Question[], "expert")],
+    questions: [
+      ...tag(ai103Official as Question[], "expert"),
+      ...tag(ai103Order as Question[], "expert"),
+    ],
     caseStudies: [...ai103Cases, ...ai103Cases2] as CaseStudy[],
     docs: ai103Docs as DocGroup[],
     takeaways: ai103Takeaways as Takeaway[],
   },
   "ai-200": {
     flashcards: ai200Flashcards as Flashcard[],
-    questions: [...tag(ai200Official as Question[], "expert")],
+    questions: [
+      ...tag(ai200Official as Question[], "expert"),
+      ...tag(ai200Order as Question[], "expert"),
+    ],
     caseStudies: [...ai200Cases, ...ai200Cases2] as CaseStudy[],
     docs: ai200Docs as DocGroup[],
     takeaways: ai200Takeaways as Takeaway[],
   },
   "ai-500": {
     flashcards: ai500Flashcards as Flashcard[],
-    questions: [...tag(ai500Official as Question[], "expert")],
+    questions: [
+      ...tag(ai500Official as Question[], "expert"),
+      ...tag(ai500Order as Question[], "expert"),
+    ],
     caseStudies: [...ai500Cases, ...ai500Cases2] as CaseStudy[],
     docs: ai500Docs as DocGroup[],
     takeaways: ai500Takeaways as Takeaway[],

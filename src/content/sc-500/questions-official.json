@@ -3,6 +3,7 @@
     "id": "sc-500-q201",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to give a developer Contributor access to an Azure subscription. The developer must request access each time and keep it for no more than four hours. What should you configure?",
+    "hint": "Request access each time and the four-hour cap signal a PIM eligible assignment.",
     "options": [
       "Eligible assignment in PIM",
       "Permanent assignment in PIM",
@@ -22,6 +23,7 @@
     "id": "sc-500-q202",
     "domain": "Manage identity, access, and governance",
     "prompt": "Users sign in with passwords plus a one-time code from Microsoft Authenticator. You must eliminate passwords while preserving phishing-resistant sign-in on managed Windows devices. What should you configure?",
+    "hint": "Passwordless, phishing-resistant sign-in on managed Windows devices points to Windows Hello for Business.",
     "options": [
       "Authenticator one-time passcode",
       "Windows Hello for Business",
@@ -41,6 +43,7 @@
     "id": "sc-500-q203",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to block all legacy authentication to Microsoft Entra. Solution: Create a Conditional Access policy that selects Other clients in the Client apps condition and applies the Block access grant control. Does the solution meet the goal?",
+    "hint": "Yes — legacy authentication appears as Other clients, which the Block grant control blocks.",
     "options": [
       "Yes",
       "No"
@@ -58,6 +61,7 @@
     "id": "sc-500-q204",
     "domain": "Manage identity, access, and governance",
     "prompt": "You must let contractors use unmanaged devices but restrict them from downloading files. What should you configure?",
+    "hint": "Unmanaged devices plus blocking downloads point to Conditional Access App Control.",
     "options": [
       "Device compliance policy",
       "Entitlement management package",
@@ -77,6 +81,7 @@
     "id": "sc-500-q205",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to require multi-factor authentication only for users in a specific group. Solution: Create a Conditional Access policy scoped to that group with a grant control that requires one of the selected controls: MFA or a compliant device. Does the solution meet the goal?",
+    "hint": "No — 'one of the selected controls' lets a compliant device satisfy it, so MFA is not enforced.",
     "options": [
       "Yes",
       "No"
@@ -94,6 +99,7 @@
     "id": "sc-500-q206",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to ensure Global Administrator role activations require a second administrator's approval. What should you configure in PIM?",
+    "hint": "A second administrator's approval on activation points to the PIM activation approval setting.",
     "options": [
       "Role assignment schedule",
       "Access review recurrence",
@@ -113,6 +119,7 @@
     "id": "sc-500-q207",
     "domain": "Manage identity, access, and governance",
     "prompt": "Users need phishing-resistant passwordless authentication across many applications. What should you enable?",
+    "hint": "Phishing-resistant passwordless across many applications points to FIDO2 security keys.",
     "options": [
       "FIDO2 security keys",
       "SMS one-time codes",
@@ -132,6 +139,7 @@
     "id": "sc-500-q208",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to let help desk staff reset user passwords without assigning them the Global Administrator role. Solution: Assign the Helpdesk Administrator role. Does the solution meet the goal?",
+    "hint": "Yes — Helpdesk Administrator resets passwords for non-administrators without Global Administrator.",
     "options": [
       "Yes",
       "No"
@@ -149,6 +157,7 @@
     "id": "sc-500-q209",
     "domain": "Manage identity, access, and governance",
     "prompt": "External partners need time-limited access to a set of apps and SharePoint sites, with approval. What should you use?",
+    "hint": "Time-limited access with approval for apps and sites points to an access package.",
     "options": [
       "Permanent role in PIM",
       "Entitlement Management access package",
@@ -168,6 +177,7 @@
     "id": "sc-500-q210",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to prevent administrators from having permanently assigned privileged roles. Solution: Assign each administrator the role permanently but require justification on every use. Does the solution meet the goal?",
+    "hint": "No — justification does not remove a permanent assignment; use eligible assignments instead.",
     "options": [
       "Yes",
       "No"
@@ -185,6 +195,7 @@
     "id": "sc-500-q211",
     "domain": "Manage identity, access, and governance",
     "prompt": "You must allow only the Microsoft Authenticator app and FIDO2 keys as MFA methods, and disable SMS for new registrations. What should you configure?",
+    "hint": "Controlling MFA methods and disabling SMS point to the authentication methods policy.",
     "options": [
       "Conditional Access grant control",
       "Identity Protection policy",
@@ -204,6 +215,7 @@
     "id": "sc-500-q212",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to require MFA for all privileged roles at sign-in, with no exceptions. What should you configure?",
+    "hint": "MFA for privileged roles at sign-in with no exceptions points to a Conditional Access policy.",
     "options": [
       "PIM activation requirement",
       "Per-user MFA enforcement",
@@ -223,6 +235,7 @@
     "id": "sc-500-q213",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to ensure a user must provide a justification before activating an eligible role. Solution: Enable the Require justification on activation setting on the PIM role setting. Does the solution meet the goal?",
+    "hint": "Yes — Require justification on activation prompts for a reason at activation.",
     "options": [
       "Yes",
       "No"
@@ -240,6 +253,7 @@
     "id": "sc-500-q214",
     "domain": "Manage identity, access, and governance",
     "prompt": "You must automatically force password change for users flagged with high user risk. What should you configure?",
+    "hint": "Automatically forcing password change for high user risk points to an Identity Protection risk policy.",
     "options": [
       "Identity Protection risk policy",
       "Conditional Access session policy",
@@ -259,6 +273,7 @@
     "id": "sc-500-q215",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to block sign-ins from anonymous IP addresses. Solution: Configure a Conditional Access policy with a location condition for all trusted locations. Does the solution meet the goal?",
+    "hint": "No — trusted locations are named networks, not anonymous IPs.",
     "options": [
       "Yes",
       "No"
@@ -276,6 +291,7 @@
     "id": "sc-500-q216",
     "domain": "Manage identity, access, and governance",
     "prompt": "Help desk staff must reset passwords for standard users only, without other administrative rights. What should you assign?",
+    "hint": "Reset passwords for standard users only points to the Helpdesk Administrator role.",
     "options": [
       "User Administrator role",
       "Helpdesk Administrator role",
@@ -295,6 +311,7 @@
     "id": "sc-500-q217",
     "domain": "Manage identity, access, and governance",
     "prompt": "You must restrict guest access to B2B collaboration invitations from specified partner domains only. What should you configure?",
+    "hint": "Restricting partner domains for B2B points to cross-tenant access settings.",
     "options": [
       "Conditional Access location policy",
       "Entitlement Management settings",
@@ -314,6 +331,7 @@
     "id": "sc-500-q218",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to require MFA for all users, including guests, accessing a specific app. Solution: Create a Conditional Access policy targeting all users and the app, with a grant control requiring MFA. Does the solution meet the goal?",
+    "hint": "Yes — a policy scoped to all users includes guests, and the MFA grant control enforces MFA.",
     "options": [
       "Yes",
       "No"
@@ -331,6 +349,7 @@
     "id": "sc-500-q219",
     "domain": "Manage identity, access, and governance",
     "prompt": "You must periodically validate that group members still require access, and remove those who do not. What should you create?",
+    "hint": "Periodically validating group membership points to a group access review.",
     "options": [
       "Conditional Access policy",
       "PIM eligible assignment",
@@ -350,6 +369,7 @@
     "id": "sc-500-q220",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to re-evaluate user risk only at sign-in, not continuously. Solution: Enable continuous access evaluation for the workload. Does the solution meet the goal?",
+    "hint": "No — continuous access evaluation is the opposite of sign-in-only evaluation.",
     "options": [
       "Yes",
       "No"
@@ -367,6 +387,7 @@
     "id": "sc-500-q221",
     "domain": "Manage identity, access, and governance",
     "prompt": "A small tenant has Microsoft Entra ID Free. You need to require MFA for all users with minimal configuration. What should you enable?",
+    "hint": "Free tier plus minimal MFA for all users points to Entra security defaults.",
     "options": [
       "Entra security defaults",
       "Conditional Access policy",
@@ -386,6 +407,7 @@
     "id": "sc-500-q222",
     "domain": "Manage identity, access, and governance",
     "prompt": "Several administrators need the Security Administrator role only while responding to incidents. What should you configure?",
+    "hint": "Role needed only during incidents points to PIM for groups activation.",
     "options": [
       "Permanent role assignment",
       "PIM for groups",
@@ -405,6 +427,7 @@
     "id": "sc-500-q223",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to ensure an access package assignment is removed automatically after 30 days. Solution: Set the access package assignment duration to 30 days. Does the solution meet the goal?",
+    "hint": "Yes — the assignment duration of 30 days expires and removes access automatically.",
     "options": [
       "Yes",
       "No"
@@ -422,6 +445,7 @@
     "id": "sc-500-q224",
     "domain": "Manage identity, access, and governance",
     "prompt": "A contractor leaves the project. You need to revoke the contractor's access to all resources immediately. What should you do?",
+    "hint": "Revoke all access immediately points to disabling the guest account.",
     "options": [
       "Delete the guest's device",
       "Run an access review",
@@ -441,6 +465,7 @@
     "id": "sc-500-q225",
     "domain": "Manage identity, access, and governance",
     "prompt": "You need to require a justification and a ticket number when a user activates an eligible role. Solution: Enable Require justification on activation only. Does the solution meet the goal?",
+    "hint": "No — justification alone lacks a ticket number; enable Require ticket number too.",
     "options": [
       "Yes",
       "No"
@@ -458,6 +483,7 @@
     "id": "sc-500-q226",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to manage access to key vault secrets using Azure RBAC roles, retiring legacy vault access policies. What should you configure?",
+    "hint": "Retiring vault access policies for RBAC points to the Azure RBAC permission model.",
     "options": [
       "Vault access policy model",
       "Managed identity assignment",
@@ -477,6 +503,7 @@
     "id": "sc-500-q227",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to restrict key vault access to requests from a specific virtual network subnet. What should you configure?",
+    "hint": "Restricting to a specific subnet points to the key vault firewall setting.",
     "options": [
       "Key vault firewall setting",
       "VNet service endpoint only",
@@ -496,6 +523,7 @@
     "id": "sc-500-q228",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to connect to a storage account using a private IP from within your virtual network. Solution: Add a virtual network service endpoint to the storage account's firewall. Does the solution meet the goal?",
+    "hint": "No — service endpoints still use the public endpoint; use a private endpoint.",
     "options": [
       "Yes",
       "No"
@@ -513,6 +541,7 @@
     "id": "sc-500-q229",
     "domain": "Secure storage, databases, and networking",
     "prompt": "An application in a VNet must reach a storage account through a private IP address. What should you create?",
+    "hint": "A private IP from the VNet points to a private endpoint for storage.",
     "options": [
       "Service endpoint for storage",
       "Private endpoint for storage",
@@ -532,6 +561,7 @@
     "id": "sc-500-q230",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to allow inbound HTTPS only from a set of web server VMs to a database subnet. Solution: Create an application security group for the web servers and reference it as the source in an NSG rule. Does the solution meet the goal?",
+    "hint": "Yes — an application security group referenced as the NSG source applies to its member NICs.",
     "options": [
       "Yes",
       "No"
@@ -549,6 +579,7 @@
     "id": "sc-500-q231",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need centrally enforced outbound internet filtering with FQDN-based rules and threat intelligence for multiple VNets. What should you deploy?",
+    "hint": "FQDN-based rules and threat intelligence point to an Azure Firewall instance.",
     "options": [
       "Network security group",
       "Application security group",
@@ -568,6 +599,7 @@
     "id": "sc-500-q232",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need always-on volumetric DDoS protection for public endpoints on multiple VNets, with cost protection. What should you enable?",
+    "hint": "Always-on DDoS with cost protection points to DDoS Network Protection.",
     "options": [
       "DDoS IP Protection",
       "Azure Firewall Premium",
@@ -587,6 +619,7 @@
     "id": "sc-500-q233",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to identify missing security configurations and misconfigurations on an Azure SQL Database. Solution: Enable Defender for SQL advanced threat protection. Does the solution meet the goal?",
+    "hint": "No — threat protection detects attacks, not configuration gaps; use vulnerability assessment.",
     "options": [
       "Yes",
       "No"
@@ -604,6 +637,7 @@
     "id": "sc-500-q234",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to scan uploaded blobs for malware and detect suspicious access patterns in a storage account. What should you enable?",
+    "hint": "Scanning blobs for malware points to Defender for Storage.",
     "options": [
       "Defender for Storage",
       "Storage service endpoint",
@@ -623,6 +657,7 @@
     "id": "sc-500-q235",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to restrict access to a storage account so that only requests from a specific public IP range can reach the data plane. Solution: Configure the storage account firewall to allow only that IP range and deny all others. Does the solution meet the goal?",
+    "hint": "Yes — the storage firewall allows a specific public IP range and blocks all others.",
     "options": [
       "Yes",
       "No"
@@ -640,6 +675,7 @@
     "id": "sc-500-q236",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to eliminate shared storage account keys and require Microsoft Entra authentication for data access. What should you configure?",
+    "hint": "Eliminating shared keys and requiring Entra auth points to disabling shared key authorization.",
     "options": [
       "Enable Entra ID RBAC only",
       "Disable shared key authorization",
@@ -659,6 +695,7 @@
     "id": "sc-500-q237",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to override an allow rule so that a specific source IP is denied RDP on a VM. What should you configure?",
+    "hint": "Overriding an allow rule points to a higher-priority (lower-number) deny NSG rule.",
     "options": [
       "Lower-priority allow NSG rule",
       "Application security group",
@@ -678,6 +715,7 @@
     "id": "sc-500-q238",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to block all public network access to a storage account. Solution: Enable Allow trusted Microsoft services and leave public network access enabled. Does the solution meet the goal?",
+    "hint": "No — trusted services do not disable the public endpoint; set public network access to Disabled.",
     "options": [
       "Yes",
       "No"
@@ -695,6 +733,7 @@
     "id": "sc-500-q239",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need a single location to define allow and deny network rules for outbound traffic across many subscriptions. What should you use?",
+    "hint": "Central outbound rules across subscriptions point to Azure Firewall Manager.",
     "options": [
       "Network security groups",
       "Application security groups",
@@ -714,6 +753,7 @@
     "id": "sc-500-q240",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to enable bidirectional SSH and RDP to VMs over TLS from the Azure portal without exposing public IP addresses. Solution: Deploy Azure Bastion in the virtual network. Does the solution meet the goal?",
+    "hint": "Yes — Bastion provides RDP/SSH over TLS without public IPs.",
     "options": [
       "Yes",
       "No"
@@ -731,6 +771,7 @@
     "id": "sc-500-q241",
     "domain": "Secure storage, databases, and networking",
     "prompt": "An application identity must read secret values from a key vault but not list or change them. Which RBAC role should you assign?",
+    "hint": "Read secret values without listing or changing points to Key Vault Secrets User.",
     "options": [
       "Key Vault Secrets User",
       "Key Vault Secrets Officer",
@@ -750,6 +791,7 @@
     "id": "sc-500-q242",
     "domain": "Secure storage, databases, and networking",
     "prompt": "After creating a private endpoint, name resolution still resolves to the public IP. What should you configure?",
+    "hint": "Name still resolving to the public IP points to private DNS zone integration.",
     "options": [
       "Service endpoint policy",
       "Private DNS zone integration",
@@ -769,6 +811,7 @@
     "id": "sc-500-q243",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to fully isolate an Azure SQL Database from the public internet. Solution: Configure a service endpoint on the subnet and add the subnet to the database firewall. Does the solution meet the goal?",
+    "hint": "No — a service endpoint still uses the public endpoint; use a private endpoint.",
     "options": [
       "Yes",
       "No"
@@ -786,6 +829,7 @@
     "id": "sc-500-q244",
     "domain": "Secure storage, databases, and networking",
     "prompt": "An app in an App Service integrated with a VNet must connect privately to Azure SQL Database. What should you configure?",
+    "hint": "Private connection from a VNet-integrated app points to a private endpoint for SQL.",
     "options": [
       "Allow Azure services setting",
       "SQL firewall IP allow rule",
@@ -805,6 +849,7 @@
     "id": "sc-500-q245",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to audit which identities accessed secrets in a key vault. Solution: Enable the Azure RBAC permission model and enable key vault diagnostics to send audit logs to a Log Analytics workspace. Does the solution meet the goal?",
+    "hint": "Yes — RBAC attributes access to identities, and diagnostics streams the audit logs.",
     "options": [
       "Yes",
       "No"
@@ -822,6 +867,7 @@
     "id": "sc-500-q246",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to encrypt a storage account with a key you control, enabling automatic rotation. What should you configure?",
+    "hint": "A key you control with automatic rotation points to customer-managed key rotation.",
     "options": [
       "Microsoft-managed key setting",
       "Storage firewall rule",
@@ -841,6 +887,7 @@
     "id": "sc-500-q247",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to protect a public web app from SQL injection and cross-site scripting at the network edge. What should you deploy?",
+    "hint": "SQL injection and XSS at the network edge point to Web Application Firewall.",
     "options": [
       "Web Application Firewall",
       "Azure Firewall Premium",
@@ -860,6 +907,7 @@
     "id": "sc-500-q248",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to ensure a key vault can only be accessed from within your virtual network, with no public internet exposure. Solution: Configure the key vault firewall to allow a virtual network service endpoint. Does the solution meet the goal?",
+    "hint": "No — service endpoints keep the public endpoint; use a private endpoint and disable public access.",
     "options": [
       "Yes",
       "No"
@@ -877,6 +925,7 @@
     "id": "sc-500-q249",
     "domain": "Secure storage, databases, and networking",
     "prompt": "A third party needs temporary, read-only access to a single blob. What should you issue?",
+    "hint": "Temporary read-only access to a single blob points to a shared access signature.",
     "options": [
       "Storage account key",
       "Shared access signature",
@@ -896,6 +945,7 @@
     "id": "sc-500-q250",
     "domain": "Secure storage, databases, and networking",
     "prompt": "You need to inspect all outbound traffic from a spoke VNet to the internet and block it to malicious domains. Solution: Route the spoke's default route to Azure Firewall and enable threat intelligence-based filtering. Does the solution meet the goal?",
+    "hint": "Yes — default route through Azure Firewall with threat intelligence blocks malicious domains.",
     "options": [
       "Yes",
       "No"
@@ -913,6 +963,7 @@
     "id": "sc-500-q251",
     "domain": "Secure compute",
     "prompt": "You need to keep RDP and SSH ports closed by default on Azure VMs and open them only for specific IPs for a limited time. What should you enable?",
+    "hint": "Ports closed by default, opened temporarily for specific IPs, points to Just-in-time VM access.",
     "options": [
       "Azure Bastion host",
       "Network security group",
@@ -932,6 +983,7 @@
     "id": "sc-500-q252",
     "domain": "Secure compute",
     "prompt": "You need agentless vulnerability assessment and file integrity monitoring for Azure VMs. What should you enable?",
+    "hint": "Agentless vulnerability assessment and file integrity monitoring point to Defender for Servers.",
     "options": [
       "Defender for Storage",
       "Azure Disk Encryption",
@@ -951,6 +1003,7 @@
     "id": "sc-500-q253",
     "domain": "Secure compute",
     "prompt": "You need to encrypt a VM's OS and data disks at the guest operating system level using BitLocker with keys stored in a key vault. Solution: Enable Azure Disk Encryption. Does the solution meet the goal?",
+    "hint": "Yes — Azure Disk Encryption uses BitLocker at the guest level with Key Vault keys.",
     "options": [
       "Yes",
       "No"
@@ -968,6 +1021,7 @@
     "id": "sc-500-q254",
     "domain": "Secure compute",
     "prompt": "You need end-to-end encryption so data is encrypted on the VM host before reaching Azure Storage. What should you enable?",
+    "hint": "Encrypted at the host before reaching storage points to encryption at host.",
     "options": [
       "Encryption at host",
       "Azure Disk Encryption",
@@ -987,6 +1041,7 @@
     "id": "sc-500-q255",
     "domain": "Secure compute",
     "prompt": "You need to enable Just-in-time VM access for VMs in a subscription. Solution: Enable Defender for Cloud's foundational CSPM plan only. Does the solution meet the goal?",
+    "hint": "No — Just-in-time access requires Defender for Servers, not foundational CSPM alone.",
     "options": [
       "Yes",
       "No"
@@ -1004,6 +1059,7 @@
     "id": "sc-500-q256",
     "domain": "Secure compute",
     "prompt": "A VM currently has a public IP used only for administration. You need to remove the public IP while keeping RDP access. What should you deploy?",
+    "hint": "Removing the public IP while keeping RDP points to Azure Bastion.",
     "options": [
       "Network security group",
       "Azure Bastion host",
@@ -1023,6 +1079,7 @@
     "id": "sc-500-q257",
     "domain": "Secure compute",
     "prompt": "An administrator needs JIT access to a VM, but only from the corporate public IP range, on port 3389. What should you configure in JIT?",
+    "hint": "Corporate IP range and port 3389 point to the JIT source IP setting.",
     "options": [
       "NSG default deny rule",
       "Bastion tunnel setting",
@@ -1042,6 +1099,7 @@
     "id": "sc-500-q258",
     "domain": "Secure compute",
     "prompt": "You need to run a confidential workload that keeps data encrypted in memory during processing. Solution: Deploy the workload on a confidential VM with a vTPM and enable guest attestation. Does the solution meet the goal?",
+    "hint": "Yes — confidential VMs encrypt data in memory, verified by guest attestation.",
     "options": [
       "Yes",
       "No"
@@ -1059,6 +1117,7 @@
     "id": "sc-500-q259",
     "domain": "Secure compute",
     "prompt": "You need to use a customer-managed key to encrypt several managed disks. What should you create?",
+    "hint": "A customer-managed key for managed disks points to a disk encryption set.",
     "options": [
       "Key vault access policy",
       "Managed identity only",
@@ -1078,6 +1137,7 @@
     "id": "sc-500-q260",
     "domain": "Secure compute",
     "prompt": "You need to enforce Just-in-time VM access for every VM in a subscription using Azure Policy. Solution: Assign a custom policy with a Deny effect that rejects VMs without JIT enabled. Does the solution meet the goal?",
+    "hint": "No — JIT cannot be enforced with Deny; the built-in policy only audits.",
     "options": [
       "Yes",
       "No"
@@ -1095,6 +1155,7 @@
     "id": "sc-500-q261",
     "domain": "Secure compute",
     "prompt": "You need to onboard VMs to Microsoft Defender for Endpoint automatically when they are created. What should you configure?",
+    "hint": "Automatic onboarding to Defender for Endpoint points to Defender for Servers auto-provisioning.",
     "options": [
       "Defender for Servers auto-provisioning",
       "Manual onboarding script",
@@ -1114,6 +1175,7 @@
     "id": "sc-500-q262",
     "domain": "Secure compute",
     "prompt": "You need vulnerability scanning of VM operating systems without installing an agent on each VM. What should you enable?",
+    "hint": "Scanning without installing an agent points to agentless vulnerability assessment.",
     "options": [
       "Log Analytics agent",
       "Agentless vulnerability assessment",
@@ -1133,6 +1195,7 @@
     "id": "sc-500-q263",
     "domain": "Secure compute",
     "prompt": "You need to prevent an attacker from using stolen local admin credentials to move laterally between VMs. Solution: Enable Just-in-time VM access. Does the solution meet the goal?",
+    "hint": "No — JIT restricts ports, not credential-based lateral movement; use LAPS.",
     "options": [
       "Yes",
       "No"
@@ -1150,6 +1213,7 @@
     "id": "sc-500-q264",
     "domain": "Secure compute",
     "prompt": "You need to block execution of unauthorized applications on Azure VMs. What should you enable?",
+    "hint": "Blocking unauthorized applications points to adaptive application controls.",
     "options": [
       "Just-in-time VM access",
       "Network security group",
@@ -1169,6 +1233,7 @@
     "id": "sc-500-q265",
     "domain": "Secure compute",
     "prompt": "You need to encrypt a VM's disks using customer-managed keys for server-side encryption. Solution: Create a disk encryption set referencing a key vault key and attach it to the VM's managed disks. Does the solution meet the goal?",
+    "hint": "Yes — a disk encryption set applies customer-managed key server-side encryption to disks.",
     "options": [
       "Yes",
       "No"
@@ -1186,6 +1251,7 @@
     "id": "sc-500-q266",
     "domain": "Secure compute",
     "prompt": "You need to enforce that Linux VMs comply with a CIS benchmark configuration at scale. What should you use?",
+    "hint": "Enforcing CIS benchmarks at scale points to Azure Policy machine configuration.",
     "options": [
       "Microsoft Defender for Endpoint",
       "Network security group",
@@ -1205,6 +1271,7 @@
     "id": "sc-500-q267",
     "domain": "Secure compute",
     "prompt": "You need to ensure new VMs use Secure Boot and vTPM to protect against boot-level malware. What should you enable?",
+    "hint": "Secure Boot and vTPM point to trusted launch configuration.",
     "options": [
       "Trusted launch configuration",
       "Azure Disk Encryption",
@@ -1224,6 +1291,7 @@
     "id": "sc-500-q268",
     "domain": "Secure compute",
     "prompt": "You need to ensure VMs cannot be assigned a public IP address at creation. Solution: Assign Azure Policy with an effect of Deny on public IP address resources. Does the solution meet the goal?",
+    "hint": "Yes — a Deny policy on public IP resources prevents assigning them.",
     "options": [
       "Yes",
       "No"
@@ -1241,6 +1309,7 @@
     "id": "sc-500-q269",
     "domain": "Secure compute",
     "prompt": "You need endpoint detection and response with automated investigation across Windows and Linux VMs. What should you deploy?",
+    "hint": "EDR with automated investigation points to Defender for Endpoint.",
     "options": [
       "Azure Disk Encryption",
       "Defender for Endpoint",
@@ -1260,6 +1329,7 @@
     "id": "sc-500-q270",
     "domain": "Secure compute",
     "prompt": "You need to apply a security baseline to all Windows VMs at creation automatically. Solution: Enable Defender for Servers auto-provisioning of the Log Analytics agent. Does the solution meet the goal?",
+    "hint": "No — auto-provisioning deploys agents, not baselines; use machine configuration.",
     "options": [
       "Yes",
       "No"
@@ -1277,6 +1347,7 @@
     "id": "sc-500-q271",
     "domain": "Secure compute",
     "prompt": "You need defense-in-depth disk encryption: guest-level encryption plus platform server-side encryption. What should you enable together?",
+    "hint": "Guest-level plus platform encryption points to disk encryption plus SSE.",
     "options": [
       "Encryption at host only",
       "Customer-managed key only",
@@ -1296,6 +1367,7 @@
     "id": "sc-500-q272",
     "domain": "Secure compute",
     "prompt": "You need Azure Bastion that supports host scaling for many concurrent sessions. Which SKU should you choose?",
+    "hint": "Host scaling for many sessions points to the Bastion Standard SKU.",
     "options": [
       "Bastion Basic SKU",
       "Bastion Developer SKU",
@@ -1315,6 +1387,7 @@
     "id": "sc-500-q273",
     "domain": "Secure compute",
     "prompt": "You need to encrypt a VM's temporary disk and page file with customer-managed keys. Solution: Enable server-side encryption with a customer-managed key. Does the solution meet the goal?",
+    "hint": "No — server-side encryption with CMK skips the temp disk; use encryption at host.",
     "options": [
       "Yes",
       "No"
@@ -1332,6 +1405,7 @@
     "id": "sc-500-q274",
     "domain": "Secure compute",
     "prompt": "Defender for Cloud recommends narrowing NSG rules that are too permissive. You want to apply these recommendations automatically. What should you use?",
+    "hint": "Automatically narrowing NSG rules points to adaptive network hardening.",
     "options": [
       "Adaptive network hardening",
       "Just-in-time VM access",
@@ -1351,6 +1425,7 @@
     "id": "sc-500-q275",
     "domain": "Secure compute",
     "prompt": "You need to securely connect to a VM over SSH without a public IP and without opening port 22. Solution: Use Azure Bastion with the native client. Does the solution meet the goal?",
+    "hint": "Yes — Bastion native client provides SSH over TLS without a public IP or port 22.",
     "options": [
       "Yes",
       "No"
@@ -1368,6 +1443,7 @@
     "id": "sc-500-q276",
     "domain": "Manage and monitor security posture",
     "prompt": "You need agentless scanning, attack path analysis, and data-aware security posture across multicloud. Which plan should you enable?",
+    "hint": "Attack path analysis and data-aware posture point to the Defender CSPM plan.",
     "options": [
       "Foundational CSPM plan",
       "Defender CSPM plan",
@@ -1387,6 +1463,7 @@
     "id": "sc-500-q277",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to automatically remediate a Defender for Cloud recommendation by reconfiguring resources. What should you use?",
+    "hint": "Remediating by reconfiguring resources points to Azure Policy remediation.",
     "options": [
       "Sentinel automation rule",
       "Azure Monitor alert rule",
@@ -1406,6 +1483,7 @@
     "id": "sc-500-q278",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to monitor regulatory compliance across Azure and AWS resources in a single view. Solution: Enable Defender for Cloud foundational CSPM only. Does the solution meet the goal?",
+    "hint": "No — AWS multicloud compliance needs Defender CSPM and connecting the AWS account.",
     "options": [
       "Yes",
       "No"
@@ -1423,6 +1501,7 @@
     "id": "sc-500-q279",
     "domain": "Manage and monitor security posture",
     "prompt": "A global company needs regional data residency and per-region access control for security data. What should you implement?",
+    "hint": "Regional data residency and per-region access point to multiple Sentinel workspaces.",
     "options": [
       "Single Sentinel workspace",
       "One Log Analytics table",
@@ -1442,6 +1521,7 @@
     "id": "sc-500-q280",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to ingest Azure Activity logs into Microsoft Sentinel. Solution: Enable the Azure Activity data connector. Does the solution meet the goal?",
+    "hint": "Yes — the Azure Activity connector ingests control-plane Activity logs.",
     "options": [
       "Yes",
       "No"
@@ -1459,6 +1539,7 @@
     "id": "sc-500-q281",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to ingest logs from a custom on-premises appliance with no built-in connector. What should you use?",
+    "hint": "No built-in connector for a custom appliance points to custom log ingestion.",
     "options": [
       "Custom log ingestion",
       "Microsoft native connector",
@@ -1478,6 +1559,7 @@
     "id": "sc-500-q282",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to automatically assign incidents to an analyst and add a tag when an incident is created. What should you configure?",
+    "hint": "Assigning an owner and tag on incident creation points to a Sentinel automation rule.",
     "options": [
       "Playbook with Logic Apps",
       "Sentinel automation rule",
@@ -1497,6 +1579,7 @@
     "id": "sc-500-q283",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to alert when a Global Administrator role assignment is added to any user. Solution: Enable the Microsoft Entra ID Protection data connector and create an analytics rule. Does the solution meet the goal?",
+    "hint": "No — ID Protection gives risk detections, not audit events; use the Entra ID connector.",
     "options": [
       "Yes",
       "No"
@@ -1514,6 +1597,7 @@
     "id": "sc-500-q284",
     "domain": "Manage and monitor security posture",
     "prompt": "You need a KQL query that returns only the latest sign-in for each user. Which operator should you use?",
+    "hint": "Latest row per user points to the arg_max operator.",
     "options": [
       "Use the summarize operator",
       "Use the project operator",
@@ -1533,6 +1617,7 @@
     "id": "sc-500-q285",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to join sign-in events with threat intelligence indicators to find matches on source IP. Solution: Use the KQL join operator between SigninLogs and ThreatIntelligenceIndicator. Does the solution meet the goal?",
+    "hint": "Yes — join SigninLogs with ThreatIntelligenceIndicator on the IP field finds matches.",
     "options": [
       "Yes",
       "No"
@@ -1550,6 +1635,7 @@
     "id": "sc-500-q286",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to deploy a set of analytics rules, workbooks, and hunting queries for a specific product. What should you use?",
+    "hint": "Bundled rules, workbooks, and hunting queries point to a Content hub solution.",
     "options": [
       "Data connector only",
       "Azure Policy initiative",
@@ -1569,6 +1655,7 @@
     "id": "sc-500-q287",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to discover and classify sensitive data across Azure, AWS, and GCP data stores. What should you deploy?",
+    "hint": "Multicloud data discovery and classification point to the Purview DSPM solution.",
     "options": [
       "Purview DSPM solution",
       "Defender for Cloud CSPM",
@@ -1588,6 +1675,7 @@
     "id": "sc-500-q288",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to prevent users from downloading unencrypted files from SharePoint. Solution: Enable Purview DSPM. Does the solution meet the goal?",
+    "hint": "No — DSPM discovers risk but does not enforce downloads; use sensitivity labels.",
     "options": [
       "Yes",
       "No"
@@ -1605,6 +1693,7 @@
     "id": "sc-500-q289",
     "domain": "Manage and monitor security posture",
     "prompt": "Analysts want to summarize incidents and generate KQL queries using natural language. What should you provision?",
+    "hint": "Natural-language summaries and KQL generation point to Copilot for Security.",
     "options": [
       "Azure OpenAI service",
       "Copilot for Security",
@@ -1624,6 +1713,7 @@
     "id": "sc-500-q290",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to give analysts a natural-language chat interface for investigating Defender alerts. Solution: Deploy Microsoft Copilot for Security and embed it in Microsoft Defender XDR. Does the solution meet the goal?",
+    "hint": "Yes — Copilot for Security embeds in Defender XDR for natural-language investigation.",
     "options": [
       "Yes",
       "No"
@@ -1641,6 +1731,7 @@
     "id": "sc-500-q291",
     "domain": "Manage and monitor security posture",
     "prompt": "You need Copilot for Security to query data from a custom security product. What should you create?",
+    "hint": "Querying a custom product points to a custom plugin.",
     "options": [
       "A new promptbook",
       "An SCU license",
@@ -1660,6 +1751,7 @@
     "id": "sc-500-q292",
     "domain": "Manage and monitor security posture",
     "prompt": "You need a consolidated measure of your security posture and prioritized recommendations. What should you review?",
+    "hint": "Consolidated posture and prioritized recommendations point to Microsoft Secure Score.",
     "options": [
       "Sentinel incident queue",
       "Purview data map",
@@ -1679,6 +1771,7 @@
     "id": "sc-500-q293",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to be alerted when your Secure Score drops below a threshold. Solution: Create an Azure Monitor alert on the Secure Score metric. Does the solution meet the goal?",
+    "hint": "No — Secure Score changes use workflow automation, not a Monitor metric alert.",
     "options": [
       "Yes",
       "No"
@@ -1696,6 +1789,7 @@
     "id": "sc-500-q294",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to trigger a Logic Apps playbook automatically when a Defender for Cloud alert is generated. What should you configure?",
+    "hint": "Triggering Logic Apps on an alert points to Defender workflow automation.",
     "options": [
       "Defender workflow automation",
       "Sentinel automation rule",
@@ -1715,6 +1809,7 @@
     "id": "sc-500-q295",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to export Defender for Cloud alerts to a SIEM other than Sentinel. Solution: Configure continuous export to an Event Hub and forward to the SIEM. Does the solution meet the goal?",
+    "hint": "Yes — continuous export to an Event Hub forwards to a third-party SIEM.",
     "options": [
       "Yes",
       "No"
@@ -1732,6 +1827,7 @@
     "id": "sc-500-q296",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to detect anomalous user behavior and identify risky entities without writing rules. What should you enable?",
+    "hint": "Anomalous behavior without writing rules points to entity behavior analytics.",
     "options": [
       "Scheduled analytics rules",
       "Entity behavior analytics",
@@ -1751,6 +1847,7 @@
     "id": "sc-500-q297",
     "domain": "Manage and monitor security posture",
     "prompt": "You need near-real-time alerting within minutes for a high-severity detection. Which analytics rule type should you use?",
+    "hint": "Alerting within minutes points to an NRT analytics rule.",
     "options": [
       "Scheduled analytics rule",
       "A hunting query",
@@ -1770,6 +1867,7 @@
     "id": "sc-500-q298",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to retain Sentinel data for seven years cost-effectively. Solution: Set the Log Analytics workspace interactive retention period to seven years. Does the solution meet the goal?",
+    "hint": "No — interactive retention caps near two years; use export or archive tiers.",
     "options": [
       "Yes",
       "No"
@@ -1787,6 +1885,7 @@
     "id": "sc-500-q299",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to send Defender for Cloud security alerts and recommendations to a Log Analytics workspace automatically. What should you configure?",
+    "hint": "Alerts and recommendations to Log Analytics point to continuous export.",
     "options": [
       "Azure diagnostic settings",
       "Sentinel data connector",
@@ -1806,6 +1905,7 @@
     "id": "sc-500-q300",
     "domain": "Manage and monitor security posture",
     "prompt": "You need to generate a natural-language summary of a Sentinel incident for executives. Solution: Use Microsoft Copilot for Security's incident summary capability. Does the solution meet the goal?",
+    "hint": "Yes — Copilot for Security summarizes Sentinel incidents in natural language.",
     "options": [
       "Yes",
       "No"

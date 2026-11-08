@@ -1,0 +1,126 @@
+[
+  {
+    "id": "ai-103-q301",
+    "domain": "Plan and manage an Azure AI solution",
+    "type": "order",
+    "prompt": "Arrange the steps to deploy an Azure OpenAI model and call it from an application, in the correct order.",
+    "options": [],
+    "steps": [
+      "Create a Foundry hub and project",
+      "Deploy a model from the model catalog",
+      "Get the endpoint URI and API key",
+      "Call the endpoint from your application"
+    ],
+    "answer": 0,
+    "explanation": "You must first create the hub and project, then deploy a model, retrieve the endpoint and key, and finally call the endpoint from code.",
+    "hint": "Keywords \"deploy\" then \"call it\" — provision, deploy, get keys, call endpoint.",
+    "docs": [
+      { "label": "Deploy models", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-openai" },
+      { "label": "Develop with models", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop-apps/models" }
+    ]
+  },
+  {
+    "id": "ai-103-q302",
+    "domain": "Implement generative AI and agentic solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to build a retrieval-augmented generation (RAG) agent in Foundry, in the correct order.",
+    "options": [],
+    "steps": [
+      "Ingest the source documents",
+      "Chunk the documents into passages",
+      "Generate vector embeddings for each chunk",
+      "Index the embeddings in a search index",
+      "Query the index to retrieve relevant chunks"
+    ],
+    "answer": 0,
+    "explanation": "RAG flows from ingestion to chunking, then embedding, indexing, and finally querying for retrieval.",
+    "hint": "Keywords \"retrieval-augmented\" — ingest, chunk, embed, index, query.",
+    "docs": [
+      { "label": "RAG tutorial", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/tutorials/copilot-sdk-retrieval" },
+      { "label": "Embeddings", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/embeddings" }
+    ]
+  },
+  {
+    "id": "ai-103-q303",
+    "domain": "Implement computer vision solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to train a custom image classification model with Custom Vision, in the correct order.",
+    "options": [],
+    "steps": [
+      "Create a Custom Vision project",
+      "Upload and tag training images",
+      "Train the classifier",
+      "Evaluate the model's precision and recall",
+      "Publish the model for prediction"
+    ],
+    "answer": 0,
+    "explanation": "You create the project, add labeled images, train, review metrics, and then publish to make it available for prediction.",
+    "hint": "Keywords \"custom image classification\" — create, tag, train, evaluate, publish.",
+    "docs": [
+      { "label": "Custom Vision", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview" },
+      { "label": "Quickstart", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/getting-started-build-a-classifier" }
+    ]
+  },
+  {
+    "id": "ai-103-q304",
+    "domain": "Implement information extraction solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to create a custom Document Intelligence extraction model, in the correct order.",
+    "options": [],
+    "steps": [
+      "Create a Document Intelligence resource",
+      "Upload sample documents to blob storage",
+      "Label the fields in the sample documents",
+      "Train the custom model",
+      "Test and analyze with the model"
+    ],
+    "answer": 0,
+    "explanation": "You provision the resource, upload samples, label fields, train, and then test the trained model on new documents.",
+    "hint": "Keywords \"custom ... extraction model\" — resource, upload, label, train, test.",
+    "docs": [
+      { "label": "Custom models", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom" },
+      { "label": "Build model", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/how-to-guides/build-a-custom-model" }
+    ]
+  },
+  {
+    "id": "ai-103-q305",
+    "domain": "Implement generative AI and agentic solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to create and run a prompt flow in Foundry, in the correct order.",
+    "options": [],
+    "steps": [
+      "Create a prompt flow",
+      "Add nodes for inputs, LLM, and outputs",
+      "Connect and configure the LLM node",
+      "Submit a test run",
+      "Evaluate the run's outputs"
+    ],
+    "answer": 0,
+    "explanation": "You create the flow, wire its nodes, configure the LLM, run it, then evaluate the results against your metrics.",
+    "hint": "Keywords \"prompt flow\" — create, add nodes, configure LLM, run, evaluate.",
+    "docs": [
+      { "label": "Prompt flow", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/prompt-flow" },
+      { "label": "Develop flow", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/flow" }
+    ]
+  },
+  {
+    "id": "ai-103-q306",
+    "domain": "Implement generative AI and agentic solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to deploy a Foundry agent to an endpoint, in the correct order.",
+    "options": [],
+    "steps": [
+      "Create the agent and configure its model and tools",
+      "Test the agent in the playground",
+      "Deploy the agent to an endpoint",
+      "Integrate the endpoint into your application"
+    ],
+    "answer": 0,
+    "explanation": "You build and configure the agent, validate it in the playground, deploy it to an endpoint, then call that endpoint from your app.",
+    "hint": "Keywords \"deploy ... agent to an endpoint\" — create, test, deploy, integrate.",
+    "docs": [
+      { "label": "Agents overview", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agents-overview" },
+      { "label": "Deploy agent", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/deploy-agent" }
+    ]
+  }
+]

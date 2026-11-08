@@ -16,7 +16,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'build from source without Docker locally, run in Azure' point to ACR Tasks (cloud build)."
   },
   {
     "id": "ai-200-q202",
@@ -33,7 +34,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication"
       }
-    ]
+    ],
+    "hint": "Yes — 'geo-replication replicates to that region' matches the goal of low-latency regional pulls."
   },
   {
     "id": "ai-200-q203",
@@ -52,7 +54,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'scale-to-zero' and 'serverless container platform' point to Azure Container Apps."
   },
   {
     "id": "ai-200-q204",
@@ -69,7 +72,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-restart-policy"
       }
-    ]
+    ],
+    "hint": "Yes — 'one-time' and 'does not restart after finishing' mean restart policy Never."
   },
   {
     "id": "ai-200-q205",
@@ -88,7 +92,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
       }
-    ]
+    ],
+    "hint": "Keyword 'scale based on queue depth' points to a KEDA scale rule."
   },
   {
     "id": "ai-200-q206",
@@ -105,7 +110,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/revisions"
       }
-    ]
+    ],
+    "hint": "No — routing 100% removes old traffic; 'keep current available' needs split traffic."
   },
   {
     "id": "ai-200-q207",
@@ -124,7 +130,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/aks/create-node-pools"
       }
-    ]
+    ],
+    "hint": "Keywords 'GPU workloads' and 'dedicated set of nodes' point to a GPU node pool."
   },
   {
     "id": "ai-200-q208",
@@ -143,7 +150,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-cache"
       }
-    ]
+    ],
+    "hint": "Keywords 'keep a local copy' and 'avoid rate limits' point to an ACR cache rule."
   },
   {
     "id": "ai-200-q209",
@@ -162,7 +170,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/manage-secrets"
       }
-    ]
+    ],
+    "hint": "Keywords 'store API key securely' and 'not expose in plain text' point to a secret reference."
   },
   {
     "id": "ai-200-q210",
@@ -179,7 +188,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-authentication-managed-identity"
       }
-    ]
+    ],
+    "hint": "No — storing the admin password is insecure; use a managed identity for no credentials."
   },
   {
     "id": "ai-200-q211",
@@ -198,7 +208,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'simplest option' and 'no autoscaling' point to Azure Container Instances."
   },
   {
     "id": "ai-200-q212",
@@ -215,7 +226,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/ingress"
       }
-    ]
+    ],
+    "hint": "No — 'internal-only ingress' is private; public HTTPS needs external ingress."
   },
   {
     "id": "ai-200-q213",
@@ -234,7 +246,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/dapr-overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'service-to-service invocation' and 'pub/sub without changing code' point to Dapr."
   },
   {
     "id": "ai-200-q214",
@@ -251,7 +264,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/networking"
       }
-    ]
+    ],
+    "hint": "No — 'own virtual network' needs VNet integration, not workload profiles (compute)."
   },
   {
     "id": "ai-200-q215",
@@ -270,7 +284,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/aks/concepts-scale"
       }
-    ]
+    ],
+    "hint": "Keywords 'scale based on CPU' and 'replica count' point to Horizontal Pod Autoscaler."
   },
   {
     "id": "ai-200-q216",
@@ -287,7 +302,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-quick-task"
       }
-    ]
+    ],
+    "hint": "No — 'az acr import' copies images; use 'az acr build' to build from source."
   },
   {
     "id": "ai-200-q217",
@@ -306,7 +322,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/jobs"
       }
-    ]
+    ],
+    "hint": "Keywords 'fixed schedule' and 'minimize cost' point to a scheduled Container Apps job."
   },
   {
     "id": "ai-200-q218",
@@ -323,7 +340,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups"
       }
-    ]
+    ],
+    "hint": "Yes — 'share storage and network namespace' matches a container group."
   },
   {
     "id": "ai-200-q219",
@@ -342,7 +360,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
       }
-    ]
+    ],
+    "hint": "Keywords 'GitHub Actions' and 'not use hardcoded passwords' point to OIDC federation."
   },
   {
     "id": "ai-200-q220",
@@ -359,7 +378,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
       }
-    ]
+    ],
+    "hint": "Yes — 'scale to zero when idle' means minimum replica count zero."
   },
   {
     "id": "ai-200-q221",
@@ -378,7 +398,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-base-image-updates"
       }
-    ]
+    ],
+    "hint": "Keywords 'rebuilt when base image updates' point to a base image update trigger."
   },
   {
     "id": "ai-200-q222",
@@ -397,7 +418,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes"
       }
-    ]
+    ],
+    "hint": "Keywords 'full control over Kubernetes API' and 'node configuration' point to AKS."
   },
   {
     "id": "ai-200-q223",
@@ -416,7 +438,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
       }
-    ]
+    ],
+    "hint": "Keywords 'Storage queue length' and 'define scaling logic' point to a ScaledObject (KEDA)."
   },
   {
     "id": "ai-200-q224",
@@ -433,7 +456,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-apps/revisions"
       }
-    ]
+    ],
+    "hint": "Yes — '10 percent' to new revision is a 90/10 traffic split."
   },
   {
     "id": "ai-200-q225",
@@ -452,7 +476,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-soft-delete-policy"
       }
-    ]
+    ],
+    "hint": "Keywords 'restore deleted' and 'retain deleted artifacts' point to soft delete."
   },
   {
     "id": "ai-200-q226",
@@ -471,7 +496,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput"
       }
-    ]
+    ],
+    "hint": "Keywords 'steady workload' and 'guarantee a specific RU/s' point to provisioned throughput."
   },
   {
     "id": "ai-200-q227",
@@ -488,7 +514,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
       }
-    ]
+    ],
+    "hint": "Yes — 'linearizability' and 'latest committed write' mean Strong consistency."
   },
   {
     "id": "ai-200-q228",
@@ -507,7 +534,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'evenly distributes' and 'avoid hot partitions' point to a high cardinality key."
   },
   {
     "id": "ai-200-q229",
@@ -524,7 +552,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search"
       }
-    ]
+    ],
+    "hint": "No — 'LIKE' is not vector similarity; use a vector index and VectorDistance()."
   },
   {
     "id": "ai-200-q230",
@@ -543,7 +572,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/change-feed"
       }
-    ]
+    ],
+    "hint": "Keywords 'react to inserts and updates' and 'near real time' point to the change feed."
   },
   {
     "id": "ai-200-q231",
@@ -560,7 +590,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/time-to-live"
       }
-    ]
+    ],
+    "hint": "Yes — 30 days equals 2,592,000 seconds, matching TTL auto-delete."
   },
   {
     "id": "ai-200-q232",
@@ -579,7 +610,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/index-policy"
       }
-    ]
+    ],
+    "hint": "Keywords 'minimize RU for writes' and 'reduce indexing overhead' point to limiting indexed paths."
   },
   {
     "id": "ai-200-q233",
@@ -598,7 +630,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/autoscale"
       }
-    ]
+    ],
+    "hint": "Keywords 'unpredictable traffic' and 'scale automatically between min and max' point to autoscale."
   },
   {
     "id": "ai-200-q234",
@@ -617,7 +650,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector"
       }
-    ]
+    ],
+    "hint": "Keywords 'cosine similarity' and 'pgvector' point to the cosine distance operator (<=>)."
   },
   {
     "id": "ai-200-q235",
@@ -634,7 +668,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside"
       }
-    ]
+    ],
+    "hint": "Yes — 'frequently read' data with cache-aside pattern reduces latency."
   },
   {
     "id": "ai-200-q236",
@@ -653,7 +688,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-tutorial-vector-similarity"
       }
-    ]
+    ],
+    "hint": "Keywords 'Redis Enterprise' and 'vector similarity search' point to a RediSearch vector index."
   },
   {
     "id": "ai-200-q237",
@@ -670,7 +706,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
       }
-    ]
+    ],
+    "hint": "No — 'across all regions' linearizability needs Strong, not Session."
   },
   {
     "id": "ai-200-q238",
@@ -689,7 +726,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/multi-region-writes"
       }
-    ]
+    ],
+    "hint": "Keywords 'writes in multiple regions' and 'region fails' point to multi-region writes."
   },
   {
     "id": "ai-200-q239",
@@ -706,7 +744,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/hierarchical-partition-keys"
       }
-    ]
+    ],
+    "hint": "No — 'two separate partition keys' is unsupported; use hierarchical partition keys."
   },
   {
     "id": "ai-200-q240",
@@ -725,7 +764,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
       }
-    ]
+    ],
+    "hint": "Keywords 'bound staleness' and 'no more than a set time behind' point to bounded staleness."
   },
   {
     "id": "ai-200-q241",
@@ -744,7 +784,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
       }
-    ]
+    ],
+    "hint": "Keywords 'by ID and partition key' and 'lowest RU cost' point to a point read."
   },
   {
     "id": "ai-200-q242",
@@ -763,7 +804,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/index-policy"
       }
-    ]
+    ],
+    "hint": "Keywords 'ORDER BY on two properties' point to a composite index."
   },
   {
     "id": "ai-200-q243",
@@ -780,7 +822,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview"
       }
-    ]
+    ],
+    "hint": "Yes — 10 minutes equals 600 seconds, matching Redis TTL expiry."
   },
   {
     "id": "ai-200-q244",
@@ -799,7 +842,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/change-feed-processor"
       }
-    ]
+    ],
+    "hint": "Keywords 'across multiple instances' and 'checkpointing' point to the change feed processor."
   },
   {
     "id": "ai-200-q245",
@@ -816,7 +860,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
       }
-    ]
+    ],
+    "hint": "Yes — 'tolerates stale reads' and 'lowest latency' mean Eventual consistency."
   },
   {
     "id": "ai-200-q246",
@@ -835,7 +880,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
       }
-    ]
+    ],
+    "hint": "Keyword '2 KB' with '1 RU per 1 KB' means about two request units."
   },
   {
     "id": "ai-200-q247",
@@ -852,7 +898,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/transactional-batch"
       }
-    ]
+    ],
+    "hint": "No — transactional batches are atomic but limited to a single partition key."
   },
   {
     "id": "ai-200-q248",
@@ -871,7 +918,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/conflict-resolution-policies"
       }
-    ]
+    ],
+    "hint": "Keywords 'resolve conflicts' and 'updated in two regions' point to a conflict resolution policy."
   },
   {
     "id": "ai-200-q249",
@@ -888,7 +936,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/serverless"
       }
-    ]
+    ],
+    "hint": "Yes — 'low, intermittent traffic' and 'no minimum throughput' match serverless."
   },
   {
     "id": "ai-200-q250",
@@ -907,7 +956,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/index-policy"
       }
-    ]
+    ],
+    "hint": "Keywords 'greater-than filters' and 'range queries' point to a range index."
   },
   {
     "id": "ai-200-q251",
@@ -926,7 +976,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
       }
-    ]
+    ],
+    "hint": "Keywords 'exactly one consumer', 'ordering', and 'duplicate detection' point to Service Bus."
   },
   {
     "id": "ai-200-q252",
@@ -943,7 +994,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview"
       }
-    ]
+    ],
+    "hint": "Yes — 'multiple independent subscribers' matches Event Grid fan-out via subscriptions."
   },
   {
     "id": "ai-200-q253",
@@ -962,7 +1014,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-trigger"
       }
-    ]
+    ],
+    "hint": "Keywords 'whenever a message arrives' and 'event-driven' point to a Service Bus trigger."
   },
   {
     "id": "ai-200-q254",
@@ -979,7 +1032,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview"
       }
-    ]
+    ],
+    "hint": "Yes — 'long-running workflow' and 'state management' match Durable Functions orchestrator."
   },
   {
     "id": "ai-200-q255",
@@ -998,7 +1052,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues"
       }
-    ]
+    ],
+    "hint": "Keywords 'fail processing more than a set number' and 'isolated' point to max delivery count."
   },
   {
     "id": "ai-200-q256",
@@ -1015,7 +1070,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services"
       }
-    ]
+    ],
+    "hint": "No — 'transactions' and 'sessions' are Service Bus features, not Event Grid."
   },
   {
     "id": "ai-200-q257",
@@ -1034,7 +1090,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-cosmosdb-v2-trigger"
       }
-    ]
+    ],
+    "hint": "Keywords 'Cosmos DB container' and 'leases for scaling' point to the Cosmos DB trigger."
   },
   {
     "id": "ai-200-q258",
@@ -1051,7 +1108,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters"
       }
-    ]
+    ],
+    "hint": "No — 'duplicate detection' doesn't filter; use subscription rules with SQL filters."
   },
   {
     "id": "ai-200-q259",
@@ -1070,7 +1128,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-output"
       }
-    ]
+    ],
+    "hint": "Keywords 'write JSON to Blob without client code' point to an output binding."
   },
   {
     "id": "ai-200-q260",
@@ -1087,7 +1146,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/event-grid/manage-event-delivery"
       }
-    ]
+    ],
+    "hint": "Yes — 'retain undelivered events' matches Event Grid dead-lettering to storage."
   },
   {
     "id": "ai-200-q261",
@@ -1106,7 +1166,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/duplicate-detection"
       }
-    ]
+    ],
+    "hint": "Keywords 'deduplicate' and 'not process the same message twice' point to duplicate detection."
   },
   {
     "id": "ai-200-q262",
@@ -1123,7 +1184,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer"
       }
-    ]
+    ],
+    "hint": "No — 'fixed schedule every 15 minutes' needs a timer trigger, not a blob trigger."
   },
   {
     "id": "ai-200-q263",
@@ -1142,7 +1204,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-sessions"
       }
-    ]
+    ],
+    "hint": "Keywords 'FIFO order' and 'grouped by identifier' point to message sessions."
   },
   {
     "id": "ai-200-q264",
@@ -1161,7 +1224,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/event-grid/system-topics"
       }
-    ]
+    ],
+    "hint": "Keywords 'without creating a custom event source' point to an Event Grid system topic."
   },
   {
     "id": "ai-200-q265",
@@ -1180,7 +1244,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-error-pages"
       }
-    ]
+    ],
+    "hint": "Keywords 'retry automatically with a fixed delay' and 'no code changes' point to a retry policy."
   },
   {
     "id": "ai-200-q266",
@@ -1197,7 +1262,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services"
       }
-    ]
+    ],
+    "hint": "No — 'millions of events per second' streaming needs Event Hubs, not Service Bus."
   },
   {
     "id": "ai-200-q267",
@@ -1216,7 +1282,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings"
       }
-    ]
+    ],
+    "hint": "Keyword 'must not hardcode' points to an app setting."
   },
   {
     "id": "ai-200-q268",
@@ -1233,7 +1300,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/event-grid/manage-event-delivery"
       }
-    ]
+    ],
+    "hint": "Yes — 'retry delivery' with max delivery count matches Event Grid retry policy."
   },
   {
     "id": "ai-200-q269",
@@ -1252,7 +1320,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-auto-forwarding"
       }
-    ]
+    ],
+    "hint": "Keywords 'automatically move to another queue' point to auto-forwarding."
   },
   {
     "id": "ai-200-q270",
@@ -1269,7 +1338,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-host-json"
       }
-    ]
+    ],
+    "hint": "Yes — Service Bus trigger batching is configured in host.json."
   },
   {
     "id": "ai-200-q271",
@@ -1288,7 +1358,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-transfers-locks-settlement"
       }
-    ]
+    ],
+    "hint": "Keywords 'explicit completion' and 'not lost if processing fails' point to peek-lock."
   },
   {
     "id": "ai-200-q272",
@@ -1307,7 +1378,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/event-grid/custom-topics"
       }
-    ]
+    ],
+    "hint": "Keywords 'publish custom events' and 'route to multiple services' point to a custom Event Grid topic."
   },
   {
     "id": "ai-200-q273",
@@ -1326,7 +1398,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/consumption-plan"
       }
-    ]
+    ],
+    "hint": "Keywords 'pay only for executions' and 'minimize cost' point to the Consumption plan."
   },
   {
     "id": "ai-200-q274",
@@ -1343,7 +1416,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
       }
-    ]
+    ],
+    "hint": "No — 'one-to-many' needs a topic with subscriptions, not a queue."
   },
   {
     "id": "ai-200-q275",
@@ -1362,7 +1436,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-premium-plan"
       }
-    ]
+    ],
+    "hint": "Keywords 'avoid cold starts' and 'prewarm workers' point to the Premium plan."
   },
   {
     "id": "ai-200-q276",
@@ -1381,7 +1456,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/secrets/tutorial-rotation"
       }
-    ]
+    ],
+    "hint": "Keywords 'rotate automatically before it expires' point to a rotation policy."
   },
   {
     "id": "ai-200-q277",
@@ -1398,7 +1474,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/event-grid-overview"
       }
-    ]
+    ],
+    "hint": "No — 'notified when near expiration' uses Event Grid, not access policies."
   },
   {
     "id": "ai-200-q278",
@@ -1417,7 +1494,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/authentication"
       }
-    ]
+    ],
+    "hint": "Keywords 'authenticate without storing credentials' and 'Microsoft Entra' point to managed identity."
   },
   {
     "id": "ai-200-q279",
@@ -1434,7 +1512,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/enable-dynamic-configuration-dotnet-core"
       }
-    ]
+    ],
+    "hint": "Yes — 'sentinel key' and 'refresh interval' enable dynamic refresh without restart."
   },
   {
     "id": "ai-200-q280",
@@ -1453,7 +1532,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/manage-feature-flags"
       }
-    ]
+    ],
+    "hint": "Keywords 'toggle at runtime' and 'without redeploying' point to a feature flag."
   },
   {
     "id": "ai-200-q281",
@@ -1470,7 +1550,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable"
       }
-    ]
+    ],
+    "hint": "No — 'receiver' only collects; an exporter sends to Azure Monitor."
   },
   {
     "id": "ai-200-q282",
@@ -1489,7 +1570,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/where-operator"
       }
-    ]
+    ],
+    "hint": "Keywords 'only error-level logs' point to the where operator filter."
   },
   {
     "id": "ai-200-q283",
@@ -1506,7 +1588,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/summarize-operator"
       }
-    ]
+    ],
+    "hint": "Yes — 'count per status code' matches summarize count() by resultCode."
   },
   {
     "id": "ai-200-q284",
@@ -1525,7 +1608,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-key-value"
       }
-    ]
+    ],
+    "hint": "Keywords 'development and production' in 'same store' point to key labels."
   },
   {
     "id": "ai-200-q285",
@@ -1542,7 +1626,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
       }
-    ]
+    ],
+    "hint": "No — 'role assignments' require the Azure RBAC model, not vault access policies."
   },
   {
     "id": "ai-200-q286",
@@ -1561,7 +1646,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-configuration"
       }
-    ]
+    ],
+    "hint": "Keyword 'sends telemetry to the backend' points to the exporter."
   },
   {
     "id": "ai-200-q287",
@@ -1580,7 +1666,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/ago-function"
       }
-    ]
+    ],
+    "hint": "Keywords 'last 24 hours only' point to the ago() function."
   },
   {
     "id": "ai-200-q288",
@@ -1599,7 +1686,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/sampling"
       }
-    ]
+    ],
+    "hint": "Keywords 'reduce telemetry' and 'lower data cost' point to sampling."
   },
   {
     "id": "ai-200-q289",
@@ -1616,7 +1704,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview"
       }
-    ]
+    ],
+    "hint": "Yes — 'soft-delete' retains for recovery and 'purge protection' prevents permanent deletion."
   },
   {
     "id": "ai-200-q290",
@@ -1635,7 +1724,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'deleted when the app is removed' point to system-assigned identity."
   },
   {
     "id": "ai-200-q291",
@@ -1654,7 +1744,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-enable"
       }
-    ]
+    ],
+    "hint": "Keywords 'minimal code changes' point to automatic instrumentation."
   },
   {
     "id": "ai-200-q292",
@@ -1673,7 +1764,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/extend-operator"
       }
-    ]
+    ],
+    "hint": "Keywords 'add a computed column' point to the extend operator."
   },
   {
     "id": "ai-200-q293",
@@ -1690,7 +1782,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-geo-replication"
       }
-    ]
+    ],
+    "hint": "No — 'snapshot' isn't regional redundancy; create a replica in another region."
   },
   {
     "id": "ai-200-q294",
@@ -1709,7 +1802,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/private-link-service"
       }
-    ]
+    ],
+    "hint": "Keywords 'inside a virtual network' and 'private IP' point to a private endpoint."
   },
   {
     "id": "ai-200-q295",
@@ -1726,7 +1820,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/project-operator"
       }
-    ]
+    ],
+    "hint": "No — 'project-rename' renames columns; use project to select specific columns."
   },
   {
     "id": "ai-200-q296",
@@ -1745,7 +1840,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types"
       }
-    ]
+    ],
+    "hint": "Keywords 'metric crosses a threshold' and 'alert automatically' point to a metric alert rule."
   },
   {
     "id": "ai-200-q297",
@@ -1762,7 +1858,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/event-grid-overview"
       }
-    ]
+    ],
+    "hint": "Yes — 'secret rotated' emits a new version event routed via Event Grid."
   },
   {
     "id": "ai-200-q298",
@@ -1781,7 +1878,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/bin-function"
       }
-    ]
+    ],
+    "hint": "Keywords 'grouped by five-minute intervals' point to summarize and bin."
   },
   {
     "id": "ai-200-q299",
@@ -1798,7 +1896,8 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview"
       }
-    ]
+    ],
+    "hint": "No — 'flow across service boundaries' needs context propagation enabled, not disabled."
   },
   {
     "id": "ai-200-q300",
@@ -1817,6 +1916,7 @@
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/manage-feature-flags"
       }
-    ]
+    ],
+    "hint": "Keywords 'toggle at runtime without a restart' point to a feature flag."
   }
 ]

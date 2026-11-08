@@ -1,0 +1,140 @@
+[
+  {
+    "id": "sc-500-q330",
+    "domain": "Secure compute",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to onboard servers to Microsoft Defender for Cloud.",
+    "options": [],
+    "steps": [
+      "Enable the Defender for Servers plan on the subscription",
+      "Turn on auto-provisioning for the Azure Monitor Agent",
+      "Verify that the agents are deployed to the servers",
+      "Review security recommendations and Secure Score",
+      "Enable Just-in-Time VM access for management ports"
+    ],
+    "answer": 0,
+    "explanation": "Onboarding starts by enabling the Defender for Servers plan, then auto-provisioning the agent, verifying deployment, reviewing the resulting posture, and finally enabling advanced protections such as Just-in-Time access.",
+    "hint": "Enable plan, auto-provision agent, verify, review score, then JIT.",
+    "docs": [
+      {
+        "label": "Plan Defender for Servers",
+        "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-defender-for-servers"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q331",
+    "domain": "Manage and monitor security posture",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to enable Microsoft Sentinel for security monitoring.",
+    "options": [],
+    "steps": [
+      "Create a Log Analytics workspace and enable Sentinel on it",
+      "Connect data connectors to ingest security logs",
+      "Create analytics rules to detect threats",
+      "Configure automation to respond to incidents",
+      "Review and triage the generated incidents"
+    ],
+    "answer": 0,
+    "explanation": "Sentinel begins with a workspace, then data connectors bring in logs, analytics rules generate incidents, automation responds to them, and analysts triage the resulting incidents.",
+    "hint": "Workspace, connectors, analytics rule, automation, then triage.",
+    "docs": [
+      {
+        "label": "Quickstart: Onboard to Microsoft Sentinel",
+        "url": "https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q332",
+    "domain": "Secure storage, databases, and networking",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to secure a newly created Azure storage account.",
+    "options": [],
+    "steps": [
+      "Create the storage account in the target subscription",
+      "Create a private endpoint for private connectivity",
+      "Configure the firewall to deny public network access",
+      "Enable Microsoft Defender for Storage",
+      "Enable diagnostic settings to audit access"
+    ],
+    "answer": 0,
+    "explanation": "The account is created first, then private connectivity is established, public access is locked down with the firewall, threat protection is enabled, and finally auditing is configured to log access.",
+    "hint": "Create, private endpoint, deny public access, Defender, then audit.",
+    "docs": [
+      {
+        "label": "Configure storage firewalls and virtual networks",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q333",
+    "domain": "Manage identity, access, and governance",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to roll out a Conditional Access policy that enforces MFA.",
+    "options": [],
+    "steps": [
+      "Enable combined security info registration for MFA",
+      "Create a pilot group of users",
+      "Create a Conditional Access policy with an MFA grant control for the pilot group",
+      "Monitor sign-in logs to confirm enforcement",
+      "Expand the policy to all users"
+    ],
+    "answer": 0,
+    "explanation": "The rollout starts by enabling MFA registration, scoping to a pilot group, enforcing MFA through Conditional Access, monitoring sign-ins to confirm behavior, and then broadening the policy to all users.",
+    "hint": "Register MFA, pilot group, CA policy with MFA grant, monitor, expand.",
+    "docs": [
+      {
+        "label": "Conditional Access overview",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q334",
+    "domain": "Secure storage, databases, and networking",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to deploy Azure Firewall and inspect outbound traffic.",
+    "options": [],
+    "steps": [
+      "Create the dedicated AzureFirewallSubnet",
+      "Deploy the Azure Firewall instance with a public IP address",
+      "Create an Azure Firewall Policy with network and application rules",
+      "Configure a user-defined route to send traffic through the firewall",
+      "Enable diagnostics to verify traffic logs"
+    ],
+    "answer": 0,
+    "explanation": "The dedicated subnet is provisioned first, then the firewall instance, then the policy rules, then routing to direct traffic through it, and finally diagnostics to verify inspection.",
+    "hint": "Subnet, deploy firewall, policy rules, route, then verify logs.",
+    "docs": [
+      {
+        "label": "Azure Firewall overview",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "sc-500-q335",
+    "domain": "Secure storage, databases, and networking",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to harden access to an Azure Key Vault.",
+    "options": [],
+    "steps": [
+      "Enable the Azure RBAC permission model to retire access policies",
+      "Assign least-privilege data-plane RBAC roles",
+      "Configure the firewall to restrict network access",
+      "Create a private endpoint and disable public access",
+      "Enable diagnostics for audit logging"
+    ],
+    "answer": 0,
+    "explanation": "Hardening moves from the permission model, to least-privilege role assignments, to network restrictions, to private connectivity with public access disabled, and finally to audit logging.",
+    "hint": "RBAC model, least-privilege roles, firewall, private endpoint, audit.",
+    "docs": [
+      {
+        "label": "Azure RBAC permission model for Key Vault",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  }
+]

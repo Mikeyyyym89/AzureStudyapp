@@ -1,0 +1,154 @@
+[
+  {
+    "id": "ai-500-q301",
+    "domain": "Architect multi-agent solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to deploy a multi-agent system in Microsoft Foundry, from start to finish.",
+    "options": [],
+    "steps": [
+      "Design agents and define their roles and workflows",
+      "Build tools and MCP servers the agents will call",
+      "Orchestrate the agents into a multi-agent workflow",
+      "Add guardrails for safety and policy enforcement",
+      "Evaluate the solution against quality and safety criteria",
+      "Deploy to production with monitoring"
+    ],
+    "answer": 0,
+    "explanation": "A multi-agent system moves from design, to tooling, to orchestration, then guardrails, evaluation, and finally production deployment.",
+    "hint": "Keywords 'design agents', 'build tools', 'orchestrate', 'guardrails', 'evaluate', 'deploy' give the sequence.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      },
+      {
+        "label": "Agents in Microsoft Foundry",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q302",
+    "domain": "Develop multi-agent solutions in Azure",
+    "type": "order",
+    "prompt": "Arrange the steps to set up retrieval-augmented generation (RAG) for an agent.",
+    "options": [],
+    "steps": [
+      "Ingest and index the source documents",
+      "Chunk documents into semantic units and generate embeddings",
+      "Store the vectors in a vector database",
+      "Retrieve the relevant chunks for a query",
+      "Inject the retrieved chunks into the agent's prompt",
+      "Evaluate groundedness and relevance"
+    ],
+    "answer": 0,
+    "explanation": "RAG flows from ingestion, to chunking and embedding, vector storage, retrieval, prompt injection, and finally evaluation.",
+    "hint": "Keywords 'ingest', 'chunk', 'embed', 'store', 'retrieve', 'inject' give the RAG pipeline order.",
+    "docs": [
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q303",
+    "domain": "Develop multi-agent solutions in Azure",
+    "type": "order",
+    "prompt": "Arrange the steps to implement human-in-the-loop approval for a high-impact agent action.",
+    "options": [],
+    "steps": [
+      "Define which actions require human approval",
+      "Pause the workflow before the high-impact action",
+      "Surface a summary and decision to a human reviewer",
+      "Human approves, rejects, or edits the action",
+      "Resume the workflow with the approved action",
+      "Log the decision for audit"
+    ],
+    "answer": 0,
+    "explanation": "Human-in-the-loop pauses before risky actions, surfaces a decision, applies the human's choice, then resumes and logs it.",
+    "hint": "Keywords 'approval', 'pause', 'surface', 'approve/reject', 'resume', 'log' give the loop order.",
+    "docs": [
+      {
+        "label": "Multiple-agent workflow automation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q304",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to configure observability and tracing for a multi-agent workflow.",
+    "options": [],
+    "steps": [
+      "Instrument agents to emit spans and events",
+      "Assign correlation IDs across the workflow",
+      "Collect metrics, logs, and traces centrally",
+      "Correlate distributed traces across agents",
+      "Set alerts on latency, errors, and loop thresholds",
+      "Replay traces to reproduce failures"
+    ],
+    "answer": 0,
+    "explanation": "Observability starts with instrumentation and correlation IDs, then central collection, trace correlation, alerting, and replay.",
+    "hint": "Keywords 'instrument', 'correlation IDs', 'collect', 'correlate', 'alerts', 'replay' give the tracing order.",
+    "docs": [
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q305",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to secure agents using per-agent identity in Microsoft Foundry.",
+    "options": [],
+    "steps": [
+      "Create a scoped identity for each agent",
+      "Assign least-privilege permissions to each identity",
+      "Store credentials in Azure Key Vault",
+      "Authenticate the agent to tools and resources with its identity",
+      "Enable auditing of each agent's actions",
+      "Rotate credentials independently per agent"
+    ],
+    "answer": 0,
+    "explanation": "Per-agent identity flows from creating scoped identities, granting least privilege, storing secrets, authenticating, auditing, to independent rotation.",
+    "hint": "Keywords 'scoped identity', 'least privilege', 'Key Vault', 'authenticate', 'audit', 'rotate' give the order.",
+    "docs": [
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      },
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-500-q306",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "type": "order",
+    "prompt": "Arrange the steps for a blue/green rollout of an agent update.",
+    "options": [],
+    "steps": [
+      "Deploy the new agent version to a green environment",
+      "Validate the green environment against evaluation checks",
+      "Shift traffic to the green environment",
+      "Monitor error rates and quality after the switch",
+      "Decommission the old blue environment",
+      "Roll back to blue instantly if issues appear"
+    ],
+    "answer": 0,
+    "explanation": "Blue/green runs two environments, validates green, shifts traffic, monitors, then decommissions old or rolls back instantly.",
+    "hint": "Keywords 'green environment', 'validate', 'shift traffic', 'monitor', 'decommission', 'roll back' give the order.",
+    "docs": [
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
+    ]
+  }
+]

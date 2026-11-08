@@ -1,0 +1,135 @@
+[
+  {
+    "id": "ai-200-q301",
+    "domain": "Develop containerized solutions on Azure",
+    "type": "order",
+    "prompt": "Arrange the steps to build and push a container image from source code and deploy it, without installing Docker locally.",
+    "options": [],
+    "steps": [
+      "Write the Dockerfile that defines the image",
+      "Build the image using an ACR Task",
+      "Push the image to Azure Container Registry",
+      "Deploy the image to Azure Container Apps"
+    ],
+    "answer": 0,
+    "explanation": "ACR Tasks build the image in the cloud from the Dockerfile, then the image is pushed to ACR and deployed to Container Apps.",
+    "hint": "Keyword 'without installing Docker locally' means ACR Task performs the cloud build.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q302",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "type": "order",
+    "prompt": "Arrange the steps to set up a Retrieval-Augmented Generation (RAG) pipeline that answers questions over documents.",
+    "options": [],
+    "steps": [
+      "Ingest the source documents",
+      "Chunk the documents into smaller pieces",
+      "Generate embeddings for each chunk",
+      "Store the vectors in a vector database",
+      "Query the vector store with a user prompt"
+    ],
+    "answer": 0,
+    "explanation": "RAG first ingests and chunks documents, then embeds and stores the vectors, and finally queries them at runtime.",
+    "hint": "Keyword 'RAG pipeline' follows ingest, chunk, embed, store, then query.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/search/retrieval-augmented-generation-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q303",
+    "domain": "Connect to and consume Azure services",
+    "type": "order",
+    "prompt": "Arrange the components in the correct processing order for a blob upload event flowing through Event Grid, Azure Functions, and Service Bus.",
+    "options": [],
+    "steps": [
+      "Event Grid detects and routes the source event",
+      "An Azure Function is triggered",
+      "The function sends a message to a Service Bus queue",
+      "A worker consumes and processes the message"
+    ],
+    "answer": 0,
+    "explanation": "Event Grid routes the event to a Function trigger, which enqueues a Service Bus message that a downstream worker processes.",
+    "hint": "Keywords 'Event Grid', 'Function', 'Service Bus', and 'worker' define the event routing order.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q304",
+    "domain": "Connect to and consume Azure services",
+    "type": "order",
+    "prompt": "Arrange the steps to deploy a serverless HTTP API using Azure Functions.",
+    "options": [],
+    "steps": [
+      "Create an Azure Function App",
+      "Write an HTTP-triggered function",
+      "Deploy the function code to Azure",
+      "Invoke the function over HTTP"
+    ],
+    "answer": 0,
+    "explanation": "You create the Function App, add an HTTP-triggered function, deploy the code, then call the exposed endpoint.",
+    "hint": "Keyword 'serverless HTTP API' maps to the Function App lifecycle: create, write, deploy, invoke.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q305",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "type": "order",
+    "prompt": "Arrange the steps to configure the Cosmos DB change feed processor so multiple instances share work.",
+    "options": [],
+    "steps": [
+      "Create the monitored and lease containers",
+      "Register the change feed processor with both containers",
+      "Implement the changes handler delegate",
+      "Start the processor to process and checkpoint changes"
+    ],
+    "answer": 0,
+    "explanation": "The change feed processor uses a lease container for checkpoints; you register it against the monitored and lease containers and start it.",
+    "hint": "Keywords 'lease' and 'checkpointing' define the change feed processor setup order.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/change-feed-processor"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q306",
+    "domain": "Develop containerized solutions on Azure",
+    "type": "order",
+    "prompt": "Arrange the steps to configure automatic scaling of a Container App using a KEDA scale rule.",
+    "options": [],
+    "steps": [
+      "Choose the KEDA scaler (for example, queue or CPU)",
+      "Define the scale rule with metadata and thresholds",
+      "Configure the minimum and maximum replicas",
+      "Apply the scaling configuration to the Container App"
+    ],
+    "answer": 0,
+    "explanation": "KEDA scale rules select a scaler, set thresholds and replica bounds, and are applied to the app to scale it automatically.",
+    "hint": "Keyword 'KEDA scale rule' means choose a scaler, set thresholds, and replica bounds.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
+      }
+    ]
+  }
+]

@@ -11,6 +11,7 @@
     ],
     "answer": 0,
     "explanation": "Management groups provide a single scope above subscriptions for consistent policy and RBAC inheritance. Tenants isolate directory boundaries, while resource groups and blueprints do not group subscriptions.",
+    "hint": "Keyword 'consistently across related subscriptions' signals management groups for inherited policy and RBAC.",
     "docs": [
       {
         "label": "Azure management groups",
@@ -30,6 +31,7 @@
     ],
     "answer": 1,
     "explanation": "Subscriptions are the boundary for billing and resource limits, so a subscription per department isolates budgets and quotas. Resource groups and management groups do not provide separate billing.",
+    "hint": "Keywords 'isolate billing' and 'separate budgets and quotas' signal one subscription per department.",
     "docs": [
       {
         "label": "Resource and subscription organization",
@@ -49,6 +51,7 @@
     ],
     "answer": 2,
     "explanation": "Cost Optimization focuses on eliminating waste and right-sizing resources. Reliability, Security, and Operational Excellence address availability, threat protection, and operations respectively.",
+    "hint": "Keywords 'wasted spend' signal the Cost Optimization pillar.",
     "docs": [
       {
         "label": "Cost Optimization pillar",
@@ -66,6 +69,7 @@
     ],
     "answer": 0,
     "explanation": "An Azure Policy with a deny effect blocks non-compliant resource creation at the assigned scope. Assigning it to a management group applies the restriction to all contained subscriptions.",
+    "hint": "Yes — a Policy deny effect blocks non-compliant deployments at the assigned scope.",
     "docs": [
       {
         "label": "Azure Policy effects",
@@ -83,6 +87,7 @@
     ],
     "answer": 1,
     "explanation": "PIM is designed for time-bound, just-in-time access with approval, not permanent assignments. Use a direct role assignment for permanent standing access.",
+    "hint": "No — PIM is for just-in-time access, not permanent assignments.",
     "docs": [
       {
         "label": "Privileged Identity Management",
@@ -102,6 +107,7 @@
     ],
     "answer": 3,
     "explanation": "Microsoft Entra Connect Sync provides password hash synchronization and seamless single sign-on for hybrid identity. Cloud sync does not support seamless SSO, and B2B and External ID target guest and consumer identity.",
+    "hint": "Keywords 'password hash synchronization' and 'seamless SSO' signal Connect Sync.",
     "docs": [
       {
         "label": "What is Microsoft Entra Connect Sync?",
@@ -121,6 +127,7 @@
     ],
     "answer": 0,
     "explanation": "Azure AD B2C provides self-service registration, social identity providers, and custom branded sign-in. B2B and Connect target partner and employee identities respectively.",
+    "hint": "Keywords 'social accounts' and 'branded sign-in' signal Azure AD B2C.",
     "docs": [
       {
         "label": "Azure AD B2C documentation",
@@ -140,6 +147,7 @@
     ],
     "answer": 1,
     "explanation": "PIM provides time-bound, approval-based, just-in-time activation of privileged roles. Direct assignments, Policy, and Conditional Access do not grant expiring role activation.",
+    "hint": "Keywords 'just-in-time' and 'requires approval' signal Privileged Identity Management.",
     "docs": [
       {
         "label": "Privileged Identity Management",
@@ -157,6 +165,7 @@
     ],
     "answer": 0,
     "explanation": "Conditional Access policies evaluate sign-in conditions such as location and can require MFA as a grant control. This challenges risky sign-ins as configured.",
+    "hint": "Yes — Conditional Access location condition plus MFA grant challenges risky sign-ins.",
     "docs": [
       {
         "label": "Conditional Access overview",
@@ -174,6 +183,7 @@
     ],
     "answer": 0,
     "explanation": "Azure Monitor with Log Analytics workspaces centralizes logs and metrics from many resource types for querying and alerting. Workspaces can collect data across subscriptions.",
+    "hint": "Yes — Log Analytics workspaces centralize logs across subscriptions via Azure Monitor.",
     "docs": [
       {
         "label": "Azure Monitor overview",
@@ -193,6 +203,7 @@
     ],
     "answer": 2,
     "explanation": "Application Insights provides application performance management including request tracing, exceptions, and dependency tracking. Log Analytics is for log queries, and Activity Log records control-plane events.",
+    "hint": "Keywords 'trace requests' and 'dependency latency' signal Application Insights.",
     "docs": [
       {
         "label": "Application Insights overview",
@@ -212,6 +223,7 @@
     ],
     "answer": 3,
     "explanation": "An initiative is a collection of policy definitions that can be assigned as a single unit for compliance. Management groups, roles, and locks do not bundle policies.",
+    "hint": "Keywords 'group policy definitions together' signal an Azure Policy initiative.",
     "docs": [
       {
         "label": "Azure Policy initiative",
@@ -231,6 +243,7 @@
     ],
     "answer": 0,
     "explanation": "Cloud sync provisions identities from on-premises AD to Entra ID using lightweight agents, without a full sync server. Connect Sync requires an on-premises sync server.",
+    "hint": "Keyword 'without deploying a synchronization server' signals cloud sync.",
     "docs": [
       {
         "label": "Microsoft Entra Connect cloud sync",
@@ -248,6 +261,7 @@
     ],
     "answer": 0,
     "explanation": "A Delete lock prevents authorized users from deleting the locked resource or resource group. It does not block modifications, but deletion is prevented.",
+    "hint": "Yes — a Delete lock prevents deletion of the resource group.",
     "docs": [
       {
         "label": "Resource locks",
@@ -265,6 +279,7 @@
     ],
     "answer": 0,
     "explanation": "A system-assigned managed identity provides an automatically managed identity in Entra ID for the VM, enabling credential-free authentication to resources like Key Vault.",
+    "hint": "Yes — a system-assigned managed identity enables credential-free Key Vault access.",
     "docs": [
       {
         "label": "Managed identities overview",
@@ -284,6 +299,7 @@
     ],
     "answer": 1,
     "explanation": "Action groups define notification and automation targets, such as email and runbook actions, that alert rules invoke. Other options collect or route data but do not notify.",
+    "hint": "Keywords 'email and runbook' in one alert signal an action group.",
     "docs": [
       {
         "label": "Action groups",
@@ -303,6 +319,7 @@
     ],
     "answer": 2,
     "explanation": "A single tenant provides one directory and identity boundary with centralized user and access administration. Multiple tenants fragment identities.",
+    "hint": "Keywords 'one directory' and 'centralized administration' signal a single tenant.",
     "docs": [
       {
         "label": "What is Microsoft Entra ID?",
@@ -322,6 +339,7 @@
     ],
     "answer": 3,
     "explanation": "Pass-through authentication validates credentials against on-premises AD in real time without syncing password hashes. PHS stores hashes in the cloud, and federation relies on ADFS.",
+    "hint": "Keywords 'validated in real time' without stored hashes signal pass-through authentication.",
     "docs": [
       {
         "label": "Pass-through authentication",
@@ -339,6 +357,7 @@
     ],
     "answer": 0,
     "explanation": "A custom role with a narrowly scoped action grants exactly the restart permission. Custom roles allow least-privilege access beyond built-in roles.",
+    "hint": "Yes — a custom role scoped to restart/action grants least privilege.",
     "docs": [
       {
         "label": "Azure custom roles",
@@ -356,6 +375,7 @@
     ],
     "answer": 0,
     "explanation": "The Activity Log records control-plane events, and routing it to Log Analytics enables long-term retention beyond the default 90 days.",
+    "hint": "Yes — routing Activity Log to Log Analytics enables ten-year retention.",
     "docs": [
       {
         "label": "Azure Activity log",
@@ -375,6 +395,7 @@
     ],
     "answer": 0,
     "explanation": "RBAC controls who can perform actions, while Azure Policy controls what configurations are allowed. Together they separate authorization from compliance enforcement.",
+    "hint": "Keywords 'who' vs 'which configurations' signal RBAC plus Azure Policy.",
     "docs": [
       {
         "label": "Azure Policy overview",
@@ -394,6 +415,7 @@
     ],
     "answer": 1,
     "explanation": "Access reviews provide periodic certification where reviewers attest whether users still need access. PIM controls activation, while Identity Protection and Conditional Access address risk and sign-in.",
+    "hint": "Keywords 'periodic certification' and 'attestation' signal access reviews.",
     "docs": [
       {
         "label": "Access reviews",
@@ -413,6 +435,7 @@
     ],
     "answer": 2,
     "explanation": "A single workspace centralizes data and billing while table-level RBAC restricts access per business unit. Separate workspaces fragment data and dashboards.",
+    "hint": "Keywords 'one set of dashboards' plus 'own access boundary' signal table-level RBAC.",
     "docs": [
       {
         "label": "Log Analytics workspace design",
@@ -430,6 +453,7 @@
     ],
     "answer": 1,
     "explanation": "Direct assignments persist until manually removed and are not time-bound. Use an eligible assignment with an end date or a PIM assignment for time-bound access.",
+    "hint": "No — direct assignments aren't time-bound; use an expiring assignment.",
     "docs": [
       {
         "label": "Privileged Identity Management",
@@ -447,6 +471,7 @@
     ],
     "answer": 0,
     "explanation": "Diagnostic settings route platform metrics and logs to Event Hubs, Log Analytics, or Storage. Streaming to Event Hubs enables integration with external monitoring tools.",
+    "hint": "Yes — a diagnostic setting streams metrics/logs to Event Hubs.",
     "docs": [
       {
         "label": "Diagnostic settings",
@@ -466,6 +491,7 @@
     ],
     "answer": 3,
     "explanation": "Managed Instance supports cross-database queries and SQL Server Agent, unlike Azure SQL Database. Synapse and Cosmos DB do not host this SQL Server workload.",
+    "hint": "Keywords 'cross-database queries' and 'SQL Server Agent' signal Managed Instance.",
     "docs": [
       {
         "label": "Azure SQL Managed Instance",
@@ -485,6 +511,7 @@
     ],
     "answer": 0,
     "explanation": "Strong consistency guarantees linearizable reads across regions, ensuring readers never see stale data. The other levels allow some staleness.",
+    "hint": "Keyword 'latest committed write' across regions signals Strong consistency.",
     "docs": [
       {
         "label": "Cosmos DB consistency levels",
@@ -504,6 +531,7 @@
     ],
     "answer": 1,
     "explanation": "A high-cardinality key distributes items evenly across physical partitions, avoiding hot spots. Low-cardinality and timestamp keys concentrate load, and a key is required.",
+    "hint": "Keyword 'avoid hot partitions' signals a high-cardinality partition key.",
     "docs": [
       {
         "label": "Cosmos DB partitioning",
@@ -521,6 +549,7 @@
     ],
     "answer": 0,
     "explanation": "Data Lake Storage Gen2 adds a hierarchical namespace and POSIX ACLs to blob storage, meeting analytics access-control requirements.",
+    "hint": "Yes — hierarchical namespace and POSIX ACLs signal Data Lake Storage Gen2.",
     "docs": [
       {
         "label": "Data Lake Storage Gen2",
@@ -538,6 +567,7 @@
     ],
     "answer": 1,
     "explanation": "GRS replicates data to a secondary region but does not allow read access to it during an outage. Read-access geo-redundant storage (RA-GRS) enables secondary reads.",
+    "hint": "No — GRS lacks read access; RA-GRS enables secondary reads.",
     "docs": [
       {
         "label": "Azure Storage redundancy",
@@ -557,6 +587,7 @@
     ],
     "answer": 2,
     "explanation": "Serverless mode bills per request unit consumed and requires no throughput management, ideal for bursty and idle workloads. Provisioned and autoscale modes require configuring capacity.",
+    "hint": "Keywords 'bursty traffic' and 'pay only for consumed' signal serverless mode.",
     "docs": [
       {
         "label": "Cosmos DB serverless",
@@ -576,6 +607,7 @@
     ],
     "answer": 3,
     "explanation": "A hierarchical namespace provides directory semantics and atomic renames for analytics workloads like Hadoop and Spark. The other features address security or versioning.",
+    "hint": "Keywords 'directory semantics' and 'atomic rename' signal hierarchical namespace.",
     "docs": [
       {
         "label": "Hierarchical namespace",
@@ -595,6 +627,7 @@
     ],
     "answer": 0,
     "explanation": "Cool tier is for infrequently accessed data with immediate retrieval, while Archive tier has hour-long rehydration. Hot is for frequent access and Premium is performance-optimized.",
+    "hint": "Keywords 'rarely accessed' but 'immediately retrievable' signal the Cool tier.",
     "docs": [
       {
         "label": "Blob access tiers",
@@ -612,6 +645,7 @@
     ],
     "answer": 1,
     "explanation": "Elastic pools share a single set of resources across databases, so compute is not independent. Independent scaling requires separate single databases.",
+    "hint": "No — elastic pools share resources, so compute isn't independent.",
     "docs": [
       {
         "label": "Elastic pools",
@@ -629,6 +663,7 @@
     ],
     "answer": 0,
     "explanation": "Customer-managed keys let you encrypt storage using your own Key Vault keys, giving you control over rotation and revocation.",
+    "hint": "Yes — customer-managed keys put the Key Vault key under your control.",
     "docs": [
       {
         "label": "Customer-managed keys",
@@ -648,6 +683,7 @@
     ],
     "answer": 1,
     "explanation": "Geo-zone-redundant storage (GZRS) combines zone-level redundancy within the primary region with asynchronous replication to a secondary region. RA-GRS lacks intra-region zone redundancy.",
+    "hint": "Keywords 'zone failure' plus 'another region' signal geo-zone-redundant storage.",
     "docs": [
       {
         "label": "Azure Storage redundancy",
@@ -667,6 +703,7 @@
     ],
     "answer": 2,
     "explanation": "Azure Files provides SMB and NFS file shares that VMs can mount. Blob is object storage, Disk provides raw disks, and Queue provides messaging.",
+    "hint": "Keyword 'SMB file share' signals Azure Files.",
     "docs": [
       {
         "label": "Azure Files",
@@ -686,6 +723,7 @@
     ],
     "answer": 3,
     "explanation": "Multi-region writes allow writes in multiple regions, and last-writer-wins resolves conflicts automatically. Strong consistency is incompatible with multi-region writes.",
+    "hint": "Keywords 'multi-region writes' and 'automatic conflict' signal last-writer-wins.",
     "docs": [
       {
         "label": "Multi-region writes",
@@ -703,6 +741,7 @@
     ],
     "answer": 0,
     "explanation": "General-purpose v2 accounts support block blobs, file shares, tables, and queues together, meeting the requirement.",
+    "hint": "Yes — general-purpose v2 accounts host both blobs and file shares.",
     "docs": [
       {
         "label": "Storage account overview",
@@ -720,6 +759,7 @@
     ],
     "answer": 0,
     "explanation": "Version-level immutability with a time-based retention policy locks blob versions so they cannot be modified or deleted until retention expires.",
+    "hint": "Yes — version-level time-based retention locks blobs from change/deletion.",
     "docs": [
       {
         "label": "Version-level immutability",
@@ -739,6 +779,7 @@
     ],
     "answer": 0,
     "explanation": "Hyperscale separates compute and storage and supports fast read replicas. Serverless auto-scales compute but does not separate storage in the same way, and Basic has fixed limits.",
+    "hint": "Keywords 'storage independent of compute' and 'read replicas' signal Hyperscale.",
     "docs": [
       {
         "label": "Hyperscale service tier",
@@ -758,6 +799,7 @@
     ],
     "answer": 1,
     "explanation": "The NoSQL (core SQL) API supports rich SQL queries over JSON documents with automatic indexing. Table, MongoDB, and Cassandra APIs target different data models.",
+    "hint": "Keywords 'JSON' and 'rich SQL' with auto-indexing signal the NoSQL API.",
     "docs": [
       {
         "label": "Choose an API",
@@ -777,6 +819,7 @@
     ],
     "answer": 2,
     "explanation": "Lifecycle management policies automatically transition blobs between access tiers based on rules. The other options govern access or compliance, not tiering.",
+    "hint": "Keyword 'automatically move to cooler tier' signals lifecycle management.",
     "docs": [
       {
         "label": "Lifecycle management",
@@ -794,6 +837,7 @@
     ],
     "answer": 1,
     "explanation": "GRS replicates to a secondary region but does not automatically fail over writes; a customer-initiated failover is required. RA-GRS only enables secondary reads.",
+    "hint": "No — GRS requires customer-initiated failover for writes.",
     "docs": [
       {
         "label": "Storage disaster recovery",
@@ -811,6 +855,7 @@
     ],
     "answer": 1,
     "explanation": "Autoscale scales within a configured maximum; requests beyond the max still return throttling. No configuration can guarantee zero throttling under unbounded demand.",
+    "hint": "No — autoscale still throttles requests beyond its configured maximum.",
     "docs": [
       {
         "label": "Cosmos DB request units",
@@ -830,6 +875,7 @@
     ],
     "answer": 3,
     "explanation": "Ultra Disks provide sub-millisecond latency and independently tunable IOPS and throughput. Premium SSDs have single-digit millisecond latency and fixed performance tiers.",
+    "hint": "Keywords 'sub-millisecond latency' and 'dynamic performance' signal Ultra Disk.",
     "docs": [
       {
         "label": "Managed disk types",
@@ -849,6 +895,7 @@
     ],
     "answer": 0,
     "explanation": "Cosmos DB is a globally distributed NoSQL database with multi-region writes and low latency. Table Storage is single-region by default, and Blob and Queue are not key-value databases.",
+    "hint": "Keywords 'key-value' and 'multi-region writes' signal Cosmos DB.",
     "docs": [
       {
         "label": "Cosmos DB introduction",
@@ -868,6 +915,7 @@
     ],
     "answer": 1,
     "explanation": "Archived blobs must be rehydrated to an online tier before reads; direct download or copy is not possible while in Archive tier.",
+    "hint": "Keyword 'archived blob' read signals rehydrating first.",
     "docs": [
       {
         "label": "Blob rehydration",
@@ -885,6 +933,7 @@
     ],
     "answer": 0,
     "explanation": "Active geo-replication maintains readable secondary replicas in other regions that can be used for reads and failover.",
+    "hint": "Yes — active geo-replication provides readable regional secondaries.",
     "docs": [
       {
         "label": "Active geo-replication",
@@ -902,6 +951,7 @@
     ],
     "answer": 1,
     "explanation": "The default consistency level for a new Cosmos DB account is Session, not Strong. You must explicitly configure Strong consistency.",
+    "hint": "No — the default consistency level is Session, not Strong.",
     "docs": [
       {
         "label": "Cosmos DB consistency levels",
@@ -921,6 +971,7 @@
     ],
     "answer": 2,
     "explanation": "Recovery Point Objective (RPO) defines the maximum acceptable data loss measured in time. RTO measures time to restore, downtime is the outage duration, and retention is backup age.",
+    "hint": "Keyword 'data loss' tolerance signals the recovery point objective.",
     "docs": [
       {
         "label": "Reliability metrics",
@@ -940,6 +991,7 @@
     ],
     "answer": 3,
     "explanation": "Recovery Time Objective (RTO) is the maximum acceptable time to restore service after an outage. RPO defines data loss, and SLA defines overall availability.",
+    "hint": "Keyword 'restore service within' a time signals the recovery time objective.",
     "docs": [
       {
         "label": "Reliability metrics",
@@ -959,6 +1011,7 @@
     ],
     "answer": 0,
     "explanation": "Site Recovery replicates VMs to a secondary region and orchestrates failover and failback. Backup creates restore points but does not orchestrate regional failover.",
+    "hint": "Keywords 'replicate VMs' and 'orchestrate failover' signal Site Recovery.",
     "docs": [
       {
         "label": "Azure Site Recovery overview",
@@ -976,6 +1029,7 @@
     ],
     "answer": 0,
     "explanation": "Availability zones are physically separate data centers within a region, so spreading across zones protects against a single data center failure.",
+    "hint": "Yes — availability zones protect against a single data center failure.",
     "docs": [
       {
         "label": "Availability zones",
@@ -993,6 +1047,7 @@
     ],
     "answer": 1,
     "explanation": "Region pairs provide geographic separation and sequenced updates, but failover is not automatic, and zero-downtime, zero-data-loss failover requires application design and replication, not region pairing alone.",
+    "hint": "No — region pairing alone doesn't guarantee zero-downtime, zero-loss failover.",
     "docs": [
       {
         "label": "Cross-region replication",
@@ -1012,6 +1067,7 @@
     ],
     "answer": 1,
     "explanation": "Availability sets distribute VMs across fault and update domains to protect against rack failures and planned maintenance. Zones protect against data center failure, not single-rack issues.",
+    "hint": "Keywords 'planned maintenance' and 'same rack' signal an availability set.",
     "docs": [
       {
         "label": "Availability sets",
@@ -1031,6 +1087,7 @@
     ],
     "answer": 2,
     "explanation": "Azure Backup supports long-term retention policies for compliance. Site Recovery replicates for DR but does not provide long-term point-in-time retention.",
+    "hint": "Keyword 'seven years retention' signals Azure Backup retention policies.",
     "docs": [
       {
         "label": "Back up Azure VMs",
@@ -1050,6 +1107,7 @@
     ],
     "answer": 3,
     "explanation": "Cross-region restore enables restoring backups in a paired secondary region when the primary region is unavailable. LRS vaults, soft delete, and locks do not provide regional failover.",
+    "hint": "Keywords 'secondary region' restore signal cross-region restore.",
     "docs": [
       {
         "label": "Cross-region restore",
@@ -1067,6 +1125,7 @@
     ],
     "answer": 1,
     "explanation": "Site Recovery replicates whole VMs for failover and does not provide file-level restore. Azure Backup supports item-level file recovery.",
+    "hint": "No — Site Recovery lacks file-level restore; Azure Backup provides it.",
     "docs": [
       {
         "label": "File recovery from VM backup",
@@ -1084,6 +1143,7 @@
     ],
     "answer": 0,
     "explanation": "The MARS agent backs up files, folders, and system state from on-premises or cloud Windows machines to a Recovery Services vault.",
+    "hint": "Yes — the MARS agent backs up on-premises files and folders.",
     "docs": [
       {
         "label": "MARS agent",
@@ -1103,6 +1163,7 @@
     ],
     "answer": 0,
     "explanation": "Recovery plans automate multi-VM failover steps, minimizing RTO. Manual restore, cold standby, and snapshots involve slower, manual recovery.",
+    "hint": "Keywords 'automated failover' and sub-15-minute RTO signal recovery plans.",
     "docs": [
       {
         "label": "Recovery plans",
@@ -1122,6 +1183,7 @@
     ],
     "answer": 1,
     "explanation": "Zone-redundant storage (ZRS) replicates backup data across availability zones, surviving a zone failure. LRS stays in one zone, and GRS protects across regions.",
+    "hint": "Keyword 'zone failure' for backups signals zone-redundant storage.",
     "docs": [
       {
         "label": "Back up Azure VMs",
@@ -1141,6 +1203,7 @@
     ],
     "answer": 2,
     "explanation": "Region pairs receive sequenced planned maintenance so only one region in a pair updates at a time. Random regions and zones do not guarantee this sequencing.",
+    "hint": "Keyword 'sequenced maintenance' across regions signals a region pair.",
     "docs": [
       {
         "label": "Cross-region replication",
@@ -1158,6 +1221,7 @@
     ],
     "answer": 1,
     "explanation": "Soft delete retains deleted backups for a recovery window but does not prevent an administrator from purging them. Immutable vaults prevent deletion during retention.",
+    "hint": "No — soft delete doesn't stop purging; an immutable vault does.",
     "docs": [
       {
         "label": "Immutable vault",
@@ -1175,6 +1239,7 @@
     ],
     "answer": 0,
     "explanation": "Test failover runs in an isolated network and validates recovery readiness without impacting the source VMs.",
+    "hint": "Yes — test failover runs in an isolated network without impact.",
     "docs": [
       {
         "label": "Test failover",
@@ -1194,6 +1259,7 @@
     ],
     "answer": 3,
     "explanation": "Synchronous replication commits writes to the secondary before acknowledging, achieving near-zero RPO. Asynchronous and periodic backups allow greater data loss.",
+    "hint": "Keyword 'near zero RPO' signals synchronous replication.",
     "docs": [
       {
         "label": "Geo-replication pattern",
@@ -1213,6 +1279,7 @@
     ],
     "answer": 0,
     "explanation": "Azure SQL Database automated backups support point-in-time restore within the retention period. Geo-replication and failover groups address regional DR, not PITR.",
+    "hint": "Keyword 'any point within 14 days' signals automated backups.",
     "docs": [
       {
         "label": "Recovery using backups",
@@ -1232,6 +1299,7 @@
     ],
     "answer": 1,
     "explanation": "Auto-failover groups provide a single listener endpoint and coordinated failover for multiple databases. Active geo-replication handles individual databases, and read replicas are within-region.",
+    "hint": "Keywords 'single endpoint' and 'coordinated failover' signal an auto-failover group.",
     "docs": [
       {
         "label": "Auto-failover groups",
@@ -1249,6 +1317,7 @@
     ],
     "answer": 1,
     "explanation": "Availability zones protect against data center failures within a region but not a full regional outage. Regional protection requires a multi-region deployment.",
+    "hint": "No — availability zones don't cover a complete regional outage.",
     "docs": [
       {
         "label": "Availability zones",
@@ -1266,6 +1335,7 @@
     ],
     "answer": 0,
     "explanation": "Azure Backup provides scheduled recovery points with configurable retention, meeting the daily 30-day requirement.",
+    "hint": "Yes — Azure Backup supports daily points with 30-day retention.",
     "docs": [
       {
         "label": "Back up Azure VMs",
@@ -1285,6 +1355,7 @@
     ],
     "answer": 2,
     "explanation": "Point-in-time restore recovers a database to a prior transactionally consistent state. Failover and read replicas address availability, not historical restore.",
+    "hint": "Keyword 'state from three days ago' signals point-in-time restore.",
     "docs": [
       {
         "label": "Recovery using backups",
@@ -1304,6 +1375,7 @@
     ],
     "answer": 3,
     "explanation": "Immutable vaults make backups non-erasable and non-modifiable for the retention period. Soft delete and versioning only delay or track deletion.",
+    "hint": "Keywords 'prevent deletion or modification' signal an immutable vault.",
     "docs": [
       {
         "label": "Immutable vault",
@@ -1323,6 +1395,7 @@
     ],
     "answer": 0,
     "explanation": "Site Recovery uses a replication appliance to replicate VMware VMs to Azure. Networking components do not replicate the virtual machines.",
+    "hint": "Keyword 'VMware VMs' replication signals a replication appliance.",
     "docs": [
       {
         "label": "VMware to Azure architecture",
@@ -1340,6 +1413,7 @@
     ],
     "answer": 1,
     "explanation": "Site Recovery uses asynchronous replication with a recovery point interval, typically minutes, so a zero RPO is not guaranteed. Zero RPO requires synchronous replication.",
+    "hint": "No — Site Recovery is asynchronous, so zero RPO isn't guaranteed.",
     "docs": [
       {
         "label": "Azure to Azure architecture",
@@ -1357,6 +1431,7 @@
     ],
     "answer": 0,
     "explanation": "RA-GRS replicates data to a secondary region and allows read access to it while the primary is unavailable.",
+    "hint": "Yes — RA-GRS provides readable secondary-region data.",
     "docs": [
       {
         "label": "Azure Storage redundancy",
@@ -1376,6 +1451,7 @@
     ],
     "answer": 1,
     "explanation": "App Service is a managed platform for web apps and APIs with automatic patching and scaling. Functions is event-driven, while ACI and VMs require more management.",
+    "hint": "Keywords 'automatic OS patching' and 'built-in scaling' signal App Service.",
     "docs": [
       {
         "label": "Azure App Service overview",
@@ -1395,6 +1471,7 @@
     ],
     "answer": 2,
     "explanation": "Container Apps is a serverless container platform with built-in scaling and Dapr, without managing Kubernetes. AKS requires cluster management.",
+    "hint": "Keywords 'Dapr' and 'no Kubernetes management' signal Container Apps.",
     "docs": [
       {
         "label": "Azure Container Apps",
@@ -1414,6 +1491,7 @@
     ],
     "answer": 3,
     "explanation": "Scale sets deploy and scale identical VM instances automatically based on metrics. A single VM, availability set, and dedicated hosts do not autoscale instance counts.",
+    "hint": "Keywords 'scale out automatically' with identical VMs signal scale sets.",
     "docs": [
       {
         "label": "Scale sets overview",
@@ -1431,6 +1509,7 @@
     ],
     "answer": 1,
     "explanation": "Azure Load Balancer operates at layer 4 and cannot route based on URL path. Use Azure Application Gateway for path-based layer 7 routing.",
+    "hint": "No — Load Balancer is layer 4; path routing needs Application Gateway.",
     "docs": [
       {
         "label": "Load Balancer overview",
@@ -1448,6 +1527,7 @@
     ],
     "answer": 1,
     "explanation": "Traffic Manager is DNS-based and cannot terminate TLS or route on URL path. Azure Front Door provides these layer 7 capabilities globally.",
+    "hint": "No — Traffic Manager is DNS-only; Front Door does URL/TLS.",
     "docs": [
       {
         "label": "Traffic Manager overview",
@@ -1467,6 +1547,7 @@
     ],
     "answer": 0,
     "explanation": "Azure Firewall supports FQDN-based filtering at both network and application levels. NSGs filter on IP, port, and protocol, and ASGs and UDRs do not filter FQDNs.",
+    "hint": "Keyword 'FQDN filtering' signals Azure Firewall.",
     "docs": [
       {
         "label": "Azure Firewall features",
@@ -1486,6 +1567,7 @@
     ],
     "answer": 1,
     "explanation": "ExpressRoute provides a dedicated private connection that bypasses the public internet. Site-to-site and point-to-site VPNs traverse the public internet.",
+    "hint": "Keywords 'dedicated' and 'not public internet' signal ExpressRoute.",
     "docs": [
       {
         "label": "ExpressRoute introduction",
@@ -1505,6 +1587,7 @@
     ],
     "answer": 2,
     "explanation": "A private endpoint assigns a private IP from your VNet and keeps traffic on the Microsoft backbone. Service endpoints still use the storage account's public address.",
+    "hint": "Keywords 'Microsoft backbone' and 'private IP' signal a private endpoint.",
     "docs": [
       {
         "label": "Private endpoints",
@@ -1522,6 +1605,7 @@
     ],
     "answer": 1,
     "explanation": "Service Bus queues deliver each message to a single consumer. Use Service Bus topics or Event Grid for fan-out to multiple subscribers.",
+    "hint": "No — queues are single-consumer; topics fan out to subscribers.",
     "docs": [
       {
         "label": "Service Bus messaging",
@@ -1539,6 +1623,7 @@
     ],
     "answer": 1,
     "explanation": "Event Grid is for discrete event routing and notification, not high-throughput stream ingestion with retention. Use Azure Event Hubs for telemetry streaming.",
+    "hint": "No — high-throughput streams need Event Hubs, not Event Grid.",
     "docs": [
       {
         "label": "Event Grid overview",
@@ -1558,6 +1643,7 @@
     ],
     "answer": 3,
     "explanation": "A topic supports publish-subscribe so multiple subscriptions each receive the message. A queue delivers to one consumer, and storage queues lack native pub-sub.",
+    "hint": "Keyword 'multiple systems' from one event signals Service Bus topics.",
     "docs": [
       {
         "label": "Queues, topics, subscriptions",
@@ -1577,6 +1663,7 @@
     ],
     "answer": 0,
     "explanation": "API Management provides a policy-driven gateway for rate limiting, transformation, and authentication. Front Door and gateways route traffic but lack API policies.",
+    "hint": "Keywords 'rate limits' and 'transform requests' signal API Management.",
     "docs": [
       {
         "label": "API Management concepts",
@@ -1596,6 +1683,7 @@
     ],
     "answer": 1,
     "explanation": "Data Box ships physical appliances for offline transfer of large volumes. AzCopy is network-based, and Azure Migrate assesses rather than transfers at this scale offline.",
+    "hint": "Keywords 'offline physical transfer' signal Azure Data Box.",
     "docs": [
       {
         "label": "Azure Data Box overview",
@@ -1613,6 +1701,7 @@
     ],
     "answer": 1,
     "explanation": "Server Assessment discovers and assesses servers but does not migrate databases. Use Azure Database Migration Service or Data Migration Assistant for database migration.",
+    "hint": "No — Server Assessment assesses; database migration needs DMS.",
     "docs": [
       {
         "label": "Azure Migrate services",
@@ -1630,6 +1719,7 @@
     ],
     "answer": 1,
     "explanation": "AzCopy only copies files and does not create or configure Azure VMs. Use Azure Migrate for a complete VM migration with configuration.",
+    "hint": "No — AzCopy copies files but doesn't create VMs; use Azure Migrate.",
     "docs": [
       {
         "label": "Get started with AzCopy",
@@ -1649,6 +1739,7 @@
     ],
     "answer": 2,
     "explanation": "The Consumption plan scales functions automatically and bills per execution. Premium and Dedicated plans incur always-on baseline costs.",
+    "hint": "Keywords 'bill only while executing' signal the Consumption plan.",
     "docs": [
       {
         "label": "Azure Functions scale",
@@ -1668,6 +1759,7 @@
     ],
     "answer": 3,
     "explanation": "AKS provides full Kubernetes control over scheduling, networking, and controllers. Container Apps abstracts Kubernetes, and ACI and Web App for Containers offer less control.",
+    "hint": "Keywords 'full control' and 'custom controllers' signal AKS.",
     "docs": [
       {
         "label": "What is Azure Kubernetes Service?",
@@ -1687,6 +1779,7 @@
     ],
     "answer": 0,
     "explanation": "Application security groups let you define NSG rules based on logical VM groupings rather than IP addresses. NSGs themselves are the rules, not the grouping mechanism.",
+    "hint": "Keywords 'by workload, not IP address' signal application security groups.",
     "docs": [
       {
         "label": "Application security groups",
@@ -1704,6 +1797,7 @@
     ],
     "answer": 1,
     "explanation": "VPN gateways run over the public internet and do not guarantee bandwidth or latency. ExpressRoute provides dedicated, guaranteed connectivity.",
+    "hint": "No — VPN lacks guaranteed bandwidth; ExpressRoute provides it.",
     "docs": [
       {
         "label": "VPN Gateway",
@@ -1721,6 +1815,7 @@
     ],
     "answer": 0,
     "explanation": "The default Azure-provided DNS resolves hostnames within the same virtual network automatically. Custom DNS is only needed for cross-network or private zone resolution.",
+    "hint": "Yes — Azure-provided DNS resolves names within the same VNet.",
     "docs": [
       {
         "label": "Name resolution for VMs",
@@ -1740,6 +1835,7 @@
     ],
     "answer": 1,
     "explanation": "The Standard SKU supports zone redundancy, outbound rules, and an availability SLA. Basic SKU lacks these production features, and Gateway SKU targets different scenarios.",
+    "hint": "Keywords 'outbound rules' and 'zone redundancy' signal Standard SKU.",
     "docs": [
       {
         "label": "Load Balancer SKUs",
@@ -1759,6 +1855,7 @@
     ],
     "answer": 2,
     "explanation": "Performance routing directs users to the endpoint with the lowest measured latency. Priority, weighted, and geographic methods use other selection criteria.",
+    "hint": "Keyword 'lowest latency' signals the Performance routing method.",
     "docs": [
       {
         "label": "Traffic Manager routing",
@@ -1778,6 +1875,7 @@
     ],
     "answer": 3,
     "explanation": "Two ExpressRoute circuits across different providers or locations provide redundant, active connectivity. A single circuit or VPN gateway is a single point of failure.",
+    "hint": "Keywords 'two active' and 'provider failure' signal dual ExpressRoute circuits.",
     "docs": [
       {
         "label": "ExpressRoute high availability",
@@ -1795,6 +1893,7 @@
     ],
     "answer": 0,
     "explanation": "Front Door combines global routing with an integrated WAF to block common attacks and direct users to the closest healthy origin.",
+    "hint": "Yes — Front Door plus WAF blocks attacks and routes globally.",
     "docs": [
       {
         "label": "Azure Front Door overview",
@@ -1812,6 +1911,7 @@
     ],
     "answer": 1,
     "explanation": "Application Gateway is a layer 7 load balancer for web apps, not a network-layer filter for all subnets. Use Azure Firewall for centralized network-layer filtering.",
+    "hint": "No — network-layer filtering needs Azure Firewall, not Application Gateway.",
     "docs": [
       {
         "label": "Application Gateway overview",

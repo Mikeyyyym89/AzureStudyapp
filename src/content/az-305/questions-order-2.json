@@ -1,0 +1,134 @@
+[
+  {
+    "id": "az-305-q330",
+    "domain": "Design business continuity solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to design a highly available web application that spans regions, in the correct order.",
+    "options": [],
+    "steps": [
+      "Select paired regions to provide geographic redundancy",
+      "Deploy application instances across availability zones within each region",
+      "Front the application with a global load balancer such as Azure Front Door",
+      "Configure database failover with an auto-failover group"
+    ],
+    "answer": 0,
+    "explanation": "Choose regions first, then spread within each region using availability zones, place a global load balancer in front to route traffic, and finally configure data-plane failover. Each layer builds on the previous one.",
+    "hint": "Regions → Zones → Load balancer → Database failover.",
+    "docs": [
+      {
+        "label": "Azure Front Door overview",
+        "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q331",
+    "domain": "Design infrastructure solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to migrate an on-premises SQL Server workload to Azure, in the correct order.",
+    "options": [],
+    "steps": [
+      "Assess the SQL estate for compatibility, dependencies, and blockers",
+      "Right-size the target Azure SQL configuration and service tier",
+      "Migrate the schema and data to the target database",
+      "Optimize the migrated workload for performance and cost"
+    ],
+    "answer": 0,
+    "explanation": "Migration flows from assessment through sizing, then the actual data movement, and ends with optimization. Assessment must precede sizing so the target matches the workload requirements.",
+    "hint": "Assess → Size → Migrate → Optimize.",
+    "docs": [
+      {
+        "label": "Data Migration Assistant overview",
+        "url": "https://learn.microsoft.com/en-us/sql/dma/dma-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q332",
+    "domain": "Design infrastructure solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to set up an Azure ExpressRoute connection to on-premises, in the correct order.",
+    "options": [],
+    "steps": [
+      "Provision an ExpressRoute circuit with a connectivity provider",
+      "Configure private peering on the circuit",
+      "Create the ExpressRoute virtual network gateway",
+      "Link the virtual network to the circuit and validate connectivity"
+    ],
+    "answer": 0,
+    "explanation": "The circuit must exist before peering is configured, the gateway must exist before the virtual network can be linked, and validation always comes last. Each step depends on the previous resource being in place.",
+    "hint": "Circuit → Peering → Gateway → Connect.",
+    "docs": [
+      {
+        "label": "ExpressRoute workflows",
+        "url": "https://learn.microsoft.com/en-us/azure/expressroute/expressroute-workflows"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q333",
+    "domain": "Design business continuity solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to design a multi-region disaster recovery plan, in the correct order.",
+    "options": [],
+    "steps": [
+      "Define the RPO and RTO requirements for the workload",
+      "Select a paired secondary region for geographic redundancy",
+      "Configure cross-region replication and backups to the secondary region",
+      "Automate and test failover using a recovery plan"
+    ],
+    "answer": 0,
+    "explanation": "Requirements drive every later decision, the target region is chosen next, replication is then configured to that region, and failover is automated and tested last. Testing validates that the defined objectives are met.",
+    "hint": "Requirements → Region → Replicate → Test failover.",
+    "docs": [
+      {
+        "label": "Azure reliability documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q334",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to set up an Azure landing zone, in the correct order.",
+    "options": [],
+    "steps": [
+      "Define the management group hierarchy and subscription organization",
+      "Configure identity and access management across the tenant",
+      "Set up the network topology and hybrid connectivity",
+      "Apply governance, security, and policy guardrails"
+    ],
+    "answer": 0,
+    "explanation": "Landing zones start with the organizational hierarchy, then identity, then networking, and finally governance and security policies. The hierarchy must exist before policy and access can be consistently inherited.",
+    "hint": "Management groups → Identity → Network → Policy.",
+    "docs": [
+      {
+        "label": "Cloud Adoption Framework landing zones",
+        "url": "https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q335",
+    "domain": "Design identity, governance, and monitoring solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to set up cost governance in Azure, in the correct order.",
+    "options": [],
+    "steps": [
+      "Establish a tagging and naming strategy for cost allocation",
+      "Assign cost centers and create budgets per department",
+      "Configure budget alerts and cost anomaly detection",
+      "Apply cost optimization recommendations such as reservations and right-sizing"
+    ],
+    "answer": 0,
+    "explanation": "Cost governance begins with a tagging strategy that enables allocation, then budgets are created, then alerts notify on spend, and finally ongoing optimization reduces waste. Without tags, allocation and budgeting lack reliable signals.",
+    "hint": "Tagging → Budgets → Alerts → Optimize.",
+    "docs": [
+      {
+        "label": "Cost Management overview",
+        "url": "https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/overview-cost-management"
+      }
+    ]
+  }
+]

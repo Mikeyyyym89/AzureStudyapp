@@ -16,7 +16,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'central agent dispatches to specialized subagents' point to central orchestrator routing."
   },
   {
     "id": "ai-500-q202",
@@ -35,7 +36,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'different platforms', 'capability discovery', 'long-running task tracking' signal A2A."
   },
   {
     "id": "ai-500-q203",
@@ -52,7 +54,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Yes — A2A agent cards provide capability discovery and task tracking across platforms."
   },
   {
     "id": "ai-500-q204",
@@ -71,7 +74,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'secure, authenticated tool access with auditing' signal MCP with enterprise security."
   },
   {
     "id": "ai-500-q205",
@@ -88,7 +92,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Yes — MCP plus least-privileged scope gives secure, audited tool access."
   },
   {
     "id": "ai-500-q206",
@@ -107,7 +112,8 @@
         "label": "Memory in Foundry Agent Service",
         "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
       }
-    ]
+    ],
+    "hint": "Keywords 'across separate sessions and devices' signal managed long-term memory."
   },
   {
     "id": "ai-500-q207",
@@ -124,7 +130,8 @@
         "label": "Memory in Foundry Agent Service",
         "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
       }
-    ]
+    ],
+    "hint": "No — session context resets; durable cross-session recall needs long-term memory."
   },
   {
     "id": "ai-500-q208",
@@ -143,7 +150,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'least privilege' and 'prevent lateral movement' signal per-agent scoped identity."
   },
   {
     "id": "ai-500-q209",
@@ -162,7 +170,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'concurrently' and 'reconciles their output' signal parallel execution then merge."
   },
   {
     "id": "ai-500-q210",
@@ -179,7 +188,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Yes — short-term memory shares intermediate context within a workflow, reducing redundancy."
   },
   {
     "id": "ai-500-q211",
@@ -198,7 +208,8 @@
         "label": "Agents in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
       }
-    ]
+    ],
+    "hint": "Keyword 'decomposing a business goal' first means map workflows and agents."
   },
   {
     "id": "ai-500-q212",
@@ -215,7 +226,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "No — A2A is for cross-platform; internal flows should use platform-native orchestration."
   },
   {
     "id": "ai-500-q213",
@@ -234,7 +246,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'keep context small' and 'long transcripts' signal summarizing each result first."
   },
   {
     "id": "ai-500-q214",
@@ -251,7 +264,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Yes — MCP with per-agent least-privileged credentials gives authenticated, audited tool access."
   },
   {
     "id": "ai-500-q215",
@@ -270,7 +284,8 @@
         "label": "Create and use memory in Foundry Agent Service",
         "url": "https://learn.microsoft.com/azure/foundry/agents/how-to/memory-usage"
       }
-    ]
+    ],
+    "hint": "Keywords 'isolate each tenant' signal dedicated memory stores per tenant."
   },
   {
     "id": "ai-500-q216",
@@ -287,7 +302,8 @@
         "label": "Memory in Foundry Agent Service",
         "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
       }
-    ]
+    ],
+    "hint": "Yes — short-term memory for session plus long-term store for durable knowledge is correct."
   },
   {
     "id": "ai-500-q217",
@@ -306,7 +322,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keyword 'discover another agent's capabilities' signals publishing an A2A agent card."
   },
   {
     "id": "ai-500-q218",
@@ -323,7 +340,8 @@
         "label": "Memory in Foundry Agent Service",
         "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
       }
-    ]
+    ],
+    "hint": "No — in-process session variables are volatile; durable recall needs persistent memory."
   },
   {
     "id": "ai-500-q219",
@@ -342,7 +360,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keyword 'reduces complexity' signals platform-native orchestration for internal subagent flows."
   },
   {
     "id": "ai-500-q220",
@@ -361,7 +380,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'cap total token usage' and 'control cost' signal token budgets per workflow stage."
   },
   {
     "id": "ai-500-q221",
@@ -378,7 +398,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "No — per-agent scripts lack centralized control-plane policy and auditing."
   },
   {
     "id": "ai-500-q222",
@@ -397,7 +418,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'serial and concurrent steps' signal a hybrid serial-parallel pattern."
   },
   {
     "id": "ai-500-q223",
@@ -416,7 +438,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'standardize security, registration, observability' signal published SDKs with native support."
   },
   {
     "id": "ai-500-q224",
@@ -433,7 +456,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "No — sequential execution serializes work and hurts orchestrator responsiveness."
   },
   {
     "id": "ai-500-q225",
@@ -452,7 +476,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'unexpected external destination' signal network egress controls."
   },
   {
     "id": "ai-500-q226",
@@ -471,7 +496,8 @@
         "label": "RAG solution design and evaluation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
       }
-    ]
+    ],
+    "hint": "Keywords 'splits a concept across chunks' signal changing the chunking strategy."
   },
   {
     "id": "ai-500-q227",
@@ -490,7 +516,8 @@
         "label": "RAG solution design and evaluation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
       }
-    ]
+    ],
+    "hint": "Keywords 'retrieved passages are irrelevant' signal better embeddings and retrieval."
   },
   {
     "id": "ai-500-q228",
@@ -507,7 +534,8 @@
         "label": "Prompt caching",
         "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
       }
-    ]
+    ],
+    "hint": "Yes — prompt caching reuses the shared system prompt prefix, lowering latency and cost."
   },
   {
     "id": "ai-500-q229",
@@ -526,7 +554,8 @@
         "label": "Code Interpreter tool for Microsoft Foundry agents",
         "url": "https://learn.microsoft.com/azure/foundry/agents/how-to/tools/code-interpreter"
       }
-    ]
+    ],
+    "hint": "Keywords 'untrusted user-submitted Python' signal the Code Interpreter sandbox."
   },
   {
     "id": "ai-500-q230",
@@ -543,7 +572,8 @@
         "label": "Prompt caching",
         "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
       }
-    ]
+    ],
+    "hint": "No — prompt caching reuses tokens, not answers; use semantic caching by embedding similarity."
   },
   {
     "id": "ai-500-q231",
@@ -562,7 +592,8 @@
         "label": "Multiple-agent workflow automation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
       }
-    ]
+    ],
+    "hint": "Keywords 'a person confirms it' signal human-in-the-loop approval."
   },
   {
     "id": "ai-500-q232",
@@ -579,7 +610,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Yes — cancel, skip, and summaries keep users in control of long-running steps."
   },
   {
     "id": "ai-500-q233",
@@ -598,7 +630,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'wrong argument shape' and 'self-corrects' signal typed schemas with descriptions."
   },
   {
     "id": "ai-500-q234",
@@ -617,7 +650,8 @@
         "label": "Model Context Protocol (MCP) servers",
         "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
       }
-    ]
+    ],
+    "hint": "Keywords 'minimal infrastructure' for an MCP server signal Azure Functions."
   },
   {
     "id": "ai-500-q235",
@@ -634,7 +668,8 @@
         "label": "RAG solution design and evaluation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
       }
-    ]
+    ],
+    "hint": "Yes — retrieving chunks and injecting them into the prompt grounds answers."
   },
   {
     "id": "ai-500-q236",
@@ -653,7 +688,8 @@
         "label": "Agents in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'loop with no termination' signal enforcing an iteration limit."
   },
   {
     "id": "ai-500-q237",
@@ -670,7 +706,8 @@
         "label": "Agents in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
       }
-    ]
+    ],
+    "hint": "No — a shared global state leaks context across users; use stateless tool calls."
   },
   {
     "id": "ai-500-q238",
@@ -689,7 +726,8 @@
         "label": "Agents in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'inject...based on current context' signal dynamic context injection."
   },
   {
     "id": "ai-500-q239",
@@ -706,7 +744,8 @@
         "label": "Model Context Protocol (MCP) servers",
         "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
       }
-    ]
+    ],
+    "hint": "Yes — an MCP tool with a typed schema exposes the HTTP API to the agent."
   },
   {
     "id": "ai-500-q240",
@@ -725,7 +764,8 @@
         "label": "Memory in Foundry Agent Service",
         "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
       }
-    ]
+    ],
+    "hint": "Keywords 'within one session without persisting' signal session-scoped thread state."
   },
   {
     "id": "ai-500-q241",
@@ -742,7 +782,8 @@
         "label": "Prompt caching",
         "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
       }
-    ]
+    ],
+    "hint": "No — prompt caching caches prefix tokens, not complete answers; use response caching."
   },
   {
     "id": "ai-500-q242",
@@ -761,7 +802,8 @@
         "label": "Agents in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
       }
-    ]
+    ],
+    "hint": "Keyword 'ambiguous tool description' signals rewriting the tool description."
   },
   {
     "id": "ai-500-q243",
@@ -778,7 +820,8 @@
         "label": "Code Interpreter tool for Microsoft Foundry agents",
         "url": "https://learn.microsoft.com/azure/foundry/agents/how-to/tools/code-interpreter"
       }
-    ]
+    ],
+    "hint": "No — Code Interpreter reads files only inside its sandbox."
   },
   {
     "id": "ai-500-q244",
@@ -797,7 +840,8 @@
         "label": "OAuth 2.0 on-behalf-of flow",
         "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
       }
-    ]
+    ],
+    "hint": "Keywords 'downstream API as the signed-in user' signal the on-behalf-of flow."
   },
   {
     "id": "ai-500-q245",
@@ -816,7 +860,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'recover and continue' signal descriptive errors with retry."
   },
   {
     "id": "ai-500-q246",
@@ -833,7 +878,8 @@
         "label": "Model Context Protocol (MCP) servers",
         "url": "https://learn.microsoft.com/azure/foundry/mcp/build-your-own-mcp-server"
       }
-    ]
+    ],
+    "hint": "No — separate per-agent keys lack unified auth and audit; use a shared MCP server."
   },
   {
     "id": "ai-500-q247",
@@ -852,7 +898,8 @@
         "label": "RAG solution design and evaluation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
       }
-    ]
+    ],
+    "hint": "Keywords 'chunks are too large' signal splitting into smaller chunks."
   },
   {
     "id": "ai-500-q248",
@@ -871,7 +918,8 @@
         "label": "Agents in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'decide which tools to call and with what arguments' signal function calling."
   },
   {
     "id": "ai-500-q249",
@@ -888,7 +936,8 @@
         "label": "Memory in Foundry Agent Service",
         "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
       }
-    ]
+    ],
+    "hint": "Yes — session-scoped thread state survives the session but not redeployments."
   },
   {
     "id": "ai-500-q250",
@@ -907,7 +956,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keyword 'whether answers are supported' signals groundedness against sources."
   },
   {
     "id": "ai-500-q251",
@@ -926,7 +976,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'score hundreds without manual review' signal LLM-as-a-judge evaluation."
   },
   {
     "id": "ai-500-q252",
@@ -945,7 +996,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'private-data-free' and 'realistic' signal synthetic test data."
   },
   {
     "id": "ai-500-q253",
@@ -962,7 +1014,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Yes — a groundedness evaluator flags claims unsupported by retrieved context."
   },
   {
     "id": "ai-500-q254",
@@ -981,7 +1034,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'reproduce the exact chain of reasoning' signal traces and replay."
   },
   {
     "id": "ai-500-q255",
@@ -998,7 +1052,8 @@
         "label": "Prompt caching",
         "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
       }
-    ]
+    ],
+    "hint": "Yes — prompt caching bills the shared prefix at a lower rate."
   },
   {
     "id": "ai-500-q256",
@@ -1017,7 +1072,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'loses earlier facts as context fills' signal sliding-window amnesia."
   },
   {
     "id": "ai-500-q257",
@@ -1034,7 +1090,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Yes — correlation IDs link distributed traces across agents for end-to-end observability."
   },
   {
     "id": "ai-500-q258",
@@ -1053,7 +1110,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'compare on the same evaluation set' signal running an evaluation harness."
   },
   {
     "id": "ai-500-q259",
@@ -1072,7 +1130,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'worsen as you add more irrelevant context' signal the context window limit."
   },
   {
     "id": "ai-500-q260",
@@ -1089,7 +1148,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Yes — LLM-as-a-judge scoring in CI automates quality gates per release."
   },
   {
     "id": "ai-500-q261",
@@ -1108,7 +1168,8 @@
         "label": "Prompt caching",
         "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
       }
-    ]
+    ],
+    "hint": "Keywords 'reduce token cost' and 'keep accuracy' signal summarizing the context."
   },
   {
     "id": "ai-500-q262",
@@ -1125,7 +1186,8 @@
         "label": "RAG solution design and evaluation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
       }
-    ]
+    ],
+    "hint": "No — latency does not measure retrieval quality; evaluate precision and recall."
   },
   {
     "id": "ai-500-q263",
@@ -1144,7 +1206,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'judge model has biases' signal using multiple judges."
   },
   {
     "id": "ai-500-q264",
@@ -1161,7 +1224,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "No — final output misses loops; monitor tool-call counts and thresholds."
   },
   {
     "id": "ai-500-q265",
@@ -1180,7 +1244,8 @@
         "label": "RAG solution design and evaluation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
       }
-    ]
+    ],
+    "hint": "Keywords 'quality varies with retrieved context' signal a chunk-size ablation study."
   },
   {
     "id": "ai-500-q266",
@@ -1197,7 +1262,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Yes — groundedness and relevance metrics quantify answer quality over time."
   },
   {
     "id": "ai-500-q267",
@@ -1216,7 +1282,8 @@
         "label": "Prompt caching",
         "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
       }
-    ]
+    ],
+    "hint": "Keywords 'no cache hits' and 'high spend' signal reviewing prompt cache configuration."
   },
   {
     "id": "ai-500-q268",
@@ -1233,7 +1300,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "No — end-to-end latency hides the bottleneck; trace per-agent latency spans."
   },
   {
     "id": "ai-500-q269",
@@ -1252,7 +1320,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'scores everything correct' signal adding clear scoring rubrics."
   },
   {
     "id": "ai-500-q270",
@@ -1271,7 +1340,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keyword 'answers the user's actual question' signals the relevance metric."
   },
   {
     "id": "ai-500-q271",
@@ -1288,7 +1358,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "No — final output omits reasoning; capture replay and span correlation."
   },
   {
     "id": "ai-500-q272",
@@ -1307,7 +1378,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "Keywords 'drifts after a model update' signal running a regression evaluation."
   },
   {
     "id": "ai-500-q273",
@@ -1326,7 +1398,8 @@
         "label": "RAG solution design and evaluation",
         "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
       }
-    ]
+    ],
+    "hint": "Keywords 'how often retrieved passages answer' signal recall and precision."
   },
   {
     "id": "ai-500-q274",
@@ -1343,7 +1416,8 @@
         "label": "Evaluate your agents",
         "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
       }
-    ]
+    ],
+    "hint": "No — evaluating everything raises cost; sample a representative subset."
   },
   {
     "id": "ai-500-q275",
@@ -1362,7 +1436,8 @@
         "label": "Prompt caching",
         "url": "https://learn.microsoft.com/azure/foundry/openai/how-to/prompt-caching"
       }
-    ]
+    ],
+    "hint": "Keywords 'context grows each turn until quality drops' signal context compaction."
   },
   {
     "id": "ai-500-q276",
@@ -1381,7 +1456,8 @@
         "label": "OAuth 2.0 on-behalf-of flow",
         "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
       }
-    ]
+    ],
+    "hint": "Keywords 'downstream API as the signed-in user' signal the on-behalf-of flow."
   },
   {
     "id": "ai-500-q277",
@@ -1400,7 +1476,8 @@
         "label": "Azure Key Vault overview",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'not committed to source' signal storing the secret in Azure Key Vault."
   },
   {
     "id": "ai-500-q278",
@@ -1419,7 +1496,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "Keywords 'without managing keys' signal a per-agent managed identity."
   },
   {
     "id": "ai-500-q279",
@@ -1438,7 +1516,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'before the prompt reaches the model and before the answer reaches the user' signal input and output filters."
   },
   {
     "id": "ai-500-q280",
@@ -1455,7 +1534,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "Yes — network egress controls restrict outbound connections to approved destinations."
   },
   {
     "id": "ai-500-q281",
@@ -1474,7 +1554,8 @@
         "label": "AI Red Teaming",
         "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
       }
-    ]
+    ],
+    "hint": "Keywords 'adversarially probe' and 'prompt-injection' signal AI Red Teaming."
   },
   {
     "id": "ai-500-q282",
@@ -1491,7 +1572,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "Yes — the tool-call intervention point scans the action and data sent to a tool."
   },
   {
     "id": "ai-500-q283",
@@ -1510,7 +1592,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "Keywords 'small percentage of traffic' signal canary deployment."
   },
   {
     "id": "ai-500-q284",
@@ -1527,7 +1610,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "Yes — blue/green runs two environments and switches traffic for instant rollback."
   },
   {
     "id": "ai-500-q285",
@@ -1546,7 +1630,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "Keywords 'separation between development, acceptance, production' signal DTAP staging."
   },
   {
     "id": "ai-500-q286",
@@ -1563,7 +1648,8 @@
         "label": "Azure Key Vault overview",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
       }
-    ]
+    ],
+    "hint": "Yes — Key Vault enables central, rotatable secret storage without hard-coding."
   },
   {
     "id": "ai-500-q287",
@@ -1582,7 +1668,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "Keyword 'read-only access' for a team signals Foundry RBAC roles."
   },
   {
     "id": "ai-500-q288",
@@ -1599,7 +1686,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "No — manual post-promotion checks miss regressions; gate evaluation and guardrails in CI/CD."
   },
   {
     "id": "ai-500-q289",
@@ -1618,7 +1706,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "Keywords 'cannot access a restricted API' signal least-privilege identity scope."
   },
   {
     "id": "ai-500-q290",
@@ -1635,7 +1724,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "Yes — the tool-response intervention point scans content returned from a tool."
   },
   {
     "id": "ai-500-q291",
@@ -1654,7 +1744,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "Keywords 'promoting through dev, test, production' signal a CI/CD pipeline."
   },
   {
     "id": "ai-500-q292",
@@ -1671,7 +1762,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "No — a single guardrail can apply to both models and agents in a project."
   },
   {
     "id": "ai-500-q293",
@@ -1690,7 +1782,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "Keywords 'production-like conditions' signal the acceptance environment."
   },
   {
     "id": "ai-500-q294",
@@ -1707,7 +1800,8 @@
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
-    ]
+    ],
+    "hint": "No — a shared principal obscures attribution; use per-agent identities."
   },
   {
     "id": "ai-500-q295",
@@ -1726,7 +1820,8 @@
         "label": "Azure Key Vault overview",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
       }
-    ]
+    ],
+    "hint": "Keywords 'without embedding it in code' signal referencing a Key Vault secret."
   },
   {
     "id": "ai-500-q296",
@@ -1743,7 +1838,8 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "No — switching all traffic at once is big-bang; use a canary with a small slice."
   },
   {
     "id": "ai-500-q297",
@@ -1762,7 +1858,8 @@
         "label": "AI Red Teaming",
         "url": "https://learn.microsoft.com/en-us/security/ai-red-team/"
       }
-    ]
+    ],
+    "hint": "Keywords 'continuous safety verification under attack-like inputs' signal regular AI Red Teaming."
   },
   {
     "id": "ai-500-q298",
@@ -1781,7 +1878,8 @@
         "label": "Azure Key Vault overview",
         "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
       }
-    ]
+    ],
+    "hint": "Keyword 'independently revocable' signals issuing per-agent credentials."
   },
   {
     "id": "ai-500-q299",
@@ -1798,7 +1896,8 @@
         "label": "Guardrails in Microsoft Foundry",
         "url": "https://learn.microsoft.com/azure/foundry/guardrails/guardrails-overview"
       }
-    ]
+    ],
+    "hint": "No — input filters miss harmful tool calls; also enable the tool-call intervention point."
   },
   {
     "id": "ai-500-q300",
@@ -1817,6 +1916,7 @@
         "label": "Microsoft Foundry documentation",
         "url": "https://learn.microsoft.com/en-us/azure/foundry/"
       }
-    ]
+    ],
+    "hint": "Keywords 'zero downtime' and 'two environments swap traffic' signal blue/green deployment."
   }
 ]
