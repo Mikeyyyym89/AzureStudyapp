@@ -12,7 +12,12 @@
     "answer": 0,
     "explanation": "The Free (F1) and Shared (D1) tiers run your app on VMs shared with other customers, while Basic and higher provide dedicated instances. Shared tiers also cannot scale out.",
     "hint": "Signal: shared infrastructure → Free and Shared tiers (F1/D1).",
-    "docs": [{ "label": "Azure App Service plan overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans" }]
+    "docs": [
+      {
+        "label": "Azure App Service plan overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans"
+      }
+    ]
   },
   {
     "id": "az-104-q302",
@@ -27,7 +32,12 @@
     "answer": 1,
     "explanation": "Deployment slots are available only in the Standard, Premium, and Isolated tiers. Free, Shared, and Basic do not support slots.",
     "hint": "Signal: deployment slots → Standard tier or higher.",
-    "docs": [{ "label": "Set up staging environments", "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots" }]
+    "docs": [
+      {
+        "label": "Set up staging environments",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      }
+    ]
   },
   {
     "id": "az-104-q303",
@@ -42,22 +52,32 @@
     "answer": 2,
     "explanation": "Scaling up (vertical) moves the app to a larger plan size with more CPU and memory. Scaling out adds instances for horizontal capacity but does not change per-instance resources.",
     "hint": "Signal: CPU and memory → scale up (change tier/size).",
-    "docs": [{ "label": "Scale up an app", "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up" }]
+    "docs": [
+      {
+        "label": "Scale up an app",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up"
+      }
+    ]
   },
   {
     "id": "az-104-q304",
     "domain": "Deploy and manage Azure compute resources",
-    "prompt": "You need to scale individual apps in the same plan independently of one another. Which App Service tier supports per-app scaling?",
+    "prompt": "You need to scale individual apps in the same plan independently of one another. What is the lowest App Service plan tier that supports per-app scaling?",
     "options": [
       "Standard tier",
       "Basic",
       "Premium",
       "Isolated"
     ],
-    "answer": 3,
-    "explanation": "Per-app scaling is available only in the Isolated tier (App Service Environment), letting apps in one plan scale independently instead of sharing the plan's instance count.",
-    "hint": "Signal: per-app scaling → Isolated (App Service Environment).",
-    "docs": [{ "label": "Scale apps per instance", "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-per-app" }]
+    "answer": 0,
+    "explanation": "Per-app scaling is supported starting with the Standard tier (and higher). Free, Shared, and Basic plans do not support per-app scaling.",
+    "hint": "Signal: lowest tier with per-app scaling → Standard",
+    "docs": [
+      {
+        "label": "Scale apps per instance",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-per-app"
+      }
+    ]
   },
   {
     "id": "az-104-q305",
@@ -72,7 +92,12 @@
     "answer": 0,
     "explanation": "Apps in the same plan share the plan's instances, so scaling out adds instances that all apps use together. Per-app isolation requires separate plans or the Isolated tier.",
     "hint": "Signal: same plan → apps share instances and scale together.",
-    "docs": [{ "label": "Azure App Service plan overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans" }]
+    "docs": [
+      {
+        "label": "Azure App Service plan overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans"
+      }
+    ]
   },
   {
     "id": "az-104-q306",
@@ -87,7 +112,12 @@
     "answer": 1,
     "explanation": "The full .NET Framework runs only on Windows App Service. Linux supports .NET Core and .NET 5+ but not the legacy .NET Framework.",
     "hint": "Signal: full .NET Framework → Windows App Service.",
-    "docs": [{ "label": "Azure App Service overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview" }]
+    "docs": [
+      {
+        "label": "Azure App Service overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview"
+      }
+    ]
   },
   {
     "id": "az-104-q307",
@@ -102,7 +132,12 @@
     "answer": 2,
     "explanation": "The Free tier does not support custom domains. Shared (D1) is the lowest-cost tier that allows a custom domain.",
     "hint": "Signal: custom domain + lowest cost → Shared (Free has no custom domains).",
-    "docs": [{ "label": "Map a custom domain", "url": "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain" }]
+    "docs": [
+      {
+        "label": "Map a custom domain",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain"
+      }
+    ]
   },
   {
     "id": "az-104-q308",
@@ -117,7 +152,12 @@
     "answer": 3,
     "explanation": "The Isolated tier runs in an App Service Environment, providing dedicated single-tenant hardware and full network isolation not available in shared or multitenant tiers.",
     "hint": "Signal: dedicated, single-tenant, network isolation → Isolated (ASE).",
-    "docs": [{ "label": "App Service Environment overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview" }]
+    "docs": [
+      {
+        "label": "App Service Environment overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview"
+      }
+    ]
   },
   {
     "id": "az-104-q309",
@@ -132,27 +172,48 @@
     "answer": 0,
     "explanation": "Backup and restore require the Standard tier or higher. Basic, Shared, and Free do not support App Service backups.",
     "hint": "Signal: backup and restore → Standard tier or higher.",
-    "docs": [{ "label": "Back up your app", "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-backup" }]
+    "docs": [
+      {
+        "label": "Back up your app",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-backup"
+      }
+    ]
   },
   {
     "id": "az-104-q310",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "You have an app in the Free tier and need to scale out to multiple instances. Solution: Add more instances to the Free plan. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "The Free and Shared tiers run on shared VMs and do not support scale-out. You must scale up to Basic or higher to add instances.",
     "hint": "Signal: Free tier + scale out → Free/Shared cannot scale out.",
-    "docs": [{ "label": "Azure App Service plan overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans" }]
+    "docs": [
+      {
+        "label": "Azure App Service plan overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans"
+      }
+    ]
   },
   {
     "id": "az-104-q311",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "You need zero-downtime deployment using a staging slot and swap. Solution: Use a Basic tier plan with a deployment slot. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "Deployment slots are not available in the Basic tier. They require Standard, Premium, or Isolated, so a Basic plan with a slot cannot meet the goal.",
     "hint": "Signal: deployment slot → not available below Standard.",
-    "docs": [{ "label": "Set up staging environments", "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots" }]
+    "docs": [
+      {
+        "label": "Set up staging environments",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      }
+    ]
   },
   {
     "id": "az-104-q312",
@@ -167,7 +228,12 @@
     "answer": 1,
     "explanation": "Manual scale sets an immediate, fixed instance count. Autoscale uses metric or schedule rules and is not an instant fixed count.",
     "hint": "Signal: fixed count, no rules → manual scale.",
-    "docs": [{ "label": "Scaling with VM scale sets", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview" }]
+    "docs": [
+      {
+        "label": "Scaling with VM scale sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q313",
@@ -182,7 +248,12 @@
     "answer": 2,
     "explanation": "A custom autoscale rule scales out when a metric such as CPU percentage crosses a threshold. Upgrade and scale-in policies do not drive metric-based scaling.",
     "hint": "Signal: CPU threshold → autoscale rule (scale-out condition).",
-    "docs": [{ "label": "Autoscale with VM scale sets", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview" }]
+    "docs": [
+      {
+        "label": "Autoscale with VM scale sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q314",
@@ -197,7 +268,12 @@
     "answer": 3,
     "explanation": "The scale-in policy determines the removal order (Default, NewestVM, or OldestVM). Upgrade policy and autoscale rules do not control removal order.",
     "hint": "Signal: which instances removed first → scale-in policy.",
-    "docs": [{ "label": "Scale-in policy", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy" }]
+    "docs": [
+      {
+        "label": "Scale-in policy",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
+      }
+    ]
   },
   {
     "id": "az-104-q315",
@@ -212,17 +288,30 @@
     "answer": 0,
     "explanation": "With a Manual upgrade policy, changing the model affects only new instances; existing instances keep the old image until you trigger an upgrade.",
     "hint": "Signal: Manual upgrade policy → existing instances keep old image until upgraded.",
-    "docs": [{ "label": "Upgrade a scale set", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set" }]
+    "docs": [
+      {
+        "label": "Upgrade a scale set",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set"
+      }
+    ]
   },
   {
     "id": "az-104-q316",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "You need a scale set to add instances automatically when CPU is high and remove them when it is low. Solution: Configure a custom autoscale rule based on CPU percentage. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "A custom autoscale rule can scale out above and scale in below CPU thresholds, matching the requirement.",
     "hint": "Signal: scale on CPU metric → autoscale rule meets the goal.",
-    "docs": [{ "label": "Autoscale with VM scale sets", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview" }]
+    "docs": [
+      {
+        "label": "Autoscale with VM scale sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q317",
@@ -237,17 +326,30 @@
     "answer": 1,
     "explanation": "Max surge creates temporary extra instances beyond the maximum count during a rolling upgrade so capacity and availability are maintained while batches are updated.",
     "hint": "Signal: max surge → temporary extra instances to preserve capacity.",
-    "docs": [{ "label": "Rolling upgrade policy", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy" }]
+    "docs": [
+      {
+        "label": "Rolling upgrade policy",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      }
+    ]
   },
   {
     "id": "az-104-q318",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "You need to use the same custom image across several scale sets in multiple regions. Solution: Share the image through an Azure Compute Gallery. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "An Azure Compute Gallery (formerly Shared Image Gallery) shares custom images across regions and subscriptions so multiple scale sets can use them.",
     "hint": "Signal: share image across regions → Azure Compute Gallery.",
-    "docs": [{ "label": "Shared image galleries", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/shared-image-galleries" }]
+    "docs": [
+      {
+        "label": "Shared image galleries",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/shared-image-galleries"
+      }
+    ]
   },
   {
     "id": "az-104-q319",
@@ -262,7 +364,12 @@
     "answer": 2,
     "explanation": "An Azure Compute Gallery (formerly Shared Image Gallery) replicates and shares custom images across regions and subscriptions. Managed disks and snapshots are single-region objects.",
     "hint": "Signal: share image across regions → an image gallery.",
-    "docs": [{ "label": "Shared image galleries", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/shared-image-galleries" }]
+    "docs": [
+      {
+        "label": "Shared image galleries",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/shared-image-galleries"
+      }
+    ]
   },
   {
     "id": "az-104-q320",
@@ -277,7 +384,12 @@
     "answer": 3,
     "explanation": "The Rolling upgrade policy updates instances in batches (optionally with max surge) so some instances remain available. Manual requires you to trigger upgrades, and Automatic updates all at once.",
     "hint": "Signal: update in batches, stay available → Rolling upgrade policy.",
-    "docs": [{ "label": "Rolling upgrade policy", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy" }]
+    "docs": [
+      {
+        "label": "Rolling upgrade policy",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      }
+    ]
   },
   {
     "id": "az-104-q321",
@@ -292,17 +404,30 @@
     "answer": 0,
     "explanation": "Flexible orchestration allows instances with different VM sizes and other per-VM configuration. Uniform orchestration requires identical instances.",
     "hint": "Signal: different VM sizes → Flexible orchestration.",
-    "docs": [{ "label": "VM scale set orchestration modes", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview" }]
+    "docs": [
+      {
+        "label": "VM scale set orchestration modes",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview"
+      }
+    ]
   },
   {
     "id": "az-104-q322",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "You need to upgrade a scale set to a new image while keeping instances available throughout. Solution: Use a rolling upgrade with max surge. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "A rolling upgrade updates batches incrementally, and max surge adds temporary instances so availability is preserved during the upgrade.",
     "hint": "Signal: stay available during upgrade → rolling upgrade with max surge.",
-    "docs": [{ "label": "Rolling upgrade policy", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy" }]
+    "docs": [
+      {
+        "label": "Rolling upgrade policy",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      }
+    ]
   },
   {
     "id": "az-104-q323",
@@ -317,7 +442,12 @@
     "answer": 1,
     "explanation": "Azure Firewall Basic filters only L3/L4 traffic (network and DNAT rules) and is the low-cost tier for SMBs. It has no application (L7) rules.",
     "hint": "Signal: L3/L4 only, low cost → Basic tier.",
-    "docs": [{ "label": "Azure Firewall Basic features", "url": "https://learn.microsoft.com/en-us/azure/firewall/basic-features" }]
+    "docs": [
+      {
+        "label": "Azure Firewall Basic features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/basic-features"
+      }
+    ]
   },
   {
     "id": "az-104-q324",
@@ -332,7 +462,12 @@
     "answer": 2,
     "explanation": "Application rules filter by FQDN at Layer 7. Network rules filter by IP, port, and protocol and cannot match FQDNs.",
     "hint": "Signal: allow specific FQDNs → application (L7) rules.",
-    "docs": [{ "label": "Azure Firewall rule processing", "url": "https://learn.microsoft.com/en-us/azure/firewall/rule-processing" }]
+    "docs": [
+      {
+        "label": "Azure Firewall rule processing",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/rule-processing"
+      }
+    ]
   },
   {
     "id": "az-104-q325",
@@ -347,7 +482,12 @@
     "answer": 3,
     "explanation": "Threat intelligence (alert or alert-and-deny) is available in Standard and Premium. Azure Firewall Basic does not support threat intelligence.",
     "hint": "Signal: threat intelligence → Standard and Premium (not Basic).",
-    "docs": [{ "label": "Azure Firewall threat intelligence", "url": "https://learn.microsoft.com/en-us/azure/firewall/threat-intel" }]
+    "docs": [
+      {
+        "label": "Azure Firewall threat intelligence",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/threat-intel"
+      }
+    ]
   },
   {
     "id": "az-104-q326",
@@ -362,17 +502,30 @@
     "answer": 0,
     "explanation": "IDPS (Intrusion Detection and Prevention System) detects and blocks attacks by matching signatures. Threat intelligence blocks known-bad domains/IPs but is not signature-based IDPS.",
     "hint": "Signal: detect/block by signatures → IDPS.",
-    "docs": [{ "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }]
+    "docs": [
+      {
+        "label": "Azure Firewall Premium features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features"
+      }
+    ]
   },
   {
     "id": "az-104-q327",
     "domain": "Implement and manage virtual networking",
     "prompt": "You need IDPS protection against known attack signatures. Solution: Deploy Azure Firewall Standard. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "IDPS is available only in Azure Firewall Premium. Standard does not include IDPS, so the goal is not met.",
     "hint": "Signal: IDPS → Premium only, not Standard.",
-    "docs": [{ "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }]
+    "docs": [
+      {
+        "label": "Azure Firewall Premium features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features"
+      }
+    ]
   },
   {
     "id": "az-104-q328",
@@ -387,42 +540,68 @@
     "answer": 1,
     "explanation": "TLS inspection (decrypting and re-encrypting traffic) is available only in Azure Firewall Premium, which also provides IDPS and URL filtering.",
     "hint": "Signal: TLS inspection (decrypt HTTPS) → Premium tier.",
-    "docs": [{ "label": "Azure Firewall Premium certificates", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-certificates" }]
+    "docs": [
+      {
+        "label": "Azure Firewall Premium certificates",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-certificates"
+      }
+    ]
   },
   {
     "id": "az-104-q329",
     "domain": "Implement and manage virtual networking",
-    "prompt": "You need to filter outbound traffic by fully qualified domain name. Solution: Deploy Azure Firewall Basic and add application rules. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "prompt": "You need to filter outbound traffic by fully qualified domain name across all ports and protocols. Solution: Deploy Azure Firewall Basic. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
-    "explanation": "Azure Firewall Basic supports only network (L3/L4) and DNAT rules; it has no application rules, so it cannot filter by FQDN.",
-    "hint": "Signal: FQDN filtering → application rules, not in Basic.",
-    "docs": [{ "label": "Azure Firewall Basic features", "url": "https://learn.microsoft.com/en-us/azure/firewall/basic-features" }]
+    "explanation": "Basic supports application-level (SNI-based) FQDN filtering for HTTPS/SQL only. Network-level FQDN filtering across all ports and protocols requires Standard or higher.",
+    "hint": "Signal: all ports and protocols → network-level FQDN filtering (Standard+), not Basic",
+    "docs": [
+      {
+        "label": "Azure Firewall Basic features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/basic-features"
+      }
+    ]
   },
   {
     "id": "az-104-q330",
     "domain": "Implement and manage virtual networking",
-    "prompt": "You need to block outbound access to websites by category. Which Azure Firewall tier supports web categories?",
+    "prompt": "You need to block outbound access to websites by category, such as social networking. What is the lowest Azure Firewall tier that supports web category filtering?",
     "options": [
       "Basic",
       "Standard",
       "Premium",
       "Front Door"
     ],
-    "answer": 2,
-    "explanation": "Web category filtering (URL filtering) is available only in Azure Firewall Premium. Basic and Standard do not support it.",
-    "hint": "Signal: block by website category → Premium (web categories).",
-    "docs": [{ "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }]
+    "answer": 1,
+    "explanation": "Web content filtering (web categories) is available in Standard and Premium, so Standard is the lowest tier that supports it. Basic does not.",
+    "hint": "Signal: web category filtering → Standard or Premium (lowest = Standard)",
+    "docs": [
+      {
+        "label": "Azure Firewall Premium features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features"
+      }
+    ]
   },
   {
     "id": "az-104-q331",
     "domain": "Implement and manage virtual networking",
     "prompt": "You need to decrypt and inspect encrypted HTTPS traffic. Solution: Deploy Azure Firewall Premium and enable TLS inspection. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "Azure Firewall Premium supports TLS inspection to decrypt, inspect, and re-encrypt HTTPS traffic, meeting the goal.",
     "hint": "Signal: decrypt HTTPS → Premium TLS inspection meets the goal.",
-    "docs": [{ "label": "Azure Firewall Premium certificates", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-certificates" }]
+    "docs": [
+      {
+        "label": "Azure Firewall Premium certificates",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-certificates"
+      }
+    ]
   },
   {
     "id": "az-104-q332",
@@ -437,7 +616,12 @@
     "answer": 3,
     "explanation": "An update domain is a group of VMs that can be rebooted together during planned maintenance. Spreading VMs across update domains keeps others available.",
     "hint": "Signal: planned maintenance reboot grouping → update domains.",
-    "docs": [{ "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+    "docs": [
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q333",
@@ -452,7 +636,12 @@
     "answer": 0,
     "explanation": "Fault domains within an availability set place VMs on different racks sharing separate power and network, protecting against a single-rack failure.",
     "hint": "Signal: single rack failure → fault domains in an availability set.",
-    "docs": [{ "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+    "docs": [
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q334",
@@ -467,7 +656,12 @@
     "answer": 1,
     "explanation": "Updating one update domain at a time keeps the other domains serving traffic, avoiding total downtime during the rolling update.",
     "hint": "Signal: update without downtime → one update domain at a time.",
-    "docs": [{ "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+    "docs": [
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q335",
@@ -482,7 +676,12 @@
     "answer": 2,
     "explanation": "A rolling upgrade updates instances in batches, so only the current batch is affected while the remaining instances stay available.",
     "hint": "Signal: rolling upgrade → only the current batch is affected.",
-    "docs": [{ "label": "Rolling upgrade policy", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy" }]
+    "docs": [
+      {
+        "label": "Rolling upgrade policy",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-policy"
+      }
+    ]
   },
   {
     "id": "az-104-q336",
@@ -497,7 +696,12 @@
     "answer": 3,
     "explanation": "An availability set can span up to 20 update domains by default, so VMs can be spread to minimize how many reboot together.",
     "hint": "Signal: maximum update domains → 20.",
-    "docs": [{ "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+    "docs": [
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q337",
@@ -512,7 +716,12 @@
     "answer": 0,
     "explanation": "Availability zones are physically separate datacenters in a region, protecting against datacenter-level failure. Fault and update domains protect within a single datacenter.",
     "hint": "Signal: whole datacenter failure → availability zones.",
-    "docs": [{ "label": "Availability zones", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }]
+    "docs": [
+      {
+        "label": "Availability zones",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q338",
@@ -527,26 +736,47 @@
     "answer": 1,
     "explanation": "If update domain 0 is being updated and isolated, the other two update domains continue to serve traffic.",
     "hint": "Signal: three update domains, one updating → two remain available.",
-    "docs": [{ "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+    "docs": [
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q339",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "You need to keep VMs available while applying planned maintenance. Solution: Update one update domain at a time. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "Updating one update domain at a time keeps the remaining domains serving traffic, so availability is maintained during maintenance.",
     "hint": "Signal: keep available during maintenance → one update domain at a time.",
-    "docs": [{ "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }]
+    "docs": [
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
+    ]
   },
   {
     "id": "az-104-q340",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "You need a scale set upgrade that updates every instance at the same time. Solution: Use the Automatic upgrade policy. Does this meet the goal?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "The Automatic upgrade policy updates all instances at once, matching the requirement to update every instance simultaneously.",
     "hint": "Signal: update every instance at once → Automatic upgrade policy.",
-    "docs": [{ "label": "Upgrade a scale set", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set" }]
+    "docs": [
+      {
+        "label": "Upgrade a scale set",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set"
+      }
+    ]
   }
 ]
