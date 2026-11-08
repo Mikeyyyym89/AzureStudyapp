@@ -1,0 +1,66 @@
+[
+  {
+    "domain": "Architect multi-agent solutions",
+    "summary": "Design agent systems by choosing orchestration patterns, tools, and memory, and by deciding where code should handle work instead of the LLM.",
+    "highYield": [
+      "Orchestration patterns: sequential pipeline, parallel, coordinator-worker, and group chat / hierarchical; know when single-agent suffices.",
+      "Frameworks: Semantic Kernel (plugins, planners, agents), AutoGen (conversable agents, group chat), OpenAI Agents SDK (handoffs, guardrails), LangChain.",
+      "Agent anatomy: system prompt/persona, tools (function calling), memory (short- vs long-term), and knowledge (RAG).",
+      "Agent-to-agent and tool integration: A2A protocol for agent communication and MCP (Model Context Protocol) for tools/context.",
+      "Design rule: use deterministic code for deterministic steps and reserve the LLM for judgment/reasoning."
+    ],
+    "memoryAids": [
+      "Agent = LLM + tools + memory + instructions.",
+      "Patterns = Sequential, Parallel, Coordinator-Worker, Group Chat.",
+      "MCP = tools/context, A2A = agent-to-agent."
+    ]
+  },
+  {
+    "domain": "Develop multi-agent solutions in Azure",
+    "summary": "Build agents on Azure AI Foundry Agent Service and frameworks, wiring tools, knowledge grounding, and orchestration together.",
+    "highYield": [
+      "Azure AI Foundry: Agent Service (managed agents, threads, tools), projects, and model deployments (GPT-4o/o-series, embeddings).",
+      "Agent tools: function calling, code interpreter, file search, Azure AI Search grounding, Bing grounding, and OpenAPI tools.",
+      "Semantic Kernel: plugins split into native functions (code) and prompt functions (LLM); AutoGen workflows for multi-agent conversations.",
+      "Azure OpenAI: standard vs provisioned throughput, token/context management, Assistants API vs Agent Service.",
+      "Hosting/state: Foundry Agents SDK, Azure Container Apps for hosting, Cosmos DB for agent memory and state."
+    ],
+    "memoryAids": [
+      "Tool types = function, code interpreter, file search, Azure AI Search.",
+      "SK plugin = native function + prompt function.",
+      "Foundry Agent Service = managed agents + threads + tools."
+    ]
+  },
+  {
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "summary": "Measure agent quality with LLM evaluations and monitor runtime behavior with tracing and observability, then tune prompts/RAG.",
+    "highYield": [
+      "Evaluation metrics: groundedness, relevance, coherence, fluency, similarity - measured via the Azure AI Evaluation SDK.",
+      "Adversarial/red-team testing, A/B testing, and golden datasets for regression.",
+      "Observability: OpenTelemetry, Azure AI Foundry tracing (GenAI trace), and distributed tracing across agents.",
+      "Optimization: prompt engineering, RAG tuning (chunking, top-k, embeddings), fine-tuning vs RAG, and token/cost optimization.",
+      "Runtime monitoring: latency, token usage, error rates, and safety (content filters, prompt shields)."
+    ],
+    "memoryAids": [
+      "Eval metrics = Groundedness, Relevance, Coherence, Fluency, Similarity.",
+      "RAG for knowledge, fine-tune for style/format, prompt for quick fixes.",
+      "Trace = follow one request across all agents."
+    ]
+  },
+  {
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "summary": "Deploy agents to production with responsible AI guardrails, managed identity and RBAC, and CI/CD to managed compute.",
+    "highYield": [
+      "Security: managed identity, RBAC, Key Vault for secrets, content safety filters, and prompt shields (jailbreak + indirect injection defense).",
+      "Governance: Azure Policy, tagging, Microsoft Purview, and Responsible AI principles (fairness, safety, privacy, transparency, accountability).",
+      "Deployment targets: Azure Container Apps, App Service, AKS, and Foundry online endpoints / provisioned throughput.",
+      "CI/CD: GitHub Actions or Azure DevOps with ACR, blue-green/canary releases, and deployment slots.",
+      "Threat model: prompt injection (direct/indirect), data exfiltration, and tool-use abuse - enforce least-privilege tools."
+    ],
+    "memoryAids": [
+      "Prompt Shields = jailbreak + indirect injection defense.",
+      "Managed identity + Key Vault = no secrets in code or agents.",
+      "Responsible AI = Fairness, Reliability, Privacy, Inclusiveness, Transparency, Accountability."
+    ]
+  }
+]

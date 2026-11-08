@@ -1,0 +1,77 @@
+[
+  {
+    "domain": "Plan and manage an Azure AI solution",
+    "summary": "Microsoft Foundry organizes AI work into hubs (shared resources, governance, and connections) and projects (team workspaces) that inherit from them.",
+    "highYield": [
+      "Know the hub vs project distinction: hubs centralize resources, security, and connections; projects are where teams build and inherit from the hub.",
+      "Know what connections are and why they are used instead of hard-coded secrets.",
+      "Know that tracing records each step of an agent/application for debugging and that evaluation scores groundedness, relevance, coherence, and fluency.",
+      "Know the six responsible AI principles: fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability."
+    ],
+    "memoryAids": [
+      "Six responsible AI principles: 'FRPITA' — Fairness, Reliability and safety, Privacy and security, Inclusiveness, Transparency, Accountability.",
+      "Hub vs project: 'Hub Holds, Projects Play' — the hub holds shared resources; projects are where you build.",
+      "Connections = 'reusable secret holders': remember they centralize credentials so projects never hard-code keys."
+    ]
+  },
+  {
+    "domain": "Implement generative AI and agentic solutions",
+    "summary": "Generative AI solutions combine models with grounding (RAG), tool use (function calling), and agents (tools, knowledge, memory, MCP), tuned via settings like temperature and validated by evaluation.",
+    "highYield": [
+      "RAG = retrieve relevant chunks and inject them into the prompt to ground answers; embeddings power the vector similarity search.",
+      "Function calling returns a structured request the app uses to call an API, then sends results back to the model.",
+      "Low temperature = deterministic/factual; high temperature = creative/varied.",
+      "Agent building blocks: tools (actions), knowledge (grounding data), memory (conversation state), and MCP (portable tool connectivity standard)."
+    ],
+    "memoryAids": [
+      "RAG: 'Retrieve And Ground' — you retrieve docs and ground the answer in them.",
+      "Temperature = 'how creative': turn it down for facts, up for brainstorming.",
+      "Agent anatomy 'T-K-M-M': Tools, Knowledge, Memory, MCP."
+    ]
+  },
+  {
+    "domain": "Implement computer vision solutions",
+    "summary": "Azure AI Vision and related services analyze images (tags, captions, objects), read text (OCR), detect faces, and let you train custom classifiers and detectors.",
+    "highYield": [
+      "Image Analysis returns captions, tags, and detected objects from a single call.",
+      "OCR (Read API) extracts printed and handwritten text from images and PDFs.",
+      "Azure AI Face detects faces and attributes and can compare or identify faces, but it is gated by limited-access policy.",
+      "Custom Vision trains custom image classification and object detection from labeled images without deep-learning code."
+    ],
+    "memoryAids": [
+      "'Analyze, Read, Face, Custom' — the four vision pillars.",
+      "Custom Vision = 'your data, your labels, no deep learning code'.",
+      "Face is restricted: remember 'limited access' applies to identification scenarios."
+    ]
+  },
+  {
+    "domain": "Implement text analysis solutions",
+    "summary": "Azure AI Language offers prebuilt text capabilities (sentiment, key phrases, entities, PII, summarization, question answering) while Azure AI Translator handles translation.",
+    "highYield": [
+      "Sentiment analysis returns positive/negative/neutral polarity; opinion mining adds aspect-level detail.",
+      "Key phrase extraction returns the main noun phrases; NER returns typed entities (person, location, organization).",
+      "PII detection finds and can redact personal data such as names, phone numbers, and ID numbers.",
+      "Custom question answering answers FAQ/document questions with confidence scores, no model training from scratch."
+    ],
+    "memoryAids": [
+      "'S K E P' — Sentiment, Key phrases, Entities, PII are the four core prebuilt text features.",
+      "PII = 'Protect It Immediately': use it to redact before you store or publish.",
+      "Summarization is 'extractive' (pull sentences) or 'abstractive' (rewrite)."
+    ]
+  },
+  {
+    "domain": "Implement information extraction solutions",
+    "summary": "Azure AI Document Intelligence extracts structured data from documents using prebuilt models for common types or custom models you train on your own forms.",
+    "highYield": [
+      "Prebuilt models (invoice, receipt, ID document, layout, read) work with no training.",
+      "Custom template models suit fixed layouts; custom neural models handle varied layouts.",
+      "Read/layout models extract text and structure (tables, selection marks) from documents.",
+      "Choose prebuilt first when a document type matches an existing model; choose custom for bespoke forms."
+    ],
+    "memoryAids": [
+      "Prebuilt vs custom: 'prebuilt = plug and play, custom = teach it your form'.",
+      "Template = fixed layout; Neural = flexible layout.",
+      "Document Intelligence (formerly Form Recognizer): same service, extraction of fields and tables."
+    ]
+  }
+]

@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "ai-103-q201",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You are building an AI solution in Microsoft Foundry. You need to provision a shared workspace that hosts compute, storage, and key vault and groups multiple projects. Which resource should you create?",
+    "options": [
+      "Create a Foundry hub",
+      "Create a Foundry project",
+      "Create an ML workspace",
+      "Create a resource group"
+    ],
+    "answer": 0,
+    "explanation": "A hub is the top-level container that provides shared compute, storage, key vault, and connections, and it groups one or more projects.",
+    "docs": [
+      { "label": "Foundry architecture", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture" }
+    ]
+  },
+  {
+    "id": "ai-103-q202",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You are building an AI solution in Microsoft Foundry. You need to restrict which models users can deploy to an approved list. What should you configure?",
+    "options": [
+      "A project connection",
+      "A hub policy",
+      "A private endpoint",
+      "A service principal"
+    ],
+    "answer": 1,
+    "explanation": "Hub-level policies control which models are available for deployment across the projects in that hub.",
+    "docs": [
+      { "label": "Foundry architecture", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture" }
+    ]
+  },
+  {
+    "id": "ai-103-q203",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You deploy a model in Foundry and must require Microsoft Entra ID authentication only. What should you disable on the Azure AI resource?",
+    "options": [
+      "Managed identity access",
+      "Role assignment settings",
+      "Key based authentication",
+      "Public network access"
+    ],
+    "answer": 2,
+    "explanation": "Disabling key-based authentication forces clients to authenticate with Microsoft Entra ID tokens instead of API keys.",
+    "docs": [
+      { "label": "Foundry security", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/security" }
+    ]
+  },
+  {
+    "id": "ai-103-q204",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to monitor request latency and token usage for a deployed model over time. Which Azure service should you use?",
+    "options": [
+      "The Azure Policy service",
+      "The Azure Advisor service",
+      "The Microsoft Sentinel service",
+      "The Azure Monitor service"
+    ],
+    "answer": 3,
+    "explanation": "Azure Monitor collects metrics such as token consumption and latency for Azure AI model deployments.",
+    "docs": [
+      { "label": "Monitor models", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-quality-safety" }
+    ]
+  },
+  {
+    "id": "ai-103-q205",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to compare evaluation metrics across multiple prompt flow runs and view run lineage. Which Foundry feature should you use?",
+    "options": [
+      "Tracing and evaluation",
+      "The model catalog",
+      "The deployment targets",
+      "The compute settings"
+    ],
+    "answer": 0,
+    "explanation": "Tracing and evaluation captures each run's inputs, outputs, and metrics so you can compare runs and view lineage.",
+    "docs": [
+      { "label": "Prompt flow", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/prompt-flow" }
+    ]
+  },
+  {
+    "id": "ai-103-q206",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need reserved inference capacity to avoid throttling under steady high load. Which resource should you provision?",
+    "options": [
+      "A standard deployment",
+      "Provisioned throughput units",
+      "A serverless endpoint",
+      "A reserved capacity"
+    ],
+    "answer": 1,
+    "explanation": "Provisioned throughput units reserve model capacity for predictable, sustained workloads and avoid noisy-neighbor throttling.",
+    "docs": [
+      { "label": "Quotas and limits", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits" }
+    ]
+  },
+  {
+    "id": "ai-103-q207",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You must ensure all hub traffic flows through your own virtual network. What should you enable on the hub?",
+    "options": [
+      "A public endpoint",
+      "A load balancer",
+      "Managed virtual network",
+      "Accelerated networking feature"
+    ],
+    "answer": 2,
+    "explanation": "A hub's managed virtual network isolates the hub and routes its traffic through the customer's own network.",
+    "docs": [
+      { "label": "Configure managed network", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/configure-managed-network" }
+    ]
+  },
+  {
+    "id": "ai-103-q208",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to deploy models from a CI pipeline without interactive login. Which credential should you use?",
+    "options": [
+      "A username and password",
+      "A shared access token",
+      "An interactive browser login",
+      "A service principal account"
+    ],
+    "answer": 3,
+    "explanation": "A service principal provides non-interactive, automated authentication for scripts and CI pipelines.",
+    "docs": [
+      { "label": "Foundry security", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/security" }
+    ]
+  },
+  {
+    "id": "ai-103-q209",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to prevent deployments in disallowed regions across the subscription. Which Azure feature should you use?",
+    "options": [
+      "The Azure Policy service",
+      "The Azure Monitor service",
+      "The Azure Advisor service",
+      "The Azure Blueprints service"
+    ],
+    "answer": 0,
+    "explanation": "Azure Policy can enforce allowed locations for resources, blocking deployments outside approved regions.",
+    "docs": [
+      { "label": "Policy reference", "url": "https://learn.microsoft.com/en-us/azure/ai-services/policy-reference" }
+    ]
+  },
+  {
+    "id": "ai-103-q210",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to block harmful and prompt-injection content on a model deployment in real time. Which feature should you enable?",
+    "options": [
+      "A rate limit",
+      "A content filter",
+      "A token quota",
+      "A private endpoint"
+    ],
+    "answer": 1,
+    "explanation": "Content filtering evaluates prompts and completions against safety classifiers, including prompt-injection detection.",
+    "docs": [
+      { "label": "Content filtering", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-filtering" }
+    ]
+  },
+  {
+    "id": "ai-103-q211",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to audit who created or deleted a model deployment. Which log should you review?",
+    "options": [
+      "The error log",
+      "The access log",
+      "The activity log",
+      "The deployment log"
+    ],
+    "answer": 2,
+    "explanation": "The Azure activity log records control-plane operations such as who created or deleted a resource.",
+    "docs": [
+      { "label": "Monitor models", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-quality-safety" }
+    ]
+  },
+  {
+    "id": "ai-103-q212",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to make a hub's Azure OpenAI deployment available to all its projects. What should you create?",
+    "options": [
+      "A private endpoint",
+      "A second deployment",
+      "A managed identity",
+      "A shared connection"
+    ],
+    "answer": 3,
+    "explanation": "A hub connection lets all projects in the hub reuse an Azure OpenAI resource without duplicating the deployment.",
+    "docs": [
+      { "label": "Foundry architecture", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture" }
+    ]
+  },
+  {
+    "id": "ai-103-q213",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need a project to call an Azure OpenAI resource hosted in another subscription. Solution: Add the resource as a hub connection. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Connections can reference Azure AI resources in other subscriptions, making them available to the hub's projects.",
+    "docs": [
+      { "label": "Foundry architecture", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/architecture" }
+    ]
+  },
+  {
+    "id": "ai-103-q214",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need encryption at rest using your own keys. Solution: Configure customer-managed keys on the hub's managed storage account. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Customer-managed keys on the hub's managed storage encrypt stored data with a key you control in Key Vault.",
+    "docs": [
+      { "label": "Foundry security", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/security" }
+    ]
+  },
+  {
+    "id": "ai-103-q215",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to minimize cost for occasional batch scoring jobs. Solution: Purchase provisioned throughput units. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Provisioned throughput reserves capacity and costs more; occasional jobs are cheaper on standard pay-as-you-go deployment.",
+    "docs": [
+      { "label": "Quotas and limits", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/quotas-limits" }
+    ]
+  },
+  {
+    "id": "ai-103-q216",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to inspect intermediate outputs of a prompt flow run. Solution: Enable tracing and open the run's trace events. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Tracing records each node's inputs and outputs in a run, exposing intermediate values.",
+    "docs": [
+      { "label": "Prompt flow", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/prompt-flow" }
+    ]
+  },
+  {
+    "id": "ai-103-q217",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to grant a developer access to a single project only. Solution: Assign them the Contributor role on the hub. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Hub-level roles apply to the whole hub; to limit access to one project, assign the role at the project scope.",
+    "docs": [
+      { "label": "Foundry RBAC", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/rbac-ai-foundry" }
+    ]
+  },
+  {
+    "id": "ai-103-q218",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to limit a model's requests per minute. Solution: Configure a content filter on the deployment. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Content filters govern safety, not throughput; rate limits are enforced separately by quotas and capacity.",
+    "docs": [
+      { "label": "Content filtering", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-filtering" }
+    ]
+  },
+  {
+    "id": "ai-103-q219",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to store evaluation results so they can be queried later. Solution: Export evaluation metrics to Azure Monitor Log Analytics. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Log Analytics stores metrics over time and supports KQL queries for later analysis.",
+    "docs": [
+      { "label": "Monitor models", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-quality-safety" }
+    ]
+  },
+  {
+    "id": "ai-103-q220",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to expose a model endpoint publicly while keeping hub storage private. Solution: Enable a managed virtual network on the hub. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "A managed virtual network isolates the hub and its endpoints, so the endpoint would not be publicly reachable.",
+    "docs": [
+      { "label": "Configure managed network", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/configure-managed-network" }
+    ]
+  },
+  {
+    "id": "ai-103-q221",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You are building a RAG solution in Microsoft Foundry. You need to convert document chunks into vectors for semantic search. Which Azure OpenAI model should you use?",
+    "options": [
+      "The text-embedding-3-large model",
+      "The gpt-4o chat model",
+      "The dall-e-3 image model",
+      "The whisper speech model"
+    ],
+    "answer": 0,
+    "explanation": "text-embedding-3-large generates dense vector embeddings used for semantic similarity search.",
+    "docs": [
+      { "label": "Embeddings", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/embeddings" }
+    ]
+  },
+  {
+    "id": "ai-103-q222",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to let a chat model call your own Python function with arguments. What should you define in the request?",
+    "options": [
+      "A system prompt",
+      "A function schema",
+      "A stop sequence",
+      "A temperature parameter"
+    ],
+    "answer": 1,
+    "explanation": "Function calling requires describing each function and its parameters in the tools array of the request.",
+    "docs": [
+      { "label": "Function calling", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/function-calling" }
+    ]
+  },
+  {
+    "id": "ai-103-q223",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to ground model answers in your own documents. Which service should provide the retrieved context?",
+    "options": [
+      "Azure Content Safety",
+      "Azure AI Translator",
+      "Azure AI Search",
+      "Azure AI Face"
+    ],
+    "answer": 2,
+    "explanation": "Azure AI Search stores and retrieves the most relevant chunks, which are passed to the model as grounding context.",
+    "docs": [
+      { "label": "RAG retrieval", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/tutorials/copilot-sdk-retrieval" }
+    ]
+  },
+  {
+    "id": "ai-103-q224",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You are building an agent in Foundry. You need it to answer questions from uploaded files. Which tool should you add?",
+    "options": [
+      "The code interpreter",
+      "The Bing grounding",
+      "The function tool",
+      "The file search"
+    ],
+    "answer": 3,
+    "explanation": "The file search tool ingests uploaded files into a vector store and retrieves relevant content for the agent.",
+    "docs": [
+      { "label": "Agent tools", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agents-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q225",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to measure groundedness and relevance of responses before release. Which Foundry capability should you use?",
+    "options": [
+      "The evaluation metrics",
+      "The model benchmarking",
+      "The content filtering",
+      "The token streaming"
+    ],
+    "answer": 0,
+    "explanation": "Built-in evaluation metrics such as groundedness and relevance score model responses against a dataset.",
+    "docs": [
+      { "label": "Evaluation approach", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-approach-gen-ai" }
+    ]
+  },
+  {
+    "id": "ai-103-q226",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need an agent to remember facts across conversation threads. Which service should store the memory?",
+    "options": [
+      "Azure Blob Storage",
+      "Azure AI Search",
+      "Azure Event Hubs",
+      "Azure Load Balancer"
+    ],
+    "answer": 1,
+    "explanation": "Agent memory uses Azure AI Search as a vector store to persist knowledge beyond a single thread.",
+    "docs": [
+      { "label": "Agent memory", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agents-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q227",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to generate embeddings using the Azure AI Inference SDK. Which client class should you instantiate?",
+    "options": [
+      "The ChatCompletionsClient class",
+      "The ImageAnalysisClient class",
+      "The EmbeddingsClient class",
+      "The TextTranslationClient class"
+    ],
+    "answer": 2,
+    "explanation": "EmbeddingsClient in the Azure AI Inference SDK returns vector embeddings for input text.",
+    "docs": [
+      { "label": "AI Inference SDK", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/ai-services/reference/sdk-package-resources" }
+    ]
+  },
+  {
+    "id": "ai-103-q228",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "After a model returns a tool call, you must send the function's result back. Which role should mark the result message?",
+    "options": [
+      "The system role",
+      "The user role",
+      "The assistant role",
+      "The tool role"
+    ],
+    "answer": 3,
+    "explanation": "Function outputs are sent in a message whose role is tool, matching the earlier tool call id.",
+    "docs": [
+      { "label": "Function calling", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/function-calling" }
+    ]
+  },
+  {
+    "id": "ai-103-q229",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need an agent to run Python to generate charts from data. Which tool should you enable?",
+    "options": [
+      "The code interpreter",
+      "The file search",
+      "The Bing grounding",
+      "The custom function"
+    ],
+    "answer": 0,
+    "explanation": "The code interpreter tool executes Python in a sandbox and can produce charts and files.",
+    "docs": [
+      { "label": "Agent tools", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agents-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q230",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to stream tokens as a model generates a response. Which parameter should you set on the completion call?",
+    "options": [
+      "The max_tokens parameter",
+      "The stream parameter",
+      "The temperature parameter",
+      "The top_p parameter"
+    ],
+    "answer": 1,
+    "explanation": "Setting the stream parameter to true returns tokens incrementally as the model generates them.",
+    "docs": [
+      { "label": "Completions", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/completions" }
+    ]
+  },
+  {
+    "id": "ai-103-q231",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to split long documents for RAG without breaking sentences. What should you do?",
+    "options": [
+      "Split at fixed sizes",
+      "Split at random offsets",
+      "Split by semantic boundaries",
+      "Store documents without splitting"
+    ],
+    "answer": 2,
+    "explanation": "Chunking at semantic boundaries such as sentences or paragraphs preserves meaning within each chunk.",
+    "docs": [
+      { "label": "RAG retrieval", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/tutorials/copilot-sdk-retrieval" }
+    ]
+  },
+  {
+    "id": "ai-103-q232",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need the model to use retrieved passages when answering. Where should you place the retrieved text?",
+    "options": [
+      "In the stop sequence",
+      "In the tool schema",
+      "In the log filter",
+      "In the prompt context"
+    ],
+    "answer": 3,
+    "explanation": "Retrieved chunks are inserted into the prompt context so the model can ground its answer in them.",
+    "docs": [
+      { "label": "RAG retrieval", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/tutorials/copilot-sdk-retrieval" }
+    ]
+  },
+  {
+    "id": "ai-103-q233",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to reduce hallucinations by grounding responses. Solution: Add retrieved document chunks to the prompt before asking the model. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Grounding the model in retrieved context reduces fabrication by anchoring answers to source material.",
+    "docs": [
+      { "label": "RAG retrieval", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/tutorials/copilot-sdk-retrieval" }
+    ]
+  },
+  {
+    "id": "ai-103-q234",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need an agent to browse the live web for answers. Solution: Enable the file search tool. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "File search retrieves content from uploaded files, not the live web; use Bing grounding for web search.",
+    "docs": [
+      { "label": "Agent tools", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agents-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q235",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to detect whether a response is grounded. Solution: Compute the groundedness metric during evaluation. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "The groundedness metric measures how well a response is supported by the provided context.",
+    "docs": [
+      { "label": "Evaluation approach", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/evaluation-approach-gen-ai" }
+    ]
+  },
+  {
+    "id": "ai-103-q236",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need two agents to share a single conversation history. Solution: Create one thread and pass it to both agents. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "A thread holds the message history and can be reused by multiple agents that share the same conversation.",
+    "docs": [
+      { "label": "Agents", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agents" }
+    ]
+  },
+  {
+    "id": "ai-103-q237",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to make an agent reply without any model inference. Solution: Set the model's temperature to zero. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Temperature zero makes output deterministic but still runs the model; it does not disable inference.",
+    "docs": [
+      { "label": "Completions", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/completions" }
+    ]
+  },
+  {
+    "id": "ai-103-q238",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need the model to emit structured JSON. Solution: Provide a JSON schema in the response format. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Setting a JSON schema response format constrains the model to output valid JSON matching the schema.",
+    "docs": [
+      { "label": "Completions", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/completions" }
+    ]
+  },
+  {
+    "id": "ai-103-q239",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to give an agent persistent long-term memory. Solution: Store memory in the conversation thread only. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "A thread holds only the current conversation; persistent memory requires a vector store such as Azure AI Search.",
+    "docs": [
+      { "label": "Agent memory", "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/develop/agents-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q240",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to call a model with a fixed number of output tokens. Solution: Set the temperature parameter to zero. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Temperature controls randomness; token count is limited by max_tokens, not temperature.",
+    "docs": [
+      { "label": "Completions", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/completions" }
+    ]
+  },
+  {
+    "id": "ai-103-q241",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to analyze an image for objects and dense captions. Which Azure AI Inference client should you use?",
+    "options": [
+      "The ImageAnalysisClient class",
+      "The EmbeddingsClient class",
+      "The ChatCompletionsClient class",
+      "The FaceAdministrationClient class"
+    ],
+    "answer": 0,
+    "explanation": "ImageAnalysisClient calls the Analyze Image API and returns visual features such as objects and dense captions.",
+    "docs": [
+      { "label": "Computer Vision", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q242",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to extract printed text from images. Which Azure AI Vision capability should you use?",
+    "options": [
+      "The face detection",
+      "The Read OCR",
+      "The spatial analysis",
+      "The image tagging"
+    ],
+    "answer": 1,
+    "explanation": "The Read OCR model extracts printed and handwritten text along with positions and reading order.",
+    "docs": [
+      { "label": "OCR concept", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-ocr" }
+    ]
+  },
+  {
+    "id": "ai-103-q243",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to classify images of product defects into your own categories. Which service should you use?",
+    "options": [
+      "Azure AI Face",
+      "Azure AI Translator",
+      "Azure Custom Vision",
+      "Azure AI Search"
+    ],
+    "answer": 2,
+    "explanation": "Custom Vision trains an image classifier on your own labeled categories.",
+    "docs": [
+      { "label": "Custom Vision", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q244",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to check whether two face images belong to the same person. Which operation should you call?",
+    "options": [
+      "The face detection",
+      "The face grouping",
+      "The face landmarking",
+      "The face verification"
+    ],
+    "answer": 3,
+    "explanation": "Face verification compares two faces and returns a similarity score indicating whether they match.",
+    "docs": [
+      { "label": "Face API", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-identity" }
+    ]
+  },
+  {
+    "id": "ai-103-q245",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to return dense captions and tags in one image analysis call. Which parameter should you set?",
+    "options": [
+      "The visual_features parameter",
+      "The language parameter",
+      "The model_version parameter",
+      "The smart_crops_aspect_ratios parameter"
+    ],
+    "answer": 0,
+    "explanation": "The visual_features parameter selects which analyses, such as dense captions and tags, the call returns.",
+    "docs": [
+      { "label": "Analyze image", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/call-analyze-image" }
+    ]
+  },
+  {
+    "id": "ai-103-q246",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to count people entering a store and detect distancing. Which Azure AI Vision feature should you use?",
+    "options": [
+      "The image classification",
+      "The spatial analysis",
+      "The face detection",
+      "The Read OCR"
+    ],
+    "answer": 1,
+    "explanation": "Spatial analysis processes video streams to count people and measure distance between them in real time.",
+    "docs": [
+      { "label": "Spatial analysis", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview" }
+    ]
+  },
+  {
+    "id": "ai-103-q247",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need bounding boxes for objects like chairs and cars in photos. Which Azure AI Vision model should you use?",
+    "options": [
+      "The background removal",
+      "The image captioning",
+      "The object detection",
+      "The text extraction"
+    ],
+    "answer": 2,
+    "explanation": "Object detection returns each detected object with a label, confidence, and bounding box.",
+    "docs": [
+      { "label": "Computer Vision", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q248",
+    "domain": "Implement computer vision solutions",
+    "prompt": "Before using face recognition, you must meet which requirement?",
+    "options": [
+      "Pay for premium tier",
+      "Deploy on managed Kubernetes",
+      "Store data in Asia",
+      "Get limited-access approval"
+    ],
+    "answer": 3,
+    "explanation": "Azure AI Face is gated under Microsoft's Limited Access policy, which requires approval for facial recognition.",
+    "docs": [
+      { "label": "Face API", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-identity" }
+    ]
+  },
+  {
+    "id": "ai-103-q249",
+    "domain": "Implement computer vision solutions",
+    "prompt": "When you call the Read OCR API, what does the response return?",
+    "options": [
+      "Lines with bounding boxes",
+      "A single transcript string",
+      "Face landmark coordinate data",
+      "A document sentiment score"
+    ],
+    "answer": 0,
+    "explanation": "The Read API returns text organized into lines and words, each with a bounding polygon.",
+    "docs": [
+      { "label": "OCR concept", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-ocr" }
+    ]
+  },
+  {
+    "id": "ai-103-q250",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to remove an image background for product photos. Which Azure AI Vision operation should you call?",
+    "options": [
+      "The Read OCR",
+      "The background removal",
+      "The spatial analysis",
+      "The face detection"
+    ],
+    "answer": 1,
+    "explanation": "The background removal operation segments the foreground subject and removes the background.",
+    "docs": [
+      { "label": "Analyze image", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/call-analyze-image" }
+    ]
+  },
+  {
+    "id": "ai-103-q251",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You build a custom classifier and need to accept only high-confidence predictions. Which output field should you threshold?",
+    "options": [
+      "The bounding box",
+      "The label name",
+      "The probability score",
+      "The image URL"
+    ],
+    "answer": 2,
+    "explanation": "Each prediction includes a probability score that indicates the model's confidence in that label.",
+    "docs": [
+      { "label": "Custom Vision", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q252",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to identify product logos in images. Which Image Analysis visual feature should you request?",
+    "options": [
+      "The category detection",
+      "The landmark detection",
+      "The caption detection",
+      "The brand detection"
+    ],
+    "answer": 3,
+    "explanation": "The brand detection visual feature recognizes commercial logos in images.",
+    "docs": [
+      { "label": "Analyze image", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/call-analyze-image" }
+    ]
+  },
+  {
+    "id": "ai-103-q253",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to read text from a scanned document. Solution: Call the Read OCR API on the image. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "The Read API extracts text from scanned documents and returns lines, words, and their positions.",
+    "docs": [
+      { "label": "OCR concept", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-ocr" }
+    ]
+  },
+  {
+    "id": "ai-103-q254",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to recognize a person's identity. Solution: Use the Face detection operation. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Face detection only locates faces; identity requires enrollment and identification or verification.",
+    "docs": [
+      { "label": "Face API", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-identity" }
+    ]
+  },
+  {
+    "id": "ai-103-q255",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to train a custom object detector with few images. Solution: Use Custom Vision with transfer learning. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Custom Vision uses transfer learning, so a useful model can be trained from a small labeled dataset.",
+    "docs": [
+      { "label": "Custom Vision", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q256",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to return image tags in a language other than English. Solution: Set the language parameter on the image analysis call. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Image Analysis accepts a language parameter that changes the language of captions and tags.",
+    "docs": [
+      { "label": "Analyze image", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/call-analyze-image" }
+    ]
+  },
+  {
+    "id": "ai-103-q257",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to count people in a live camera feed. Solution: Use the Face detection operation once per minute. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Live people counting over video is done with spatial analysis, not intermittent face detection calls.",
+    "docs": [
+      { "label": "Spatial analysis", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview" }
+    ]
+  },
+  {
+    "id": "ai-103-q258",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to train a custom model to detect defects with only five images. Solution: Use Custom Vision object detection. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Five images are far too few to train a reliable detector; object detection needs substantially more labeled data.",
+    "docs": [
+      { "label": "Custom Vision", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q259",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to detect faces in an image. Solution: Call the object detection model with the faces feature. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Face detection is a separate capability from object detection; use the Face API or the people visual feature.",
+    "docs": [
+      { "label": "Face API", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-identity" }
+    ]
+  },
+  {
+    "id": "ai-103-q260",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to caption images at scale without training a model. Solution: Call Image Analysis with dense captioning. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Dense captioning is a built-in feature that describes regions of an image without any custom training.",
+    "docs": [
+      { "label": "Analyze image", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/call-analyze-image" }
+    ]
+  },
+  {
+    "id": "ai-103-q261",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to score each document as positive, negative, or neutral. Which Azure AI Language operation should you call?",
+    "options": [
+      "Analyze the sentiment",
+      "Extract key phrases",
+      "Detect the language",
+      "Recognize the entities"
+    ],
+    "answer": 0,
+    "explanation": "Sentiment analysis returns a sentiment label and confidence score for each document.",
+    "docs": [
+      { "label": "Sentiment analysis", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q262",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to find and redact names and phone numbers in free text. Which operation should you call?",
+    "options": [
+      "Analyze the sentiment",
+      "Recognize PII entities",
+      "Extract key phrases",
+      "Summarize the text"
+    ],
+    "answer": 1,
+    "explanation": "PII entity recognition detects and redacts personal information such as names and phone numbers.",
+    "docs": [
+      { "label": "PII detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q263",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need a list of main talking points from customer reviews. Which operation should you call?",
+    "options": [
+      "Detect the language",
+      "Recognize the entities",
+      "Extract key phrases",
+      "Analyze the sentiment"
+    ],
+    "answer": 2,
+    "explanation": "Key phrase extraction returns the main concepts and talking points in a document.",
+    "docs": [
+      { "label": "Key phrases", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/key-phrase-extraction/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q264",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to translate text to several languages in one call. Which client class should you use?",
+    "options": [
+      "The TextAnalyticsClient class",
+      "The SentimentAnalysisClient class",
+      "The QuestionAnsweringClient class",
+      "The TextTranslationClient class"
+    ],
+    "answer": 3,
+    "explanation": "TextTranslationClient translates text and accepts multiple target languages in a single request.",
+    "docs": [
+      { "label": "Translator", "url": "https://learn.microsoft.com/en-us/azure/ai-services/translator/text-translation-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q265",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to produce an abstractive summary of a long article. Which method should you call?",
+    "options": [
+      "The begin_abstractive_summarization method",
+      "The analyze_sentiment method",
+      "The recognize_entities method",
+      "The extract_key_phrases method"
+    ],
+    "answer": 0,
+    "explanation": "Abstractive summarization generates a new summary in different wording rather than copying original sentences.",
+    "docs": [
+      { "label": "Summarization", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/summarization/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q266",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need a bot to answer questions from a knowledge base of documents. Which Language feature should you use?",
+    "options": [
+      "The entity linking",
+      "The question answering",
+      "The text translation",
+      "The opinion mining"
+    ],
+    "answer": 1,
+    "explanation": "Question answering extracts answers from a curated knowledge base of documents and FAQ pages.",
+    "docs": [
+      { "label": "Question answering", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/question-answering/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q267",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to route text to the correct model based on its language. Which operation should you call first?",
+    "options": [
+      "Analyze the sentiment",
+      "Recognize the entities",
+      "Detect the language",
+      "Summarize the text"
+    ],
+    "answer": 2,
+    "explanation": "Language detection returns the language code so you can route text to the appropriate downstream model.",
+    "docs": [
+      { "label": "Language service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q268",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to extract names of people, places, and organizations from news text. Which operation should you call?",
+    "options": [
+      "Extract key phrases",
+      "Detect the language",
+      "Analyze the sentiment",
+      "Recognize the entities"
+    ],
+    "answer": 3,
+    "explanation": "Named entity recognition identifies people, places, and organizations with types and confidence scores.",
+    "docs": [
+      { "label": "NER", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q269",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need sentiment scores for both a product and its individual attributes in a review. Which feature should you enable?",
+    "options": [
+      "The opinion mining",
+      "Key phrase extraction",
+      "The entity linking",
+      "The language detection"
+    ],
+    "answer": 0,
+    "explanation": "Opinion mining returns aspect-level sentiment, breaking sentiment down to specific attributes.",
+    "docs": [
+      { "label": "Opinion mining", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q270",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to redact only phone numbers, not all PII. Which parameter should you set?",
+    "options": [
+      "The model version",
+      "The PII categories",
+      "The language code",
+      "The confidence threshold"
+    ],
+    "answer": 1,
+    "explanation": "The PII categories parameter restricts detection to specific entity types such as phone numbers.",
+    "docs": [
+      { "label": "PII detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q271",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to constrain an extractive summary to roughly two sentences. Which parameter should you set?",
+    "options": [
+      "The language code",
+      "The confidence score",
+      "The sentence count",
+      "The document ID"
+    ],
+    "answer": 2,
+    "explanation": "The sentence count parameter limits how many original sentences the extractive summary returns.",
+    "docs": [
+      { "label": "Summarization", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/summarization/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q272",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to classify support tickets into your own categories. Which Language feature should you use?",
+    "options": [
+      "The sentiment analysis",
+      "Key phrase extraction",
+      "The entity recognition",
+      "Custom text classification"
+    ],
+    "answer": 3,
+    "explanation": "Custom text classification trains a model to label documents with your own defined categories.",
+    "docs": [
+      { "label": "Language service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q273",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to detect whether a review is positive. Solution: Call analyze_sentiment and read the sentiment field. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "The sentiment field in the response reports the document's overall label such as positive or negative.",
+    "docs": [
+      { "label": "Sentiment analysis", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q274",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to identify the language of a short text. Solution: Call analyze_sentiment and read the detected language. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Sentiment analysis does not return a language; use the dedicated detect language operation.",
+    "docs": [
+      { "label": "Language service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q275",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to redact names and addresses before storing logs. Solution: Call recognize_pii_entities and mask the returned entities. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "PII recognition returns the entities and their positions so you can mask them before storage.",
+    "docs": [
+      { "label": "PII detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q276",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to answer user questions from a fixed FAQ. Solution: Deploy a question answering project over the FAQ. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Question answering builds a knowledge base from FAQ documents and returns answers with confidence scores.",
+    "docs": [
+      { "label": "Question answering", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/question-answering/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q277",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to summarize a document into key phrases. Solution: Call begin_extract_summary. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Extractive summarization returns full sentences, not key phrases; use extract_key_phrases instead.",
+    "docs": [
+      { "label": "Key phrases", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/key-phrase-extraction/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q278",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need a summary written in the author's own words. Solution: Use extractive summarization. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Extractive summarization copies original sentences; abstractive summarization rewrites content in new wording.",
+    "docs": [
+      { "label": "Summarization", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/summarization/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q279",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to extract opinions about specific product features. Solution: Call analyze_sentiment without enabling opinion mining. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Aspect-level opinions require opinion mining; plain sentiment returns only a document-level label.",
+    "docs": [
+      { "label": "Opinion mining", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q280",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to link entities to Wikipedia. Solution: Call entity linking. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Entity linking maps recognized entities to a knowledge base such as Wikipedia with a URL.",
+    "docs": [
+      { "label": "Language service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q281",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract merchant name, total, and date from receipts. Which prebuilt model should you use?",
+    "options": [
+      "The prebuilt-receipt model",
+      "The prebuilt-invoice model",
+      "The prebuilt-idDocument model",
+      "The prebuilt-layout model"
+    ],
+    "answer": 0,
+    "explanation": "The receipt model extracts receipt-specific fields such as merchant name, total, and transaction date.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q282",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract tables and their structure from a PDF. Which prebuilt model should you use?",
+    "options": [
+      "The prebuilt-read model",
+      "The prebuilt-layout model",
+      "The prebuilt-receipt model",
+      "The prebuilt-businessCard model"
+    ],
+    "answer": 1,
+    "explanation": "The layout model extracts tables, selection marks, and structural elements from documents.",
+    "docs": [
+      { "label": "Layout model", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-layout" }
+    ]
+  },
+  {
+    "id": "ai-103-q283",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract fields from your company's unique form. What should you do?",
+    "options": [
+      "Use the read model",
+      "Use the layout model",
+      "Train a custom model",
+      "Use the receipt model"
+    ],
+    "answer": 2,
+    "explanation": "A custom extraction model is trained on labeled examples of your own form layout.",
+    "docs": [
+      { "label": "Custom models", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom" }
+    ]
+  },
+  {
+    "id": "ai-103-q284",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to analyze a document with the Document Intelligence SDK. Which method should you call?",
+    "options": [
+      "The recognize_entities method",
+      "The analyze_sentiment method",
+      "The extract_key_phrases method",
+      "The begin_analyze_document method"
+    ],
+    "answer": 3,
+    "explanation": "begin_analyze_document submits a document for analysis and returns extracted fields and structure.",
+    "docs": [
+      { "label": "Document Intelligence", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q285",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need only to extract printed text with reading order from a page. Which prebuilt model should you use?",
+    "options": [
+      "The prebuilt-read model",
+      "The prebuilt-tax model",
+      "The prebuilt-invoice model",
+      "The prebuilt-idDocument model"
+    ],
+    "answer": 0,
+    "explanation": "The read model extracts printed and handwritten text with reading order and page structure.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q286",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract vendor name, invoice total, and line items. Which prebuilt model should you use?",
+    "options": [
+      "The prebuilt-receipt model",
+      "The prebuilt-invoice model",
+      "The prebuilt-layout model",
+      "The prebuilt-read model"
+    ],
+    "answer": 1,
+    "explanation": "The invoice model extracts invoice-specific fields including vendor, total, and line items.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q287",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need a single model that routes documents among several custom models. What should you create?",
+    "options": [
+      "A neural model",
+      "A template model",
+      "A composed model",
+      "A read model"
+    ],
+    "answer": 2,
+    "explanation": "A composed model groups multiple custom models and routes each document to the correct one.",
+    "docs": [
+      { "label": "Custom models", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom" }
+    ]
+  },
+  {
+    "id": "ai-103-q288",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to flag low-confidence extracted fields for review. Which output field should you evaluate?",
+    "options": [
+      "The page number",
+      "The bounding box",
+      "The content string",
+      "The confidence score"
+    ],
+    "answer": 3,
+    "explanation": "Each extracted field carries a confidence score you can threshold to route items for human review.",
+    "docs": [
+      { "label": "Document Intelligence", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q289",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract contact name, phone, and email from business card photos. Which model should you use?",
+    "options": [
+      "The prebuilt-businessCard model",
+      "The prebuilt-read model",
+      "The prebuilt-layout model",
+      "The prebuilt-receipt model"
+    ],
+    "answer": 0,
+    "explanation": "The business card model extracts contact fields such as name, phone, email, and company.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q290",
+    "domain": "Implement information extraction solutions",
+    "prompt": "After training a custom model, how are extracted fields identified in the result?",
+    "options": [
+      "By reading order only",
+      "By field label names",
+      "By the pixel color",
+      "By the file name"
+    ],
+    "answer": 1,
+    "explanation": "Custom models return values keyed by the field labels you assigned during training.",
+    "docs": [
+      { "label": "Custom models", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom" }
+    ]
+  },
+  {
+    "id": "ai-103-q291",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to analyze only pages two through five of a large PDF. Which parameter should you set?",
+    "options": [
+      "The model version",
+      "The content type",
+      "The pages range",
+      "The document locale"
+    ],
+    "answer": 2,
+    "explanation": "The pages parameter limits analysis to a specified range of pages in a multi-page document.",
+    "docs": [
+      { "label": "Document Intelligence", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q292",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract name and document number from a passport. Which prebuilt model should you use?",
+    "options": [
+      "The prebuilt-invoice model",
+      "The prebuilt-read model",
+      "The prebuilt-layout model",
+      "The prebuilt-idDocument model"
+    ],
+    "answer": 3,
+    "explanation": "The identity document model extracts fields from passports and driver's licenses.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q293",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract the total and items from a receipt. Solution: Use the prebuilt-receipt model. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "The receipt model returns totals and line items from receipt images.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q294",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to read handwriting in a form. Solution: Use the prebuilt-read model. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "The read model extracts both printed and handwritten text from forms.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q295",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract tables from a document. Solution: Use the prebuilt-read model. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "The read model returns text but not table structure; use the layout model to extract tables.",
+    "docs": [
+      { "label": "Layout model", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-layout" }
+    ]
+  },
+  {
+    "id": "ai-103-q296",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to train a custom model for a new form type. Solution: Label sample documents and train a custom extraction model. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Labeling sample documents provides the ground truth needed to train a custom extraction model.",
+    "docs": [
+      { "label": "Custom models", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom" }
+    ]
+  },
+  {
+    "id": "ai-103-q297",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to process documents with several unrelated form types. Solution: Train one template model on all types together. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Unrelated form types should be trained separately and combined into a composed model that routes each document.",
+    "docs": [
+      { "label": "Custom models", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom" }
+    ]
+  },
+  {
+    "id": "ai-103-q298",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to verify extracted values are reliable. Solution: Read each field's confidence score. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 0,
+    "explanation": "Confidence scores indicate how certain the model is about each extracted value.",
+    "docs": [
+      { "label": "Document Intelligence", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q299",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract structured invoice fields with minimal setup. Solution: Train a custom model from scratch. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "The prebuilt-invoice model already extracts invoice fields with no training, which is less setup than a custom model.",
+    "docs": [
+      { "label": "Model overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-model-overview" }
+    ]
+  },
+  {
+    "id": "ai-103-q300",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to analyze only one page of a multi-page PDF. Solution: Pass the whole PDF without a pages parameter. Does the solution meet the goal?",
+    "options": ["Yes", "No"],
+    "answer": 1,
+    "explanation": "Without a pages range the service analyzes every page; set the pages parameter to limit processing.",
+    "docs": [
+      { "label": "Document Intelligence", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview" }
+    ]
+  }
+]

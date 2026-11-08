@@ -55,6 +55,25 @@
     "accent": "#dc2626"
   },
   {
+    "id": "ai-103",
+    "code": "AI-103",
+    "name": "Azure AI Apps and Agents Developer Associate",
+    "shortName": "Azure AI Apps & Agents Developer",
+    "role": "AI Engineer",
+    "level": "Associate",
+    "description": "Design, develop, and deploy advanced Azure AI solutions and agents using Python and Microsoft Foundry.",
+    "domains": [
+      "Plan and manage an Azure AI solution",
+      "Implement generative AI and agentic solutions",
+      "Implement computer vision solutions",
+      "Implement text analysis solutions",
+      "Implement information extraction solutions"
+    ],
+    "examUrl": "https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-apps-and-agents-developer-associate/",
+    "studyGuideUrl": "https://aka.ms/AI103-StudyGuide",
+    "accent": "#059669"
+  },
+  {
     "id": "ai-200",
     "code": "AI-200",
     "name": "Developing AI Cloud Solutions on Azure",

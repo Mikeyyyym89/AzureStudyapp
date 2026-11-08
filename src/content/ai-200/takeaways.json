@@ -1,0 +1,66 @@
+[
+  {
+    "domain": "Develop containerized solutions on Azure",
+    "summary": "Package apps into containers and run them on the right Azure compute (ACI, Container Apps, or AKS) with ACR for image management.",
+    "highYield": [
+      "ACR: repositories, image pull secrets, ACR Tasks (cloud build/push), geo-replication, admin user vs service principal/Entra auth.",
+      "Choose: ACI (single quick container) vs Container Apps (serverless scale, KEDA/Dapr) vs AKS (full orchestration).",
+      "AKS: node pools, scaling (cluster autoscaler, HPA, KEDA), networking (kubenet vs Azure CNI), persistent volumes.",
+      "Container Apps: revisions, ingress, HTTP/KEDA scale rules, Dapr integration.",
+      "Docker: multi-stage builds, layer caching, ENTRYPOINT vs CMD, HEALTHCHECK + liveness/readiness probes."
+    ],
+    "memoryAids": [
+      "ACI = single, ACA = serverless, AKS = full control.",
+      "ACR Tasks = build/push in the cloud, no local Docker.",
+      "KEDA = event-driven autoscaling."
+    ]
+  },
+  {
+    "domain": "Develop AI solutions by using Azure data management services",
+    "summary": "Feed AI workloads with the right data stores and retrieval (vector/search) services for RAG and model data.",
+    "highYield": [
+      "Azure SQL DB (serverless, DTU/vCore, geo-replication) vs Cosmos DB (request units, partition keys, consistency) for app data.",
+      "Azure Blob and Data Lake Storage Gen2 (hierarchical namespace) for large datasets, model artifacts, and training data.",
+      "Azure AI Search: indexes, indexers, semantic ranker, vector search, and hybrid (keyword + vector) retrieval for RAG.",
+      "Vector databases: Cosmos DB / PostgreSQL with pgvector for embeddings and similarity search.",
+      "Data ingestion/pipelines: Azure Data Factory, Synapse, or Fabric to prepare and move data."
+    ],
+    "memoryAids": [
+      "Partition key = even distribution + efficient queries.",
+      "RAG = Retrieve (AI Search vectors) + Augment + Generate.",
+      "Vector search = similarity; hybrid = keyword + vector."
+    ]
+  },
+  {
+    "domain": "Connect to and consume Azure services",
+    "summary": "Consume Azure services via SDKs, REST, managed identities, and messaging/event services using proper authentication.",
+    "highYield": [
+      "Auth: Managed Identity (system vs user assigned) vs service principal vs connection strings/keys; prefer managed identity.",
+      "Azure SDKs (.NET/Python/Java/JS) and REST with Bearer tokens via DefaultAzureCredential.",
+      "Azure AI Services: Azure OpenAI, Speech, Vision, Language; endpoint + key vs Microsoft Entra ID auth.",
+      "Messaging: Service Bus (queues/topics, FIFO via sessions) vs Event Grid (discrete events) vs Event Hubs (high-throughput streams).",
+      "Azure Functions bindings + Durable Functions for orchestration; App Service Easy Auth and MSAL for user auth."
+    ],
+    "memoryAids": [
+      "Service Bus = messages (FIFO); Event Grid = discrete events; Event Hubs = streams.",
+      "DefaultAzureCredential = tries many auth methods in order.",
+      "Use managed identity - never keys in code."
+    ]
+  },
+  {
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "summary": "Secure apps with identity and Key Vault, then observe and troubleshoot with Application Insights and Azure Monitor.",
+    "highYield": [
+      "App Service authentication (Easy Auth) vs custom MSAL; Key Vault secrets with managed identity.",
+      "Application Insights: telemetry, distributed tracing, dependency calls, exceptions, live metrics, sampling.",
+      "Logging: structured logs, KQL queries, Log Analytics workspaces, diagnostic settings.",
+      "Troubleshooting: App Service diagnostics, deployment slots (staging swap/rollback), retry policies, remote debugging.",
+      "Secure networking: private endpoints, NSGs, WAF, TLS/HTTPS, CORS, secret rotation."
+    ],
+    "memoryAids": [
+      "App Insights = see inside your app (traces, dependencies, exceptions).",
+      "Slots = zero-downtime swap and rollback.",
+      "KQL to query everything in Log Analytics."
+    ]
+  }
+]

@@ -1,0 +1,66 @@
+[
+  {
+    "domain": "Manage identity, access, and governance",
+    "summary": "Entra ID is the security perimeter; Conditional Access, MFA, and RBAC/PIM enforce zero-trust, least-privilege access.",
+    "highYield": [
+      "Conditional Access policies: sign-in risk, MFA, device compliance, and location/conditions ('IF condition THEN grant/block').",
+      "Microsoft Entra ID Protection: user risk (account likely compromised) vs sign-in risk (session suspicious).",
+      "Privileged Identity Management (PIM): just-in-time activation, approvals, and audit; Entitlement Management and access reviews.",
+      "Authentication methods: MFA (FIDO2, Microsoft Authenticator, phone), passwordless, and self-service password reset (SSPR).",
+      "Hybrid identity: Microsoft Entra Connect, PHS/PTA/federation, and Microsoft Defender for Identity for on-prem detection."
+    ],
+    "memoryAids": [
+      "User risk = account compromised; Sign-in risk = session suspicious.",
+      "CA = IF (condition) THEN (grant or block).",
+      "PIM = just-in-time least privilege."
+    ]
+  },
+  {
+    "domain": "Secure storage, databases, and networking",
+    "summary": "Protect data at rest, in use, and in transit with encryption, identity-based access, and network segmentation.",
+    "highYield": [
+      "Storage auth: shared key vs SAS vs Microsoft Entra ID; SSE encryption at rest, customer-managed keys, storage firewall, private endpoints.",
+      "Database protection: TDE (at rest), Always Encrypted (columns/in-use), dynamic data masking, SQL firewall, private endpoints.",
+      "Azure Key Vault: secrets/keys/certs, RBAC vs access policies, soft-delete + purge protection, key rotation.",
+      "Network security: NSG/ASG, Azure Firewall, DDoS Protection, Web Application Firewall (WAF) on App Gateway/Front Door.",
+      "Private Endpoint (private IP in VNet) vs Service Endpoint (public IP over private backbone)."
+    ],
+    "memoryAids": [
+      "TDE = at rest; Always Encrypted = in use; TLS = in transit.",
+      "SAS = scoped, key = full, Entra ID = identity-based.",
+      "Key Vault + soft-delete protects against accidental and malicious delete."
+    ]
+  },
+  {
+    "domain": "Secure compute",
+    "summary": "Harden VMs, containers, and app platforms with Defender protection, patching, and identity-based (secret-free) access.",
+    "highYield": [
+      "Microsoft Defender for Cloud: Defender for Servers (EDR), Defender for Containers (registry + runtime), Defender for App Service; just-in-time VM access.",
+      "Encryption: Azure Disk Encryption (BitLocker/DM-Crypt) vs encryption at host; Azure Update Manager for patch compliance.",
+      "Container security: ACR scanning, Defender for Containers, Kubernetes RBAC, network policies, image signing.",
+      "Managed Identity for apps/containers (no secrets in code) and App Service Easy Auth.",
+      "VM hardening: NSGs, Azure Bastion (no public RDP/SSH), Antimalware, secure boot."
+    ],
+    "memoryAids": [
+      "JIT VM access = open RDP/SSH only when needed.",
+      "Managed Identity = no secrets in code.",
+      "Defender for Servers = VM EDR; Defender for Containers = K8s + registry."
+    ]
+  },
+  {
+    "domain": "Manage and monitor security posture",
+    "summary": "Continuously assess and improve security posture with Defender for Cloud Secure Score, Sentinel SIEM/SOAR, and compliance controls.",
+    "highYield": [
+      "Microsoft Defender for Cloud: Secure Score, security recommendations, regulatory compliance (NIST, CIS, ISO), CSPM vs CWPP.",
+      "Microsoft Sentinel: SIEM/SOAR with data connectors, analytics rules, incidents, and Logic Apps playbooks.",
+      "Microsoft Defender XDR integrates Endpoint, Identity, Office 365, and Cloud Apps signals.",
+      "Microsoft Purview: sensitivity labels, information protection, and DLP.",
+      "Attack path analysis and exposure management for proactive risk reduction."
+    ],
+    "memoryAids": [
+      "Secure Score = how secure (higher = better); recommendations = how to fix.",
+      "Sentinel = SIEM + SOAR = detect + automate.",
+      "CSPM = posture, CWPP = workload protection."
+    ]
+  }
+]

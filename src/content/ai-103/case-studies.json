@@ -1,0 +1,156 @@
+[
+  {
+    "id": "ai-103-case-1",
+    "title": "Contoso Bank — Grounded customer-support agent",
+    "scenario": "Contoso Bank is building a customer-support chat agent that must answer questions grounded in the bank's policy library, act on behalf of customers through internal APIs, and produce consistent, measurable, and safe responses.",
+    "context": [
+      "Ground answers in the bank's policy library stored in Azure AI Search.",
+      "Let the agent query customer account data through an internal API.",
+      "Keep responses consistent and factual rather than creative.",
+      "Measure answer quality before release and trace issues in production."
+    ],
+    "questions": [
+      {
+        "id": "ai-103-case-1-q1",
+        "domain": "Implement generative AI and agentic solutions",
+        "prompt": "How should the agent ground its answers in the policy library?",
+        "options": [
+          "Retrieve relevant policy chunks with Azure AI Search and inject them into the prompt (RAG)",
+          "Fine-tune the model once on all policy PDFs",
+          "Hard-code every policy into the system prompt",
+          "Store policies in Blob Storage and ignore them at runtime"
+        ],
+        "answer": 0,
+        "explanation": "Retrieval-Augmented Generation pulls the most relevant documents and injects them into the prompt so answers are grounded in current data. Fine-tuning shapes style and format rather than retrieving changing knowledge, hard-coding does not scale, and ignoring the store defeats grounding.",
+        "docs": [
+          { "label": "Azure OpenAI on your data (RAG)", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/use-your-data" }
+        ]
+      },
+      {
+        "id": "ai-103-case-1-q2",
+        "domain": "Implement generative AI and agentic solutions",
+        "prompt": "Which capability lets the model request an account-balance lookup through the bank's internal API?",
+        "options": [
+          "Function calling",
+          "Raising temperature to its maximum value",
+          "Disabling the content safety filter",
+          "Prompt flow batching"
+        ],
+        "answer": 0,
+        "explanation": "Function calling returns a structured request the application uses to invoke the API, then passes the result back to the model. Temperature only changes output randomness, disabling safety filters is unrelated and unsafe, and batching is not tool use.",
+        "docs": [
+          { "label": "Function calling in Azure OpenAI", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/function-calling" }
+        ]
+      },
+      {
+        "id": "ai-103-case-1-q3",
+        "domain": "Implement generative AI and agentic solutions",
+        "prompt": "The agent must give consistent, factual answers. Which temperature setting is most appropriate?",
+        "options": [
+          "A low value, near zero",
+          "A high value, near the maximum",
+          "Always the maximum allowed value",
+          "Leave temperature unset and rely only on top_p"
+        ],
+        "answer": 0,
+        "explanation": "A low temperature makes output deterministic and focused, which suits factual support. Higher temperatures increase randomness and creativity, risking hallucinations; leaving the setting unset or relying only on top_p does not guarantee consistency.",
+        "docs": [
+          { "label": "Prompt engineering techniques", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/advanced-prompt-engineering" }
+        ]
+      },
+      {
+        "id": "ai-103-case-1-q4",
+        "domain": "Plan and manage an Azure AI solution",
+        "prompt": "How should the team measure answer quality and debug issues in production?",
+        "options": [
+          "Run evaluations (groundedness, relevance) in Foundry and enable tracing",
+          "Deploy and ask users to report errors manually",
+          "Review the monthly Azure invoice for cost spikes",
+          "Keep prompts in a shared spreadsheet"
+        ],
+        "answer": 0,
+        "explanation": "Foundry evaluation scores quality metrics against a test dataset, and tracing records each request's steps for debugging. Manual reporting does not scale, invoices do not measure quality, and spreadsheets do not trace execution.",
+        "docs": [
+          { "label": "Evaluate generative AI apps", "url": "https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-generative-ai-app" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ai-103-case-2",
+    "title": "Fabrikam Logistics — Document intake and redaction pipeline",
+    "scenario": "Fabrikam Logistics is digitizing its shipping paperwork: scanned forms, invoices, and identification documents. It needs to extract text and structured fields, redact personal data before storage, and understand customer feedback.",
+    "context": [
+      "Extract printed text from scanned shipping documents.",
+      "Pull structured fields such as invoice number and total from invoices without training.",
+      "Redact personal data (names, ID numbers) before storing documents.",
+      "Classify whether customer emails are positive or negative."
+    ],
+    "questions": [
+      {
+        "id": "ai-103-case-2-q1",
+        "domain": "Implement information extraction solutions",
+        "prompt": "Which service extracts structured fields from invoices with no model training?",
+        "options": [
+          "Document Intelligence prebuilt invoice model",
+          "A custom neural model trained from scratch",
+          "Azure AI Face",
+          "Sentiment analysis"
+        ],
+        "answer": 0,
+        "explanation": "The prebuilt invoice model returns fields such as invoice number and total out of the box. A custom neural model requires labeled training data, Azure AI Face handles faces, and sentiment analysis classifies text polarity rather than extracting document fields.",
+        "docs": [
+          { "label": "Document Intelligence invoice model", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-invoice" }
+        ]
+      },
+      {
+        "id": "ai-103-case-2-q2",
+        "domain": "Implement computer vision solutions",
+        "prompt": "How should printed text be extracted from the scanned documents?",
+        "options": [
+          "Azure AI Vision OCR (Read API)",
+          "Custom Vision object detection",
+          "Speech-to-text",
+          "Key phrase extraction"
+        ],
+        "answer": 0,
+        "explanation": "OCR/Read extracts printed or handwritten text from images and PDFs. Custom Vision detects or classifies objects rather than text, speech-to-text processes audio, and key phrase extraction summarizes existing text instead of reading images.",
+        "docs": [
+          { "label": "Optical Character Recognition overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-ocr" }
+        ]
+      },
+      {
+        "id": "ai-103-case-2-q3",
+        "domain": "Implement text analysis solutions",
+        "prompt": "How should Fabrikam remove names and ID numbers before storing documents?",
+        "options": [
+          "PII detection with redaction",
+          "Sentiment analysis",
+          "Language detection",
+          "Text translation"
+        ],
+        "answer": 0,
+        "explanation": "PII detection finds and can redact personal data. Sentiment and language detection classify text but do not remove data, and translation converts text between languages.",
+        "docs": [
+          { "label": "PII detection overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview" }
+        ]
+      },
+      {
+        "id": "ai-103-case-2-q4",
+        "domain": "Implement text analysis solutions",
+        "prompt": "How should Fabrikam determine whether customer emails are positive or negative?",
+        "options": [
+          "Sentiment analysis",
+          "OCR",
+          "Document Intelligence invoice model",
+          "Custom Vision"
+        ],
+        "answer": 0,
+        "explanation": "Sentiment analysis returns positive, negative, or neutral polarity for text. OCR reads images, the invoice model extracts invoice fields, and Custom Vision classifies images — none of them classify the opinion of text.",
+        "docs": [
+          { "label": "Sentiment analysis overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview" }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,55 @@
+[
+  {
+    "domain": "Plan and manage an Azure AI solution",
+    "links": [
+      { "label": "What is Microsoft Foundry?", "url": "https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry" },
+      { "label": "Foundry connections", "url": "https://learn.microsoft.com/en-us/azure/foundry/how-to/connections-add" },
+      { "label": "Foundry models and model catalog", "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/foundry-models-overview" },
+      { "label": "Evaluate generative AI apps", "url": "https://learn.microsoft.com/en-us/azure/foundry/how-to/evaluate-generative-ai-app" },
+      { "label": "Trace and observe agents", "url": "https://learn.microsoft.com/en-us/azure/foundry/observability/how-to/trace-agent-setup" },
+      { "label": "Responsible use of AI overview", "url": "https://learn.microsoft.com/en-us/azure/foundry/responsible-use-of-ai-overview" }
+    ]
+  },
+  {
+    "domain": "Implement generative AI and agentic solutions",
+    "links": [
+      { "label": "What is Azure OpenAI Service?", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/overview" },
+      { "label": "Understand embeddings", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/understand-embeddings" },
+      { "label": "Function calling in Azure OpenAI", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/function-calling" },
+      { "label": "Agents in Microsoft Foundry", "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/overview" },
+      { "label": "Connect agents to Model Context Protocol servers", "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/model-context-protocol" },
+      { "label": "Prompt flow", "url": "https://learn.microsoft.com/en-us/azure/foundry-classic/concepts/prompt-flow" }
+    ]
+  },
+  {
+    "domain": "Implement computer vision solutions",
+    "links": [
+      { "label": "What is Azure AI Vision?", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview" },
+      { "label": "Image Analysis overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-image-analysis" },
+      { "label": "Optical Character Recognition (OCR) overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-ocr" },
+      { "label": "Face detection and recognition overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-face" },
+      { "label": "What is Custom Vision?", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview" }
+    ]
+  },
+  {
+    "domain": "Implement text analysis solutions",
+    "links": [
+      { "label": "What is Azure AI Language?", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview" },
+      { "label": "Sentiment analysis and opinion mining", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview" },
+      { "label": "Key phrase extraction", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/key-phrase-extraction/overview" },
+      { "label": "Named Entity Recognition", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/overview" },
+      { "label": "PII detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview" },
+      { "label": "Azure AI Translator", "url": "https://learn.microsoft.com/en-us/azure/ai-services/translator/translator-overview" }
+    ]
+  },
+  {
+    "domain": "Implement information extraction solutions",
+    "links": [
+      { "label": "What is Azure AI Document Intelligence?", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview" },
+      { "label": "Document Intelligence invoice model", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-invoice" },
+      { "label": "Document Intelligence Read (OCR) model", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-read" },
+      { "label": "Document Intelligence custom models", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-model" },
+      { "label": "Document Intelligence custom neural model", "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/train/custom-neural" }
+    ]
+  }
+]

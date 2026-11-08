@@ -1,0 +1,215 @@
+[
+  {
+    "id": "ai-103-case-3",
+    "title": "Northwind — Multi-tool agent for order operations",
+    "scenario": "Northwind is building a customer-service agent that handles order status, inventory checks, and product questions. The agent must call several internal APIs to act on behalf of customers, ground product and policy answers in a knowledge base, remember conversation context, and connect its tools using a portable open standard so the same agent can run in Foundry and in a third-party host.",
+    "context": [
+      "The agent must call internal inventory and order APIs to act.",
+      "Product and policy information must be retrieved from a search index.",
+      "The agent must remember the customer and active order across turns.",
+      "Tools must connect using a portable, open standard."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "A customer-service agent handles order status, inventory checks, and product questions.",
+          "Built in Microsoft Foundry with Azure OpenAI and an Azure AI Search index.",
+          "Uses multiple internal REST APIs and a knowledge base.",
+          "Must run both in Foundry and in a third-party host without rewriting integrations."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "The agent must invoke internal inventory and order APIs through tools.",
+          "Product and policy answers must be grounded in a search index.",
+          "Conversation context and customer identity must persist across turns.",
+          "External tools must connect through a standard protocol for portability."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "An Azure AI Search index holds product and policy documents.",
+          "Internal inventory and order REST APIs sit behind a private network.",
+          "An Azure OpenAI deployment is reachable from the Foundry hub.",
+          "No tools, knowledge, or memory are configured yet."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai-103-case-3-q1",
+        "domain": "Implement generative AI and agentic solutions",
+        "prompt": "How should the agent call the internal inventory and order APIs?",
+        "options": [
+          "Define them as agent tools that the model can invoke via function calling",
+          "Ask customers to call the APIs themselves",
+          "Hard-code API responses into the system prompt",
+          "Disable function calling and use plain completions only"
+        ],
+        "answer": 0,
+        "explanation": "Wrapping the APIs as agent tools lets the model request invocations through function calling and act on the results. Having customers call the APIs defeats automation, hard-coded responses are stale, and disabling function calling removes the capability entirely.",
+        "docs": [
+          { "label": "Agents in Microsoft Foundry", "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/overview" },
+          { "label": "Function calling in Azure OpenAI", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/function-calling" }
+        ]
+      },
+      {
+        "id": "ai-103-case-3-q2",
+        "domain": "Implement generative AI and agentic solutions",
+        "prompt": "How should product and policy answers be grounded in the search index?",
+        "options": [
+          "Add the index as agent knowledge so relevant chunks are retrieved before answering",
+          "Ignore the index and rely on the model's pretrained memory",
+          "Copy the entire index into every prompt",
+          "Store the index locally on each user's device"
+        ],
+        "answer": 0,
+        "explanation": "Connecting the search index as agent knowledge enables retrieval-augmented generation: the agent fetches the most relevant chunks and grounds its answer in them. Relying on pretrained memory produces unsupported answers, copying the whole index overflows context, and local storage defeats the shared index.",
+        "docs": [
+          { "label": "Azure OpenAI on your data (RAG)", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/use-your-data" }
+        ]
+      },
+      {
+        "id": "ai-103-case-3-q3",
+        "domain": "Implement generative AI and agentic solutions",
+        "prompt": "How should the agent remember the customer and active order across turns?",
+        "options": [
+          "Use agent memory to persist conversation state between turns",
+          "Reset the conversation after every user message",
+          "Store the state in a client-side cookie only",
+          "Require the user to repeat their order number each time"
+        ],
+        "answer": 0,
+        "explanation": "Agent memory stores conversation state and identity across turns or sessions so the agent can continue context. Resetting each turn loses context, client-side cookies do not integrate with the agent, and re-prompting users degrades the experience.",
+        "docs": [
+          { "label": "Agents in Microsoft Foundry", "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/overview" }
+        ]
+      },
+      {
+        "id": "ai-103-case-3-q4",
+        "domain": "Implement generative AI and agentic solutions",
+        "prompt": "Which standard should Northwind use to connect external tools so the agent stays portable across hosts?",
+        "options": [
+          "Model Context Protocol (MCP)",
+          "A private, host-specific plugin API",
+          "Hard-coded REST calls inside the agent runtime",
+          "A shared local file of tool definitions"
+        ],
+        "answer": 0,
+        "explanation": "MCP standardizes how agents connect to tools and data sources, making those integrations portable across MCP-compatible hosts. A private plugin API or hard-coded calls tie the agent to one host, and a local file does not provide a live tool connection.",
+        "docs": [
+          { "label": "Connect agents to Model Context Protocol servers", "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/model-context-protocol" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ai-103-case-4",
+    "title": "Woodgrove Retail — Visual inspection and moderation for store content",
+    "scenario": "Woodgrove Retail manages an online catalog with product photos, customer-submitted images, and store signage. It needs to auto-tag product images, detect whether a custom store-specific symbol is present, moderate user-uploaded images for inappropriate content, and redact personally identifiable information from customer messages before publishing them.",
+    "context": [
+      "Automatically label product photos and detect specific store symbols.",
+      "Moderate customer-uploaded images for inappropriate content.",
+      "Redact personal data from customer messages before publishing.",
+      "Build the custom detection without writing deep-learning code."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "Online catalog contains product photos, user uploads, and store signage.",
+          "Needs automated image tagging and moderation, plus text redaction.",
+          "A custom store symbol must be detected in images.",
+          "A small ML team wants to avoid writing deep-learning code."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Automatically assign labels and tags to product photos.",
+          "Detect a custom store-specific symbol in images.",
+          "Moderate user-uploaded images for inappropriate content before publishing.",
+          "Redact personal data from customer messages before publishing them."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "Product photos are stored in Azure Blob Storage.",
+          "Customer messages arrive as free-form text.",
+          "No existing computer vision or language models are deployed.",
+          "A single Azure subscription hosts the catalog and the moderation pipeline."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "ai-103-case-4-q1",
+        "domain": "Implement computer vision solutions",
+        "prompt": "Which service should Woodgrove use to automatically tag product photos with labels?",
+        "options": [
+          "Azure AI Vision Image Analysis",
+          "Azure AI Translator",
+          "Key phrase extraction",
+          "Document Intelligence invoice model"
+        ],
+        "answer": 0,
+        "explanation": "Image Analysis returns captions, tags, and detected objects from images in a single call. Translator converts text, key phrase extraction works on text, and the invoice model extracts invoice fields from documents.",
+        "docs": [
+          { "label": "Image Analysis overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-image-analysis" }
+        ]
+      },
+      {
+        "id": "ai-103-case-4-q2",
+        "domain": "Implement computer vision solutions",
+        "prompt": "How should Woodgrove detect its custom store-specific symbol without writing deep-learning code?",
+        "options": [
+          "Train a Custom Vision object detection model on labeled images",
+          "Use the generic Image Analysis tags only",
+          "Write a custom neural network from scratch",
+          "Use OCR and match the symbol by exact text"
+        ],
+        "answer": 0,
+        "explanation": "Custom Vision trains custom object detection models from labeled images with no deep-learning code. Generic tags do not recognize a bespoke symbol, writing a network from scratch contradicts the requirement, and OCR matches text rather than a visual symbol.",
+        "docs": [
+          { "label": "Custom Vision overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/custom-vision-service/overview" }
+        ]
+      },
+      {
+        "id": "ai-103-case-4-q3",
+        "domain": "Plan and manage an Azure AI solution",
+        "prompt": "How should Woodgrove ensure the image moderation feature follows responsible AI practices?",
+        "options": [
+          "Enable content filtering/safety checks and review results against fairness and transparency principles",
+          "Disable all safety filters to maximize throughput",
+          "Publish user images without any moderation",
+          "Moderate only a random 1 percent sample"
+        ],
+        "answer": 0,
+        "explanation": "Responsible AI requires enabling content safety and reviewing outputs against fairness, transparency, and other principles. Disabling filters or skipping moderation exposes customers to harmful content and violates the reliability and safety principle.",
+        "docs": [
+          { "label": "Responsible use of AI overview", "url": "https://learn.microsoft.com/en-us/azure/foundry/responsible-use-of-ai-overview" }
+        ]
+      },
+      {
+        "id": "ai-103-case-4-q4",
+        "domain": "Implement text analysis solutions",
+        "prompt": "How should personal data be removed from customer messages before they are published?",
+        "options": [
+          "Run PII detection and redact the identified entities",
+          "Run sentiment analysis and discard negative messages",
+          "Translate messages to a single language first",
+          "Use OCR on the message text"
+        ],
+        "answer": 0,
+        "explanation": "PII detection identifies and redacts personal data such as names, phone numbers, and email addresses. Sentiment analysis classifies opinion, translation changes language without removing data, and OCR reads images rather than redacting text.",
+        "docs": [
+          { "label": "PII detection overview", "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/overview" }
+        ]
+      }
+    ]
+  }
+]

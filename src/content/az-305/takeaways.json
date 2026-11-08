@@ -1,0 +1,66 @@
+[
+  {
+    "domain": "Design identity, governance, and monitoring solutions",
+    "summary": "Architect Entra ID for identity, management groups/policy for governance, and Azure Monitor for observability as one unified control plane.",
+    "highYield": [
+      "Hybrid identity sync choice: password hash sync (simple, cloud) vs pass-through auth (on-prem enforced) vs federation (ADFS/SAML, for SSO and advanced needs).",
+      "Entra External ID: B2B for partners (bring own identity) vs B2C for customers; Conditional Access + PIM for zero-trust least privilege.",
+      "Governance: management group hierarchy, Azure Policy + initiatives, resource locks, tags; policy enforces standards while RBAC enforces permissions.",
+      "Monitoring architecture: Log Analytics workspaces, Application Insights, alert rules + action groups, diagnostic settings.",
+      "Cost management: budgets, cost alerts, Azure Advisor, reservations and savings plans."
+    ],
+    "memoryAids": [
+      "PHS = simple sync, PTA = on-prem enforced, Federation = ADFS/SAML SSO.",
+      "B2B = partners, B2C = customers.",
+      "Policy = enforce standards; RBAC = enforce permissions."
+    ]
+  },
+  {
+    "domain": "Design data storage solutions",
+    "summary": "Select the right data store by workload type (relational, NoSQL, analytics) and design redundancy and tiering for durability and cost.",
+    "highYield": [
+      "Relational: Azure SQL DB (DTU vs vCore, single/elastic/hyperscale) vs SQL Managed Instance vs SQL on VM (full control).",
+      "NoSQL: Cosmos DB - request units, partition keys, 5 consistency levels, multiple APIs (SQL, MongoDB, Cassandra, Gremlin, Table).",
+      "Analytics: Azure Synapse vs Fabric vs Data Lake Storage Gen2 (hierarchical namespace) and Databricks.",
+      "Storage: blob tiers (Hot/Cool/Cold/Archive), replication (LRS/ZRS/GRS/GZRS), lifecycle management.",
+      "Decision rules: transactional structured -> SQL; global multi-model low-latency -> Cosmos; big data/analytics -> Data Lake/Fabric."
+    ],
+    "memoryAids": [
+      "Cosmos consistency: Strong, Bounded, Session, Consistent-prefix, Eventual.",
+      "RU = Request Units = throughput you pay for.",
+      "Hot data -> SQL/Cosmos; big data -> Data Lake; old data -> blob Archive."
+    ]
+  },
+  {
+    "domain": "Design business continuity solutions",
+    "summary": "Design recovery around RTO and RPO using backup, replication, region pairs, and geo-redundancy to survive failures.",
+    "highYield": [
+      "RTO (how long down) vs RPO (how much data lost) drive the BCDR design and technology choice.",
+      "Azure Backup (Recovery Services vault, point-in-time) vs Azure Site Recovery (continuous replication + failover to secondary region).",
+      "SQL HADR: Always On availability groups, auto-failover groups, and active geo-replication.",
+      "Geo-resilience: region pairs (max ~300 miles, sequenced updates), availability zones, GRS/GZRS storage, cross-region Front Door / Traffic Manager.",
+      "Failover testing and DR drills; storage account failover; App Service backups and snapshots."
+    ],
+    "memoryAids": [
+      "RTO = how long down; RPO = how much data lost.",
+      "Backup = copy in time; Replication = copy in space.",
+      "Region pairs = ~300 miles apart, sequenced updates."
+    ]
+  },
+  {
+    "domain": "Design infrastructure solutions",
+    "summary": "Pick compute and network topologies (hub-spoke vs Virtual WAN) and a migration strategy that balances cost, performance, and security.",
+    "highYield": [
+      "Compute selection: VMs vs VMSS vs App Service vs Functions vs AKS/Container Apps (control vs managed trade-off).",
+      "Network topologies: hub-spoke (central shared services) vs Azure Virtual WAN (global transit) vs mesh.",
+      "Connectivity: VPN Gateway vs ExpressRoute (bandwidth/latency/security); ExpressRoute SKUs (Local, Standard, Premium; Metered vs Unlimited).",
+      "Migration: Azure Migrate (discover/assess/migrate) and the 5 R's (Rehost, Refactor, Rearchitect, Rebuild, Replace).",
+      "Landing zones and the Azure Well-Architected Framework pillars (reliability, security, cost, operations, performance)."
+    ],
+    "memoryAids": [
+      "5 R's = Rehost, Refactor, Rearchitect, Rebuild, Replace.",
+      "Hub-spoke = central shared services; VWAN = global transit.",
+      "ExpressRoute = private + predictable; VPN = encrypted over internet."
+    ]
+  }
+]

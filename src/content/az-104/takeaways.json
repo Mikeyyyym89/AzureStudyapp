@@ -1,0 +1,84 @@
+[
+  {
+    "domain": "Manage Azure identities and governance",
+    "summary": "Entra ID is the identity plane, and governance layers (management groups, subscriptions, resource groups, resources) apply Azure Policy and RBAC to control what can exist and who can act on it.",
+    "highYield": [
+      "RBAC built-in roles: Owner, Contributor, Reader, and User Access Administrator (grants role assignment rights only). Explicit Deny overrides any Allow.",
+      "Hierarchy and inheritance: management groups -> subscriptions -> resource groups -> resources; Azure Policy enforces config/standards while RBAC controls permissions (policy = SHOULD, RBAC = WHO).",
+      "Resource locks: CanNotDelete and ReadOnly; they block even Owners and are key for protecting production resources.",
+      "Hybrid identity: Microsoft Entra Connect Sync vs Cloud Sync; password hash sync vs pass-through auth vs federation.",
+      "Elevated access: Conditional Access policies, per-user MFA vs security defaults, and Privileged Identity Management (PIM) for just-in-time roles."
+    ],
+    "memoryAids": [
+      "OCR = Owner, Contributor, Reader (the 3 core roles).",
+      "My Grandma Sells Red Radishes = Management Group -> Subscription -> Resource Group -> Resource.",
+      "Policy says SHOULD, RBAC says WHO.",
+      "Deny always beats Allow."
+    ]
+  },
+  {
+    "domain": "Implement and manage storage",
+    "summary": "Storage accounts host blobs, files, queues, and tables with replication and access-tier choices that trade durability and cost against availability and latency.",
+    "highYield": [
+      "Replication: LRS, ZRS, GRS, GZRS and their RA- (read-access) variants; ZRS needs 3 zones, GRS/GZRS replicate to a secondary region.",
+      "Blob access tiers: Hot, Cool, Cold, Archive (rehydrate to read archive); lifecycle management policies auto-tier/delete by age.",
+      "Auth options: Storage account keys (full access), SAS (scoped, time-limited, signed), or Microsoft Entra ID / managed identity (preferred).",
+      "Azure Files (SMB/NFS, premium vs standard) with Azure File Sync for on-prem sync; immutable blob storage (WORM) and account failover.",
+      "Storage account kinds: GPv2 (default, blobs/files/queues/tables), BlockBlob, FileStorage, BlobStorage."
+    ],
+    "memoryAids": [
+      "Lazy Zebras Get Really Angry = LRS, ZRS, GRS, RA-GRS.",
+      "Hot -> Cool -> Cold -> Archive: cost goes DOWN, access latency goes UP.",
+      "SAS is scoped and signed; account keys are god keys."
+    ]
+  },
+  {
+    "domain": "Deploy and manage Azure compute resources",
+    "summary": "Choose compute by control vs. abstraction: VMs give full control, VMSS adds scaling, and containers, App Services, and Functions trade control for management.",
+    "highYield": [
+      "Availability Sets (fault + update domains) vs Availability Zones vs VM Scale Sets; each maps to different SLA and redundancy guarantees.",
+      "App Service Plans: Free/Shared/Basic/Standard/Premium/Isolated; scale out (instances) vs scale up (tier); deployment slots for zero-downtime swaps.",
+      "Containers: ACI (single container) vs AKS (full orchestration) vs Container Apps (serverless Kubernetes, KEDA/Dapr); ACR registry + ACR Tasks.",
+      "Azure Functions: Consumption vs Premium vs Dedicated plans; triggers/bindings; Durable Functions for stateful orchestration.",
+      "Cost levers: reserved instances, spot VMs, Azure Compute Gallery for custom images, and right-sizing VM series."
+    ],
+    "memoryAids": [
+      "Fault domain = different rack; Update domain = different reboot group.",
+      "ACI = one container, AKS = many orchestrated, ACA = serverless Kubernetes.",
+      "Consumption scales to zero, Premium adds VNet + warm, Dedicated is always-on."
+    ]
+  },
+  {
+    "domain": "Implement and manage virtual networking",
+    "summary": "VNets and subnets segment traffic, NSGs/ASGs filter it, and peering, VPN, or ExpressRoute connect networks across and beyond Azure.",
+    "highYield": [
+      "NSG (stateful allow/deny, default rules permit intra-VNet and deny inbound internet; lower number = higher priority) vs ASG (logical NIC grouping).",
+      "VNet peering (non-transitive, must be configured both sides) vs VPN Gateway (encrypted over internet) vs ExpressRoute (private, higher bandwidth).",
+      "Service Endpoint vs Private Endpoint (Private Link): service endpoint keeps public IP over Microsoft backbone, private endpoint injects a private IP into your VNet.",
+      "Load balancing: Azure Load Balancer (L4) vs Application Gateway (L7 + WAF) vs Traffic Manager (DNS) vs Front Door (global L7).",
+      "Azure DNS / custom DNS, Azure Firewall, DDoS Protection, and user-defined routes (UDRs) for traffic control."
+    ],
+    "memoryAids": [
+      "NSG = firewall rules, Route table = traffic direction.",
+      "Peering = VNet-to-VNet no transit; ExpressRoute = private fiber, no internet.",
+      "LB = layer 4, AppGW = layer 7, TM = DNS, Front Door = global layer 7.",
+      "Service Endpoint = private path over public IP; Private Endpoint = private IP into VNet."
+    ]
+  },
+  {
+    "domain": "Monitor and maintain Azure resources",
+    "summary": "Azure Monitor unifies metrics, logs, and alerts for observability, while Azure Backup and Site Recovery deliver recovery and disaster continuity.",
+    "highYield": [
+      "Telemetry types: Metrics (numeric, near real-time) vs Logs (Log Analytics, KQL) vs Activity Log (subscription-level control-plane 'who did what').",
+      "Alert rules (metric, log search, activity log) route to Action Groups; diagnostic settings export logs/metrics to storage, Log Analytics, or Event Hubs.",
+      "Azure Backup: Recovery Services vault, VM snapshots + MARS agent, backup policies, and restore options (file/VM/disk).",
+      "Azure Site Recovery: replicate VMs to a secondary region, failover/failback, RTO/RPO targets, DR drills.",
+      "Azure Advisor recommendations and Application Insights for app-level telemetry and distributed tracing."
+    ],
+    "memoryAids": [
+      "Metrics = numbers now, Logs = text you query, Activity Log = who did what.",
+      "Backup = data recovery; Site Recovery = DR failover.",
+      "KQL = Kusto Query Language (your log superpower)."
+    ]
+  }
+]
