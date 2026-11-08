@@ -874,14 +874,14 @@
       "Two request units"
     ],
     "answer": 3,
-    "explanation": "Point reads cost about 1 RU per 1 KB, so a 2 KB item costs about 2 RU.",
+    "explanation": "A point read of a 1 KB item costs about 1 RU, and the RU charge scales with the size of the item retrieved. A 2 KB item therefore costs about 2 RUs (and Strong/Bounded Staleness consistency would double this further).",
     "docs": [
       {
         "label": "Microsoft Learn",
         "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
       }
     ],
-    "hint": "Keyword '2 KB' with '1 RU per 1 KB' means about two request units."
+    "hint": "Signal: 1 KB point read = 1 RU, so 2 KB ≈ 2 RUs"
   },
   {
     "id": "ai-200-q247",
