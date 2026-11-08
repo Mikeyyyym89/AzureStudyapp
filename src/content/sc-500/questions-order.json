@@ -1,0 +1,82 @@
+[
+  {
+    "id": "sc-500-q326",
+    "domain": "Secure storage, databases, and networking",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to securely provision a new Azure storage account.",
+    "options": [],
+    "steps": [
+      "Create the storage account in the target subscription",
+      "Disable anonymous public access and shared key authorization",
+      "Configure the storage firewall to deny public network access",
+      "Create a private endpoint for private connectivity",
+      "Enable Microsoft Defender for Storage"
+    ],
+    "answer": 0,
+    "explanation": "Hardening proceeds from creation, to locking down identity and authorization, to restricting network access, to private connectivity, and finally to enabling threat protection.",
+    "hint": "Create, lock identity, restrict network, go private, then defend.",
+    "docs": [
+      { "label": "Configure storage firewalls and virtual networks", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security" }
+    ]
+  },
+  {
+    "id": "sc-500-q327",
+    "domain": "Secure storage, databases, and networking",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to deploy Azure Firewall and route traffic through it.",
+    "options": [],
+    "steps": [
+      "Create a dedicated AzureFirewallSubnet in the hub virtual network",
+      "Deploy the Azure Firewall with a public IP address",
+      "Create application and network rules for allowed traffic",
+      "Configure user-defined routes to forward traffic to the firewall",
+      "Verify that traffic flows through the firewall"
+    ],
+    "answer": 0,
+    "explanation": "The firewall needs a dedicated subnet first, then the firewall instance, then its rules, then routing to send traffic through it, and finally validation.",
+    "hint": "Subnet, deploy, rules, route, verify.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q328",
+    "domain": "Secure compute",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to harden a newly deployed Azure virtual machine.",
+    "options": [],
+    "steps": [
+      "Deploy the VM with Trusted Launch enabled",
+      "Remove the public IP address so the VM is private-only",
+      "Configure a network security group to restrict management ports",
+      "Enable Just-in-Time VM access for management ports",
+      "Enable Microsoft Defender for Servers"
+    ],
+    "answer": 0,
+    "explanation": "Start with a trusted platform at deployment, then remove public exposure, then restrict ports with an NSG, add Just-in-Time access, and finally enable server threat protection.",
+    "hint": "Trusted boot, go private, restrict ports, JIT, then defend.",
+    "docs": [
+      { "label": "Trusted launch for VMs", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch" }
+    ]
+  },
+  {
+    "id": "sc-500-q329",
+    "domain": "Secure storage, databases, and networking",
+    "type": "order",
+    "prompt": "Put the steps in the correct order to enable Azure DDoS Protection Standard for a virtual network.",
+    "options": [],
+    "steps": [
+      "Create a DDoS protection plan",
+      "Associate the plan with the virtual network",
+      "Enable DDoS protection on existing public IP addresses",
+      "Configure metric alerts for DDoS telemetry",
+      "Review mitigation reports during an attack"
+    ],
+    "answer": 0,
+    "explanation": "Create the plan, associate it with the virtual network, enable protection on public IPs, set up alerting, and then monitor reports during an attack.",
+    "hint": "Plan, associate, enable IPs, alert, monitor.",
+    "docs": [
+      { "label": "Azure DDoS Protection", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    ]
+  }
+]

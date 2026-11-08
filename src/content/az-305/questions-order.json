@@ -1,0 +1,90 @@
+[
+  {
+    "id": "az-305-q326",
+    "domain": "Design infrastructure solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to migrate on-premises virtual machines to Azure in the correct order.",
+    "options": [],
+    "steps": [
+      "Assess on-premises VMs with Azure Migrate discovery and dependency mapping",
+      "Prepare Azure landing-zone resources and plan the migration wave",
+      "Replicate and migrate the VMs, then perform a test failover",
+      "Optimize the migrated VMs by right-sizing and enabling management"
+    ],
+    "answer": 0,
+    "explanation": "The migration lifecycle is assess, prepare, migrate, then optimize. Discovery and evaluation always precede replication and post-migration tuning.",
+    "hint": "Assess → Prepare → Migrate → Optimize.",
+    "docs": [
+      {
+        "label": "Azure Migrate overview",
+        "url": "https://learn.microsoft.com/en-us/azure/migrate/migrate-services-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q327",
+    "domain": "Design infrastructure solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to move a golden on-premises VM image to Azure and deploy VMs from it, in the correct order.",
+    "options": [],
+    "steps": [
+      "Generalize (sysprep) the source VM so it can be reused as an image",
+      "Upload the generalized VHD to a storage account or Shared Image Gallery",
+      "Create an image definition and version in the Shared Image Gallery",
+      "Deploy VMs from the shared image version across subscriptions and regions"
+    ],
+    "answer": 0,
+    "explanation": "The image must be generalized before capture, uploaded to Azure, published as a gallery version, and only then deployed. Generalization removes machine-specific identity.",
+    "hint": "Generalize → Upload → Publish → Deploy.",
+    "docs": [
+      {
+        "label": "Shared Image Gallery overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/shared-image-galleries"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q328",
+    "domain": "Design infrastructure solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to migrate an on-premises SQL Server database to Azure SQL Database in the correct order.",
+    "options": [],
+    "steps": [
+      "Assess compatibility with Azure Migrate or Data Migration Assistant",
+      "Provision the target Azure SQL Database with the correct service tier",
+      "Migrate the schema and data with the Azure Database Migration Service",
+      "Validate the migrated database and cut over application connections"
+    ],
+    "answer": 0,
+    "explanation": "Assessment precedes provisioning, which precedes data migration, which ends with validation and cutover. Skipping compatibility checks risks migration failure.",
+    "hint": "Assess → Provision → Migrate → Cut over.",
+    "docs": [
+      {
+        "label": "Azure Database Migration Service",
+        "url": "https://learn.microsoft.com/en-us/azure/dms/dms-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q329",
+    "domain": "Design infrastructure solutions",
+    "type": "order",
+    "prompt": "Arrange the steps to deploy a hub-and-spoke network with centralized Azure Firewall filtering, in the correct order.",
+    "options": [],
+    "steps": [
+      "Create the hub and spoke virtual networks with non-overlapping address space",
+      "Peer the spoke virtual networks to the hub virtual network",
+      "Deploy Azure Firewall in the hub and create the firewall policies",
+      "Configure route tables so spoke traffic is forced through the firewall"
+    ],
+    "answer": 0,
+    "explanation": "The networks are created first, peered second, the firewall deployed third, and routing applied last so traffic traverses the firewall for inspection.",
+    "hint": "Create → Peer → Deploy firewall → Route.",
+    "docs": [
+      {
+        "label": "Hub-spoke network topology",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/networking/architecture/hub-spoke"
+      }
+    ]
+  }
+]

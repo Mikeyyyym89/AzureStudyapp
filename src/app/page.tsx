@@ -122,6 +122,12 @@ export default function Home() {
           {courses.length} courses — flashcards, a deep question bank, and case
           studies for each.
         </p>
+        <Link
+          href="/paths"
+          className="mt-3 inline-block text-sm font-medium text-blue-700 underline-offset-2 hover:underline"
+        >
+          View certification paths →
+        </Link>
 
         <div className="mt-6 grid gap-5 sm:grid-cols-2">
           {courses.map((course) => (

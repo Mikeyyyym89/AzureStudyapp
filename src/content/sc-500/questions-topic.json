@@ -1,0 +1,415 @@
+[
+  {
+    "id": "sc-500-q301",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A small retailer needs filtering only by source IP, destination IP, port, and protocol. It does not need FQDN, threat intelligence, or TLS inspection. Which Azure Firewall tier should you deploy?",
+    "options": [
+      "Basic tier",
+      "Standard tier",
+      "Premium tier",
+      "Developer tier"
+    ],
+    "answer": 0,
+    "explanation": "Azure Firewall Basic performs only layer 3 and layer 4 filtering using network and DNAT rules, without FQDN, threat intelligence, or TLS inspection.",
+    "hint": "L3/L4 only = Basic tier.",
+    "docs": [
+      { "label": "Azure Firewall SKUs", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q302",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must detect and block intrusion attempts using signature-based inspection. In which Azure Firewall tier is Intrusion Detection and Prevention System (IDPS) available?",
+    "options": [
+      "Basic tier",
+      "Developer tier",
+      "Premium tier",
+      "Standard tier"
+    ],
+    "answer": 2,
+    "explanation": "IDPS, which uses signatures to detect and block malicious traffic, is available only in Azure Firewall Premium.",
+    "hint": "IDPS is Premium-only.",
+    "docs": [
+      { "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }
+    ]
+  },
+  {
+    "id": "sc-500-q303",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must inspect encrypted HTTPS traffic by terminating and re-encrypting TLS at the firewall. Which capability and tier provide this?",
+    "options": [
+      "DNAT rules in Basic tier",
+      "URL filtering in Standard tier",
+      "TLS inspection in Premium tier",
+      "Threat intelligence in Basic tier"
+    ],
+    "answer": 2,
+    "explanation": "TLS inspection terminates and re-encrypts traffic for deep inspection, and it is available only in Azure Firewall Premium.",
+    "hint": "TLS inspection requires Premium.",
+    "docs": [
+      { "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }
+    ]
+  },
+  {
+    "id": "sc-500-q304",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "An administrator wants Azure Firewall to log known malicious IP addresses without blocking traffic. Which threat intelligence mode should be set?",
+    "options": [
+      "Filtering off",
+      "Alert only",
+      "Alert and deny",
+      "Silent deny mode"
+    ],
+    "answer": 1,
+    "explanation": "The Alert only mode logs threats from Microsoft Threat Intelligence without dropping the traffic.",
+    "hint": "Log without block = Alert only.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q305",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Threat intelligence-based filtering in Azure Firewall is NOT available in which tier?",
+    "options": [
+      "Standard tier",
+      "Premium tier",
+      "Basic tier",
+      "Standard and Premium tiers"
+    ],
+    "answer": 2,
+    "explanation": "Threat intelligence filtering is available in Standard and Premium tiers but not in the Basic tier.",
+    "hint": "No threat intelligence in Basic.",
+    "docs": [
+      { "label": "Azure Firewall SKUs", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q306",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A company needs FQDN filtering, autoscaling, and threat intelligence, but not TLS inspection or IDPS. Which Azure Firewall tier should you choose?",
+    "options": [
+      "Basic tier",
+      "Standard tier",
+      "Premium tier",
+      "Developer tier"
+    ],
+    "answer": 1,
+    "explanation": "Azure Firewall Standard provides FQDN filtering, autoscaling, and threat intelligence without the Premium-only TLS inspection and IDPS.",
+    "hint": "FQDN + autoscale, no TLS/IDPS = Standard.",
+    "docs": [
+      { "label": "Azure Firewall SKUs", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q307",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to filter outbound traffic by fully qualified domain name. Solution: Deploy Azure Firewall Basic and create an application rule. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Azure Firewall Basic does not support application rules for FQDN filtering, so the solution fails.",
+    "hint": "Basic has no FQDN rules.",
+    "docs": [
+      { "label": "Azure Firewall SKUs", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q308",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Which Azure Firewall tiers support Destination Network Address Translation (DNAT) rules for inbound traffic?",
+    "options": [
+      "Basic only",
+      "Premium only",
+      "Standard and Premium",
+      "All three tiers"
+    ],
+    "answer": 3,
+    "explanation": "DNAT rules for translating inbound traffic to backend services are supported in the Basic, Standard, and Premium tiers.",
+    "hint": "DNAT works in all tiers.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q309",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to decrypt and inspect outbound TLS traffic before forwarding it. Solution: Deploy Azure Firewall Standard. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "TLS inspection is available only in Azure Firewall Premium, not Standard.",
+    "hint": "TLS inspection needs Premium.",
+    "docs": [
+      { "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }
+    ]
+  },
+  {
+    "id": "sc-500-q310",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must block access to web traffic by URL category, such as social networking. Which Azure Firewall tier supports URL filtering?",
+    "options": [
+      "Basic tier",
+      "Premium tier",
+      "Standard tier",
+      "Developer tier"
+    ],
+    "answer": 1,
+    "explanation": "URL filtering by web category is a Premium-only Azure Firewall feature.",
+    "hint": "URL categories = Premium only.",
+    "docs": [
+      { "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }
+    ]
+  },
+  {
+    "id": "sc-500-q311",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "What is the primary purpose of an Application Security Group (ASG)?",
+    "options": [
+      "Group NICs for NSG rules",
+      "Inspect traffic at layer 7",
+      "Block source IP addresses",
+      "Group subnets by region"
+    ],
+    "answer": 0,
+    "explanation": "An ASG is a logical grouping of network interfaces that lets you reference many VMs as a single source or destination in NSG rules.",
+    "hint": "ASG groups NICs; it does not filter.",
+    "docs": [
+      { "label": "Application security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups" }
+    ]
+  },
+  {
+    "id": "sc-500-q312",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Which Azure resource performs stateful layer 3 and layer 4 filtering based on the 5-tuple of source IP, source port, destination IP, destination port, and protocol?",
+    "options": [
+      "Application Security Group",
+      "Azure Firewall Basic",
+      "Network Security Group",
+      "Web Application Firewall"
+    ],
+    "answer": 2,
+    "explanation": "A network security group is a stateful L3/L4 filter that allows or denies traffic using 5-tuple rules.",
+    "hint": "5-tuple L3/L4 = NSG.",
+    "docs": [
+      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q313",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must allow outbound traffic only to *.contoso.com. Which resource can enforce an FQDN-based rule?",
+    "options": [
+      "Network Security Group",
+      "Azure Firewall",
+      "Application Security Group",
+      "User-defined route"
+    ],
+    "answer": 1,
+    "explanation": "Only Azure Firewall can apply application rules based on fully qualified domain names; NSGs, ASGs, and routes cannot match FQDNs.",
+    "hint": "FQDN rules need Azure Firewall.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q314",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to reduce the number of NSG rules by grouping many VMs together. Solution: Use an Application Security Group as the source in NSG rules. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Referencing an ASG as a source or destination lets one rule apply to an entire group of NICs, reducing rule sprawl.",
+    "hint": "ASG in NSG rules = fewer rules.",
+    "docs": [
+      { "label": "Application security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups" }
+    ]
+  },
+  {
+    "id": "sc-500-q315",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Which statement about Azure Network Security Group default rules is correct?",
+    "options": [
+      "VNet traffic is denied",
+      "All inbound is allowed",
+      "All inbound is denied",
+      "LB traffic is blocked"
+    ],
+    "answer": 2,
+    "explanation": "A network security group denies all inbound traffic by default, except traffic within the virtual network and Azure Load Balancer probes.",
+    "hint": "Default rule = deny all inbound.",
+    "docs": [
+      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q316",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "In a network security group, how are rule priorities evaluated when traffic matches multiple rules?",
+    "options": [
+      "Higher number wins",
+      "Alphabetical order",
+      "Longest name wins",
+      "Lower number wins"
+    ],
+    "answer": 3,
+    "explanation": "NSG rules are processed in order of priority number from lowest to highest, so a lower number takes precedence.",
+    "hint": "Lower priority number wins.",
+    "docs": [
+      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q317",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Which network topology places a shared Azure Firewall in a central virtual network to inspect traffic between spoke networks?",
+    "options": [
+      "Hub-and-spoke",
+      "Mesh topology",
+      "Star topology",
+      "Ring topology"
+    ],
+    "answer": 0,
+    "explanation": "In a hub-and-spoke topology, shared services such as Azure Firewall live in the hub, and spoke traffic is routed through it for inspection.",
+    "hint": "Central firewall = hub-and-spoke.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q318",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to route all spoke network traffic through a centralized Azure Firewall for inspection. Solution: Configure user-defined routes in the spoke subnets to forward traffic to the firewall. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "User-defined routes direct spoke subnet traffic to the Azure Firewall's private IP, forcing it through the firewall for inspection.",
+    "hint": "UDR forwards traffic to the firewall.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q319",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Which Azure DDoS Protection tier is automatically enabled at no extra cost for every Azure deployment?",
+    "options": [
+      "Standard",
+      "Basic",
+      "Premium",
+      "Enterprise"
+    ],
+    "answer": 1,
+    "explanation": "DDoS Protection Basic is enabled automatically and at no extra cost, protecting the Azure platform from common network-layer attacks.",
+    "hint": "Free and automatic = Basic.",
+    "docs": [
+      { "label": "Azure DDoS Protection", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q320",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Which DDoS Protection tier provides adaptive tuning, cost protection, and rapid response support for your virtual network resources?",
+    "options": [
+      "Basic",
+      "Free",
+      "Developer",
+      "Standard"
+    ],
+    "answer": 3,
+    "explanation": "DDoS Protection Standard tunes mitigation to your resources, offers a cost guarantee during an attack, and includes rapid response support.",
+    "hint": "Adaptive + cost guarantee = Standard.",
+    "docs": [
+      { "label": "Azure DDoS Protection", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q321",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need protection tuned to your application's actual traffic patterns with a cost guarantee during a DDoS attack. Solution: Enable DDoS Protection Basic on your virtual network. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Adaptive tuning and the cost guarantee require DDoS Protection Standard; Basic does not provide them.",
+    "hint": "Cost guarantee needs Standard.",
+    "docs": [
+      { "label": "DDoS Protection SKU comparison", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-sku-comparison" }
+    ]
+  },
+  {
+    "id": "sc-500-q322",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Which Azure Firewall tier is recommended for small and medium businesses that need only network and DNAT rules?",
+    "options": [
+      "Standard tier",
+      "Premium tier",
+      "Developer tier",
+      "Basic tier"
+    ],
+    "answer": 3,
+    "explanation": "Azure Firewall Basic is intended for small and medium businesses that require only L3/L4 network and DNAT rules.",
+    "hint": "SMB + network/DNAT only = Basic.",
+    "docs": [
+      { "label": "Azure Firewall SKUs", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q323",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "Azure Firewall Premium is required for which two capabilities?",
+    "options": [
+      "FQDN filtering and DNAT",
+      "Threat intelligence and DNAT",
+      "Autoscaling and FQDN filtering",
+      "IDPS and TLS inspection"
+    ],
+    "answer": 3,
+    "explanation": "IDPS and TLS inspection are Premium-only features; the other capabilities are available in Standard as well.",
+    "hint": "Premium-only = IDPS + TLS.",
+    "docs": [
+      { "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }
+    ]
+  },
+  {
+    "id": "sc-500-q324",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need centralized threat intelligence-based blocking without TLS inspection. Solution: Deploy Azure Firewall Standard and set threat intelligence to Alert and deny. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure Firewall Standard supports threat intelligence filtering in Alert and deny mode without requiring Premium.",
+    "hint": "Standard supports Alert and deny.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q325",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You need to apply different security rules to two virtual machines in the same subnet. Besides the subnet, what can you attach a network security group to?",
+    "options": [
+      "Network interface",
+      "Route table",
+      "Application Security Group",
+      "Virtual network"
+    ],
+    "answer": 0,
+    "explanation": "A network security group can be attached to a subnet or to an individual network interface, allowing per-NIC rules within a subnet.",
+    "hint": "NSG attaches to subnet or NIC.",
+    "docs": [
+      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" }
+    ]
+  }
+]

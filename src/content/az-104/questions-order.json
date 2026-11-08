@@ -1,0 +1,135 @@
+[
+  {
+    "id": "az-104-q341",
+    "domain": "Deploy and manage Azure compute resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to build an Azure Virtual Desktop environment from an on-premises golden image.",
+    "options": [],
+    "steps": [
+      "Build and generalize the golden image on-premises",
+      "Upload the golden image to an Azure Shared Image Gallery",
+      "Create the host pool",
+      "Reimage and assign session hosts to the host pool",
+      "Connect Azure NetApp Files for FSLogix profile storage"
+    ],
+    "answer": 0,
+    "explanation": "The image is built and generalized first, uploaded to Azure second, the host pool created third, session hosts assigned fourth, and profile storage attached last. Session hosts must come from the uploaded image and attach to an existing host pool.",
+    "hint": "Build image → Upload → Create host pool → Assign hosts → Attach storage.",
+    "docs": [
+      {
+        "label": "Prepare a custom image for Azure Virtual Desktop",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/prepare-custom-image"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q342",
+    "domain": "Deploy and manage Azure compute resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to update a virtual machine scale set to a new image version using a rolling upgrade.",
+    "options": [],
+    "steps": [
+      "Update the scale set model to reference the new image version",
+      "Select the rolling upgrade policy and set the batch size",
+      "Trigger the upgrade so instances adopt the new model in batches",
+      "Verify all instances are healthy and running the new image"
+    ],
+    "answer": 0,
+    "explanation": "You change the model first, pick the upgrade policy second, trigger the rolling upgrade third, then confirm health last. Instances adopt the new model incrementally so availability is preserved.",
+    "hint": "Change model → Choose policy → Trigger upgrade → Verify.",
+    "docs": [
+      {
+        "label": "Upgrade a virtual machine scale set",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q343",
+    "domain": "Deploy and manage Azure compute resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to create a new virtual machine from a custom image.",
+    "options": [],
+    "steps": [
+      "Generalize and deallocate the source VM",
+      "Capture the VM into a managed image or gallery image version",
+      "Create a new VM from the custom image",
+      "Verify the new VM boots and is accessible"
+    ],
+    "answer": 0,
+    "explanation": "The source VM must be generalized and deallocated before capture, then captured as an image, then used to deploy a VM, then verified. Generalization removes machine-specific identity so the image can be reused.",
+    "hint": "Generalize → Capture → Create VM → Verify.",
+    "docs": [
+      {
+        "label": "Create a managed image of a VM",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/capture-image-resource"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q344",
+    "domain": "Implement and manage virtual networking",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to configure Azure Firewall to inspect traffic in a hub virtual network.",
+    "options": [],
+    "steps": [
+      "Create an AzureFirewallSubnet in the hub virtual network",
+      "Deploy the Azure Firewall resource with a public IP address",
+      "Create firewall policy rules (DNAT, network, and application)",
+      "Configure route tables to force traffic through the firewall"
+    ],
+    "answer": 0,
+    "explanation": "The dedicated subnet is created first, the firewall deployed second, rules authored third, and routing applied last so spoke traffic traverses the firewall for inspection.",
+    "hint": "Subnet → Deploy firewall → Rules → Route.",
+    "docs": [
+      {
+        "label": "Azure Firewall overview",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q345",
+    "domain": "Implement and manage virtual networking",
+    "type": "order",
+    "prompt": "Put these steps in the correct order that Azure Firewall processes traffic through its rule types.",
+    "options": [],
+    "steps": [
+      "Apply threat intelligence filtering for known-malicious traffic",
+      "Process DNAT rules for inbound destination translation",
+      "Process network rules by source/destination IP and port",
+      "Process application rules by fully qualified domain name"
+    ],
+    "answer": 0,
+    "explanation": "Azure Firewall evaluates threat intelligence first, then DNAT rules, then network rules, then application rules. This order means L3/L4 network rules are checked before L7 application rules.",
+    "hint": "Threat intelligence → DNAT → Network → Application.",
+    "docs": [
+      {
+        "label": "Azure Firewall rule processing logic",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/rule-processing"
+      }
+    ]
+  },
+  {
+    "id": "az-104-q346",
+    "domain": "Deploy and manage Azure compute resources",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to deploy a virtual machine scale set that serves traffic through a load balancer.",
+    "options": [],
+    "steps": [
+      "Define the scale set instance model (image, size, and networking)",
+      "Configure scaling (instance count and autoscale rules) and policies",
+      "Create the scale set and let the instances provision",
+      "Verify instances are healthy and receiving load-balanced traffic"
+    ],
+    "answer": 0,
+    "explanation": "The instance model is defined first, scaling and policies configured second, the scale set created third, and health verified last. Instances provision from the model after creation.",
+    "hint": "Define model → Configure scaling → Create → Verify.",
+    "docs": [
+      {
+        "label": "Virtual Machine Scale Sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview"
+      }
+    ]
+  }
+]

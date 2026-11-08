@@ -1,0 +1,490 @@
+[
+  {
+    "id": "az-305-q301",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A company requires a web app on dedicated hardware with full network isolation in its own virtual network. Which App Service plan tier meets the requirement?",
+    "options": [
+      "The Premium v3 plan",
+      "The Standard plan",
+      "The Isolated plan",
+      "The Basic plan"
+    ],
+    "answer": 2,
+    "explanation": "The Isolated plan runs on a dedicated App Service Environment inside your virtual network. Premium and Standard run on shared multi-tenant infrastructure.",
+    "hint": "Dedicated hardware + VNet isolation = Isolated plan.",
+    "docs": [
+      {
+        "label": "App Service Environment overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q302",
+    "domain": "Design infrastructure solutions",
+    "prompt": "An App Service plan must absorb a temporary traffic spike without downtime and without changing the instance size. What should you configure?",
+    "options": [
+      "Scale up the plan",
+      "Scale out the plan",
+      "Scale down the plan",
+      "Swap deployment slots"
+    ],
+    "answer": 1,
+    "explanation": "Scaling out adds more instances of the same size to handle extra load. Scaling up changes instance size, and deployment slots manage releases rather than load.",
+    "hint": "More instances, same size = scale out.",
+    "docs": [
+      {
+        "label": "Scale an App Service plan",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q303",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You deploy a web app to two regions and need automatic failover with URL path routing across regions. Which service should you use?",
+    "options": [
+      "Azure Front Door",
+      "Azure Load Balancer",
+      "Azure Traffic Manager",
+      "Azure Application Gateway"
+    ],
+    "answer": 0,
+    "explanation": "Front Door provides global load balancing, automatic failover, and URL path routing. Traffic Manager is DNS-only, and Load Balancer and Application Gateway are regional services.",
+    "hint": "Path routing + global failover = Front Door.",
+    "docs": [
+      {
+        "label": "Azure Front Door overview",
+        "url": "https://learn.microsoft.com/en-us/azure/frontdoor/front-door-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q304",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You must run an App Service plan in a dedicated, single-tenant environment with its own virtual network integration. Solution: Use an App Service Environment. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "An App Service Environment provides a fully isolated, single-tenant App Service deployment inside your virtual network.",
+    "hint": "Single-tenant isolation = ASE.",
+    "docs": [
+      {
+        "label": "App Service Environment overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q305",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A web app must scale out to 100 instances during peak load. Which App Service plan tier supports this instance count?",
+    "options": [
+      "The Standard plan",
+      "The Premium v3 plan",
+      "The Basic plan",
+      "The Isolated plan"
+    ],
+    "answer": 3,
+    "explanation": "Isolated plans support up to 100 instances, while Premium v3 supports 30 and Standard supports 10. Only the Isolated plan reaches 100.",
+    "hint": "100 instances = Isolated plan.",
+    "docs": [
+      {
+        "label": "App Service plans overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q306",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You have a stateful legacy application that must run on a single persistent instance with full operating system control. Which compute option should you choose?",
+    "options": [
+      "A virtual machine",
+      "A virtual machine scale set",
+      "An Azure Kubernetes Service cluster",
+      "Azure Container Apps"
+    ],
+    "answer": 0,
+    "explanation": "A single VM provides persistent state and full OS access. VMSS, AKS, and Container Apps are built for scaling stateless, distributed workloads.",
+    "hint": "Stateful + single instance + OS control = VM.",
+    "docs": [
+      {
+        "label": "Virtual machines overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q307",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to run event-driven, serverless microservices as containers without managing a Kubernetes cluster. Which service should you use?",
+    "options": [
+      "Azure Kubernetes Service",
+      "Azure Service Fabric",
+      "Azure Container Apps",
+      "Azure Virtual Machines"
+    ],
+    "answer": 2,
+    "explanation": "Container Apps runs containerized microservices on a serverless platform that hides Kubernetes management. AKS and Service Fabric require cluster management, and VMs are not container-native.",
+    "hint": "Serverless containers, no cluster = Container Apps.",
+    "docs": [
+      {
+        "label": "Azure Container Apps overview",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q308",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You must run short-lived, event-triggered code that scales to zero and bills only per execution. Which compute option is best?",
+    "options": [
+      "Azure Container Apps",
+      "Azure Functions",
+      "Azure Kubernetes Service",
+      "Azure Virtual Machines"
+    ],
+    "answer": 1,
+    "explanation": "Functions is serverless compute for short, event-driven code with per-execution billing and scale-to-zero. Container Apps, AKS, and VMs bill for always-on capacity.",
+    "hint": "Short event code + scale to zero = Functions.",
+    "docs": [
+      {
+        "label": "Azure Functions overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q309",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need full control over container orchestration, including custom node pools and schedulers, for a large microservices platform. Which service should you use?",
+    "options": [
+      "Azure App Service",
+      "Azure Container Apps",
+      "Azure Functions Premium plan",
+      "Azure Kubernetes Service"
+    ],
+    "answer": 3,
+    "explanation": "AKS gives full control over orchestration, custom node pools, and schedulers. Container Apps and App Service abstract orchestration, and Functions is event-driven compute.",
+    "hint": "Full Kubernetes control = AKS.",
+    "docs": [
+      {
+        "label": "What is Azure Kubernetes Service?",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/what-is-aks"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q310",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You have a stateless web tier that must scale automatically based on CPU across many identical instances. Solution: Deploy the tier on a virtual machine scale set with autoscale rules. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "VMSS with autoscale rules adds or removes identical instances based on metrics such as CPU, which suits a stateless, scalable web tier.",
+    "hint": "Identical stateless instances + autoscale = VMSS.",
+    "docs": [
+      {
+        "label": "Virtual Machine Scale Sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q311",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to run thousands of parallel, compute-intensive jobs that start and stop quickly and pay only for the compute used. Which service should you use?",
+    "options": [
+      "Azure Functions",
+      "Azure Batch",
+      "Azure Container Apps",
+      "Azure Kubernetes Service"
+    ],
+    "answer": 1,
+    "explanation": "Azure Batch schedules and runs large-scale parallel and HPC workloads, scaling to thousands of nodes on demand. Functions, Container Apps, and AKS are not batch schedulers.",
+    "hint": "Parallel batch jobs = Azure Batch.",
+    "docs": [
+      {
+        "label": "Azure Batch overview",
+        "url": "https://learn.microsoft.com/en-us/azure/batch/batch-technical-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q312",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to update scale set instances with no downtime while keeping the maximum number of instances available. Which upgrade policy should you choose?",
+    "options": [
+      "A rolling upgrade policy",
+      "A manual upgrade policy",
+      "An automatic upgrade policy",
+      "A redeploy upgrade policy"
+    ],
+    "answer": 0,
+    "explanation": "Rolling upgrades update instances in batches to keep the service available. Automatic and manual policies do not provide the same controlled, availability-preserving rollout.",
+    "hint": "No downtime + max availability = rolling upgrade.",
+    "docs": [
+      {
+        "label": "Rolling upgrades for scale sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-upgrade-scale-set"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q313",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You configure autoscale for a scale set running a web application. Which metric is the most direct signal to trigger scale-out as load increases?",
+    "options": [
+      "Disk queue length",
+      "Network bytes in",
+      "CPU percentage",
+      "Memory available bytes"
+    ],
+    "answer": 2,
+    "explanation": "CPU percentage is the standard, direct signal of compute saturation used for scale-out. Disk, network, and memory metrics are less directly tied to compute load.",
+    "hint": "CPU is the default autoscale trigger.",
+    "docs": [
+      {
+        "label": "Autoscale with scale sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-autoscale-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q314",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to prevent a scale set from scaling in too aggressively and disrupting active requests. Solution: Configure a scale-in policy with a cool-down period and instance protection. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A scale-in policy with cool-down and instance protection controls which instances are removed and prevents disruption during scale-in.",
+    "hint": "Cool-down + instance protection = safe scale-in.",
+    "docs": [
+      {
+        "label": "Scale-in policy for scale sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-scale-in-policy"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q315",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You must spread scale set instances across separate physical hardware so a single hardware failure does not take down the whole set. What should you configure?",
+    "options": [
+      "Update domains",
+      "Fault domains",
+      "Proximity placement groups",
+      "Availability sets"
+    ],
+    "answer": 1,
+    "explanation": "Fault domains spread instances across independent physical hardware for resilience. Update domains group instances for maintenance, and proximity placement groups and availability sets serve different goals.",
+    "hint": "Hardware failure isolation = fault domains.",
+    "docs": [
+      {
+        "label": "Manage fault domains in scale sets",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-manage-fault-domains"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q316",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to inspect outbound traffic with intrusion detection and prevention plus TLS inspection. Which Azure Firewall SKU provides these features?",
+    "options": [
+      "Azure Firewall Basic",
+      "Azure Firewall Standard",
+      "Azure Web Application Firewall",
+      "Azure Firewall Premium"
+    ],
+    "answer": 3,
+    "explanation": "Premium adds TLS inspection, IDPS, and URL filtering on top of Standard. Basic is a trimmed SKU, and Web Application Firewall is a separate layer 7 service.",
+    "hint": "IDPS + TLS inspection = Premium.",
+    "docs": [
+      {
+        "label": "Choose an Azure Firewall SKU",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q317",
+    "domain": "Design infrastructure solutions",
+    "prompt": "A small business needs basic outbound network filtering with no advanced threat protection. Which Azure Firewall SKU is the most cost-effective choice?",
+    "options": [
+      "Azure Firewall Basic",
+      "Azure Firewall Standard",
+      "Azure Firewall Premium",
+      "Azure DDoS Protection"
+    ],
+    "answer": 0,
+    "explanation": "Basic provides essential network filtering for smaller customers at the lowest cost. Standard and Premium add advanced features, and DDoS Protection is a separate service.",
+    "hint": "Low-cost basic filtering = Basic SKU.",
+    "docs": [
+      {
+        "label": "Choose an Azure Firewall SKU",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q318",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to inspect and filter all traffic between spoke virtual networks through a central appliance in the hub. Which service should you deploy in the hub?",
+    "options": [
+      "Azure Application Gateway",
+      "Azure Load Balancer",
+      "Azure Firewall",
+      "Azure VPN Gateway"
+    ],
+    "answer": 2,
+    "explanation": "Azure Firewall provides centralized network-layer filtering for hub-and-spoke traffic. Application Gateway is a layer 7 load balancer, and Load Balancer and VPN Gateway do not filter.",
+    "hint": "Central hub filtering = Azure Firewall.",
+    "docs": [
+      {
+        "label": "Azure Firewall overview",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q319",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to inspect outbound traffic using TLS inspection and intrusion detection and prevention. Solution: Deploy Azure Firewall Standard. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "TLS inspection and IDPS are available only in Azure Firewall Premium, not Standard. Use Premium for these advanced threat-protection features.",
+    "hint": "TLS inspection + IDPS needs Premium.",
+    "docs": [
+      {
+        "label": "Azure Firewall Premium features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q320",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to allow or deny outbound traffic by fully qualified domain name for all workloads in a virtual network. Which service provides FQDN-based filtering?",
+    "options": [
+      "A network security group",
+      "Azure Firewall",
+      "A route table",
+      "Azure Private Link"
+    ],
+    "answer": 1,
+    "explanation": "Azure Firewall supports FQDN-based filtering, while NSGs filter only on IP, port, and protocol. Route tables control routing, and Private Link provides private connectivity.",
+    "hint": "FQDN filtering = Azure Firewall.",
+    "docs": [
+      {
+        "label": "Azure Firewall features",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/features"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q321",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to load-balance HTTP traffic across VMs in a single region at layer 7 with URL-based routing. Which service should you use?",
+    "options": [
+      "Azure Front Door",
+      "Azure Traffic Manager",
+      "Azure Standard Load Balancer",
+      "Azure Application Gateway"
+    ],
+    "answer": 3,
+    "explanation": "Application Gateway provides regional layer 7 load balancing with URL path routing. Load Balancer is layer 4, and Front Door and Traffic Manager are global services.",
+    "hint": "Layer 7 + URL routing + regional = Application Gateway.",
+    "docs": [
+      {
+        "label": "Azure Application Gateway overview",
+        "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q322",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need a web tier to remain available if an entire Azure region fails. Solution: Deploy the VMs across three availability zones behind a zone-redundant Load Balancer. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Availability zones protect against datacenter failures within a region, not a full region outage. Use paired regions or a global load balancer for regional resilience.",
+    "hint": "Zones do not equal regional resilience.",
+    "docs": [
+      {
+        "label": "Availability zones overview",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q323",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need DNS-based global load balancing with automatic failover between two regions for a non-HTTP workload. Which service should you use?",
+    "options": [
+      "Azure Traffic Manager",
+      "Azure Front Door",
+      "Azure Load Balancer",
+      "Azure Application Gateway"
+    ],
+    "answer": 0,
+    "explanation": "Traffic Manager uses DNS to route across regions for any protocol and provides automatic failover. Front Door is HTTP(S)-specific, and the other two are regional services.",
+    "hint": "DNS + any protocol + failover = Traffic Manager.",
+    "docs": [
+      {
+        "label": "Azure Traffic Manager overview",
+        "url": "https://learn.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q324",
+    "domain": "Design business continuity solutions",
+    "prompt": "You need to protect a critical workload against a full regional outage. Which design provides the highest resilience?",
+    "options": [
+      "Deploy across availability zones",
+      "Deploy within an availability set",
+      "Deploy across paired regions",
+      "Deploy on a single virtual machine"
+    ],
+    "answer": 2,
+    "explanation": "Paired regions provide geographic redundancy for regional disasters. Availability zones and availability sets protect against failures within a region, not a whole region outage.",
+    "hint": "Regional outage protection = paired regions.",
+    "docs": [
+      {
+        "label": "Cross-region replication and paired regions",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/cross-region-replication-azure"
+      }
+    ]
+  },
+  {
+    "id": "az-305-q325",
+    "domain": "Design infrastructure solutions",
+    "prompt": "You need to filter web traffic based on URL paths and block SQL injection attacks. Solution: Use a network security group on the subnet. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "NSGs filter at layers 3-4 (IP, port, and protocol) and cannot inspect URL paths or block SQL injection. Use a web application firewall such as Application Gateway WAF for layer 7 filtering.",
+    "hint": "NSG is layer 3-4 only; URL/SQLi needs a WAF.",
+    "docs": [
+      {
+        "label": "Network security groups overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
+      }
+    ]
+  }
+]

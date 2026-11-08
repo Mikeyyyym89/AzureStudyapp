@@ -53,6 +53,13 @@ import ai500Cases2 from "@/content/ai-500/case-studies-2.json";
 import ai500Docs from "@/content/ai-500/docs.json";
 import ai500Takeaways from "@/content/ai-500/takeaways.json";
 
+import az104Topic from "@/content/az-104/questions-topic.json";
+import az104Order from "@/content/az-104/questions-order.json";
+import az305Topic from "@/content/az-305/questions-topic.json";
+import az305Order from "@/content/az-305/questions-order.json";
+import sc500Topic from "@/content/sc-500/questions-topic.json";
+import sc500Order from "@/content/sc-500/questions-order.json";
+
 function tag(qs: Question[], difficulty: Difficulty): Question[] {
   return qs.map((q) => ({ ...q, difficulty }));
 }
@@ -62,21 +69,33 @@ export const courses: Course[] = coursesData as Course[];
 export const courseContent: Record<string, CourseContent> = {
   "az-104": {
     flashcards: az104Flashcards as Flashcard[],
-    questions: [...tag(az104Official as Question[], "expert")],
+    questions: [
+      ...tag(az104Official as Question[], "expert"),
+      ...tag(az104Topic as Question[], "expert"),
+      ...tag(az104Order as Question[], "expert"),
+    ],
     caseStudies: [...az104Cases, ...az104Cases2] as CaseStudy[],
     docs: az104Docs as DocGroup[],
     takeaways: az104Takeaways as Takeaway[],
   },
   "az-305": {
     flashcards: az305Flashcards as Flashcard[],
-    questions: [...tag(az305Official as Question[], "expert")],
+    questions: [
+      ...tag(az305Official as Question[], "expert"),
+      ...tag(az305Topic as Question[], "expert"),
+      ...tag(az305Order as Question[], "expert"),
+    ],
     caseStudies: [...az305Cases, ...az305Cases2] as CaseStudy[],
     docs: az305Docs as DocGroup[],
     takeaways: az305Takeaways as Takeaway[],
   },
   "sc-500": {
     flashcards: sc500Flashcards as Flashcard[],
-    questions: [...tag(sc500Official as Question[], "expert")],
+    questions: [
+      ...tag(sc500Official as Question[], "expert"),
+      ...tag(sc500Topic as Question[], "expert"),
+      ...tag(sc500Order as Question[], "expert"),
+    ],
     caseStudies: [...sc500Cases, ...sc500Cases2] as CaseStudy[],
     docs: sc500Docs as DocGroup[],
     takeaways: sc500Takeaways as Takeaway[],

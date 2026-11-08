@@ -1,0 +1,30 @@
+[
+  {
+    "id": "solutions-architect",
+    "name": "Azure Solutions Architect Expert",
+    "level": "Expert",
+    "description": "Start as an Azure Administrator, then advance to designing cloud and hybrid infrastructure solutions.",
+    "courses": ["az-104", "az-305"]
+  },
+  {
+    "id": "multi-agent-expert",
+    "name": "Multi-Agent AI Solutions Expert",
+    "level": "Expert",
+    "description": "Build AI apps and agents first, then design and secure production-ready multi-agent systems.",
+    "courses": ["ai-103", "ai-500"]
+  },
+  {
+    "id": "ai-developer",
+    "name": "Azure AI Developer",
+    "level": "Associate",
+    "description": "Two associate-level AI developer exams: apps & agents, and cloud AI development.",
+    "courses": ["ai-103", "ai-200"]
+  },
+  {
+    "id": "security",
+    "name": "Cloud & AI Security",
+    "level": "Associate",
+    "description": "Implement end-to-end security controls across identity, storage, networking, compute, and AI workloads.",
+    "courses": ["sc-500"]
+  }
+]
