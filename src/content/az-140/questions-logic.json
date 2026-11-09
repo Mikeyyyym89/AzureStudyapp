@@ -1,0 +1,1178 @@
+[
+  {
+    "id": "az-140-q309",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You are deploying Azure Virtual Desktop in a new subscription. When you try to create a host pool, the option is unavailable. What should you do first?",
+    "options": [
+      "Register the Microsoft.DesktopVirtualization provider",
+      "Create a workspace for the feed",
+      "Generate a host registration key",
+      "Deploy a session host VM"
+    ],
+    "answer": 0,
+    "hint": "Signal: host pools cannot be created until the AVD resource provider is registered.",
+    "explanation": "The Microsoft.DesktopVirtualization resource provider must be registered before any AVD resource, including a host pool, can be created. A workspace, registration key, and VM are all built on top of a host pool, so they cannot come first.",
+    "docs": [
+      {
+        "label": "Create a host pool",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q310",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You prepare a master session host VM to capture a golden image. What should you do first?",
+    "options": [
+      "Create an image definition",
+      "Generalize the VM",
+      "Deallocate the VM",
+      "Attach a data disk"
+    ],
+    "answer": 1,
+    "hint": "Signal: a VM must be generalized (Sysprep) before it can be captured.",
+    "explanation": "Sysprep generalizes the VM and removes machine-specific information, which is required before capturing an image. Creating an image definition, deallocating, and attaching a disk are later steps that depend on a generalized VM.",
+    "docs": [
+      {
+        "label": "Customize a session host image",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-customize-master-image"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q311",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to add an already-deployed VM to an existing host pool. What should you do first?",
+    "options": [
+      "Install the AVD agent",
+      "Assign a user to a desktop",
+      "Generate a registration key",
+      "Create a scaling plan"
+    ],
+    "answer": 2,
+    "hint": "Signal: the VM registers to the host pool by using a key.",
+    "explanation": "A registration key from the host pool is required for the VM to authenticate and join the pool when the AVD agent runs. Installing the agent, assigning users, and scaling are later steps.",
+    "docs": [
+      {
+        "label": "Create a host pool",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q312",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "Users will run GPU-accelerated rendering and design applications in a session host. Which VM size series should you select?",
+    "options": [
+      "Dsv4",
+      "Esv4",
+      "B-series",
+      "NVv3"
+    ],
+    "answer": 3,
+    "hint": "Signal: NV-series VMs include NVIDIA GPUs.",
+    "explanation": "The NVv3 series provides dedicated NVIDIA GPUs for graphics and visualization workloads. Dsv4 and Esv4 are general-purpose and memory-optimized CPU families, and B-series is burstable with no GPU.",
+    "docs": [
+      {
+        "label": "GPU optimized VM sizes",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-gpu"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q313",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "A database-backed desktop application needs a high memory-to-core ratio per session host. Which VM size series should you use?",
+    "options": [
+      "Esv4",
+      "Fsv2",
+      "Dsv4",
+      "B-series"
+    ],
+    "answer": 0,
+    "hint": "Signal: the E-series is the memory-optimized family.",
+    "explanation": "The Esv4 series is memory-optimized, providing a high memory-to-vCPU ratio for memory-heavy workloads. Fsv2 is compute-optimized, Dsv4 is general purpose, and B-series is burstable.",
+    "docs": [
+      {
+        "label": "Memory optimized VM sizes",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-memory"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q314",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You plan to deploy Windows 11 Enterprise multi-session session hosts. Which license qualifies these multi-session VMs?",
+    "options": [
+      "A Windows Server CAL",
+      "Microsoft 365 E3",
+      "Azure Basic support plan",
+      "Windows 10 Home"
+    ],
+    "answer": 1,
+    "hint": "Signal: multi-session requires a qualifying Windows or Microsoft 365 E3/E5 subscription.",
+    "explanation": "Windows 11 Enterprise multi-session is licensed through qualifying subscriptions such as Microsoft 365 E3/E5 or Windows E3/E5. Server CALs, Basic support, and Home are not eligible for multi-session use.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop prerequisites",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/prerequisites"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q315",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to create a host pool by using PowerShell. Which cmdlet should you run?",
+    "options": [
+      "New-AzWvdWorkspace",
+      "New-AzWvdApplicationGroup",
+      "New-AzWvdHostPool",
+      "New-AzWvdRegistrationInfo"
+    ],
+    "answer": 2,
+    "hint": "Signal: New-AzWvdHostPool provisions the host pool resource.",
+    "explanation": "New-AzWvdHostPool creates the host pool. The other cmdlets create a workspace, create an app group, or generate a registration key, none of which is the host pool itself.",
+    "docs": [
+      {
+        "label": "Create a host pool",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q316",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "A company has 300 sales users needing pooled multi-session desktops and 15 engineers needing personal persistent desktops. You must minimize costs. What is the minimum number of host pools?",
+    "options": [
+      "One",
+      "Three",
+      "Four",
+      "Two"
+    ],
+    "answer": 3,
+    "hint": "Signal: pooled and personal hosts cannot share a single host pool.",
+    "explanation": "A host pool is either pooled or personal, so the two requirements need two separate host pools. One pool cannot serve both types, and three or four would be unnecessary.",
+    "docs": [
+      {
+        "label": "Create a host pool",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q317",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "All users must see every published desktop and app from one remote feed. You must minimize costs. What is the minimum number of workspaces?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "hint": "Signal: a single workspace can aggregate multiple app groups.",
+    "explanation": "One workspace can contain app groups from multiple host pools, giving all users a single feed. Additional workspaces add no benefit and would increase management overhead.",
+    "docs": [
+      {
+        "label": "What is Azure Virtual Desktop?",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q318",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "A pooled host pool must keep serving users if one session host fails. You must minimize costs. What is the minimum number of session hosts?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "hint": "Signal: two hosts provide redundancy for one failure.",
+    "explanation": "Two session hosts are the minimum to keep the pool available if one fails, since the other continues serving users. One host cannot survive a failure, and more hosts cost more.",
+    "docs": [
+      {
+        "label": "Create a host pool",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q319",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need a golden image that is versioned, replicated to multiple regions, and shared across subscriptions. Which solution meets all requirements?",
+    "options": [
+      "A managed disk snapshot",
+      "A VHD in a blob container",
+      "Azure Compute Gallery",
+      "A local ISO file"
+    ],
+    "answer": 2,
+    "hint": "Signal: only a gallery provides versioning, replication, and cross-subscription sharing.",
+    "explanation": "Azure Compute Gallery stores versioned image definitions, replicates them across regions, and supports sharing to other subscriptions. Snapshots, VHD blobs, and ISOs offer none of these features together.",
+    "docs": [
+      {
+        "label": "Azure Compute Gallery",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q320",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "Pooled hosts must power off automatically at night and power back on for the morning shift while minimizing costs. Which configuration meets all requirements?",
+    "options": [
+      "Depth-first load balancing",
+      "An NSG rule on RDP",
+      "Manual auto-shutdown",
+      "A pool scaling plan"
+    ],
+    "answer": 3,
+    "hint": "Signal: scaling plans power hosts off and on per a schedule.",
+    "explanation": "A scaling plan defines a schedule with peak and off-peak phases that automatically power session hosts off and on. Load balancing, NSG rules, and manual auto-shutdown do not scale the pool on a recurring schedule.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plans",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q321",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "A personal host pool can use Direct assignment so each user always connects to a specific session host. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Direct assignment maps a user to one personal host.",
+    "explanation": "Direct assignment is a personal host pool assignment type that ties a user to a designated session host. Automatic assignment, in contrast, places users on the next available host.",
+    "docs": [
+      {
+        "label": "Personal host pool assignment types",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-host-pool-personal-desktop-assignment-type"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q322",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "A single host pool can contain both pooled and personal session hosts. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: a host pool is either pooled or personal, not both.",
+    "explanation": "A host pool is configured as either pooled or personal, so it cannot mix both types. To support both, you create two separate host pools.",
+    "docs": [
+      {
+        "label": "Create a host pool",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q323",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "Registering the Microsoft.DesktopVirtualization resource provider is required before you can create a host pool. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: the resource provider must be registered first.",
+    "explanation": "The Microsoft.DesktopVirtualization resource provider must be registered in the subscription before any AVD resource, including a host pool, can be created.",
+    "docs": [
+      {
+        "label": "Create a host pool",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q324",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to join Azure session host VMs to an on-premises Active Directory domain. What should you do first?",
+    "options": [
+      "Set the VNet DNS servers",
+      "Install the AVD agent on each VM",
+      "Create the host pool in the portal",
+      "Assign users to the desktop"
+    ],
+    "answer": 0,
+    "hint": "Signal: domain join depends on DNS resolving the AD domain name.",
+    "explanation": "The session host VMs must resolve the AD domain through DNS, so the VNet DNS servers must point to reachable domain controllers before the VMs are joined. Agent install, host pool creation, and user assignment all happen after the VM is domain-joined.",
+    "docs": [
+      {
+        "label": "Security best practices for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/security-guide"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q325",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You plan to domain-join session host VMs to a Microsoft Entra Domain Services managed domain. What should you do first?",
+    "options": [
+      "Join the session host VMs",
+      "Configure managed domain DNS",
+      "Enable Azure Bastion",
+      "Create a RemoteApp group"
+    ],
+    "answer": 1,
+    "hint": "Signal: VMs must resolve the managed domain before joining.",
+    "explanation": "Session hosts must resolve the managed domain through DNS before they can join it, so the VNet DNS must first point to the Entra Domain Services addresses. Joining and the other steps follow.",
+    "docs": [
+      {
+        "label": "Microsoft Entra Domain Services overview",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/domain-services/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q326",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to enforce device compliance on AVD session hosts by using Intune. What should you do first?",
+    "options": [
+      "Assign a compliance policy",
+      "Create a Conditional Access policy",
+      "Enroll hosts in Intune",
+      "Deploy the AVD agent"
+    ],
+    "answer": 2,
+    "hint": "Signal: hosts must be enrolled before policies apply.",
+    "explanation": "Session hosts must be enrolled in Intune before compliance policies can evaluate them or Conditional Access can act. Assigning policies and creating Conditional Access rules are later steps.",
+    "docs": [
+      {
+        "label": "Microsoft Entra ID authentication for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/authentication"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q327",
+    "domain": "Plan and implement identity and security",
+    "prompt": "A user must sign in to an assigned desktop but must not manage any AVD resources. Which RBAC role should you assign at the app group scope?",
+    "options": [
+      "Desktop Virtualization Contributor",
+      "Virtual Machine Contributor",
+      "Desktop Virtualization Reader",
+      "Desktop Virtualization User"
+    ],
+    "answer": 3,
+    "hint": "Signal: Desktop Virtualization User grants sign-in only.",
+    "explanation": "Desktop Virtualization User is the role that lets a user sign in to published desktops and apps without any management rights. Contributor and Reader roles grant more than sign-in.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop RBAC roles",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/rbac"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q328",
+    "domain": "Plan and implement identity and security",
+    "prompt": "An administrator must manage all AVD objects but not assign users to desktops. Which role should you assign?",
+    "options": [
+      "Desktop Virtualization Contributor",
+      "Desktop Virtualization User",
+      "Virtual Machine Contributor",
+      "Desktop Virtualization Reader"
+    ],
+    "answer": 0,
+    "hint": "Signal: Desktop Virtualization Contributor manages everything except user assignment.",
+    "explanation": "Desktop Virtualization Contributor can manage all AVD resources but cannot assign users. Desktop Virtualization User only signs in, and Reader is read-only.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop RBAC roles",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/rbac"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q329",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Users must subscribe to the AVD feed by using their email address instead of a copied URL. Which DNS record type should you create for email discovery?",
+    "options": [
+      "A",
+      "TXT",
+      "CNAME",
+      "MX"
+    ],
+    "answer": 1,
+    "hint": "Signal: email-based feed discovery uses a TXT record named _msradc.",
+    "explanation": "Email discovery maps a user's email domain to the workspace feed URL through a TXT record named _msradc. A, CNAME, and MX records do not store the feed URL for discovery.",
+    "docs": [
+      {
+        "label": "Set up email discovery for the feed",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-email-discovery-to-subscribe-to-azure-virtual-desktop-feed"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q330",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Session hosts must reach the AVD service for management and connectivity. Which outbound port must the virtual network allow?",
+    "options": [
+      "3389",
+      "53",
+      "443",
+      "25"
+    ],
+    "answer": 2,
+    "hint": "Signal: AVD service communication uses HTTPS outbound on 443.",
+    "explanation": "AVD management and connectivity use outbound HTTPS on TCP 443 to reach the service. Port 3389 is inbound RDP to the hosts, and ports 53 and 25 are not the required service port.",
+    "docs": [
+      {
+        "label": "Security best practices for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/security-guide"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q331",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You must enforce one MFA sign-in rule for every AVD user while minimizing administrative overhead. What is the minimum number of Conditional Access policies?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "One"
+    ],
+    "answer": 3,
+    "hint": "Signal: one policy can target all AVD users.",
+    "explanation": "A single Conditional Access policy can target all AVD users and require MFA, so one policy is the minimum. More policies add complexity without benefit.",
+    "docs": [
+      {
+        "label": "Microsoft Entra ID authentication for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/authentication"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q332",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Session hosts and their domain controllers sit in one Azure region. You must minimize costs. What is the minimum number of virtual networks?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "hint": "Signal: one VNet can host the VMs and domain controllers.",
+    "explanation": "A single virtual network can contain both the session hosts and the domain controllers in the same region, so one VNet is the minimum. More VNets add cost without benefit.",
+    "docs": [
+      {
+        "label": "Security best practices for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/security-guide"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q333",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You must enforce MFA for all sign-ins to Azure Virtual Desktop with minimal configuration. Which service meets all requirements?",
+    "options": [
+      "Azure Bastion",
+      "Conditional Access",
+      "DDoS Protection",
+      "Azure Firewall"
+    ],
+    "answer": 1,
+    "hint": "Signal: Conditional Access enforces MFA on sign-ins.",
+    "explanation": "Conditional Access policies enforce MFA on AVD sign-ins based on conditions. Bastion, DDoS Protection, and Firewall do not control user authentication.",
+    "docs": [
+      {
+        "label": "Microsoft Entra ID authentication for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/authentication"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q334",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Administrators must manage session hosts through the Azure portal without exposing RDP to the internet. Which solution meets all requirements?",
+    "options": [
+      "A public IP on each host",
+      "An NSG allowing 3389",
+      "Azure Bastion",
+      "A site-to-site VPN"
+    ],
+    "answer": 2,
+    "hint": "Signal: Bastion provides portal-based secure VM access.",
+    "explanation": "Azure Bastion provides browser or portal based RDP and SSH to VMs over TLS without public IPs or open RDP ports. Public IPs and open 3389 expose the hosts.",
+    "docs": [
+      {
+        "label": "Azure Bastion overview",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q335",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You must keep AVD connection and feed traffic on a private network with no exposure to the public internet. Which solution meets all requirements?",
+    "options": [
+      "Azure Bastion",
+      "RDP Shortpath over public",
+      "A public workspace endpoint",
+      "Private Link endpoints"
+    ],
+    "answer": 3,
+    "hint": "Signal: Private Link brings AVD traffic over private endpoints.",
+    "explanation": "Azure Private Link provides private endpoints for AVD workspace and host pool traffic over a private IP. Bastion manages VMs, and public endpoints or public Shortpath expose traffic.",
+    "docs": [
+      {
+        "label": "Private endpoints overview",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q336",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Microsoft Entra ID authentication for Azure Virtual Desktop requires you to deploy Active Directory Domain Services or Microsoft Entra Domain Services. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: Entra ID authentication removes the AD DS dependency.",
+    "explanation": "With Microsoft Entra ID authentication, session hosts joined to Entra ID can authenticate users without an AD DS or Entra Domain Services domain. This is the key benefit of the modern authentication method.",
+    "docs": [
+      {
+        "label": "Microsoft Entra ID authentication for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/authentication"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q337",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Azure Private Link for AVD still requires opening inbound RDP (3389) to the public internet. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: Private Link keeps traffic private without public RDP.",
+    "explanation": "Private Link routes AVD traffic through private endpoints, so no inbound RDP to the public internet is required. This keeps connectivity private.",
+    "docs": [
+      {
+        "label": "Private endpoints overview",
+        "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q338",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Conditional Access can require multi-factor authentication for Azure Virtual Desktop sign-ins. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Conditional Access applies MFA to AVD sign-ins.",
+    "explanation": "Conditional Access policies can require MFA when users sign in to Azure Virtual Desktop, based on conditions such as device state or location.",
+    "docs": [
+      {
+        "label": "Microsoft Entra ID authentication for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/authentication"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q339",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to configure FSLogix profiles on Azure Files for domain-joined session hosts. What should you do first?",
+    "options": [
+      "Enable AD DS authentication",
+      "Mount the file share on each host",
+      "Install the FSLogix agent",
+      "Create a profile container policy"
+    ],
+    "answer": 0,
+    "hint": "Signal: the share must authenticate to AD before hosts mount it.",
+    "explanation": "Azure Files must authenticate against AD DS or Microsoft Entra Kerberos before session hosts can mount the share with domain credentials. Installing FSLogix, mounting, and policies come after.",
+    "docs": [
+      {
+        "label": "Configure FSLogix with Azure Files and AD DS",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-container-configure-azure-files-active-directory"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q340",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to deploy an application with MSIX app attach. What should you do first?",
+    "options": [
+      "Create an app attach package",
+      "Convert the app to MSIX",
+      "Assign the app to users",
+      "Mount the share on hosts"
+    ],
+    "answer": 1,
+    "hint": "Signal: the app must be packaged into MSIX before attaching.",
+    "explanation": "The application must first be converted into an MSIX package before it can be stored and attached. Creating the attach package, assignment, and mounting all follow.",
+    "docs": [
+      {
+        "label": "What is app attach?",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q341",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to publish a remote application to users. What should you do first?",
+    "options": [
+      "Assign users to a workspace",
+      "Create a scaling plan",
+      "Create a RemoteApp group",
+      "Register the resource provider"
+    ],
+    "answer": 2,
+    "hint": "Signal: apps are published through a RemoteApp app group.",
+    "explanation": "A RemoteApp app group must exist before applications can be added and assigned to it. Assigning users, scaling, and provider registration are separate steps.",
+    "docs": [
+      {
+        "label": "Manage app groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q342",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "Users need the fastest profile load times for FSLogix containers. Which Azure Files storage tier should you use?",
+    "options": [
+      "Transaction optimized",
+      "Hot",
+      "Cool",
+      "Premium"
+    ],
+    "answer": 3,
+    "hint": "Signal: Premium tier gives SSD-backed performance for profiles.",
+    "explanation": "Premium Azure Files uses SSDs for low latency, which is ideal for FSLogix profiles. Transaction optimized, Hot, and Cool are HDD-based or archive-oriented and slower.",
+    "docs": [
+      {
+        "label": "FSLogix profile containers for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q343",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You must store the entire user profile in a network-share VHDX so settings follow users across pooled hosts. Which FSLogix component should you configure?",
+    "options": [
+      "Profile Container",
+      "Office Container",
+      "Cloud Cache",
+      "App attach"
+    ],
+    "answer": 0,
+    "hint": "Signal: Profile Container holds the full profile in a VHDX.",
+    "explanation": "FSLogix Profile Container stores the whole user profile in a VHDX on a share, so it follows the user to any session host. Office Container caches app data, and Cloud Cache mirrors profiles.",
+    "docs": [
+      {
+        "label": "FSLogix overview",
+        "url": "https://learn.microsoft.com/en-us/fslogix/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q344",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "Outlook search and the OST cache are slow in pooled desktops. Which FSLogix component should you enable to improve them?",
+    "options": [
+      "Profile Container",
+      "Office Container",
+      "Cloud Cache",
+      "App attach"
+    ],
+    "answer": 1,
+    "hint": "Signal: the Office Container caches Outlook and OneDrive data per user.",
+    "explanation": "The FSLogix Office Container redirects Outlook and OneDrive cache data into a per-user VHDX, improving performance in pooled desktops. Profile Container and the others do not target Office cache.",
+    "docs": [
+      {
+        "label": "FSLogix overview",
+        "url": "https://learn.microsoft.com/en-us/fslogix/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q345",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "A company has 500 users and must minimize costs while hosting all FSLogix profiles in one region. What is the minimum number of Azure storage accounts required?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "hint": "Signal: a single storage account can host many file shares.",
+    "explanation": "One storage account can contain multiple file shares and host all users' profiles, so a single account is sufficient. More accounts add cost without benefit.",
+    "docs": [
+      {
+        "label": "Azure Files overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q346",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "Two host pools need separate FSLogix profile shares to isolate their profiles, and you must minimize costs. What is the minimum number of file shares?",
+    "options": [
+      "One",
+      "Three",
+      "Four",
+      "Two"
+    ],
+    "answer": 3,
+    "hint": "Signal: each host pool needs its own share, so two.",
+    "explanation": "Each host pool requires a separate profile share to isolate profiles, so two shares are the minimum. One share would mix profiles, and three or four are unnecessary.",
+    "docs": [
+      {
+        "label": "FSLogix profile containers for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q347",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You must publish one full desktop and one set of remote apps from the same host pool while minimizing costs. What is the minimum number of app groups?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "hint": "Signal: the desktop app group and a RemoteApp group are separate.",
+    "explanation": "Each host pool automatically creates one Desktop app group, and publishing remote apps requires a separate RemoteApp app group, so two app groups are the minimum. One group cannot publish both a desktop and remote apps.",
+    "docs": [
+      {
+        "label": "Manage app groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q348",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need high storage throughput, low latency, and SMB support for FSLogix profiles at large scale. Which storage solution meets all requirements?",
+    "options": [
+      "Standard Azure Files",
+      "Azure NetApp Files",
+      "A managed disk",
+      "Blob storage"
+    ],
+    "answer": 1,
+    "hint": "Signal: NetApp Files provides high-performance SMB for profiles.",
+    "explanation": "Azure NetApp Files provides high-throughput, low-latency SMB storage well suited to large FSLogix deployments. Standard Azure Files and blob storage are slower, and managed disks do not provide shared SMB.",
+    "docs": [
+      {
+        "label": "Azure NetApp Files overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q349",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to dynamically attach applications to session hosts without installing them, and keep updates centralized. Which solution meets all requirements?",
+    "options": [
+      "Local app installation",
+      "RemoteApp only",
+      "MSIX app attach",
+      "A golden image rebuild"
+    ],
+    "answer": 2,
+    "hint": "Signal: app attach mounts MSIX packages dynamically.",
+    "explanation": "MSIX app attach mounts packaged apps to session hosts on demand without installing them, and updates are pushed centrally. Local installs and image rebuilds require touching each host.",
+    "docs": [
+      {
+        "label": "What is app attach?",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q350",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "In a pooled host pool, users must keep their settings and documents across sessions on different hosts. Which solution meets all requirements?",
+    "options": [
+      "A local profile per host",
+      "A personal host pool",
+      "OneDrive only",
+      "FSLogix Profile Container"
+    ],
+    "answer": 3,
+    "hint": "Signal: profile containers persist settings in pooled pools.",
+    "explanation": "FSLogix Profile Container stores the profile in a network share so it follows the user to any session host. Local profiles do not roam, and a personal pool changes the pool type.",
+    "docs": [
+      {
+        "label": "FSLogix profile containers for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q351",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "FSLogix profiles stored on Azure Files require the storage account to authenticate against Active Directory. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Azure Files needs AD DS or Entra Kerberos for SMB auth.",
+    "explanation": "Azure Files must be joined to or authenticated against AD DS (or Microsoft Entra Kerberos) so domain-joined session hosts can mount the share with domain credentials.",
+    "docs": [
+      {
+        "label": "Configure FSLogix with Azure Files and AD DS",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-container-configure-azure-files-active-directory"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q352",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "MSIX app attach installs the application directly onto each session host. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: app attach mounts packages, it does not install them.",
+    "explanation": "MSIX app attach mounts the package to the session host dynamically rather than installing the application. This keeps hosts stateless and updates centralized.",
+    "docs": [
+      {
+        "label": "What is app attach?",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q353",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "A local profile stored on a single session host persists across all hosts in a pooled host pool. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: local profiles do not roam across pooled hosts.",
+    "explanation": "A local profile stays on one host, so it does not follow the user to other hosts in a pooled pool. Roaming requires FSLogix Profile Container or a similar roaming profile.",
+    "docs": [
+      {
+        "label": "FSLogix profile containers for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q354",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You plan to use Azure Virtual Desktop Insights. What should you do first?",
+    "options": [
+      "Create a Log Analytics workspace",
+      "Enable RDP Shortpath",
+      "Assign a user role first",
+      "Create a scaling plan"
+    ],
+    "answer": 0,
+    "hint": "Signal: Insights requires a Log Analytics workspace to collect data.",
+    "explanation": "Insights relies on a Log Analytics workspace to collect and query AVD diagnostics. Shortpath, roles, and scaling plans are unrelated prerequisites.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q355",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need monitoring data to appear in Insights for a new host pool. What should you do first?",
+    "options": [
+      "Create a scaling plan",
+      "Enable diagnostics on the pool",
+      "Assign a user role",
+      "Join hosts to the domain"
+    ],
+    "answer": 1,
+    "hint": "Signal: diagnostics feed the Insights data.",
+    "explanation": "Diagnostic settings on the host pool must be enabled and pointed at a Log Analytics workspace before Insights shows data. Scaling plans, roles, and domain join do not produce monitoring data.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q356",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to apply monthly OS patches to session hosts automatically. What should you do first?",
+    "options": [
+      "Deploy a new host pool",
+      "Assign a user role",
+      "Enable Azure Update Manager",
+      "Create a scaling plan"
+    ],
+    "answer": 2,
+    "hint": "Signal: Update Manager must be enabled before patches run.",
+    "explanation": "Azure Update Manager must be enabled and configured before it can schedule and apply OS updates. Deploying a pool, assigning roles, and scaling are separate tasks.",
+    "docs": [
+      {
+        "label": "Azure Update Manager overview",
+        "url": "https://learn.microsoft.com/en-us/azure/update-manager/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q357",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You must capture errors when users fail to connect to a host pool. Which diagnostic category should you enable?",
+    "options": [
+      "Metrics",
+      "Activity log",
+      "Audit log",
+      "Connection diagnostics"
+    ],
+    "answer": 3,
+    "hint": "Signal: connection diagnostics record connection success and failure.",
+    "explanation": "Connection diagnostics capture user connection success and failure events for troubleshooting. Metrics and activity or audit logs do not record connection outcomes.",
+    "docs": [
+      {
+        "label": "Troubleshoot AVD setup",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-set-up-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q358",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "A session host shows an Unavailable status in the host pool. Which area should you review to see the failing check?",
+    "options": [
+      "Health checks",
+      "Azure Bastion",
+      "Azure Advisor",
+      "Cost Management"
+    ],
+    "answer": 0,
+    "hint": "Signal: session host health checks reveal the failing check.",
+    "explanation": "The session host health checks report status and the specific failing check that causes an Unavailable state. Bastion, Advisor, and Cost Management do not show host health.",
+    "docs": [
+      {
+        "label": "Session host statuses and health checks",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/session-host-status-health-checks"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q359",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "A company operates host pools in two regions and needs separate scale-down schedules for each while minimizing costs. What is the minimum number of scaling plans?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "hint": "Signal: each host pool can have one scaling plan, so two.",
+    "explanation": "A host pool is assigned a single scaling plan, and the two regions each have a host pool with a different schedule, so two plans are the minimum. One plan cannot hold two separate schedules.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plans",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q360",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "Two AVD environments in two regions must keep their monitoring data separate, and you must minimize costs. What is the minimum number of Log Analytics workspaces?",
+    "options": [
+      "One",
+      "Three",
+      "Two",
+      "Four"
+    ],
+    "answer": 2,
+    "hint": "Signal: separate data per region needs one workspace each.",
+    "explanation": "Keeping the two regions' data separate requires one Log Analytics workspace per region, so two workspaces are the minimum. One workspace would mix the data, and more are unnecessary.",
+    "docs": [
+      {
+        "label": "Azure Monitor overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q361",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "A single AVD environment must be monitored by Insights while minimizing costs. What is the minimum number of Log Analytics workspaces?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "One"
+    ],
+    "answer": 3,
+    "hint": "Signal: one workspace can collect all Insights data.",
+    "explanation": "A single Log Analytics workspace can collect diagnostics for the whole environment, so one workspace is the minimum. More workspaces add cost without benefit.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q362",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You must be notified when a host pool's session host count falls below a threshold, and you must minimize costs. What is the minimum number of alert rules?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "hint": "Signal: one alert rule can trigger on the host count metric.",
+    "explanation": "A single Azure Monitor alert rule can evaluate the host count metric and notify you, so one rule is the minimum. More rules are unnecessary for one threshold.",
+    "docs": [
+      {
+        "label": "Azure Monitor overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q363",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "Users cannot connect, and you must find the root cause across host pools quickly using visual dashboards. Which solution meets all requirements?",
+    "options": [
+      "Azure Bastion",
+      "Virtual Desktop Insights",
+      "Azure Firewall logs",
+      "Cost Management"
+    ],
+    "answer": 1,
+    "hint": "Signal: Insights gives dashboards for connection troubleshooting.",
+    "explanation": "Azure Virtual Desktop Insights provides visual dashboards for diagnosing connection issues across host pools. Bastion, Firewall logs, and Cost Management do not offer AVD connection troubleshooting.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q364",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You must patch session hosts, stay informed of health, and keep administrative overhead low. Which approach meets all requirements?",
+    "options": [
+      "Manual patching per host",
+      "No monitoring",
+      "Update Manager with Insights",
+      "Restart all hosts at once"
+    ],
+    "answer": 2,
+    "hint": "Signal: Update Manager patches, and Insights reports health.",
+    "explanation": "Azure Update Manager automates patching while Insights reports host and connection health, together minimizing manual effort. Manual patching, no monitoring, and mass restarts fail the health or overhead requirement.",
+    "docs": [
+      {
+        "label": "Azure Update Manager overview",
+        "url": "https://learn.microsoft.com/en-us/azure/update-manager/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q365",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You must be alerted when hosts run low on disk and get notified automatically, with minimal manual work. Which solution meets all requirements?",
+    "options": [
+      "Azure Bastion",
+      "Azure Firewall",
+      "Azure Front Door",
+      "Azure Monitor alerts"
+    ],
+    "answer": 3,
+    "hint": "Signal: Monitor alerts trigger and notify on metric thresholds.",
+    "explanation": "Azure Monitor alerts fire on metric thresholds such as low disk and notify administrators automatically. Bastion, Firewall, and Front Door are not alerting services.",
+    "docs": [
+      {
+        "label": "Azure Monitor overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q366",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "Azure Virtual Desktop Insights requires a Log Analytics workspace to collect diagnostic data. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Insights depends on a Log Analytics workspace.",
+    "explanation": "Insights collects and queries AVD diagnostics through a Log Analytics workspace, so the workspace is required before Insights can display data.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q367",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "A stopped (deallocated) session host can still accept new user connections. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: a deallocated host cannot accept connections.",
+    "explanation": "A deallocated session host is powered off and cannot accept new user connections until it is started again. Scaling plans power such hosts back on before users connect.",
+    "docs": [
+      {
+        "label": "Session host statuses and health checks",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/session-host-status-health-checks"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q368",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "A scaling plan can set the off-peak minimum session-host count to zero. Is this correct?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: off-peak can scale a pool down to zero hosts.",
+    "explanation": "A scaling plan can set the off-peak minimum session-host count to zero, powering all hosts off overnight. This is how pools scale to zero outside business hours.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plans",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  }
+]
