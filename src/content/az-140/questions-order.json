@@ -1,0 +1,170 @@
+[
+  {
+    "id": "az-140-q301",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to build a golden image and deploy session hosts from it.",
+    "options": [],
+    "steps": [
+      "Create a source VM with a supported OS",
+      "Install and configure applications and OS settings",
+      "Run Sysprep to generalize the OS",
+      "Capture the VM image",
+      "Store the image in an Azure Compute Gallery",
+      "Deploy session hosts from the image"
+    ],
+    "answer": 0,
+    "explanation": "You build a source VM first, install and configure apps and settings second, run Sysprep to generalize (removing machine-specific identity) third, capture the generalized VM as an image fourth, store that image as an Azure Compute Gallery image definition/version fifth, and finally deploy session hosts from it. Generalize must happen before capture, and capture before the image can be stored or deployed.",
+    "hint": "Build VM → Configure → Sysprep → Capture → Store → Deploy.",
+    "docs": [
+      { "label": "Customize a session host image", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-customize-master-image" },
+      { "label": "Azure Compute Gallery", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery" }
+    ]
+  },
+  {
+    "id": "az-140-q302",
+    "domain": "Plan and implement user environments and apps",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to configure FSLogix profile containers on Azure Files.",
+    "options": [],
+    "steps": [
+      "Create a storage account",
+      "Create an Azure Files SMB share",
+      "Configure share permissions (RBAC / AD DS / Entra Kerberos)",
+      "Join session hosts to the domain",
+      "Install and configure FSLogix to point at the share",
+      "Sign in and verify profile containers"
+    ],
+    "answer": 0,
+    "explanation": "Create the storage account first, then the SMB share, then set permissions so session hosts (and the FSLogix service) can reach the share using domain identity or Entra Kerberos. Session hosts must be domain-joined before FSLogix can authenticate to the share, so join the domain fourth, install and configure FSLogix to point at the share fifth, and finally sign in to verify a profile container is created and mounted.",
+    "hint": "Storage account → Share → Permissions → Domain join → FSLogix → Verify.",
+    "docs": [
+      { "label": "Configure FSLogix profile containers with Azure Files and AD DS", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-container-configure-azure-files-active-directory" },
+      { "label": "FSLogix profile containers", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers" }
+    ]
+  },
+  {
+    "id": "az-140-q303",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to create a host pool, an application group, and a workspace, and make them usable by users.",
+    "options": [],
+    "steps": [
+      "Create the host pool",
+      "Create an application group for the host pool",
+      "Create a workspace",
+      "Assign users or groups to the application group",
+      "Register the application group with the workspace"
+    ],
+    "answer": 0,
+    "explanation": "The host pool is created first (it defines the desktop type, load-balancing method, and session host settings). An application group is created within the host pool second, a workspace is created third, users are assigned to the application group fourth, and the application group is registered to the workspace fifth so the desktop/app appears in the user's client.",
+    "hint": "Host pool → App group → Workspace → Assign users → Register app group.",
+    "docs": [
+      { "label": "Create a host pool", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool" },
+      { "label": "Manage app groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups" }
+    ]
+  },
+  {
+    "id": "az-140-q304",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to enable autoscale for a host pool using a scaling plan.",
+    "options": [],
+    "steps": [
+      "Create a scaling plan",
+      "Add a schedule with ramp-up, peak, ramp-down, and off-peak phases",
+      "Set minimum/maximum session hosts and a capacity threshold per phase",
+      "Assign the scaling plan to a host pool",
+      "Verify session hosts power on and off as scheduled"
+    ],
+    "answer": 0,
+    "explanation": "Create the scaling plan first (in the same Azure region as the host pool). Add a schedule that defines the day and the ramp-up/peak/ramp-down/off-peak phases second, set the minimum and maximum session-host count and capacity threshold for each phase third, assign the plan to the host pool fourth, and verify hosts power on/off as expected fifth.",
+    "hint": "Scaling plan → Schedule → Thresholds → Assign to pool → Verify.",
+    "docs": [
+      { "label": "Autoscale scaling plans", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan" }
+    ]
+  },
+  {
+    "id": "az-140-q305",
+    "domain": "Plan and implement user environments and apps",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to deliver an application to session hosts using MSIX app attach.",
+    "options": [],
+    "steps": [
+      "Package the application as an MSIX file",
+      "Convert the MSIX package into a VHD(X) using MSIXMGR",
+      "Store the VHD(X) in a file share or Azure Compute Gallery",
+      "Grant session hosts access to the share",
+      "Add the MSIX package to the host pool and associate it with an application group",
+      "Assign users and verify the app appears in the client"
+    ],
+    "answer": 0,
+    "explanation": "Package the app as MSIX first, convert that package into a VHD(X) image with MSIXMGR second, store the image in an Azure Files share or Azure Compute Gallery third, grant the session hosts access to that location fourth, add the MSIX image to the host pool and associate it with an application group fifth, and finally assign users and verify the app appears in the Remote Desktop client.",
+    "hint": "MSIX package → VHD(X) → Store → Permissions → Attach to pool → Assign.",
+    "docs": [
+      { "label": "What is app attach?", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview" },
+      { "label": "Create an MSIX image for app attach", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-create-msix-image" }
+    ]
+  },
+  {
+    "id": "az-140-q306",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to configure a personal host pool so each user is assigned their own dedicated session host.",
+    "options": [],
+    "steps": [
+      "Create a personal host pool",
+      "Set the assignment type to Direct",
+      "Add session hosts to the host pool",
+      "Assign each user to a specific session host",
+      "Sign in and verify the user always lands on their assigned host"
+    ],
+    "answer": 0,
+    "explanation": "Create a personal host pool first, choose Direct assignment (so users are mapped to a specific host) second, add the session hosts third, assign each user to their dedicated session host fourth, and verify by signing in that the user always connects to that host fifth. Direct assignment is required for personal (persistent) desktops.",
+    "hint": "Personal pool → Direct assignment → Add hosts → Assign user → Verify.",
+    "docs": [
+      { "label": "Create a host pool", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool" }
+    ]
+  },
+  {
+    "id": "az-140-q307",
+    "domain": "Plan and implement identity and security",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to add a session host to an existing host pool.",
+    "options": [],
+    "steps": [
+      "Create the session host VM from a golden image",
+      "Join the VM to the domain (AD DS or Entra Domain Services)",
+      "Install the AVD agent and bootloader on the VM",
+      "Register the VM with the host pool using a registration token",
+      "Verify the session host shows as Available"
+    ],
+    "answer": 0,
+    "explanation": "Create the session host VM from the golden image first, join it to the domain second (required for domain authentication and FSLogix), install the AVD agent and bootloader third, register the VM with the host pool using a registration token fourth, and verify it reports Available fifth. Registration only succeeds after the agent is installed and can present a valid token.",
+    "hint": "Create VM → Domain join → Install agent → Register → Verify.",
+    "docs": [
+      { "label": "Register session hosts to a host pool", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/agent-overview" }
+    ]
+  },
+  {
+    "id": "az-140-q308",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "type": "order",
+    "prompt": "Put these steps in the correct order to monitor an Azure Virtual Desktop deployment with Azure Virtual Desktop Insights.",
+    "options": [],
+    "steps": [
+      "Create a Log Analytics workspace",
+      "Enable AVD diagnostics on the host pool and workspace",
+      "Configure session hosts to send performance data",
+      "Open the Azure Virtual Desktop Insights workbook",
+      "Create alert rules on key metrics"
+    ],
+    "answer": 0,
+    "explanation": "Create a Log Analytics workspace first as the data sink, enable AVD diagnostics on the host pool and workspace second so connection and management data flows into it, configure the session hosts to send performance counters third, open the Insights workbook to review the data fourth, and finally create alert rules on key metrics such as session-host CPU or connection failures.",
+    "hint": "Log Analytics → Diagnostics → Performance data → Workbook → Alerts.",
+    "docs": [
+      { "label": "Azure Virtual Desktop Insights", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights" },
+      { "label": "Session host statuses and health checks", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/session-host-status-health-checks" }
+    ]
+  }
+]

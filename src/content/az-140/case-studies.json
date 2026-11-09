@@ -1,0 +1,159 @@
+[
+  {
+    "id": "az-140-case-1",
+    "title": "Contoso Ltd. — Migrating call-center desktops to Azure Virtual Desktop",
+    "scenario": "Contoso is moving 500 call-center agents to Azure Virtual Desktop. The agents need identical Windows 11 desktops with a standard application set, and the desktops are only used during business hours (8 AM to 6 PM). Contoso has Microsoft Entra ID with Azure AD Connect, but it has no on-premises domain controllers.",
+    "context": [
+      "All session hosts must be deployed from a single, consistently configured image.",
+      "Session hosts must automatically power off outside business hours to control cost.",
+      "Session hosts must be domain-joined for profile and authentication services, but there is no on-premises Active Directory.",
+      "Users must sign in to their session hosts with their existing cloud identity."
+    ],
+    "questions": [
+      {
+        "id": "az-140-case-1-q1",
+        "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+        "prompt": "How should Contoso build a single, consistently configured image from which to deploy all session hosts?",
+        "options": [
+          "Take a snapshot of a running VM and deploy from that snapshot directly",
+          "Create a source VM, install apps and settings, run Sysprep to generalize it, then capture and store it in an Azure Compute Gallery",
+          "Clone an existing session host while users are connected",
+          "Deploy each session host manually from the Azure Marketplace and configure it individually"
+        ],
+        "answer": 1,
+        "explanation": "A golden image is created by configuring a source VM, generalizing it with Sysprep, capturing it, and storing it as an Azure Compute Gallery image definition/version so it can be reused to deploy identical session hosts. A snapshot is not generalized and retains machine identity, cloning a running host is unsupported, and manual per-host configuration does not produce a consistent image.",
+        "docs": [
+          { "label": "Customize a session host image", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-customize-master-image" },
+          { "label": "Azure Compute Gallery", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery" }
+        ]
+      },
+      {
+        "id": "az-140-case-1-q2",
+        "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+        "prompt": "What should Contoso use to automatically power session hosts off outside business hours?",
+        "options": [
+          "A scaling plan with a schedule that sets the off-peak minimum host count to zero",
+          "Azure Automation runbooks that stop VMs on a custom timer",
+          "Manually deallocate VMs each evening",
+          "An Azure Policy that enforces shutdown at a fixed time"
+        ],
+        "answer": 0,
+        "explanation": "An AVD scaling plan defines a schedule with ramp-up, peak, ramp-down, and off-peak phases, and setting the off-peak minimum to zero powers all session hosts off overnight. Azure Automation is a lower-level alternative but scaling plans are the native, purpose-built mechanism, manual deallocation is not automatic, and Azure Policy cannot schedule VM shutdown.",
+        "docs": [
+          { "label": "Autoscale scaling plans", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan" }
+        ]
+      },
+      {
+        "id": "az-140-case-1-q3",
+        "domain": "Plan and implement identity and security",
+        "prompt": "Contoso has no on-premises domain controllers. Which service provides the domain join and Kerberos services the session hosts require?",
+        "options": [
+          "Microsoft Entra Domain Services",
+          "Azure AD Connect Cloud Sync",
+          "A local Security Account Manager on each VM",
+          "Microsoft Entra Conditional Access"
+        ],
+        "answer": 0,
+        "explanation": "Microsoft Entra Domain Services provides a managed domain with domain join, Kerberos/NTLM, LDAP, and Group Policy without deploying domain controllers, so session hosts can be domain-joined. Azure AD Connect Cloud Sync only syncs identities, a local SAM does not provide a domain, and Conditional Access governs access policy, not domain services.",
+        "docs": [
+          { "label": "Microsoft Entra Domain Services overview", "url": "https://learn.microsoft.com/en-us/entra/identity/domain-services/overview" }
+        ]
+      },
+      {
+        "id": "az-140-case-1-q4",
+        "domain": "Plan and implement identity and security",
+        "prompt": "How should Contoso let users sign in to their session hosts with their existing cloud identity, with single sign-on?",
+        "options": [
+          "Enable Microsoft Entra ID authentication for Azure Virtual Desktop and configure single sign-on",
+          "Create a separate local account on each session host for every user",
+          "Use only RDP credentials stored in a key vault",
+          "Join session hosts to the Microsoft Entra tenant and disable all other sign-in methods"
+        ],
+        "answer": 0,
+        "explanation": "Microsoft Entra ID authentication for Azure Virtual Desktop lets users sign in with their Entra ID account and, with single sign-on, use passwordless methods and seamless reauthentication. Per-user local accounts do not scale, key-vault-stored RDP credentials are not a sign-in method, and simply Entra-joining hosts alone does not provide the AVD sign-in experience.",
+        "docs": [
+          { "label": "Microsoft Entra ID authentication for Azure Virtual Desktop", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/authentication" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "az-140-case-2",
+    "title": "Fabrikam — User profiles, application delivery, and monitoring",
+    "scenario": "Fabrikam is running Azure Virtual Desktop for 1,000 knowledge workers. Users report slow sign-in times because profiles and the Office cache are stored locally on each session host. Fabrikam also has a large application portfolio that currently must be reinstalled every time a new session host is deployed. The security team requires profile traffic to stay off the public internet, and operations needs to detect unhealthy session hosts proactively.",
+    "context": [
+      "Users need fast, roaming profiles that include the Office cache.",
+      "Applications must be delivered dynamically without reinstalling on every session host.",
+      "Profile storage traffic must not traverse the public internet.",
+      "Operations must be alerted when a session host becomes unhealthy."
+    ],
+    "questions": [
+      {
+        "id": "az-140-case-2-q1",
+        "domain": "Plan and implement user environments and apps",
+        "prompt": "Which solution provides fast, roaming profiles including the Office cache for Fabrikam's users?",
+        "options": [
+          "FSLogix profile containers stored on premium Azure Files (SMB)",
+          "Local user profiles on each session host",
+          "Windows roaming user profiles pointing at a blob container",
+          "A folder-redirection Group Policy to an on-premises share"
+        ],
+        "answer": 0,
+        "explanation": "FSLogix profile containers redirect the entire profile (including the Office cache and search index) into a VHD(X) mounted at sign-in, and premium Azure Files provides the SMB-backed, low-latency storage Microsoft recommends for most deployments. Local profiles are not roaming, Windows roaming profiles do not efficiently handle the Office cache, and folder redirection to on-premises storage is slow and does not capture the full profile.",
+        "docs": [
+          { "label": "FSLogix profile containers", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers" },
+          { "label": "Configure FSLogix with Azure Files and AD DS", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-container-configure-azure-files-active-directory" }
+        ]
+      },
+      {
+        "id": "az-140-case-2-q2",
+        "domain": "Plan and implement user environments and apps",
+        "prompt": "How should Fabrikam deliver its application portfolio dynamically without reinstalling on every session host?",
+        "options": [
+          "Package apps as MSIX, convert them to VHD(X) with MSIXMGR, store them on a share or gallery, and use MSIX app attach",
+          "Install all applications into the golden image and rebuild it for every change",
+          "Copy application binaries to each session host with a scheduled task",
+          "Use RemoteApp with per-user manual installation"
+        ],
+        "answer": 0,
+        "explanation": "MSIX app attach stores MSIX packages in a VHD(X) and attaches them to session hosts dynamically, so applications are delivered and updated without reinstalling or reimaging. Baking apps into the golden image requires reimaging for every change, scheduled binary copies are fragile and not version-controlled, and manual per-user installation does not scale.",
+        "docs": [
+          { "label": "What is app attach?", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview" }
+        ]
+      },
+      {
+        "id": "az-140-case-2-q3",
+        "domain": "Plan and implement identity and security",
+        "prompt": "How should Fabrikam ensure profile storage traffic does not traverse the public internet?",
+        "options": [
+          "Configure a private endpoint for the storage account",
+          "Enable the storage account firewall to allow all Azure services",
+          "Access the share over the public endpoint with a SAS token",
+          "Replicate the share to a second region"
+        ],
+        "answer": 0,
+        "explanation": "A private endpoint assigns the storage account a private IP inside the virtual network over Azure Private Link, so session hosts reach the share over the private network. Allowing all Azure services or using a public endpoint with SAS still routes traffic through public networking, and cross-region replication addresses durability, not network privacy.",
+        "docs": [
+          { "label": "Azure Private Link and private endpoints", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" }
+        ]
+      },
+      {
+        "id": "az-140-case-2-q4",
+        "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+        "prompt": "What should operations use to detect unhealthy session hosts proactively?",
+        "options": [
+          "Session host health checks with alerts on Unavailable or unhealthy hosts",
+          "A weekly manual review of the host pool in the portal",
+          "Only connection telemetry from the Remote Desktop client",
+          "The VM availability set configuration"
+        ],
+        "answer": 0,
+        "explanation": "Azure Virtual Desktop reports session host health (Available, Unavailable, Shutdown, plus a numeric health value based on agent, connectivity, OS, and domain-trust checks) and can be monitored through Azure Virtual Desktop Insights with alert rules. Manual reviews are not proactive, client-side telemetry alone is insufficient, and availability sets do not report AVD session-host health.",
+        "docs": [
+          { "label": "Session host statuses and health checks", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/session-host-status-health-checks" },
+          { "label": "Azure Virtual Desktop Insights", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights" }
+        ]
+      }
+    ]
+  }
+]

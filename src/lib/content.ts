@@ -53,6 +53,14 @@ import ai500Cases2 from "@/content/ai-500/case-studies-2.json";
 import ai500Docs from "@/content/ai-500/docs.json";
 import ai500Takeaways from "@/content/ai-500/takeaways.json";
 
+import az140Flashcards from "@/content/az-140/flashcards.json";
+import az140Official from "@/content/az-140/questions-official.json";
+import az140Order from "@/content/az-140/questions-order.json";
+import az140Cases from "@/content/az-140/case-studies.json";
+import az140Cases2 from "@/content/az-140/case-studies-2.json";
+import az140Docs from "@/content/az-140/docs.json";
+import az140Takeaways from "@/content/az-140/takeaways.json";
+
 import az104Topic from "@/content/az-104/questions-topic.json";
 import az104Order from "@/content/az-104/questions-order.json";
 import az305Topic from "@/content/az-305/questions-topic.json";
@@ -109,6 +117,16 @@ export const courseContent: Record<string, CourseContent> = {
     caseStudies: [...sc500Cases, ...sc500Cases2] as CaseStudy[],
     docs: sc500Docs as DocGroup[],
     takeaways: sc500Takeaways as Takeaway[],
+  },
+  "az-140": {
+    flashcards: az140Flashcards as Flashcard[],
+    questions: [
+      ...tag(az140Official as Question[], "expert"),
+      ...tag(az140Order as Question[], "expert"),
+    ],
+    caseStudies: [...az140Cases, ...az140Cases2] as CaseStudy[],
+    docs: az140Docs as DocGroup[],
+    takeaways: az140Takeaways as Takeaway[],
   },
   "ai-103": {
     flashcards: ai103Flashcards as Flashcard[],

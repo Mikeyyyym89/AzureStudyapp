@@ -1,0 +1,219 @@
+[
+  {
+    "id": "az-140-case-3",
+    "title": "Contoso Financial — Modernizing a regulated remote workforce",
+    "scenario": "Contoso Financial is a regulated bank that wants to move 2,000 employees to Azure Virtual Desktop. About 1,800 general staff need pooled Windows 11 multi-session desktops that can be scaled to zero overnight, while 200 traders need dedicated, persistent desktops with their own profile. Contoso has an existing on-premises Active Directory synced to Microsoft Entra ID with Azure AD Connect, and it must meet strict least-privilege and data-privacy requirements.",
+    "context": [
+      "Deploy all session hosts from a single, centrally stored golden image.",
+      "General staff desktops must scale to zero overnight.",
+      "Traders need a dedicated, persistent session host and profile.",
+      "Administrators must manage VMs without exposing RDP to the public internet."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "2,000 employees: 1,800 general staff (pooled desktops) and 200 traders (personal, persistent desktops).",
+          "Regulated financial environment with strict least-privilege and data-residency requirements.",
+          "Existing on-premises Active Directory Domain Services synced to Microsoft Entra ID via Azure AD Connect.",
+          "A hub virtual network connects to on-premises through a site-to-site VPN gateway."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Deploy every session host from a single, versioned golden image stored centrally.",
+          "General staff host pools must automatically scale to zero outside business hours.",
+          "Traders must always reconnect to the same session host with a persistent profile.",
+          "Administrators must manage VMs without opening RDP (3389) to the public internet.",
+          "Profile and management traffic must remain on the private network."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "Hub virtual network with a VPN gateway to the on-premises datacenter.",
+          "Two domain controllers in Azure plus on-premises domain controllers.",
+          "A Log Analytics workspace is already deployed in the hub.",
+          "No Azure Compute Gallery, scaling plan, or FSLogix configuration exists yet."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "az-140-case-3-q1",
+        "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+        "prompt": "Where should Contoso store the single golden image so it is versioned and can be shared across subscriptions and regions?",
+        "options": [
+          "Azure Compute Gallery",
+          "A managed disk snapshot in one region",
+          "A blob container holding a VHD copy",
+          "A local ISO file in the hub virtual network"
+        ],
+        "answer": 0,
+        "explanation": "Azure Compute Gallery (formerly Shared Image Gallery) stores image definitions and versions, and supports replicating and sharing images across subscriptions and regions. A snapshot or a VHD in a blob container is not versioned or easily shared across regions, and a local ISO cannot be used to deploy Azure VMs at scale.",
+        "docs": [
+          { "label": "Azure Compute Gallery", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery" }
+        ]
+      },
+      {
+        "id": "az-140-case-3-q2",
+        "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+        "prompt": "Which host pool configuration gives each trader a dedicated, persistent session host?",
+        "options": [
+          "A personal host pool with Direct assignment",
+          "A pooled host pool with breadth-first load balancing",
+          "A personal host pool with automatic assignment",
+          "A pooled host pool with depth-first load balancing"
+        ],
+        "answer": 0,
+        "explanation": "A personal host pool with Direct assignment maps each user to a specific session host, giving traders a dedicated, persistent desktop. Automatic assignment places users on any available personal host, and pooled host pools (regardless of load-balancing algorithm) are shared and non-persistent by design.",
+        "docs": [
+          { "label": "Create a host pool", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool" }
+        ]
+      },
+      {
+        "id": "az-140-case-3-q3",
+        "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+        "prompt": "How should Contoso scale the general staff host pool to zero overnight?",
+        "options": [
+          "Create a scaling plan with a schedule whose off-peak minimum session-host count is zero, and assign it to the host pool",
+          "Set the host pool to depth-first load balancing and manually stop VMs",
+          "Enable auto-shutdown on every VM with a 12-hour idle timeout",
+          "Assign users to personal hosts so fewer hosts run overnight"
+        ],
+        "answer": 0,
+        "explanation": "A scaling plan defines a schedule (ramp-up, peak, ramp-down, off-peak) and, when the off-peak minimum is zero, powers all session hosts off overnight, then scales them back up for the next workday. Depth-first balancing or manual stops are not automatic, a 12-hour idle timeout would not reliably reach zero, and personal hosts are the opposite of pooled, shared desktops.",
+        "docs": [
+          { "label": "Autoscale scaling plans", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan" }
+        ]
+      },
+      {
+        "id": "az-140-case-3-q4",
+        "domain": "Plan and implement identity and security",
+        "prompt": "How should administrators manage the session host VMs without exposing RDP to the public internet?",
+        "options": [
+          "Connect through Azure Bastion",
+          "Allow RDP (3389) from a public IP address in the NSG",
+          "Assign a public IP address to every session host",
+          "Open port 3389 only on the domain controllers"
+        ],
+        "answer": 0,
+        "explanation": "Azure Bastion provides secure, browser-based RDP/SSH to VMs without public IPs on the VMs or open management ports. Allowing RDP from a public IP, assigning public IPs to session hosts, or opening 3389 on domain controllers all expose management traffic to the internet and violate the least-privilege and data-privacy requirements.",
+        "docs": [
+          { "label": "Azure Bastion overview", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "az-140-case-4",
+    "title": "Northwind Healthcare — Profiles, applications, and monitoring at scale",
+    "scenario": "Northwind Healthcare runs clinical applications on Azure Virtual Desktop for 3,000 clinicians across three regions. Sign-in must complete in under 30 seconds even during morning login storms, and profile corruption must be effectively eliminated. The clinical application suite changes frequently and currently is baked into the golden image, forcing time-consuming reimages. The security team requires profile traffic to stay private, and operations must be alerted the moment a session host becomes unhealthy.",
+    "context": [
+      "Clinicians need sub-30-second sign-in even during login storms.",
+      "The frequently updated application suite must be delivered without reimaging.",
+      "Profile storage must be high-performance and support SMB with domain authentication.",
+      "Operations must be alerted proactively when a session host becomes unhealthy."
+    ],
+    "sections": [
+      {
+        "title": "Overview",
+        "content": [
+          "3,000 clinicians use pooled Windows multi-session desktops across three Azure regions.",
+          "Clinical applications require fast, reliable sign-in with minimal profile corruption.",
+          "The application suite changes frequently and is currently baked into the golden image.",
+          "Existing environment uses on-premises AD DS synced to Microsoft Entra ID."
+        ]
+      },
+      {
+        "title": "Requirements",
+        "content": [
+          "Profile sign-in must complete in under 30 seconds even during morning login storms.",
+          "Applications must be delivered and updated dynamically without reimaging session hosts.",
+          "Profile storage must be enterprise-grade, high-I/O, and support SMB with domain (Kerberos) authentication.",
+          "Profile traffic must remain off the public internet.",
+          "Operations must receive an alert whenever a session host becomes unhealthy."
+        ]
+      },
+      {
+        "title": "Existing Environment",
+        "content": [
+          "On-premises AD DS synced to Microsoft Entra ID via Azure AD Connect.",
+          "Standard Azure Files shares already serve departmental file shares.",
+          "Azure Monitor and a Log Analytics workspace are already deployed.",
+          "No app virtualization in place; all applications are installed in the golden image today."
+        ]
+      }
+    ],
+    "questions": [
+      {
+        "id": "az-140-case-4-q1",
+        "domain": "Plan and implement user environments and apps",
+        "prompt": "Which storage best meets Northwind's high-I/O, enterprise-grade SMB profile requirement for 3,000 clinicians?",
+        "options": [
+          "Azure NetApp Files with FSLogix profile containers",
+          "Standard Azure Files with local user profiles",
+          "A single on-premises SMB share over the VPN",
+          "Blob storage with a mounted NFS share"
+        ],
+        "answer": 0,
+        "explanation": "Azure NetApp Files provides enterprise-grade, high-throughput, low-latency SMB/NFS storage that is well suited to large-scale, high-I/O FSLogix deployments. Standard Azure Files can host profiles but is not the high-performance enterprise choice at this scale, local profiles are not roaming, an on-premises share over VPN adds latency that breaks the 30-second target, and blob storage does not provide an SMB share for profiles.",
+        "docs": [
+          { "label": "Azure NetApp Files overview", "url": "https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction" },
+          { "label": "FSLogix profile containers", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers" }
+        ]
+      },
+      {
+        "id": "az-140-case-4-q2",
+        "domain": "Plan and implement user environments and apps",
+        "prompt": "How should Northwind deliver its frequently updated clinical application suite without reimaging?",
+        "options": [
+          "Package the apps as MSIX, convert them to VHD(X), and deliver them with MSIX app attach",
+          "Continue baking all apps into the golden image and reimage on each release",
+          "Install the apps on each session host with a manual script after deployment",
+          "Publish the apps as RemoteApp from a single on-premises server"
+        ],
+        "answer": 0,
+        "explanation": "MSIX app attach stores MSIX packages in VHD(X) files and attaches them to session hosts dynamically, so apps can be added, updated, or removed without reimaging or reinstalling. Baking apps into the image is exactly the slow process to eliminate, a post-deploy script is fragile and not centrally versioned, and publishing from a single on-premises server is not a dynamic, scalable delivery model.",
+        "docs": [
+          { "label": "What is app attach?", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview" },
+          { "label": "Create an MSIX image for app attach", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-create-msix-image" }
+        ]
+      },
+      {
+        "id": "az-140-case-4-q3",
+        "domain": "Plan and implement identity and security",
+        "prompt": "How should Northwind keep all profile storage traffic off the public internet?",
+        "options": [
+          "Configure a private endpoint for the storage service",
+          "Allow the storage account firewall to accept traffic from all networks",
+          "Mount the share over its public endpoint using a storage account key",
+          "Enable geo-redundant storage and read-access geo-redundancy"
+        ],
+        "answer": 0,
+        "explanation": "A private endpoint injects a private IP for the storage service into the virtual network over Azure Private Link, so all profile traffic stays on the private network. Allowing all networks or mounting over the public endpoint routes traffic over the public internet, and geo-redundancy is a durability feature that has no effect on network privacy.",
+        "docs": [
+          { "label": "Azure Private Link and private endpoints", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" }
+        ]
+      },
+      {
+        "id": "az-140-case-4-q4",
+        "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+        "prompt": "What should operations configure to be alerted the moment a session host becomes unhealthy?",
+        "options": [
+          "Session host health monitoring with an alert rule that fires when a host reports Unavailable or an unhealthy status",
+          "A daily email summary of connection counts from the portal",
+          "Rely on user help-desk tickets to surface host problems",
+          "Review VM CPU metrics manually once a week"
+        ],
+        "answer": 0,
+        "explanation": "Azure Virtual Desktop reports per-session-host health (agent, connectivity, OS, domain trust) and, combined with Azure Virtual Desktop Insights and alert rules, can notify operations immediately when a host becomes Unavailable or unhealthy. Email summaries and manual reviews are not real-time, and waiting for help-desk tickets means users discover problems before operations does.",
+        "docs": [
+          { "label": "Session host statuses and health checks", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/session-host-status-health-checks" },
+          { "label": "Azure Virtual Desktop Insights", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights" }
+        ]
+      }
+    ]
+  }
+]

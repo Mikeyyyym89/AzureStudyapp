@@ -1,0 +1,43 @@
+[
+  {
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "links": [
+      { "label": "What is Azure Virtual Desktop?", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/overview" },
+      { "label": "Create a host pool", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool" },
+      { "label": "Manage app groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups" },
+      { "label": "Customize a session host image", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-customize-master-image" },
+      { "label": "Azure Compute Gallery", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery" },
+      { "label": "Autoscale scaling plans", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan" }
+    ]
+  },
+  {
+    "domain": "Plan and implement identity and security",
+    "links": [
+      { "label": "Security best practices for Azure Virtual Desktop", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/security-guide" },
+      { "label": "Microsoft Entra ID authentication for Azure Virtual Desktop", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/authentication" },
+      { "label": "Microsoft Entra Domain Services overview", "url": "https://learn.microsoft.com/en-us/entra/identity/domain-services/overview" },
+      { "label": "Azure Private Link and private endpoints", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" },
+      { "label": "Azure Bastion overview", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" }
+    ]
+  },
+  {
+    "domain": "Plan and implement user environments and apps",
+    "links": [
+      { "label": "FSLogix overview", "url": "https://learn.microsoft.com/en-us/fslogix/overview" },
+      { "label": "FSLogix profile containers for Azure Virtual Desktop", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers" },
+      { "label": "Configure FSLogix with Azure Files and AD DS", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-container-configure-azure-files-active-directory" },
+      { "label": "Azure Files overview", "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction" },
+      { "label": "Azure NetApp Files overview", "url": "https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction" },
+      { "label": "What is app attach?", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview" }
+    ]
+  },
+  {
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "links": [
+      { "label": "Session host statuses and health checks", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/session-host-status-health-checks" },
+      { "label": "Azure Virtual Desktop Insights", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights" },
+      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" },
+      { "label": "Troubleshoot Azure Virtual Desktop setup", "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-set-up-overview" }
+    ]
+  }
+]

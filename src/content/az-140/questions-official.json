@@ -1,0 +1,1922 @@
+[
+  {
+    "id": "az-140-q201",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You are deploying Azure Virtual Desktop for a call center. Shift workers share one session host running Windows 11 Enterprise multi-session. You need to configure the host pool type. Which type should you use?",
+    "options": [
+      "Configure a pooled host pool",
+      "Configure a personal host pool",
+      "Configure a dedicated host pool",
+      "Configure a static host pool"
+    ],
+    "answer": 0,
+    "hint": "Signal: many users sharing one multi-session host → pooled host pool.",
+    "explanation": "A pooled host pool assigns users to any available session host, which suits many users sharing a multi-session operating system. Personal host pools map each user to one dedicated host.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop host pools",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q202",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You deploy a personal host pool. Users must connect only after an administrator explicitly assigns each user a specific session host. Which assignment type should you configure?",
+    "options": [
+      "Configure automatic assignment",
+      "Configure static assignment",
+      "Configure direct assignment",
+      "Configure manual assignment"
+    ],
+    "answer": 2,
+    "hint": "Signal: explicit per-user assignment before connect → Direct assignment.",
+    "explanation": "Direct assignment requires an administrator to assign a user to a specific session host before that user can sign in. Automatic assignment assigns the next available unassigned host when the user connects.",
+    "docs": [
+      {
+        "label": "Personal host pool assignment types",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-host-pool-personal-desktop-assignment-type"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q203",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You are configuring a pooled host pool and need new user sessions to be distributed evenly across all available session hosts. Which load-balancing algorithm should you select?",
+    "options": [
+      "Select the depth-first algorithm",
+      "Select the round-robin algorithm",
+      "Select the breadth-first algorithm",
+      "Select the least-connections algorithm"
+    ],
+    "answer": 2,
+    "hint": "Signal: spread sessions evenly across all hosts → breadth-first.",
+    "explanation": "Breadth-first distributes new user sessions across all session hosts with the fewest sessions, while depth-first fills one host before moving to the next. Round-robin and least-connections are not AVD algorithms.",
+    "docs": [
+      {
+        "label": "Host pool load-balancing methods",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/host-pool-load-balancing"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q204",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You configure a pooled host pool and need sessions to saturate one session host before any new host is used. Which load-balancing algorithm should you select?",
+    "options": [
+      "Select the depth-first algorithm",
+      "Select the breadth-first algorithm",
+      "Select the round-robin algorithm",
+      "Select the least-connections algorithm"
+    ],
+    "answer": 0,
+    "hint": "Signal: fill one host fully before the next → depth-first.",
+    "explanation": "Depth-first directs new sessions to the session host with the most sessions until it reaches its session limit, then moves to the next host. This maximizes per-host utilization and cost control.",
+    "docs": [
+      {
+        "label": "Host pool load-balancing methods",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/host-pool-load-balancing"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q205",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You are building a golden image. You need to prepare a Windows VM so it can be captured as a reusable managed image. What should you run first?",
+    "options": [
+      "Run Sysprep with generalize option",
+      "Run a Windows Update scan",
+      "Run a disk defragmentation job",
+      "Create a VM checkpoint first"
+    ],
+    "answer": 0,
+    "hint": "Signal: prepare VM for capture as an image → Sysprep generalize.",
+    "explanation": "Sysprep with the generalize option removes machine-specific identifiers such as the SID, making the VM reusable as an image. You then deallocate and generalize the VM before capturing.",
+    "docs": [
+      {
+        "label": "Create an Azure Compute Gallery image",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/capture-image-portal"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q206",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "After running Sysprep on an Azure Windows VM, you must mark the VM as generalized so its disk can become an image. Which command should you use?",
+    "options": [
+      "Run the az vm capture command",
+      "Run the az vm deallocate command",
+      "Run the az vm generalize command",
+      "Run the az vm reimage command"
+    ],
+    "answer": 2,
+    "hint": "Signal: mark VM as generalized → az vm generalize.",
+    "explanation": "az vm generalize sets the VM to the generalized state so its OS disk can be used as an image. az vm capture was the older approach and is deprecated for managed disks.",
+    "docs": [
+      {
+        "label": "Generalize a VM",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/generalize"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q207",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to share custom images across multiple Azure subscriptions in the same region with versioning. Which service should you use?",
+    "options": [
+      "Use an Azure Marketplace image",
+      "Use a managed image object",
+      "Use a shared VHD blob",
+      "Use an Azure Compute Gallery"
+    ],
+    "answer": 3,
+    "hint": "Signal: share versioned images across subscriptions → Azure Compute Gallery.",
+    "explanation": "Azure Compute Gallery (formerly Shared Image Gallery) shares versioned VM images across subscriptions and regions with replication. Managed images and VHD blobs cannot be shared this way.",
+    "docs": [
+      {
+        "label": "Azure Compute Gallery",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q208",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need a single golden image available in multiple regions with the lowest latency for deployments. What should you configure on the image?",
+    "options": [
+      "Create multiple gallery replicas",
+      "Create multiple managed disks",
+      "Create multiple disk snapshots",
+      "Create multiple VHD blobs"
+    ],
+    "answer": 0,
+    "hint": "Signal: low-latency image in multiple regions → gallery replicas.",
+    "explanation": "Replicating an image version to multiple regions with enough replicas per region reduces deployment latency and provides regional redundancy. Snapshots and VHD blobs are single-region objects.",
+    "docs": [
+      {
+        "label": "Replicate gallery images",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#replication"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q209",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You plan 200 concurrent multi-session users, each needing 4 vCPUs. You must size session hosts for this workload. Which VM size should you select per host?",
+    "options": [
+      "Select a 4-vCPU VM size",
+      "Select a 32-vCPU VM size",
+      "Select a 16-vCPU VM size",
+      "Select an 8-vCPU VM size"
+    ],
+    "answer": 2,
+    "hint": "Signal: 200 users at 4 vCPUs each → 800 vCPUs; 16-vCPU per host.",
+    "explanation": "Total demand is 800 vCPUs (200 x 4). With a 16-vCPU host you deploy about 50 hosts, a reasonable per-host density for multi-session. A 4-vCPU host is too small and a 32-vCPU host too coarse.",
+    "docs": [
+      {
+        "label": "Virtual machine sizing guidelines",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/virtual-machine-sizing-guidelines"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q210",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You deploy session hosts that must remain available if a single datacenter in a region fails. Which placement option should you use?",
+    "options": [
+      "Use an availability set",
+      "Use a proximity group",
+      "Use an availability zone",
+      "Use a placement group"
+    ],
+    "answer": 2,
+    "hint": "Signal: survive datacenter failure → availability zones.",
+    "explanation": "Availability zones are physically separate datacenters within a region, providing fault isolation if one zone fails. Availability sets protect against rack-level failures but not a full datacenter outage.",
+    "docs": [
+      {
+        "label": "Availability zones and regions",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q211",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to run Azure Virtual Desktop session hosts on your on-premises hyper-converged hardware. Which platform should you use?",
+    "options": [
+      "Use Azure Arc virtual machines",
+      "Use Azure VMware Solution",
+      "Use Azure Spring Apps",
+      "Use Azure Local hardware"
+    ],
+    "answer": 3,
+    "hint": "Signal: AVD on on-premises HCI → Azure Local (Stack HCI).",
+    "explanation": "Azure Local (formerly Azure Stack HCI) hosts AVD session hosts in your own datacenter, managed through Azure Arc. The other options are PaaS or VMware offerings, not on-premises AVD hosts.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop on Azure Local",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/azure-stack-hci-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q212",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need a scaling plan to reduce cost by powering off session hosts outside business hours. To which object must you assign the scaling plan?",
+    "options": [
+      "Assign it to the host pool",
+      "Assign it to the workspace",
+      "Assign it to the app group",
+      "Assign it to the session host"
+    ],
+    "answer": 0,
+    "hint": "Signal: assign autoscale scaling plan → pooled host pool.",
+    "explanation": "Scaling plans are assigned to pooled host pools and define ramp-up, peak, and ramp-down schedules. Personal host pools use power-on-connect instead of scaling plans.",
+    "docs": [
+      {
+        "label": "Scaling plan for autoscale",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q213",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You create a host pool and need a desktop app group to publish a full desktop. When is the Desktop app group created?",
+    "options": [
+      "Manually after first sign-in",
+      "By running a custom script",
+      "By the session host agent",
+      "Automatically with the host pool"
+    ],
+    "answer": 3,
+    "hint": "Signal: Desktop app group created automatically with host pool.",
+    "explanation": "Every host pool automatically gets one Desktop application group, which cannot be deleted and cannot coexist with multiple Desktop groups. RemoteApp application groups are created separately and are optional.",
+    "docs": [
+      {
+        "label": "Application groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/terminology#application-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q214",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to publish individual applications, not a full desktop, to a set of users. Which object should you create?",
+    "options": [
+      "Create a Desktop app group",
+      "Create a workspace only",
+      "Create a RemoteApp app group",
+      "Create a scaling plan"
+    ],
+    "answer": 2,
+    "hint": "Signal: publish individual apps → RemoteApp application group.",
+    "explanation": "A RemoteApp application group publishes selected applications instead of a full desktop. The Desktop application group publishes the entire desktop, and a workspace is only a container that groups app groups.",
+    "docs": [
+      {
+        "label": "RemoteApp application groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q215",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You must make the Remote Desktop feed visible to users in the Remote Desktop client. Which object should you add the app group to?",
+    "options": [
+      "Add it to a host pool",
+      "Add it to a scaling plan",
+      "Add it to a storage account",
+      "Add it to a workspace"
+    ],
+    "answer": 3,
+    "hint": "Signal: publish feed to users → assign app group to workspace.",
+    "explanation": "A workspace groups application groups so their RemoteApp programs and desktops appear in the user's feed. Host pools and scaling plans do not publish feeds on their own.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop workspace",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/terminology#workspaces"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q216",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to assign a scaling plan to a personal host pool so it powers off idle session hosts at night. Solution: assign the scaling plan to the personal host pool. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: scaling plans do not apply to personal host pools.",
+    "explanation": "Scaling plans apply only to pooled host pools. Personal host pools use start VM on connect and power-on-connect behavior instead of autoscale schedules.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plans",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q217",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to create two Desktop application groups in a single host pool so each group shows a different desktop. Solution: create a second Desktop application group in the same host pool. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: only one Desktop app group per host pool.",
+    "explanation": "Each host pool can contain only one Desktop application group, which is created automatically. Use RemoteApp application groups to publish additional, distinct items.",
+    "docs": [
+      {
+        "label": "Application groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/manage-app-groups"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q218",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to reduce image deployment latency in a second region. Solution: add a region to the image version and set the replica count for that region. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: replicas per region cut deployment latency.",
+    "explanation": "Replicating an image version to the target region, with enough replicas, keeps copies close to the deployment and lowers latency and throttling. This is the correct configuration.",
+    "docs": [
+      {
+        "label": "Replicate gallery images",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery#replication"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q219",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to capture a VM as an image after it has been in production. Solution: run Sysprep with the generalize option while the VM is running, then capture. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: generalize requires deallocate; Sysprep breaks running production VMs.",
+    "explanation": "You must stop and deallocate the VM and run Sysprep (which also changes the machine), then generalize before capturing. Running Sysprep on a production VM is unsupported and can break it.",
+    "docs": [
+      {
+        "label": "Generalize a VM",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/generalize"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q220",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to validate a new golden image on one session host before rolling it out to all hosts. Solution: create a validation host pool and add that session host to it. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: validate hosts in a dedicated validation host pool.",
+    "explanation": "A validation host pool lets you test updates and images on a small set of hosts before deploying broadly. This is the recommended pre-production rollout path.",
+    "docs": [
+      {
+        "label": "Host pool validation environment",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-validation-environment"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q221",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to allow users to reach AVD resources during an outage in one Azure region. Solution: deploy an identical host pool and workspace in a second region. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: cross-region redundancy needs a second host pool and workspace.",
+    "explanation": "Regional failover for AVD requires redundant host pools, workspaces, and images in a second region. This provides a fallback when the primary region is unavailable.",
+    "docs": [
+      {
+        "label": "Business continuity and disaster recovery",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/disaster-recovery"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q222",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need a scaling plan to turn on extra hosts only during morning login bursts. Solution: configure a ramp-up capacity threshold and minimum hosts. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: ramp-up capacity threshold and minimum hosts handle login bursts.",
+    "explanation": "Ramp-up settings use a capacity threshold and minimum percentage of hosts to spin up capacity before peak load. This is the correct autoscale configuration for login spikes.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plan",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q223",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to assign an image version to a session host when creating the VM. Solution: reference the gallery image definition ID in the VM deployment. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: gallery image definition ID drives VM image selection.",
+    "explanation": "Deployments reference the Azure Compute Gallery image definition (and optionally a version) to source the OS disk. This is the correct mechanism.",
+    "docs": [
+      {
+        "label": "Create a VM from a gallery image",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/azure-compute-gallery"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q224",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to give each user a dedicated, persistent VM that retains OS changes after sign-out. Solution: deploy a pooled host pool with breadth-first load balancing. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: dedicated persistent VM → personal host pool, not pooled.",
+    "explanation": "Pooled host pools assign users to shared multi-session hosts, so per-user OS persistence is not guaranteed. Use a personal host pool for dedicated, persistent VMs.",
+    "docs": [
+      {
+        "label": "Host pool types",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/environment-setup"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q225",
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to power off session hosts automatically during nights and weekends. Solution: create a scaling plan and assign it to the workspace. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: scaling plans assign to host pools, not workspaces.",
+    "explanation": "Scaling plans must be assigned to a pooled host pool to control host power states. Assigning a scaling plan to a workspace has no autoscale effect.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plan",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q226",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You deploy session hosts that must use cloud-only identities with no domain controllers. Which identity service should the session hosts join?",
+    "options": [
+      "Join Microsoft Entra ID",
+      "Join Active Directory DS",
+      "Join Entra Domain Services",
+      "Join an on-premises LDAP"
+    ],
+    "answer": 0,
+    "hint": "Signal: cloud-only identities, no domain controllers → Entra ID join.",
+    "explanation": "Microsoft Entra ID join supports cloud-only identities without any domain controllers. AD DS and Entra Domain Services require a domain, and LDAP is not a join target.",
+    "docs": [
+      {
+        "label": "Entra ID joined session hosts",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/azure-ad-joined-session-hosts"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q227",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need session hosts to use Group Policy and Kerberos from on-premises without running your own domain controllers in Azure. Which service should you use?",
+    "options": [
+      "Use Microsoft Entra ID",
+      "Use Azure AD B2C",
+      "Use Entra Domain Services",
+      "Use local user accounts"
+    ],
+    "answer": 2,
+    "hint": "Signal: managed domain, no own DCs, Group Policy → Entra Domain Services.",
+    "explanation": "Microsoft Entra Domain Services provides a managed AD DS domain with Group Policy and Kerberos/NTLM without you managing domain controllers. Entra ID alone provides neither Group Policy nor legacy Kerberos.",
+    "docs": [
+      {
+        "label": "Entra Domain Services",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/domain-services/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q228",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to synchronize on-premises AD DS users into Microsoft Entra ID so they can sign in to AVD. Which component should you deploy?",
+    "options": [
+      "Deploy Azure AD B2B",
+      "Deploy Entra ID Protection",
+      "Deploy Entra Connect Sync",
+      "Deploy an app registration"
+    ],
+    "answer": 2,
+    "hint": "Signal: sync on-premises AD DS to Entra ID → Entra Connect Sync.",
+    "explanation": "Microsoft Entra Connect Sync replicates on-premises AD DS objects (with password hash sync or passthrough) into Entra ID for hybrid identity. B2B, Identity Protection, and app registrations do not sync directories.",
+    "docs": [
+      {
+        "label": "Microsoft Entra Connect Sync",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/connect/whatis-azure-ad-connect"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q229",
+    "domain": "Plan and implement identity and security",
+    "prompt": "A user must access published RemoteApp apps but must not manage any AVD resources. Which built-in role should you assign?",
+    "options": [
+      "Assign the Virtualization Contributor role",
+      "Assign the Host Pool Contributor role",
+      "Assign the Workspace Contributor role",
+      "Assign the Virtualization User role"
+    ],
+    "answer": 3,
+    "hint": "Signal: access apps only, no management → Desktop Virtualization User.",
+    "explanation": "The Desktop Virtualization User role grants sign-in access to applications and desktops published in an application group without management rights. The Contributor roles grant management permissions.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/rbac"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q230",
+    "domain": "Plan and implement identity and security",
+    "prompt": "An operator must start and stop session hosts but must not change host pool or app group configuration. Which role should you assign?",
+    "options": [
+      "Assign the Host Pool Contributor role",
+      "Assign the Virtualization User role",
+      "Assign the Session Host Operator role",
+      "Assign the Workspace Contributor role"
+    ],
+    "answer": 2,
+    "hint": "Signal: start and stop hosts only → Session Host Operator.",
+    "explanation": "Desktop Virtualization Session Host Operator can start, stop, and restart session hosts and view diagnostics, but cannot modify host pool or application group settings.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/rbac"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q231",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to require MFA only when a user connects to AVD from an untrusted network. Which Microsoft Entra feature should you use?",
+    "options": [
+      "Use Entra security defaults",
+      "Use Entra Connect Sync",
+      "Use Conditional Access policies",
+      "Use password reset service"
+    ],
+    "answer": 2,
+    "hint": "Signal: conditional MFA by network location → Conditional Access.",
+    "explanation": "Conditional Access policies apply MFA based on conditions such as network location, device state, or user risk. Security defaults apply MFA broadly and cannot be scoped to a network.",
+    "docs": [
+      {
+        "label": "Conditional Access for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-mfa"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q232",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Administrators must securely reach session hosts that have no public IP address, using only an HTML5 browser. Which service should you use?",
+    "options": [
+      "Use Azure Front Door",
+      "Use a VPN Gateway",
+      "Use Azure Bastion",
+      "Use Azure Private Link"
+    ],
+    "answer": 2,
+    "hint": "Signal: browser RDP to hosts without public IP → Azure Bastion.",
+    "explanation": "Azure Bastion provides RDP/SSH through the Azure portal browser to VMs that have no public IP, without exposing RDP ports. Private Link and Front Door do not provide interactive RDP access.",
+    "docs": [
+      {
+        "label": "Azure Bastion",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q233",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to route AVD control plane and feed traffic over the Microsoft backbone without public endpoints. Which service should you configure?",
+    "options": [
+      "Configure network security groups",
+      "Configure Azure Firewall",
+      "Configure service endpoints",
+      "Configure private endpoints"
+    ],
+    "answer": 3,
+    "hint": "Signal: private AVD feed and control traffic → private endpoints.",
+    "explanation": "Private endpoints connect the AVD workspace, feed, and control plane resources over a private IP in your virtual network. NSGs, firewall, and service endpoints do not privatize the AVD control plane.",
+    "docs": [
+      {
+        "label": "Private endpoints for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/private-link-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q234",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You must disable clipboard and printer redirection for a host pool. Where should you configure these RDP settings?",
+    "options": [
+      "In host pool RDP properties",
+      "In the session host registry",
+      "In the workspace settings",
+      "In the app group properties"
+    ],
+    "answer": 0,
+    "hint": "Signal: redirection settings per host pool → host pool RDP properties.",
+    "explanation": "RDP properties such as clipboard and drive redirection are set at the host pool level and apply to all its session hosts. Registry edits are not the supported path.",
+    "docs": [
+      {
+        "label": "Customize RDP properties",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/customize-rdp-properties"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q235",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to prevent users from taking screenshots of sensitive data displayed in RemoteApp sessions. Which host pool setting should you enable?",
+    "options": [
+      "Enable clipboard redirection",
+      "Enable screen capture protection",
+      "Enable drive redirection",
+      "Enable smart card redirection"
+    ],
+    "answer": 1,
+    "hint": "Signal: block screenshots of session content → screen capture protection.",
+    "explanation": "Screen capture protection blocks screen capture tools from recording session content. Clipboard and drive redirection control data transfer but do not stop screenshots.",
+    "docs": [
+      {
+        "label": "Screen capture protection",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/screen-capture-protection"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q236",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to store the local administrator password for session hosts so admins can retrieve it securely. Where should the password be stored?",
+    "options": [
+      "Store it in a storage account",
+      "Store it in a Log Analytics workspace",
+      "Store it in an Entra ID group",
+      "Store it in Azure Key Vault"
+    ],
+    "answer": 3,
+    "hint": "Signal: secure retrieval of admin password → Azure Key Vault.",
+    "explanation": "When you add session hosts, the local admin password is stored in a key vault so authorized users can retrieve it. Storage accounts and Log Analytics are not for secret storage.",
+    "docs": [
+      {
+        "label": "Session host local admin password",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/add-session-hosts-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q237",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to show a watermark with each user's connection ID on session content. Which host pool RDP property should you set?",
+    "options": [
+      "Set clipboard redirection",
+      "Set smart card redirection",
+      "Set screen capture protection",
+      "Set the watermarking property"
+    ],
+    "answer": 3,
+    "hint": "Signal: per-user connection ID watermark → enable watermarking.",
+    "explanation": "Watermarking overlays the user's connection ID on session content to deter leaks. It is configured through RDP properties, separate from screen capture protection.",
+    "docs": [
+      {
+        "label": "Watermarking",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/watermarking"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q238",
+    "domain": "Plan and implement identity and security",
+    "prompt": "Users must authenticate to Entra ID-joined session hosts using passwordless Windows Hello. Which RDP property should you enable?",
+    "options": [
+      "Enable WebAuthn redirection",
+      "Enable drive redirection",
+      "Enable printer redirection",
+      "Enable clipboard redirection"
+    ],
+    "answer": 0,
+    "hint": "Signal: passwordless Hello sign-in → WebAuthn redirection.",
+    "explanation": "WebAuthn redirection allows FIDO2 and Windows Hello for Business credentials to work over the RDP connection. The other redirection properties are unrelated to authentication.",
+    "docs": [
+      {
+        "label": "WebAuthn redirection",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/webauthn-redirection"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q239",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to assign a user access to a RemoteApp app group and to sign in to a specific personal session host. Which two assignments are required?",
+    "options": [
+      "The workspace and the app group",
+      "The app group and the host",
+      "The host and the workspace",
+      "The workspace and the subscription"
+    ],
+    "answer": 1,
+    "hint": "Signal: app group access plus personal host assignment → app group and host.",
+    "explanation": "For a personal (direct-assigned) host pool, the user needs a role assignment on the application group and an assignment to a specific session host. Workspace assignment is not a user-level requirement.",
+    "docs": [
+      {
+        "label": "Personal host pool assignment",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-host-pool-personal-desktop-assignment-type"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q240",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You must restrict which client devices can connect to AVD based on device compliance. Which Microsoft Entra feature should you use?",
+    "options": [
+      "Use Application Proxy",
+      "Use password protection",
+      "Use Conditional Access",
+      "Use identity governance"
+    ],
+    "answer": 2,
+    "hint": "Signal: enforce compliant device for connections → Conditional Access.",
+    "explanation": "Conditional Access policies enforce device compliance and platform requirements before granting access to AVD. The other features do not gate sign-in by device compliance.",
+    "docs": [
+      {
+        "label": "Conditional Access for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-mfa"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q241",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to join session hosts to on-premises AD DS so they can receive Group Policy. Solution: use Entra Domain Services as the domain. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: on-premises Group Policy requires real AD DS, not Entra DS.",
+    "explanation": "Microsoft Entra Domain Services is a separate managed domain; it does not replicate your on-premises AD DS Group Policy or join hosts to your on-premises domain. Join the hosts to on-premises AD DS over a network connection instead.",
+    "docs": [
+      {
+        "label": "Active Directory domain join",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/active-directory-domain-services"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q242",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to give a user read-only visibility into session host diagnostics without any ability to start or stop hosts. Solution: assign Desktop Virtualization User. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: read-only diagnostics needs Reader, not Desktop Virtualization User.",
+    "explanation": "Desktop Virtualization User only grants access to published apps and desktops. Use the Reader role (or a custom role) for read-only diagnostics visibility.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/rbac"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q243",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need MFA only for AVD sign-ins that originate from untrusted networks. Solution: enable Microsoft Entra security defaults. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: scoped MFA needs Conditional Access, not security defaults.",
+    "explanation": "Security defaults enforce MFA broadly for all users and cannot be scoped to a network location. Use a Conditional Access policy with a network location condition instead.",
+    "docs": [
+      {
+        "label": "Security defaults",
+        "url": "https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q244",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need admins to reach a session host over RDP without opening port 3389 on the VM. Solution: deploy Azure Bastion and connect from the portal. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Azure Bastion avoids exposing RDP 3389.",
+    "explanation": "Azure Bastion tunnels RDP through the platform and does not require opening port 3389 to the internet. This satisfies the secure admin access requirement.",
+    "docs": [
+      {
+        "label": "Azure Bastion",
+        "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q245",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to disable clipboard sharing for one host pool only. Solution: set the clipboard RDP property on that host pool. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: RDP properties are scoped per host pool.",
+    "explanation": "RDP properties, including clipboard redirection, are applied at the host pool level and affect only that pool's session hosts. This is the correct scoping.",
+    "docs": [
+      {
+        "label": "Customize RDP properties",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/customize-rdp-properties"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q246",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to connect a private endpoint to the AVD workspace feed so clients resolve it over a private IP. Solution: create a private endpoint for the feed resource. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: feed private endpoint provides private feed resolution.",
+    "explanation": "A private endpoint on the workspace feed resource lets clients resolve the feed over a private IP, which is part of AVD Private Link configuration.",
+    "docs": [
+      {
+        "label": "Private endpoints for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/private-link-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q247",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need the local admin password for a session host retrievable by helpdesk staff. Solution: store the password in the host pool's scaling plan settings. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: admin password belongs in Key Vault, not scaling plans.",
+    "explanation": "The session host local admin password is stored in an Azure Key Vault during host registration. Scaling plans hold autoscale schedules, not credentials.",
+    "docs": [
+      {
+        "label": "Session host local admin password",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/add-session-hosts-host-pool"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q248",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to sync users from on-premises AD DS to Entra ID using a lightweight agent that runs in Azure. Solution: deploy Microsoft Entra Cloud Sync. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: lightweight agent in Azure → Entra Cloud Sync.",
+    "explanation": "Microsoft Entra Cloud Sync uses lightweight provisioning agents to synchronize AD DS users and groups to Entra ID, an alternative to the full Connect Sync installation.",
+    "docs": [
+      {
+        "label": "Microsoft Entra Cloud Sync",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/hybrid/cloud-sync/what-is-cloud-sync"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q249",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to prevent users from reading or writing local drives from within their AVD session. Solution: enable drive redirection on the host pool. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: to block local drives, disable drive redirection.",
+    "explanation": "Drive redirection maps local drives into the session. To prevent local drive access you must disable drive redirection, not enable it.",
+    "docs": [
+      {
+        "label": "Customize RDP properties",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/customize-rdp-properties"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q250",
+    "domain": "Plan and implement identity and security",
+    "prompt": "You need to ensure only devices enrolled in Intune can launch AVD apps. Solution: create a Conditional Access policy requiring a compliant device. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: require compliant device via Conditional Access.",
+    "explanation": "A Conditional Access policy with the require compliant device grant control blocks non-compliant devices from accessing AVD. This is the standard enforcement mechanism.",
+    "docs": [
+      {
+        "label": "Conditional Access for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/set-up-mfa"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q251",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need users to retain their profile settings across session hosts in a pooled host pool. Which technology should you deploy?",
+    "options": [
+      "Deploy FSLogix profile containers",
+      "Deploy roaming profile shares",
+      "Deploy local user profiles",
+      "Deploy MSIX app attach"
+    ],
+    "answer": 0,
+    "hint": "Signal: roaming profile across pooled hosts → FSLogix containers.",
+    "explanation": "FSLogix profile containers store the full profile in a VHD/VHDX on a network share so it follows the user across any session host. Local profiles are per-host, and MSIX app attach manages apps, not profiles.",
+    "docs": [
+      {
+        "label": "FSLogix profile containers",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q252",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to store FSLogix profile containers on a storage backend that supports Entra Kerberos authentication for Entra ID-joined hosts. Which service should you use?",
+    "options": [
+      "Use Azure NetApp Files",
+      "Use Azure Files",
+      "Use Azure Blob storage",
+      "Use managed disk storage"
+    ],
+    "answer": 1,
+    "hint": "Signal: Entra Kerberos for profile shares → Azure Files.",
+    "explanation": "Azure Files supports Microsoft Entra Kerberos authentication for SMB, which works with Entra ID-joined session hosts for FSLogix. Azure NetApp Files requires an AD DS or Entra DS domain, and blobs/disks are not SMB shares.",
+    "docs": [
+      {
+        "label": "Azure Files for FSLogix",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-profile-container-azure-ad"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q253",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need the highest-performance block storage for FSLogix containers on AD DS-joined hosts. Which service should you choose?",
+    "options": [
+      "Choose Azure Blob storage",
+      "Choose Azure Files standard",
+      "Choose Azure NetApp Files",
+      "Choose managed disk storage"
+    ],
+    "answer": 2,
+    "hint": "Signal: highest FSLogix performance → Azure NetApp Files.",
+    "explanation": "Azure NetApp Files provides high-throughput, low-latency SMB volumes suited to large-scale FSLogix deployments on domain-joined hosts. Standard Azure Files is lower tier and blobs/disks are not SMB shares.",
+    "docs": [
+      {
+        "label": "Azure NetApp Files for FSLogix",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-fslogix-profile-container"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q254",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to grant a user data-plane access to read and write files in an Azure Files SMB share. Which RBAC role should you assign?",
+    "options": [
+      "Assign the Storage Blob Data Contributor role",
+      "Assign the Storage Account Contributor role",
+      "Assign the Storage Queue Data Contributor role",
+      "Assign the SMB Share Contributor role"
+    ],
+    "answer": 3,
+    "hint": "Signal: SMB share file read/write → Storage File Data SMB Share Contributor.",
+    "explanation": "Storage File Data SMB Share Contributor grants read, write, and delete on file shares over SMB. Blob and queue roles apply to other services, and Storage Account Contributor is a control-plane role.",
+    "docs": [
+      {
+        "label": "Azure built-in roles for files",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q255",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to package and deliver applications to AVD users without installing them on the image. Which technology should you use?",
+    "options": [
+      "Use MSIX app attach",
+      "Use FSLogix profile containers",
+      "Use Windows Update delivery",
+      "Use Azure Backup service"
+    ],
+    "answer": 0,
+    "hint": "Signal: deliver apps outside the image → MSIX app attach.",
+    "explanation": "MSIX app attach mounts MSIX packages from a network share and registers them dynamically, avoiding installs on the golden image. FSLogix handles profiles, not app delivery.",
+    "docs": [
+      {
+        "label": "MSIX app attach",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q256",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You store MSIX packages for app attach on a file share. Which storage service must host that share?",
+    "options": [
+      "Use Azure Blob storage",
+      "Use Azure Files",
+      "Use Azure Table storage",
+      "Use Azure Managed disks"
+    ],
+    "answer": 1,
+    "hint": "Signal: MSIX app attach requires an Azure Files share.",
+    "explanation": "MSIX app attach stages packages from an Azure Files SMB share that all session hosts can reach. Blobs, tables, and managed disks cannot host the required file share.",
+    "docs": [
+      {
+        "label": "Set up MSIX app attach",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-file-share"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q257",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need session hosts to read the Azure Files share using the host's managed identity instead of a storage key. Which storage feature should you enable?",
+    "options": [
+      "Enable blob public access",
+      "Enable static website hosting",
+      "Enable Entra Kerberos authentication",
+      "Enable storage account soft delete"
+    ],
+    "answer": 2,
+    "hint": "Signal: identity-based SMB instead of keys → Entra Kerberos.",
+    "explanation": "Microsoft Entra Kerberos authentication lets Entra ID-joined VMs mount Azure Files shares using their managed identity, eliminating shared storage account keys.",
+    "docs": [
+      {
+        "label": "Entra Kerberos for Azure Files",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-azure-active-directory-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q258",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to control which folders (like the Windows Search index) FSLogix stores in the profile container. Which file should you configure?",
+    "options": [
+      "Configure the Sysprep answer file",
+      "Configure a registry export file",
+      "Configure a Group Policy ADMX",
+      "Configure the Redirections.xml file"
+    ],
+    "answer": 3,
+    "hint": "Signal: folder redirection exclusions → Redirections.xml.",
+    "explanation": "Redirections.xml controls which profile folders are redirected into or excluded from the FSLogix container. The other files are unrelated to FSLogix folder selection.",
+    "docs": [
+      {
+        "label": "FSLogix profile container configuration",
+        "url": "https://learn.microsoft.com/en-us/fslogix/profile-container-configuration-reference"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q259",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to keep profile data available even if the primary Azure Files share becomes unavailable. Which FSLogix feature should you enable?",
+    "options": [
+      "Enable FSLogix Cloud Cache",
+      "Enable roaming user profiles",
+      "Enable local user profiles",
+      "Enable disk deduplication"
+    ],
+    "answer": 0,
+    "hint": "Signal: profile high availability across shares → Cloud Cache.",
+    "explanation": "FSLogix Cloud Cache mirrors profile writes to multiple storage locations so profiles stay available if one location fails. Roaming and local profiles do not provide this redundancy.",
+    "docs": [
+      {
+        "label": "FSLogix Cloud Cache",
+        "url": "https://learn.microsoft.com/en-us/fslogix/cloud-cache"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q260",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need a premium, SSD-backed Azure Files share for FSLogix to reduce profile sign-in latency. Which performance tier should you select?",
+    "options": [
+      "Select the standard HDD share",
+      "Select the premium file share",
+      "Select the cool blob tier",
+      "Select the archive blob tier"
+    ],
+    "answer": 1,
+    "hint": "Signal: SSD-backed, low-latency profile share → Premium file share.",
+    "explanation": "Premium Azure Files is SSD-backed and provisioned for high IOPS and low latency, recommended for FSLogix. Standard HDD and blob tiers are not suited to profile performance.",
+    "docs": [
+      {
+        "label": "Azure Files performance tiers",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-planning"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q261",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to give session hosts a single mount target for FSLogix that AD DS-joined VMs can authenticate to over SMB. Which object should you configure first?",
+    "options": [
+      "Configure a Log Analytics workspace",
+      "Configure a storage account",
+      "Configure a virtual network gateway",
+      "Configure a public IP address"
+    ],
+    "answer": 1,
+    "hint": "Signal: SMB share lives in a storage account.",
+    "explanation": "The Azure Files SMB share is created inside a storage account, which is the first object to configure. Log Analytics, gateways, and public IPs are not storage mount targets.",
+    "docs": [
+      {
+        "label": "Create a file share",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/create-file-share"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q262",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to apply share-level and NTFS permissions when session hosts join on-premises AD DS. Which authentication method should the storage account use?",
+    "options": [
+      "Use Entra Kerberos authentication",
+      "Use shared key authentication",
+      "Use anonymous access",
+      "Use Active Directory authentication"
+    ],
+    "answer": 3,
+    "hint": "Signal: on-premises AD DS hosts → Active Directory authentication for Files.",
+    "explanation": "For session hosts joined to on-premises AD DS, enable Active Directory authentication on the storage account so SMB uses Kerberos with NTFS ACLs. Entra Kerberos is for Entra ID-joined hosts.",
+    "docs": [
+      {
+        "label": "Azure Files Active Directory authentication",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q263",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to update an MSIX package used by app attach while users are connected. Which step should you take first?",
+    "options": [
+      "Stage the new package version",
+      "Delete the host pool resource",
+      "Recreate the workspace resource",
+      "Reboot the storage account"
+    ],
+    "answer": 0,
+    "hint": "Signal: update app attach by staging the new package version.",
+    "explanation": "To update an MSIX package, stage the new package version on the share and register it, then deregister the old one. Deleting or recreating resources is unnecessary.",
+    "docs": [
+      {
+        "label": "Manage MSIX app attach packages",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-powershell"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q264",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need the storage account to automatically provide identity-based access to Azure Files without manually adding each session host's identity. Which resource enables this?",
+    "options": [
+      "Enable storage shared key",
+      "Enable Entra Kerberos authentication",
+      "Enable a service endpoint",
+      "Enable a private endpoint"
+    ],
+    "answer": 1,
+    "hint": "Signal: automatic identity-based file access → Entra Kerberos.",
+    "explanation": "Entra Kerberos lets any Entra ID-joined VM in the tenant authenticate to Azure Files using its identity, with no per-host configuration. Shared keys and endpoints are not identity-based.",
+    "docs": [
+      {
+        "label": "Entra Kerberos for Azure Files",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-azure-active-directory-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q265",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need a consistent set of applications, settings, and profile data to follow a user across any pooled session host. Which two components should you combine?",
+    "options": [
+      "Combine local profiles and Sysprep",
+      "Combine FSLogix and MSIX attach",
+      "Combine roaming profiles and snapshots",
+      "Combine deduplication and backups"
+    ],
+    "answer": 1,
+    "hint": "Signal: profiles plus app delivery → FSLogix and MSIX app attach.",
+    "explanation": "FSLogix containers carry profile data while MSIX app attach delivers applications dynamically, together giving a consistent desktop across hosts. The other pairs do not provide both capabilities.",
+    "docs": [
+      {
+        "label": "FSLogix and MSIX app attach",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/fslogix-profile-containers"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q266",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to deploy FSLogix containers for Entra ID-joined hosts. Solution: enable Entra Kerberos on the storage account. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Entra Kerberos enables FSLogix on Entra ID-joined hosts.",
+    "explanation": "Entra Kerberos authentication is required for Entra ID-joined session hosts to mount Azure Files shares for FSLogix. This is the correct configuration.",
+    "docs": [
+      {
+        "label": "Entra Kerberos for Azure Files",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-azure-active-directory-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q267",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to attach an MSIX package to all hosts in a host pool. Solution: copy the package to each host's local disk and install it manually. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: app attach mounts from a shared file, not manual installs.",
+    "explanation": "MSIX app attach stages packages on a central Azure Files share and registers them on session hosts, not by manually installing on each host. Manual per-host installs do not meet app attach requirements.",
+    "docs": [
+      {
+        "label": "MSIX app attach",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q268",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to grant a user read-only access to files in an Azure Files share via SMB. Solution: assign Storage File Data SMB Share Reader. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: read-only SMB file access → Storage File Data SMB Share Reader.",
+    "explanation": "Storage File Data SMB Share Reader grants read access to file share data over SMB. This is the correct least-privilege role for read-only access.",
+    "docs": [
+      {
+        "label": "Azure built-in roles for files",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q269",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to mount an Azure Files share on Entra Domain Services-joined hosts using Kerberos. Solution: enable Entra Kerberos authentication on the storage account. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: Entra Domain Services hosts use AD DS authentication, not Entra Kerberos.",
+    "explanation": "Hosts joined to Microsoft Entra Domain Services authenticate to Azure Files through Active Directory (Entra DS) authentication, not Microsoft Entra Kerberos. Entra Kerberos is only for Entra ID-joined hosts.",
+    "docs": [
+      {
+        "label": "Azure Files identity authentication",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-domain-services-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q270",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need FSLogix profiles to stay available if the primary share region goes down. Solution: enable Cloud Cache with a second share in another region. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Cloud Cache mirrors to multiple shares for resilience.",
+    "explanation": "Cloud Cache writes profile data to multiple storage locations, including a second region, so profiles remain available during a share outage. This meets the requirement.",
+    "docs": [
+      {
+        "label": "FSLogix Cloud Cache",
+        "url": "https://learn.microsoft.com/en-us/fslogix/cloud-cache"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q271",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to exclude the OneDrive cache from the FSLogix container to reduce size. Solution: add an exclusion entry in Redirections.xml. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Redirections.xml defines folder exclusions.",
+    "explanation": "Redirections.xml controls which profile folders are excluded from the container, so adding the OneDrive cache there prevents it from bloating the VHDX.",
+    "docs": [
+      {
+        "label": "FSLogix Redirections.xml",
+        "url": "https://learn.microsoft.com/en-us/fslogix/profile-container-configuration-reference"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q272",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to host MSIX app attach packages on a network share reachable by session hosts. Solution: store the packages in an Azure Blob container. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: MSIX app attach requires Azure Files, not blob.",
+    "explanation": "MSIX app attach requires an Azure Files SMB share; Azure Blob containers cannot host the required share. Store the packages in an Azure Files share instead.",
+    "docs": [
+      {
+        "label": "MSIX app attach",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q273",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need the NTFS permissions on the share to be evaluated for AD DS-joined hosts. Solution: set only Azure RBAC on the share. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: AD DS hosts need both NTFS and share-level permissions.",
+    "explanation": "For AD DS (or Entra DS) authentication, both the share-level permission (RBAC) and NTFS ACLs are evaluated. Setting only RBAC skips the required NTFS layer.",
+    "docs": [
+      {
+        "label": "Azure Files identity authentication",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q274",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to stage an MSIX package for app attach using PowerShell. Solution: run Mount-DismImage then register the package. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: app attach staging uses Dism Mount-Image, not Mount-DismImage.",
+    "explanation": "MSIX app attach stages packages with commands such as Dism Mount-Image and the MSIX app attach PowerShell cmdlets; Mount-DismImage is not a real cmdlet. The stated action is incorrect.",
+    "docs": [
+      {
+        "label": "Stage MSIX packages",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/app-attach-powershell"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q275",
+    "domain": "Plan and implement user environments and apps",
+    "prompt": "You need to prevent profile bloat from the local Outlook OST file. Solution: use FSLogix Office container to redirect it. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: FSLogix Office container handles Outlook OST/cache.",
+    "explanation": "The FSLogix Office Container redirects Office cache data such as the Outlook OST, keeping it out of the main profile container. This reduces profile size and speeds sign-in.",
+    "docs": [
+      {
+        "label": "FSLogix Office container",
+        "url": "https://learn.microsoft.com/en-us/fslogix/office-container"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q276",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need a dashboard to monitor AVD performance, connection health, and user activity. Which Azure service should you use?",
+    "options": [
+      "Use Azure Service Health",
+      "Use AVD Insights",
+      "Use Azure Advisor",
+      "Use Azure Monitor metrics"
+    ],
+    "answer": 1,
+    "hint": "Signal: AVD performance and health dashboard → Azure Virtual Desktop Insights.",
+    "explanation": "Azure Virtual Desktop Insights (built on Azure Monitor) provides purpose-built workbooks for connection health, performance, and usage. The other services do not provide AVD-specific monitoring.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q277",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to store AVD host pool and session host diagnostics for long-term querying. Which resource must you create first?",
+    "options": [
+      "Create a storage account",
+      "Create a Log Analytics workspace",
+      "Create an Event Hub namespace",
+      "Create an Azure workbook"
+    ],
+    "answer": 1,
+    "hint": "Signal: diagnostics destination for querying → Log Analytics workspace.",
+    "explanation": "A Log Analytics workspace is the destination for AVD diagnostic settings and is required by Insights. Storage accounts and Event Hubs can also receive diagnostics but are not the query target.",
+    "docs": [
+      {
+        "label": "Diagnostic settings for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q278",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need host pool and workspace logs sent to Azure Monitor. What should you configure on each resource?",
+    "options": [
+      "Configure a diagnostic setting",
+      "Configure a network security group",
+      "Configure a managed identity",
+      "Configure an activity log alert"
+    ],
+    "answer": 0,
+    "hint": "Signal: send resource logs to Monitor → diagnostic setting.",
+    "explanation": "Diagnostic settings define which resource logs and metrics flow to Log Analytics, storage, or Event Hubs. NSGs and managed identities do not export logs.",
+    "docs": [
+      {
+        "label": "Diagnostic settings for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q279",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to verify that the AVD agent on a session host is healthy and connected to the service. Which check should you perform?",
+    "options": [
+      "Run a disk encryption check",
+      "Run a backup consistency check",
+      "Run a network latency test",
+      "Run a host health check"
+    ],
+    "answer": 3,
+    "hint": "Signal: agent health and connectivity → session host health check.",
+    "explanation": "The session host health check reports agent status, registration, and connectivity issues on each host. The other checks do not validate AVD agent health.",
+    "docs": [
+      {
+        "label": "Session host health check",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-health-check"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q280",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to patch session hosts at scale on a schedule and report compliance. Which Azure service should you use?",
+    "options": [
+      "Use Azure Backup",
+      "Use Azure Update Manager",
+      "Use Azure Site Recovery",
+      "Use Azure Front Door"
+    ],
+    "answer": 1,
+    "hint": "Signal: scheduled patching and compliance → Azure Update Manager.",
+    "explanation": "Azure Update Manager (formerly part of Update Management) schedules OS updates and reports patch compliance. Backup, Site Recovery, and Front Door do not patch VMs.",
+    "docs": [
+      {
+        "label": "Azure Update Manager",
+        "url": "https://learn.microsoft.com/en-us/azure/update-manager/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q281",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to protect session host data with app-consistent recovery points. Which Azure service should you use?",
+    "options": [
+      "Use Azure Monitor",
+      "Use Azure Backup",
+      "Use Azure Bastion",
+      "Use Azure Firewall"
+    ],
+    "answer": 1,
+    "hint": "Signal: app-consistent recovery points → Azure Backup.",
+    "explanation": "Azure Backup captures recovery points, including application-consistent ones, to restore session host VMs. Monitor, Bastion, and Firewall do not back up data.",
+    "docs": [
+      {
+        "label": "Azure Backup for VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q282",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "Users report RDP connection failures. You need to see the raw connection error events from the host pool. Where are these events sent first?",
+    "options": [
+      "Diagnostic setting destinations",
+      "Azure Policy assignments",
+      "Key vault secrets",
+      "Storage access keys"
+    ],
+    "answer": 0,
+    "hint": "Signal: connection errors flow through diagnostic settings.",
+    "explanation": "Connection and host registration events are emitted via diagnostic settings to Log Analytics, storage, or Event Hubs. Without a diagnostic setting, these AVD events are not collected.",
+    "docs": [
+      {
+        "label": "Diagnostic settings for AVD",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q283",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to scale session hosts automatically based on user load throughout the day. Which feature should you configure?",
+    "options": [
+      "Configure Azure Monitor alerts",
+      "Configure availability sets",
+      "Configure proximity placement groups",
+      "Configure a scaling plan"
+    ],
+    "answer": 3,
+    "hint": "Signal: automatic load-based scaling → scaling plan schedules.",
+    "explanation": "A scaling plan uses ramp-up, peak, ramp-down, and off-peak schedules to power hosts on and off as load changes. Monitor alerts and placement options do not autoscale AVD.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plan",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q284",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to identify which session host has the most active sessions during peak hours. Which metric should you query?",
+    "options": [
+      "Query VM CPU percentage",
+      "Query active session counts",
+      "Query disk read operations",
+      "Query network bytes sent"
+    ],
+    "answer": 1,
+    "hint": "Signal: active sessions per host → Session Host Active Sessions metric.",
+    "explanation": "The Session Host Active Sessions metric tracks concurrent sessions per host, revealing load distribution. CPU, disk, and network metrics do not count sessions.",
+    "docs": [
+      {
+        "label": "AVD monitoring data reference",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/monitor-virtual-desktop-reference"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q285",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to alert administrators when a session host becomes unhealthy. Which resource should you create?",
+    "options": [
+      "Create a storage account",
+      "Create a monitoring alert",
+      "Create a scaling plan",
+      "Create an app group"
+    ],
+    "answer": 1,
+    "hint": "Signal: alert on host health → Azure Monitor alert rule.",
+    "explanation": "An Azure Monitor alert rule on session host health signals administrators when a host is unhealthy. Storage, scaling plans, and app groups do not send health notifications.",
+    "docs": [
+      {
+        "label": "Azure Monitor alerts",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q286",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to track which users signed in to a host pool over the past 30 days for auditing. Where should you query this data?",
+    "options": [
+      "Query Log Analytics workspace",
+      "Query Azure Key Vault",
+      "Query Azure Advisor",
+      "Query Azure Service Health"
+    ],
+    "answer": 0,
+    "hint": "Signal: audit sign-in history via Log Analytics.",
+    "explanation": "Sign-in and connection events are collected in Log Analytics via diagnostic settings, where they can be queried with KQL. Key Vault, Advisor, and Service Health do not store sign-in logs.",
+    "docs": [
+      {
+        "label": "Diagnostics and Log Analytics",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q287",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to capture session host performance counters for AVD Insights. Which agent must be installed on each session host?",
+    "options": [
+      "Install the Azure Backup agent",
+      "Install the Network Watcher agent",
+      "Install the Site Recovery agent",
+      "Install the Azure Monitor agent"
+    ],
+    "answer": 3,
+    "hint": "Signal: performance counters → Azure Monitor agent.",
+    "explanation": "The Azure Monitor agent collects performance counters and events from session hosts for AVD Insights. The backup, network, and recovery agents serve different purposes.",
+    "docs": [
+      {
+        "label": "Enable Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q288",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to estimate how many session hosts are required for a planned user workload. Which activity should you perform?",
+    "options": [
+      "Run a disk defragmentation",
+      "Run capacity planning analysis",
+      "Run a password rotation",
+      "Run a backup restoration"
+    ],
+    "answer": 1,
+    "hint": "Signal: sizing hosts for workload → capacity planning analysis.",
+    "explanation": "Capacity planning maps user counts and per-user resource demand to host sizing and density to determine host count. The other options are unrelated maintenance tasks.",
+    "docs": [
+      {
+        "label": "Virtual machine sizing guidelines",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/virtual-machine-sizing-guidelines"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q289",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to roll out a new OS image to production hosts gradually. Which practice should you use?",
+    "options": [
+      "Deploy to all hosts at once",
+      "Back up all user profiles",
+      "Use a validation host pool first",
+      "Disable diagnostics during rollout"
+    ],
+    "answer": 2,
+    "hint": "Signal: test image on validation pool before rollout.",
+    "explanation": "Testing a new image in a validation host pool catches issues before production rollout. Deploying to all hosts at once skips safe validation.",
+    "docs": [
+      {
+        "label": "Host pool validation environment",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/configure-validation-environment"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q290",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to know if a session host's disk is nearly full before it affects users. Which metric should you alert on?",
+    "options": [
+      "Alert on CPU percentage",
+      "Alert on active sessions",
+      "Alert on network throughput",
+      "Alert on disk percentage"
+    ],
+    "answer": 3,
+    "hint": "Signal: near-full disk alert → Used Disk Percentage metric.",
+    "explanation": "Used Disk Percentage reveals storage exhaustion that can block profile writes and sign-ins. CPU, session, and network metrics do not measure disk capacity.",
+    "docs": [
+      {
+        "label": "AVD monitoring data reference",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/monitor-virtual-desktop-reference"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q291",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to view AVD Insights dashboards. Solution: create a Log Analytics workspace and configure diagnostic settings. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: Insights needs Log Analytics plus diagnostic settings.",
+    "explanation": "Azure Virtual Desktop Insights requires a Log Analytics workspace and diagnostic settings that route AVD data into it. Both steps are prerequisites.",
+    "docs": [
+      {
+        "label": "Enable Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q292",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to patch hosts without any maintenance window impact. Solution: enable automatic OS image upgrades on a scale set. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: AVD session hosts are not scale sets; use Update Manager.",
+    "explanation": "AVD session hosts are individual VMs, not a virtual machine scale set, so automatic OS image upgrades do not apply. Use Azure Update Manager or reimage instead.",
+    "docs": [
+      {
+        "label": "Azure Update Manager",
+        "url": "https://learn.microsoft.com/en-us/azure/update-manager/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q293",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to restore a session host VM to an earlier point in time after corruption. Solution: fail over the VM using Azure Site Recovery. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: point-in-time restore uses Azure Backup, not Site Recovery.",
+    "explanation": "Azure Site Recovery replicates VMs for disaster recovery failover, not point-in-time restoration. Use Azure Backup recovery points to restore a VM to an earlier state.",
+    "docs": [
+      {
+        "label": "Azure Backup for VMs",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q294",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to diagnose why a session host shows as unavailable in the host pool. Solution: run the session host health check. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: unavailable host → session host health check.",
+    "explanation": "The session host health check reports agent, registration, and connectivity problems that make a host appear unavailable. This is the first diagnostic step.",
+    "docs": [
+      {
+        "label": "Session host health check",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/troubleshoot-health-check"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q295",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to alert on a host pool when active sessions exceed a threshold. Solution: create an alert on a Log Analytics query. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: alert on session count via Log Analytics query.",
+    "explanation": "A log alert on a KQL query over the Log Analytics workspace can trigger when active sessions exceed a threshold. This is a valid monitoring pattern.",
+    "docs": [
+      {
+        "label": "Azure Monitor log alerts",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q296",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to collect sign-in events but avoid storing them long-term in Log Analytics. Solution: route diagnostics to an Event Hub only. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: Event Hub streams but does not store or query logs.",
+    "explanation": "An Event Hub streams diagnostics to other systems but does not store them for later querying. To collect and query sign-ins, send diagnostics to a Log Analytics workspace.",
+    "docs": [
+      {
+        "label": "Diagnostic settings destinations",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/diagnostics-log-analytics"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q297",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to verify patch compliance for session hosts after an update cycle. Solution: view the compliance report in Azure Backup. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: patch compliance reporting → Azure Update Manager.",
+    "explanation": "Azure Backup reports backup status, not patch compliance. Use Azure Update Manager to view patch compliance after updates run.",
+    "docs": [
+      {
+        "label": "Azure Update Manager",
+        "url": "https://learn.microsoft.com/en-us/azure/update-manager/overview"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q298",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to reduce costs when no users are connected on weekends. Solution: configure a scaling plan off-peak schedule with zero minimum hosts. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: off-peak schedule with minimum zero hosts cuts weekend cost.",
+    "explanation": "An off-peak schedule that allows the minimum host count to reach zero powers down all hosts when idle, reducing weekend cost. This is the correct scaling-plan configuration.",
+    "docs": [
+      {
+        "label": "Autoscale scaling plan",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/autoscale-scaling-plan"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q299",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need a single view of connection reliability and host performance together. Solution: use the Azure Virtual Desktop Insights workbook. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "hint": "Signal: combined reliability and performance view → Insights workbook.",
+    "explanation": "Azure Virtual Desktop Insights provides workbooks that combine connection reliability, host performance, and usage in one view. This meets the requirement.",
+    "docs": [
+      {
+        "label": "Azure Virtual Desktop Insights",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/insights"
+      }
+    ]
+  },
+  {
+    "id": "az-140-q300",
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "prompt": "You need to prevent host performance alerts from a scaling plan's morning ramp-up. Solution: disable the session host performance metric. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "hint": "Signal: scaling does not remove a core performance metric.",
+    "explanation": "Scaling plans control host power states, not which metrics are collected. To suppress transient alerts, tune alert thresholds or add a suppression window instead.",
+    "docs": [
+      {
+        "label": "Azure Monitor alerts",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+      }
+    ]
+  }
+]

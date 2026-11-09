@@ -55,6 +55,24 @@
     "accent": "#dc2626"
   },
   {
+    "id": "az-140",
+    "code": "AZ-140",
+    "name": "Azure Virtual Desktop Specialty",
+    "shortName": "Azure Virtual Desktop",
+    "role": "Virtualization Administrator",
+    "level": "Specialty",
+    "description": "Plan, deliver, manage, and monitor Azure Virtual Desktop experiences and remote apps for any device.",
+    "domains": [
+      "Plan and implement an Azure Virtual Desktop infrastructure",
+      "Plan and implement identity and security",
+      "Plan and implement user environments and apps",
+      "Monitor and maintain an Azure Virtual Desktop infrastructure"
+    ],
+    "examUrl": "https://learn.microsoft.com/en-us/credentials/certifications/exams/az-140/",
+    "studyGuideUrl": "https://aka.ms/AZ140-StudyGuide",
+    "accent": "#d946ef"
+  },
+  {
     "id": "ai-103",
     "code": "AI-103",
     "name": "Azure AI Apps and Agents Developer Associate",

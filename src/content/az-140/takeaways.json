@@ -1,0 +1,66 @@
+[
+  {
+    "domain": "Plan and implement an Azure Virtual Desktop infrastructure",
+    "summary": "Azure Virtual Desktop is organized around host pools of session host VMs, with application groups and workspaces controlling what users can launch. A golden image generalized with Sysprep and stored in an Azure Compute Gallery is the foundation for consistent session hosts, and scaling plans control cost by powering hosts on and off.",
+    "highYield": [
+      "Host pool types: pooled (shared, non-persistent) vs personal (dedicated, persistent with Direct assignment). Load balancing: breadth-first spreads sessions across hosts; depth-first fills one host before the next.",
+      "Golden image workflow: create source VM → install/configure apps and OS → Sysprep (generalize) → capture → store in Azure Compute Gallery → deploy session hosts. Generalize must happen before capture.",
+      "Azure Compute Gallery stores image definitions and versions, supports sharing across subscriptions/regions, and can also hold MSIX app-attach packages.",
+      "A scaling plan's schedule has ramp-up, peak, ramp-down, and off-peak phases with min/max host counts and a capacity threshold; set off-peak minimum to zero to shut everything down overnight.",
+      "Drain mode blocks new sessions but lets existing ones finish, and a host pool registration token lets a session host register itself when the AVD agent is installed."
+    ],
+    "memoryAids": [
+      "Golden image = Build → Sysprep → Capture → Store → Deploy.",
+      "Breadth = spread out; Depth = stack up (fill one host first).",
+      "Pooled = shared; Personal = dedicated (think 'Personal is Direct assignment')."
+    ]
+  },
+  {
+    "domain": "Plan and implement identity and security",
+    "summary": "Users authenticate with Microsoft Entra ID, while session hosts themselves require a domain (on-premises AD DS or managed Microsoft Entra Domain Services) for domain join and Kerberos. Private endpoints and Azure Bastion close the most common network-exposure gaps.",
+    "highYield": [
+      "Identity split: Entra ID authenticates users (cloud), AD DS or Entra Domain Services provides domain join, Kerberos/NTLM, LDAP, and Group Policy for the session hosts.",
+      "Microsoft Entra Domain Services gives you a managed domain (domain join, Kerberos, Group Policy) with no domain controllers to patch, ideal when there is no on-premises AD.",
+      "Microsoft Entra ID authentication for AVD enables Entra ID sign-in and single sign-on (including passwordless) to session hosts.",
+      "A private endpoint injects a private IP into your VNet over Private Link, keeping Azure Files or other PaaS traffic off the public internet.",
+      "Azure Bastion provides browser-based RDP/SSH to VMs without public IPs or open management ports."
+    ],
+    "memoryAids": [
+      "Entra ID = who you are (users); AD DS / Entra DS = where you land (domain-joined hosts).",
+      "Private endpoint = private IP in your VNet; Bastion = browser RDP with no public IP.",
+      "Entra Domain Services = 'AD as a managed service, no DCs to babysit.'"
+    ]
+  },
+  {
+    "domain": "Plan and implement user environments and apps",
+    "summary": "FSLogix profile containers on a supported SMB file share give users fast, roaming profiles including the Office cache. Choose premium Azure Files for most deployments and Azure NetApp Files for large-scale, high-I/O workloads, and deliver apps dynamically with MSIX app attach instead of reinstalling.",
+    "highYield": [
+      "FSLogix stores each user's full profile (including Office cache and search index) in a VHD(X) that is mounted at sign-in, eliminating slow roaming profiles.",
+      "FSLogix on Azure Files order: create storage account → create SMB share → configure permissions (RBAC / AD DS / Entra Kerberos) → join hosts to the domain → install & configure FSLogix → sign in and verify.",
+      "Premium Azure Files (SMB) is the default Microsoft recommendation; Azure NetApp Files is the enterprise, high-I/O choice for very large or demanding deployments.",
+      "MSIX app attach converts MSIX packages into VHD(X) images stored on a file share or gallery and attaches them to session hosts dynamically, enabling app updates without reimaging.",
+      "Storage must be reachable and authenticated (domain join or Entra Kerberos) before FSLogix can mount profile containers; private endpoints keep the traffic private."
+    ],
+    "memoryAids": [
+      "FSLogix = 'profiles on a VHD(X)' → account, share, permissions, join, install, verify.",
+      "Azure Files for most, Azure NetApp Files for enterprise scale.",
+      "MSIX app attach = package → VHD(X) → attach (never reinstall)."
+    ]
+  },
+  {
+    "domain": "Monitor and maintain an Azure Virtual Desktop infrastructure",
+    "summary": "Azure Virtual Desktop health and Insights, built on Azure Monitor and Log Analytics, surface session host status and performance so operations can alert and troubleshoot proactively. Session host health checks and diagnostic settings are the core telemetry sources.",
+    "highYield": [
+      "Session host health checks evaluate the agent, connectivity, OS state, and domain trust, reporting Available, Unavailable, or Shutdown plus a numeric health value.",
+      "Azure Virtual Desktop Insights is a workbook on Log Analytics that shows usage, connection reliability, performance, and user activity in one place.",
+      "Monitoring setup order: create Log Analytics workspace → enable AVD diagnostics on host pool and workspace → send session host performance data → open the Insights workbook → create alert rules.",
+      "Enable diagnostics on host pools and workspaces to capture connection and management data; session hosts additionally send performance counters.",
+      "Proactive alerting on Unavailable/unhealthy hosts catches problems before users report them."
+    ],
+    "memoryAids": [
+      "Log Analytics → Diagnostics → Performance data → Workbook → Alerts.",
+      "Health checks = agent, connectivity, OS, domain trust.",
+      "Insights = the 'dashboard' built on Azure Monitor + Log Analytics."
+    ]
+  }
+]
