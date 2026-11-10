@@ -323,15 +323,15 @@
       "Yes",
       "No"
     ],
-    "answer": 1,
-    "explanation": "MCP provides secure, audited tool access, but auditing and least privilege alone do not secure it. You also need authentication and authorization configured, which the plan omits.",
+    "answer": 0,
+    "explanation": "MCP provides secure, authenticated, and audited tool access, and least-privileged scope limits each agent to only the tools and permissions it needs. This meets the requirement.",
     "docs": [
       {
         "label": "Multi-agent patterns",
         "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
       }
     ],
-    "hint": "No — least privilege still requires authentication and authorization."
+    "hint": "Signal: secure + audited tool access → MCP with least-privilege"
   },
   {
     "id": "ai-500-q324",
