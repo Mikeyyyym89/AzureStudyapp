@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { courses } from "@/lib/content";
 import { isUnlocked, unlock, lock, sha256Hex } from "@/lib/store";
-import { ACCESS_CODE_HASH, APP_NAME, APP_TAGLINE } from "@/lib/config";
+import { ACCESS_CODE_HASH, APP_NAME, APP_TAGLINE, BETA_DISCLAIMER } from "@/lib/config";
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
@@ -87,6 +87,9 @@ export default function Home() {
             This is a private study space. Ask the person who shared this link
             for the access code.
           </p>
+          <p className="mt-3 border-t border-slate-100 pt-3 text-center text-xs text-amber-600">
+            {BETA_DISCLAIMER}
+          </p>
         </div>
       </div>
     );
@@ -167,6 +170,10 @@ export default function Home() {
             </Link>
           ))}
         </div>
+
+        <p className="mt-8 border-t border-slate-200 pt-6 text-center text-xs text-slate-400">
+          {BETA_DISCLAIMER}
+        </p>
       </main>
     </div>
   );
