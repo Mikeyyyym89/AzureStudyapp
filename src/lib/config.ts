@@ -36,3 +36,7 @@ export const REPORT_REPO = "Mikeyyyym89/AzureStudyapp";
 
 export const BETA_DISCLAIMER =
   "Beta project — results are not guaranteed. Shared privately with friends of Michael Myers.";
+
+export const SCORE_MIN = 100;
+export const SCORE_MAX = 1000;
+export const PASSING_SCORE = 700;
