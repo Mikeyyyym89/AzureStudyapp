@@ -332,14 +332,14 @@
   {
     "id": "az-104-q218",
     "domain": "Manage Azure identities and governance",
-    "prompt": "You need all new virtual machines to inherit the Cost Center tag from their resource group automatically. Solution: Assign an Azure Policy with the inherit effect for the Cost Center tag. Does the solution meet the goal?",
+    "prompt": "You need all new virtual machines to inherit the Cost Center tag from their resource group automatically. Solution: Assign an Azure Policy with the Modify effect (or the built-in \"Inherit a tag from the resource group\" policy) for the Cost Center tag. Does the solution meet the goal?",
     "options": [
       "Yes",
       "No"
     ],
     "answer": 0,
-    "hint": "Signal: inherit Cost Center tag → Azure Policy inherit effect → Yes.",
-    "explanation": "The inherit effect of Azure Policy copies the specified tag and value from the parent resource group (or subscription) to child resources when they are created or updated.",
+    "hint": "Signal: tag inheritance → Modify effect / built-in \"inherit tag\" policy",
+    "explanation": "The Modify effect (used by the built-in \"Inherit a tag from the resource group\" policy) copies the parent tag onto new resources. Azure Policy has no \"inherit\" effect — the supported effects are Append, Audit, Deny, Modify, and others.",
     "docs": [
       {
         "label": "Azure Policy inherit effect",

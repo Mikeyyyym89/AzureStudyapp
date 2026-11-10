@@ -13,7 +13,10 @@
     "explanation": "The Microsoft.Compute resource provider must be registered in the subscription before any VM can be created. A resource group, virtual network, and role assignment are later steps that do not resolve the unregistered provider.",
     "hint": "Signal: a resource provider must be registered before its resources are created.",
     "docs": [
-      { "label": "Azure resource providers and types", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types" }
+      {
+        "label": "Azure resource providers and types",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types"
+      }
     ]
   },
   {
@@ -30,7 +33,10 @@
     "explanation": "The Reader role grants read-only access at the assigned scope, and that access is inherited by child scopes. Contributor and Owner grant write access, and User Access Administrator manages role assignments.",
     "hint": "Signal: Reader grants read-only access at the assigned scope.",
     "docs": [
-      { "label": "Azure built-in roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" }
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
     ]
   },
   {
@@ -47,7 +53,10 @@
     "explanation": "New-AzResourceGroup creates a new Azure resource group. The other cmdlets create a VM, a storage account, or a virtual network instead.",
     "hint": "Signal: New-AzResourceGroup creates a resource group.",
     "docs": [
-      { "label": "Manage Azure resource groups", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal" }
+      {
+        "label": "Manage Azure resource groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/manage-resource-groups-portal"
+      }
     ]
   },
   {
@@ -64,7 +73,10 @@
     "explanation": "Each resource group needs its own Reader assignment because assigning at a parent scope would grant access beyond the two groups. Two assignments are the minimum.",
     "hint": "Signal: each resource group needs a separate scoped assignment.",
     "docs": [
-      { "label": "Azure built-in roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" }
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
     ]
   },
   {
@@ -81,19 +93,28 @@
     "explanation": "A Delete resource lock prevents deletion while still allowing read and update operations on the resource. A ReadOnly lock blocks updates, and tags and NSG rules do not prevent deletion.",
     "hint": "Signal: a delete lock blocks deletion but allows updates.",
     "docs": [
-      { "label": "Lock resources to prevent changes", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources" }
+      {
+        "label": "Lock resources to prevent changes",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
+      }
     ]
   },
   {
     "id": "az-104-q360",
     "domain": "Manage Azure identities and governance",
     "prompt": "A resource lock set on a resource group is inherited by all resources in that group. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "Resource locks applied at a parent scope are inherited by child resources and cannot be overridden at a lower scope. This is why a group-level lock protects all contained resources.",
     "hint": "Signal: locks inherit from parent scopes to child resources.",
     "docs": [
-      { "label": "Lock resources to prevent changes", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources" }
+      {
+        "label": "Lock resources to prevent changes",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/lock-resources"
+      }
     ]
   },
   {
@@ -110,7 +131,10 @@
     "explanation": "A policy definition must exist before it can be assigned to a scope or remediated. Assignment, remediation, and exemption are all later steps.",
     "hint": "Signal: a policy must be defined before it is assigned.",
     "docs": [
-      { "label": "What is Azure Policy", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" }
+      {
+        "label": "What is Azure Policy",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview"
+      }
     ]
   },
   {
@@ -127,7 +151,10 @@
     "explanation": "A single policy assignment at the root management group scope applies to every subscription in the tenant through inheritance. Separate assignments per subscription add overhead without benefit.",
     "hint": "Signal: the root management group reaches all subscriptions.",
     "docs": [
-      { "label": "What are Azure management groups", "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview" }
+      {
+        "label": "What are Azure management groups",
+        "url": "https://learn.microsoft.com/en-us/azure/governance/management-groups/overview"
+      }
     ]
   },
   {
@@ -144,7 +171,10 @@
     "explanation": "A single Reader role assignment scoped to the storage account grants read-only access to only that resource. Additional assignments would broaden or duplicate access.",
     "hint": "Signal: one Reader assignment scoped to the account is enough.",
     "docs": [
-      { "label": "Azure built-in roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" }
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
     ]
   },
   {
@@ -161,19 +191,28 @@
     "explanation": "Virtual Machine Contributor lets the engineer manage and restart VMs and view their data without granting network management rights. Network Contributor is the wrong scope, and the other roles do not allow VM management.",
     "hint": "Signal: Virtual Machine Contributor manages VMs but not networks.",
     "docs": [
-      { "label": "Azure built-in roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" }
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
     ]
   },
   {
     "id": "az-104-q365",
     "domain": "Manage Azure identities and governance",
     "prompt": "A user with the Reader role can delete resources in the assigned scope. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "The Reader role grants read-only access and cannot delete, create, or update resources. Deletion requires a role such as Contributor or Owner.",
     "hint": "Signal: Reader is read-only and cannot delete resources.",
     "docs": [
-      { "label": "Azure built-in roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" }
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
     ]
   },
   {
@@ -190,7 +229,10 @@
     "explanation": "Create a Microsoft Entra group first so the role can be assigned to the group once instead of to each user. Individual assignment is what you are trying to avoid, and the other steps do not enable group assignment.",
     "hint": "Signal: create a group first, then assign the role to it.",
     "docs": [
-      { "label": "Microsoft Entra groups", "url": "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups" }
+      {
+        "label": "Microsoft Entra groups",
+        "url": "https://learn.microsoft.com/en-us/entra/fundamentals/how-to-manage-groups"
+      }
     ]
   },
   {
@@ -207,7 +249,10 @@
     "explanation": "Storage Blob Data Contributor grants read and write access to blob data without account management rights. Storage Blob Data Reader is read-only, and the other roles target the account or a different service.",
     "hint": "Signal: Storage Blob Data Contributor grants blob data access only.",
     "docs": [
-      { "label": "Azure built-in roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" }
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
     ]
   },
   {
@@ -224,7 +269,10 @@
     "explanation": "Add both users to one group and assign the Reader role to that group once at the resource group scope, so one assignment is the minimum. Assigning per user would require two.",
     "hint": "Signal: one assignment to a group covers both users.",
     "docs": [
-      { "label": "Azure built-in roles", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" }
+      {
+        "label": "Azure built-in roles",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles"
+      }
     ]
   },
   {
@@ -241,19 +289,28 @@
     "explanation": "Tags organize resources and enable cost reporting by department, while an Azure Policy can require the tags on new resources. Management groups, locks, and naming conventions alone do not enforce tags.",
     "hint": "Signal: tags enable cost reporting, and a policy enforces them.",
     "docs": [
-      { "label": "Use tags to organize resources", "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources" }
+      {
+        "label": "Use tags to organize resources",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources"
+      }
     ]
   },
   {
     "id": "az-104-q370",
     "domain": "Manage Azure identities and governance",
     "prompt": "An Azure role assignment can be scoped to a single resource. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "Role assignments can be scoped to a management group, subscription, resource group, or an individual resource. This enables least-privilege access to a single resource.",
     "hint": "Signal: RBAC supports resource-level assignment scopes.",
     "docs": [
-      { "label": "What is Azure RBAC", "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" }
+      {
+        "label": "What is Azure RBAC",
+        "url": "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview"
+      }
     ]
   },
   {
@@ -270,7 +327,10 @@
     "explanation": "A blob container must be created before any blobs can be uploaded to it. Snapshots, SAS tokens, and soft delete are all later or unrelated steps.",
     "hint": "Signal: a container must exist before blobs are uploaded.",
     "docs": [
-      { "label": "Azure Blob Storage overview", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview" }
+      {
+        "label": "Azure Blob Storage overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview"
+      }
     ]
   },
   {
@@ -287,7 +347,10 @@
     "explanation": "Zone-redundant storage (ZRS) replicates data across three availability zones in one region, surviving a data center failure. LRS stays within one data center, and GRS or RA-GRS adds a secondary region you do not need.",
     "hint": "Signal: ZRS spans availability zones in one region.",
     "docs": [
-      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
     ]
   },
   {
@@ -304,7 +367,10 @@
     "explanation": "The Cool tier is for infrequently accessed data that must be available immediately, with lower storage cost than Hot. Archive requires rehydration and hours of delay, and Cold targets even rarer access.",
     "hint": "Signal: Cool balances lower cost with immediate access.",
     "docs": [
-      { "label": "Access tiers for blob data", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" }
+      {
+        "label": "Access tiers for blob data",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      }
     ]
   },
   {
@@ -321,7 +387,10 @@
     "explanation": "A single general-purpose v2 storage account can contain both blob containers and Azure Files shares, so one account is the minimum. Additional accounts add cost without benefit.",
     "hint": "Signal: one storage account holds blobs and file shares.",
     "docs": [
-      { "label": "Storage account overview", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview" }
+      {
+        "label": "Storage account overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview"
+      }
     ]
   },
   {
@@ -338,19 +407,28 @@
     "explanation": "The Archive tier is the lowest-cost option for rarely accessed data that tolerates hours of retrieval time. Hot, Cool, and Cold all provide immediate access at higher cost.",
     "hint": "Signal: Archive is cheapest and retrieval takes hours.",
     "docs": [
-      { "label": "Access tiers for blob data", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" }
+      {
+        "label": "Access tiers for blob data",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      }
     ]
   },
   {
     "id": "az-104-q376",
     "domain": "Implement and manage storage",
     "prompt": "Locally redundant storage (LRS) keeps three copies of your data in one data center. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "LRS replicates your data three times within a single data center in one region. This protects against drive and server failures but not a data center outage.",
     "hint": "Signal: LRS stores three copies in one data center.",
     "docs": [
-      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
     ]
   },
   {
@@ -367,7 +445,10 @@
     "explanation": "The storage account must first have AD DS authentication enabled and be joined to the domain before VMs can mount the share with domain credentials. Mounting and role assignment are later steps.",
     "hint": "Signal: AD authentication must be enabled before mounting.",
     "docs": [
-      { "label": "Enable AD DS authentication for Azure Files", "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable" }
+      {
+        "label": "Enable AD DS authentication for Azure Files",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/files/storage-files-identity-auth-active-directory-enable"
+      }
     ]
   },
   {
@@ -384,7 +465,10 @@
     "explanation": "A shared access signature (SAS) grants temporary, scoped access to specific storage resources without exposing the account key. Access keys and connection strings expose full account access.",
     "hint": "Signal: a SAS grants scoped, time-limited access.",
     "docs": [
-      { "label": "Shared access signatures overview", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview" }
+      {
+        "label": "Shared access signatures overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-sas-overview"
+      }
     ]
   },
   {
@@ -401,7 +485,10 @@
     "explanation": "Geo-redundant blob storage requires a general-purpose account, while a premium file share requires a separate FileStorage account, so two accounts are the minimum. They cannot be combined in one account.",
     "hint": "Signal: GRS blobs and premium files need separate accounts.",
     "docs": [
-      { "label": "Storage account overview", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview" }
+      {
+        "label": "Storage account overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-account-overview"
+      }
     ]
   },
   {
@@ -418,19 +505,28 @@
     "explanation": "A lifecycle management policy automates tier transitions and deletion based on rules such as age. Immutability, SAS, and soft delete do not automate tiering or scheduled deletion.",
     "hint": "Signal: lifecycle management automates tiering and deletion.",
     "docs": [
-      { "label": "Lifecycle management policy", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview" }
+      {
+        "label": "Lifecycle management policy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview"
+      }
     ]
   },
   {
     "id": "az-104-q381",
     "domain": "Implement and manage storage",
     "prompt": "Geo-redundant storage (GRS) replicates data to the secondary region synchronously. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "GRS replicates data to the secondary region asynchronously, not synchronously. This means there can be a recovery point objective before the latest writes are available in the secondary region.",
     "hint": "Signal: GRS uses asynchronous replication to the secondary region.",
     "docs": [
-      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
     ]
   },
   {
@@ -447,7 +543,10 @@
     "explanation": "A Storage Sync Service must be created first, then the agent is installed, the server is registered, and a sync group is created. The sync service is the top-level resource for File Sync.",
     "hint": "Signal: the Storage Sync Service is the first resource.",
     "docs": [
-      { "label": "Azure File Sync overview", "url": "https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction" }
+      {
+        "label": "Azure File Sync overview",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/file-sync/file-sync-introduction"
+      }
     ]
   },
   {
@@ -464,7 +563,10 @@
     "explanation": "Read-access geo-redundant storage (RA-GRS) provides read access to the secondary region during a primary region outage. GRS replicates but does not allow reading the secondary copy.",
     "hint": "Signal: RA-GRS adds read access to the secondary region.",
     "docs": [
-      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
     ]
   },
   {
@@ -481,7 +583,10 @@
     "explanation": "A single storage account configured with ZRS replicates the container across three availability zones in the region. Additional accounts are unnecessary.",
     "hint": "Signal: ZRS in one account spans three zones.",
     "docs": [
-      { "label": "Azure Storage redundancy", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy" }
+      {
+        "label": "Azure Storage redundancy",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-redundancy"
+      }
     ]
   },
   {
@@ -498,19 +603,28 @@
     "explanation": "A managed identity lets the VM authenticate to Azure resources without credentials in code, and Azure rotates the underlying secrets automatically. Keys, SAS, and connection strings require storing credentials.",
     "hint": "Signal: managed identities remove credentials and rotate automatically.",
     "docs": [
-      { "label": "Managed identities for Azure resources", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" }
+      {
+        "label": "Managed identities for Azure resources",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"
+      }
     ]
   },
   {
     "id": "az-104-q386",
     "domain": "Implement and manage storage",
     "prompt": "Blobs in the Archive tier are available for immediate read access. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "Archive-tier blobs are stored offline and must be rehydrated to Hot or Cool before they can be read, which can take hours. They are not available for immediate access.",
     "hint": "Signal: Archive blobs require rehydration before reading.",
     "docs": [
-      { "label": "Access tiers for blob data", "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview" }
+      {
+        "label": "Access tiers for blob data",
+        "url": "https://learn.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview"
+      }
     ]
   },
   {
@@ -527,7 +641,10 @@
     "explanation": "A VM requires a virtual network and subnet, so the VNet must be created before the VM. The disk, public IP, and the VM itself are later steps.",
     "hint": "Signal: a VM depends on a pre-existing virtual network.",
     "docs": [
-      { "label": "Virtual networks overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" }
+      {
+        "label": "Virtual networks overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview"
+      }
     ]
   },
   {
@@ -544,7 +661,10 @@
     "explanation": "The N-series provides dedicated GPUs for compute-intensive and machine learning workloads. D-series is general purpose, E-series is memory optimized, and B-series is burstable with no GPU.",
     "hint": "Signal: N-series includes dedicated GPUs.",
     "docs": [
-      { "label": "GPU optimized VM sizes", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-gpu" }
+      {
+        "label": "GPU optimized VM sizes",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-gpu"
+      }
     ]
   },
   {
@@ -561,7 +681,10 @@
     "explanation": "The Standard tier is the lowest tier that supports both autoscaling and deployment slots. Free, Shared, and Basic do not provide deployment slots or autoscaling.",
     "hint": "Signal: Standard is the lowest tier with slots and autoscale.",
     "docs": [
-      { "label": "Azure App Service plan overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans" }
+      {
+        "label": "Azure App Service plan overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans"
+      }
     ]
   },
   {
@@ -578,7 +701,10 @@
     "explanation": "Two fault domains are the minimum to survive one fault domain failure, since the other VM stays running. One fault domain cannot survive a failure.",
     "hint": "Signal: two fault domains provide one-failure protection.",
     "docs": [
-      { "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
     ]
   },
   {
@@ -595,19 +721,28 @@
     "explanation": "A virtual machine scale set deployed across availability zones scales automatically on CPU and survives a data center failure. A single VM, availability set, or container instance does not provide all three.",
     "hint": "Signal: a scale set across zones scales and survives failure.",
     "docs": [
-      { "label": "Virtual Machine Scale Sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview" }
+      {
+        "label": "Virtual Machine Scale Sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview"
+      }
     ]
   },
   {
     "id": "az-104-q392",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "An availability set distributes VMs across update domains to protect against planned maintenance. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "Update domains group VMs that can be rebooted together, so Azure updates one domain at a time during planned maintenance. This keeps other VMs running during updates.",
     "hint": "Signal: update domains isolate planned maintenance reboots.",
     "docs": [
-      { "label": "Availability sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview" }
+      {
+        "label": "Availability sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/availability-set-overview"
+      }
     ]
   },
   {
@@ -624,7 +759,10 @@
     "explanation": "The VM must first be generalized with Sysprep to remove machine-specific information before it can be captured. Deallocation, image definition, and disk cleanup are later steps.",
     "hint": "Signal: a VM must be generalized before capture.",
     "docs": [
-      { "label": "Generalize a VM", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/generalize" }
+      {
+        "label": "Generalize a VM",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/generalize"
+      }
     ]
   },
   {
@@ -641,7 +779,10 @@
     "explanation": "New-AzVM creates a new virtual machine. The other cmdlets create a resource group, a network interface, or a managed disk instead.",
     "hint": "Signal: New-AzVM creates a virtual machine.",
     "docs": [
-      { "label": "Create a VM with PowerShell", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-powershell" }
+      {
+        "label": "Create a VM with PowerShell",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/windows/quick-create-powershell"
+      }
     ]
   },
   {
@@ -658,7 +799,10 @@
     "explanation": "Two availability zones are the minimum to keep the app running if one zone fails. One zone cannot survive a failure, and more zones add cost.",
     "hint": "Signal: two zones provide one-zone fault tolerance.",
     "docs": [
-      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }
+      {
+        "label": "Availability zones overview",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
     ]
   },
   {
@@ -675,19 +819,28 @@
     "explanation": "Azure Container Instances runs containers on demand with per-second billing. App Service, scale sets, and AKS require provisioned resources that keep running.",
     "hint": "Signal: Container Instances bills per second and runs on demand.",
     "docs": [
-      { "label": "What is Azure Container Instances", "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview" }
+      {
+        "label": "What is Azure Container Instances",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-overview"
+      }
     ]
   },
   {
     "id": "az-104-q397",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "Deployment slots are available in the Free App Service plan tier. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "Deployment slots require the Standard, Premium, or Isolated App Service plan tier. They are not available in Free, Shared, or Basic tiers.",
     "hint": "Signal: slots require Standard tier or higher.",
     "docs": [
-      { "label": "Set up staging environments", "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots" }
+      {
+        "label": "Set up staging environments",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/deploy-staging-slots"
+      }
     ]
   },
   {
@@ -704,7 +857,10 @@
     "explanation": "The managed disk must be created before it can be attached to the VM and initialized. Initialization, attachment, and snapshots are later steps.",
     "hint": "Signal: the disk must be created before attaching.",
     "docs": [
-      { "label": "Attach a managed data disk", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/windows/attach-managed-disk-portal" }
+      {
+        "label": "Attach a managed data disk",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/windows/attach-managed-disk-portal"
+      }
     ]
   },
   {
@@ -721,7 +877,10 @@
     "explanation": "The B-series is burstable and ideal for workloads with intermittent usage, letting you accrue CPU credits at low cost. D, E, and N series run continuously at higher cost.",
     "hint": "Signal: B-series is burstable for variable workloads.",
     "docs": [
-      { "label": "Burstable VM sizes", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable" }
+      {
+        "label": "Burstable VM sizes",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/sizes-b-series-burstable"
+      }
     ]
   },
   {
@@ -738,7 +897,10 @@
     "explanation": "Two instances are the minimum to keep the app available when one instance is being maintained. A single instance provides no redundancy, and more instances add cost.",
     "hint": "Signal: two instances provide maintenance redundancy.",
     "docs": [
-      { "label": "Azure App Service plan overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans" }
+      {
+        "label": "Azure App Service plan overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/overview-hosting-plans"
+      }
     ]
   },
   {
@@ -755,19 +917,28 @@
     "explanation": "The Isolated tier runs in an App Service Environment with dedicated, single-tenant infrastructure and VNet integration. Basic, Standard, and Premium are shared, multi-tenant environments.",
     "hint": "Signal: Isolated runs in a dedicated App Service Environment.",
     "docs": [
-      { "label": "App Service Environment overview", "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview" }
+      {
+        "label": "App Service Environment overview",
+        "url": "https://learn.microsoft.com/en-us/azure/app-service/environment/overview"
+      }
     ]
   },
   {
     "id": "az-104-q402",
     "domain": "Deploy and manage Azure compute resources",
     "prompt": "A VM scale set can automatically increase its instance count based on CPU usage. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "Autoscale rules on a scale set can scale out instances based on metrics such as CPU usage. This is a core purpose of scale sets.",
     "hint": "Signal: scale sets autoscale on metrics like CPU.",
     "docs": [
-      { "label": "Virtual Machine Scale Sets overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview" }
+      {
+        "label": "Virtual Machine Scale Sets overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview"
+      }
     ]
   },
   {
@@ -784,7 +955,10 @@
     "explanation": "The subnet must be created before a VM can be placed into it. Creating the VM, assigning a public IP, and creating an NSG are later steps.",
     "hint": "Signal: the subnet must exist before the VM.",
     "docs": [
-      { "label": "Virtual networks overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" }
+      {
+        "label": "Virtual networks overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview"
+      }
     ]
   },
   {
@@ -801,7 +975,10 @@
     "explanation": "An application security group (ASG) groups VMs so one NSG rule can apply to all of them regardless of subnet. A network security group alone filters by IP or subnet, and public IPs and route tables are unrelated.",
     "hint": "Signal: ASGs group VMs for a single rule.",
     "docs": [
-      { "label": "Application security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups" }
+      {
+        "label": "Application security groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/application-security-groups"
+      }
     ]
   },
   {
@@ -818,7 +995,10 @@
     "explanation": "A VM with only a private IP can still reach the internet through Azure source network address translation. A public IP would make it reachable from the internet, which is not allowed here.",
     "hint": "Signal: private IP only keeps outbound access without inbound.",
     "docs": [
-      { "label": "Private IP addresses", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-addresses" }
+      {
+        "label": "Private IP addresses",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/private-ip-addresses"
+      }
     ]
   },
   {
@@ -835,7 +1015,10 @@
     "explanation": "Two VMs in the same region can communicate within a single virtual network, so one VNet is the minimum. More VNets add complexity and cost without benefit.",
     "hint": "Signal: one VNet can host both VMs in a region.",
     "docs": [
-      { "label": "Virtual networks overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" }
+      {
+        "label": "Virtual networks overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview"
+      }
     ]
   },
   {
@@ -852,19 +1035,28 @@
     "explanation": "Global VNet peering connects VNets across regions over the Microsoft backbone without a gateway. A site-to-site VPN and ExpressRoute target on-premises, and Bastion is for VM access.",
     "hint": "Signal: global peering links VNets across regions.",
     "docs": [
-      { "label": "Virtual network peering", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview" }
+      {
+        "label": "Virtual network peering",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview"
+      }
     ]
   },
   {
     "id": "az-104-q408",
     "domain": "Implement and manage virtual networking",
     "prompt": "A network security group can be associated with both a subnet and a network interface. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "An NSG can be associated with a subnet, a network interface, or both. Rules from both are applied, with NIC-level rules evaluated after subnet-level rules.",
     "hint": "Signal: NSGs attach to subnets and network interfaces.",
     "docs": [
-      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" }
+      {
+        "label": "Network security groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
+      }
     ]
   },
   {
@@ -881,7 +1073,10 @@
     "explanation": "Peered VNets must not have overlapping address spaces, so this must be verified before creating the peering. DNS, gateways, and route tables are configured after peering is established.",
     "hint": "Signal: peered VNets cannot have overlapping address spaces.",
     "docs": [
-      { "label": "Virtual network peering", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview" }
+      {
+        "label": "Virtual network peering",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview"
+      }
     ]
   },
   {
@@ -898,7 +1093,10 @@
     "explanation": "Application Gateway is a layer 7 load balancer that routes HTTP traffic by URL path. Azure Load Balancer operates at layer 4, and Traffic Manager and Front Door perform DNS or global routing.",
     "hint": "Signal: layer 7 path-based routing uses Application Gateway.",
     "docs": [
-      { "label": "What is Application Gateway", "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview" }
+      {
+        "label": "What is Application Gateway",
+        "url": "https://learn.microsoft.com/en-us/azure/application-gateway/overview"
+      }
     ]
   },
   {
@@ -915,7 +1113,10 @@
     "explanation": "Two subnets are the minimum to isolate the web tier from the database tier. One subnet would mix them, and more subnets are unnecessary.",
     "hint": "Signal: two subnets separate the web and data tiers.",
     "docs": [
-      { "label": "Virtual networks overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview" }
+      {
+        "label": "Virtual networks overview",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-networks-overview"
+      }
     ]
   },
   {
@@ -932,19 +1133,28 @@
     "explanation": "A virtual network service endpoint routes traffic to Azure Storage over the Microsoft backbone. VPN gateways, NAT gateways, and Firewall do not provide this private service access.",
     "hint": "Signal: a service endpoint uses the Microsoft backbone.",
     "docs": [
-      { "label": "Virtual network service endpoints", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview" }
+      {
+        "label": "Virtual network service endpoints",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-service-endpoints-overview"
+      }
     ]
   },
   {
     "id": "az-104-q413",
     "domain": "Implement and manage virtual networking",
     "prompt": "VNet peering routes traffic through the public internet by default. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "VNet peering routes traffic over the Microsoft backbone network, not the public internet. Traffic between peered VNets stays on Azure infrastructure.",
     "hint": "Signal: peering uses the Microsoft backbone, not the internet.",
     "docs": [
-      { "label": "Virtual network peering", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview" }
+      {
+        "label": "Virtual network peering",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview"
+      }
     ]
   },
   {
@@ -961,7 +1171,10 @@
     "explanation": "The virtual network gateway must be created first; then the local network gateway and connection are configured. The on-premises device is configured last.",
     "hint": "Signal: the VNet gateway is the first VPN resource.",
     "docs": [
-      { "label": "About VPN Gateway", "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways" }
+      {
+        "label": "About VPN Gateway",
+        "url": "https://learn.microsoft.com/en-us/azure/vpn-gateway/vpn-gateway-about-vpngateways"
+      }
     ]
   },
   {
@@ -978,7 +1191,10 @@
     "explanation": "A private DNS zone must be created before you can add records or link it to the virtual network. Creating records, linking the VNet, and configuring VMs are later steps.",
     "hint": "Signal: the zone must exist before records or links.",
     "docs": [
-      { "label": "Azure Private DNS overview", "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview" }
+      {
+        "label": "Azure Private DNS overview",
+        "url": "https://learn.microsoft.com/en-us/azure/dns/private-dns-overview"
+      }
     ]
   },
   {
@@ -995,7 +1211,10 @@
     "explanation": "A single NAT gateway can serve every subnet in a VNet, so one NAT gateway is the minimum. It provides outbound connectivity without exposing the VMs to inbound traffic.",
     "hint": "Signal: one NAT gateway serves all subnets in a VNet.",
     "docs": [
-      { "label": "What is Azure NAT Gateway", "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-overview" }
+      {
+        "label": "What is Azure NAT Gateway",
+        "url": "https://learn.microsoft.com/en-us/azure/nat-gateway/nat-overview"
+      }
     ]
   },
   {
@@ -1012,19 +1231,28 @@
     "explanation": "Azure Firewall is a managed, stateful firewall that filters traffic with threat intelligence and FQDN rules. NSGs filter by IP and port only, and route tables and DDoS Protection do not filter by FQDN.",
     "hint": "Signal: Azure Firewall adds FQDN and threat filtering.",
     "docs": [
-      { "label": "What is Azure Firewall", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+      {
+        "label": "What is Azure Firewall",
+        "url": "https://learn.microsoft.com/en-us/azure/firewall/overview"
+      }
     ]
   },
   {
     "id": "az-104-q418",
     "domain": "Implement and manage virtual networking",
     "prompt": "An application security group is used to filter traffic, while a network security group groups VMs for rules. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "This statement is reversed. A network security group filters traffic, while an application security group groups VMs so an NSG rule can reference them.",
     "hint": "Signal: NSGs filter, and ASGs group VMs.",
     "docs": [
-      { "label": "Network security groups", "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" }
+      {
+        "label": "Network security groups",
+        "url": "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview"
+      }
     ]
   },
   {
@@ -1041,7 +1269,10 @@
     "explanation": "A Log Analytics workspace must be created first to receive and store the collected data. Enabling diagnostics, creating alerts, and installing agents are later steps.",
     "hint": "Signal: a workspace is required before collecting data.",
     "docs": [
-      { "label": "Log Analytics workspace overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview" }
+      {
+        "label": "Log Analytics workspace overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview"
+      }
     ]
   },
   {
@@ -1058,7 +1289,10 @@
     "explanation": "A Recovery Services vault stores and manages Azure VM backups. Storage accounts, Log Analytics workspaces, and Key Vaults serve different purposes.",
     "hint": "Signal: backups are stored in a Recovery Services vault.",
     "docs": [
-      { "label": "Recovery Services vault overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview" }
+      {
+        "label": "Recovery Services vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview"
+      }
     ]
   },
   {
@@ -1075,7 +1309,10 @@
     "explanation": "Metrics are numerical values collected at near-real-time frequency, such as CPU usage. Logs and traces are event-based and not the fastest path for minute-level performance data.",
     "hint": "Signal: metrics give near-real-time numeric data.",
     "docs": [
-      { "label": "Azure Monitor Metrics overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-platform-metrics" }
+      {
+        "label": "Azure Monitor Metrics overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/data-platform-metrics"
+      }
     ]
   },
   {
@@ -1092,7 +1329,10 @@
     "explanation": "A Recovery Services vault is regional, and backup data stays in the vault's region, so each region needs its own vault. Two vaults are the minimum.",
     "hint": "Signal: a vault is regional, so two regions need two.",
     "docs": [
-      { "label": "Recovery Services vault overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview" }
+      {
+        "label": "Recovery Services vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview"
+      }
     ]
   },
   {
@@ -1109,19 +1349,28 @@
     "explanation": "A metric alert rule evaluates the CPU metric over a five-minute window and triggers an action group that sends email. Log, activity, and resource health rules do not match this numeric threshold.",
     "hint": "Signal: a CPU threshold over time is a metric alert.",
     "docs": [
-      { "label": "Azure Monitor alerts overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview" }
+      {
+        "label": "Azure Monitor alerts overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-overview"
+      }
     ]
   },
   {
     "id": "az-104-q424",
     "domain": "Monitor and maintain Azure resources",
     "prompt": "The Azure activity log records control-plane operations such as creating and deleting resources. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "The activity log records control-plane (management) operations such as creating, updating, and deleting resources. It does not capture guest OS data.",
     "hint": "Signal: the activity log records management-plane operations.",
     "docs": [
-      { "label": "Azure Monitor activity log", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log" }
+      {
+        "label": "Azure Monitor activity log",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/activity-log"
+      }
     ]
   },
   {
@@ -1138,7 +1387,10 @@
     "explanation": "An action group defines the email recipients, so it must be created before the alert rule references it. The alert rule, metric, and query are later or separate steps.",
     "hint": "Signal: the action group holds the email notification.",
     "docs": [
-      { "label": "Action groups", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups" }
+      {
+        "label": "Action groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
     ]
   },
   {
@@ -1155,19 +1407,28 @@
     "explanation": "Azure Advisor provides cost, security, and reliability recommendations in a single view. Monitor, Policy, and Backup each address only one of these areas.",
     "hint": "Signal: Advisor recommends cost, security, and reliability.",
     "docs": [
-      { "label": "What is Azure Advisor", "url": "https://learn.microsoft.com/en-us/azure/advisor/advisor-overview" }
+      {
+        "label": "What is Azure Advisor",
+        "url": "https://learn.microsoft.com/en-us/azure/advisor/advisor-overview"
+      }
     ]
   },
   {
     "id": "az-104-q427",
     "domain": "Monitor and maintain Azure resources",
     "prompt": "A single Log Analytics workspace can collect diagnostics from all VMs in a subscription. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 0,
     "explanation": "One Log Analytics workspace can collect diagnostics from VMs across a subscription, as long as their diagnostic settings point to that workspace. This is a common cost-saving pattern.",
     "hint": "Signal: one workspace can collect from many VMs.",
     "docs": [
-      { "label": "Log Analytics workspace overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview" }
+      {
+        "label": "Log Analytics workspace overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview"
+      }
     ]
   },
   {
@@ -1184,19 +1445,28 @@
     "explanation": "A Recovery Services vault with GRS stores backup data in a secondary region, and the backup policy controls the 35-day retention. The other options do not provide geo-redundant backups.",
     "hint": "Signal: a GRS vault replicates backups to a second region.",
     "docs": [
-      { "label": "Recovery Services vault overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview" }
+      {
+        "label": "Recovery Services vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview"
+      }
     ]
   },
   {
     "id": "az-104-q429",
     "domain": "Monitor and maintain Azure resources",
     "prompt": "Azure Backup requires you to manually install a backup agent on Azure VMs before you can back them up. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "For Azure VMs, the backup extension is installed automatically when you enable backup, so no manual agent installation is required. The MARS agent is used for on-premises servers instead.",
     "hint": "Signal: Azure VM backup installs its extension automatically.",
     "docs": [
-      { "label": "How Azure VM backup works", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction" }
+      {
+        "label": "How Azure VM backup works",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-vms-introduction"
+      }
     ]
   },
   {
@@ -1213,7 +1483,10 @@
     "explanation": "A Recovery Services vault must be created first to hold the backups and provide vault credentials. Installing the MARS agent, registering the server, and running backups follow.",
     "hint": "Signal: the vault is created before the agent is installed.",
     "docs": [
-      { "label": "Recovery Services vault overview", "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview" }
+      {
+        "label": "Recovery Services vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/backup/backup-azure-recovery-services-vault-overview"
+      }
     ]
   },
   {
@@ -1230,7 +1503,10 @@
     "explanation": "Separating the two teams' data requires one workspace per team, so two workspaces are the minimum. One workspace would mix their data.",
     "hint": "Signal: separate data per team needs one workspace each.",
     "docs": [
-      { "label": "Log Analytics workspace overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview" }
+      {
+        "label": "Log Analytics workspace overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview"
+      }
     ]
   },
   {
@@ -1247,7 +1523,10 @@
     "explanation": "One action group can contain multiple notification targets, so it can notify both teams and be reused by all three alert rules. More action groups add cost without benefit.",
     "hint": "Signal: one action group can notify multiple recipients.",
     "docs": [
-      { "label": "Action groups", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups" }
+      {
+        "label": "Action groups",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
     ]
   },
   {
@@ -1264,19 +1543,28 @@
     "explanation": "Azure Monitor collects VM performance data, detects anomalies through alerts, and lets you query telemetry with Kusto Query Language in Log Analytics. The other services do not provide all of these capabilities.",
     "hint": "Signal: Azure Monitor queries telemetry and detects anomalies.",
     "docs": [
-      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+      {
+        "label": "Azure Monitor overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview"
+      }
     ]
   },
   {
     "id": "az-104-q434",
     "domain": "Monitor and maintain Azure resources",
     "prompt": "A metric alert rule can use a Log Analytics query as its condition. Is this correct?",
-    "options": ["Yes", "No"],
+    "options": [
+      "Yes",
+      "No"
+    ],
     "answer": 1,
     "explanation": "A metric alert rule uses a metric, not a log query, as its condition. A Log Analytics query is used by a log alert rule instead.",
     "hint": "Signal: metric alerts use metrics; log alerts use queries.",
     "docs": [
-      { "label": "Types of Azure Monitor alerts", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types" }
+      {
+        "label": "Types of Azure Monitor alerts",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/alerts-types"
+      }
     ]
   }
 ]
