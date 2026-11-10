@@ -1,0 +1,1570 @@
+[
+  {
+    "id": "ai-200-q307",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are deploying a containerized inference API to Azure Container Apps. The image will be stored in a new Azure Container Registry, and no Azure resources have been created yet. What should you do FIRST?",
+    "options": [
+      "Create the container registry",
+      "Push the image to the registry",
+      "Create the container app resource",
+      "Deploy the app from the registry"
+    ],
+    "answer": 0,
+    "explanation": "You must create the Azure Container Registry before you can build and push an image to it. Both the push and the deployment depend on the registry already existing.",
+    "hint": "A registry must exist before any image can be pushed to it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-intro"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q308",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are using an ACR Task to build and push an image from a Dockerfile you already wrote. What should you do FIRST before the task can run?",
+    "options": [
+      "Tag the local image",
+      "Sign in to the registry",
+      "Run the task build",
+      "Create a container group"
+    ],
+    "answer": 1,
+    "explanation": "You must sign in to the registry before running a task that pushes to it. Tagging and building the image happen after authentication succeeds.",
+    "hint": "You must authenticate to the registry before a task can push to it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q309",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are enabling autoscaling for a Container App that reads an Azure Storage queue. You must define the queue-length scale rule and its thresholds. What should you create FIRST?",
+    "options": [
+      "Add the queue scale rule",
+      "Set the maximum replicas",
+      "Create the storage queue",
+      "Deploy the app revision"
+    ],
+    "answer": 2,
+    "explanation": "The Storage queue must be created first so the queue-length scale rule has a target to measure. The scale rule, replica limits, and deployment all follow.",
+    "hint": "The queue must exist before a queue-length scale rule can target it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q310",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "An AKS cluster must pull images from a private registry without stored credentials. Before you grant the cluster access, what should you do FIRST?",
+    "options": [
+      "Enable the registry admin",
+      "Attach ACR to AKS",
+      "Create a role assignment",
+      "Assign a managed identity"
+    ],
+    "answer": 3,
+    "explanation": "Create or assign a managed identity to the cluster first, because a role assignment can only target an identity that already exists. Granting the ACR pull role comes after.",
+    "hint": "A managed identity must exist before you can assign it a role.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication-managed-identity"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q311",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are creating the first Azure Container Registry in a subscription that has never used the service. Before any registry can be created, what must you do FIRST?",
+    "options": [
+      "Create a resource group",
+      "Register the resource provider",
+      "Assign a subscription-level role",
+      "Generate an access token"
+    ],
+    "answer": 1,
+    "explanation": "The Microsoft.ContainerRegistry resource provider must be registered in the subscription before you can create a registry. A resource group and roles come later.",
+    "hint": "The container registry resource provider must be registered first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/resource-providers-and-types"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q312",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You must build a container image from source code in Azure without a local Docker daemon. Which command should you use?",
+    "options": [
+      "az acr import",
+      "docker build",
+      "az acr build",
+      "az container create"
+    ],
+    "answer": 2,
+    "explanation": "az acr build runs an ACR Task that builds an image in the cloud from source, so no local Docker daemon is required. az acr import copies existing images and does not build from source.",
+    "hint": "az acr build runs a cloud build from source without Docker installed.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tutorial-quick-task"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q313",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A Container App must scale based on the length of an Azure Storage queue. Which scaler type should the scale rule use?",
+    "options": [
+      "Azure queue scaler",
+      "CPU utilization scaler",
+      "Azure Service Bus scaler",
+      "HTTP request scaler"
+    ],
+    "answer": 0,
+    "explanation": "The Azure queue scaler maps Storage queue length to replica count. Service Bus, CPU, and HTTP scalers target different metrics and would not react to queue depth.",
+    "hint": "Storage queue length uses the Azure queue KEDA scaler.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q314",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You need a container job that starts each time a message arrives in a queue and stops when it finishes. Which Container Apps job trigger should you use?",
+    "options": [
+      "A scheduled job",
+      "A manual job",
+      "A continuously running app",
+      "An event-driven job"
+    ],
+    "answer": 3,
+    "explanation": "An event-driven job starts when a configured event such as a queue message occurs and stops when complete. Scheduled and manual jobs use time or explicit triggers instead.",
+    "hint": "Queue messages start an event-driven job, which stops when finished.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/jobs"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q315",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A Container App must retrieve a secret stored in Azure Key Vault and inject it as an environment variable. Which reference type should you use in the secret definition?",
+    "options": [
+      "A plaintext secret value",
+      "A Key Vault reference",
+      "A Dapr component",
+      "A configuration map"
+    ],
+    "answer": 1,
+    "explanation": "A secret in Container Apps can store a Key Vault reference URI instead of a plaintext value, retrieving the secret at runtime. Storing a plaintext value would expose the secret.",
+    "hint": "Container Apps secrets can reference a Key Vault secret by URI.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/manage-secrets"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q316",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A container image must be pushed to ACR from a CI pipeline without storing the registry admin password. Solution: Authenticate the pipeline using OpenID Connect federation with a managed identity. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "OpenID Connect federation lets the pipeline exchange a token for registry access without storing any password. This meets the goal.",
+    "hint": "OIDC federation authenticates the pipeline without stored passwords.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q317",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You deploy a web container and a logging sidecar that must share a network namespace and lifecycle. To minimize cost, what is the MINIMUM number of container groups required?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "A single container group can host both containers, which then share a network namespace and lifecycle. Using one group also minimizes cost.",
+    "hint": "One container group hosts both containers and shares the network namespace.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q318",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A Container App must scale to zero when no requests arrive. What is the MINIMUM number of replicas you should configure?",
+    "options": [
+      "One",
+      "Two",
+      "Zero",
+      "Three"
+    ],
+    "answer": 2,
+    "explanation": "Configuring the minimum replica count to zero lets the app remove all instances when idle. Any nonzero minimum prevents scale-to-zero.",
+    "hint": "Scale-to-zero requires a minimum replica count of zero.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/scale-app"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q319",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You are defining a container group that must be valid and runnable. What is the MINIMUM number of containers a container group can contain?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "A container group must contain at least one container to be valid; additional containers are optional. One is the valid minimum.",
+    "hint": "A container group requires at least one container to be valid.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-instances/container-instances-container-groups"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q320",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "An AKS node pool must run a Deployment with three replicas that must each land on a separate node. What is the MINIMUM number of nodes required?",
+    "options": [
+      "One",
+      "Two",
+      "Twelve",
+      "Three"
+    ],
+    "answer": 3,
+    "explanation": "Each replica needs its own node, so three replicas placed on separate nodes require at least three nodes. Fewer nodes would force replicas to share nodes.",
+    "hint": "Three replicas on separate nodes need three nodes.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/concepts-scale"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q321",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "You must run a workload across two Azure regions and replicate the container image to each region for low-latency pulls. What is the MINIMUM number of registry replicas you should configure?",
+    "options": [
+      "One",
+      "Three",
+      "Two",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "You need one registry replica per region for local low-latency pulls, so two regions require two replicas. A single replica serves only one region.",
+    "hint": "One replica per region, so two regions need two replicas.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-geo-replication"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q322",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A team needs a container platform that scales to zero when idle, scales on queue depth, and routes traffic between multiple revisions. Which service meets all requirements?",
+    "options": [
+      "Azure Container Apps",
+      "Azure Kubernetes Service",
+      "Azure Container Instances",
+      "Azure Service Fabric"
+    ],
+    "answer": 0,
+    "explanation": "Container Apps provides KEDA-driven scale-to-zero, queue-based scaling, and revision traffic splitting. The other options lack one or more of these capabilities.",
+    "hint": "Container Apps combines scale-to-zero, KEDA scaling, and revision routing.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q323",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A solution must pull images from a private registry, authenticate without stored secrets, and avoid manual credential rotation. Which approach meets all requirements?",
+    "options": [
+      "The registry admin account",
+      "A Docker config secret",
+      "An embedded access key",
+      "A system-assigned identity"
+    ],
+    "answer": 3,
+    "explanation": "A system-assigned managed identity grants pull access without stored credentials and requires no manual rotation. Admin accounts, config secrets, and keys all store or hardcode credentials.",
+    "hint": "Managed identities authenticate without secrets and need no rotation.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-registry/container-registry-authentication-managed-identity"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q324",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A batch job must run on a fixed schedule, not run continuously, and incur no cost when idle. Solution: Deploy the job as a scheduled Container Apps job. Does this meet all the requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A scheduled Container Apps job runs only on its CRON schedule and stops between runs, so it incurs no cost while idle. This meets all the requirements.",
+    "hint": "Scheduled jobs run on a CRON schedule and stop when finished.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/jobs"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q325",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "A Container App must be reachable only from inside its virtual network and never over the public internet. Solution: Enable external ingress. Does this meet all the requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "External ingress exposes the app to the public internet, which violates the requirement. Internal-only ingress is required to keep the app private.",
+    "hint": "External ingress exposes the app publicly; internal ingress is private.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/container-apps/ingress"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q326",
+    "domain": "Develop containerized solutions on Azure",
+    "prompt": "An AKS workload must scale pods on CPU usage and add nodes when pods cannot be scheduled. Solution: Enable only the Horizontal Pod Autoscaler. Does this meet all the requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The Horizontal Pod Autoscaler scales pod replicas but cannot add nodes. The cluster autoscaler is also required to scale the node pool when pods are unschedulable.",
+    "hint": "HPA scales pods, but the cluster autoscaler adds nodes.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q327",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are building a RAG solution that stores chat documents in Azure Cosmos DB for NoSQL and enables vector search. You have created no resources yet. What should you do FIRST?",
+    "options": [
+      "Create the Cosmos DB account",
+      "Create the database container",
+      "Define the vector embedding policy",
+      "Ingest the document embeddings"
+    ],
+    "answer": 0,
+    "explanation": "You must create the Cosmos DB account before you can create a database and container. Vector policies and data ingestion come later.",
+    "hint": "The Cosmos DB account must exist before any container or policy.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/quickstart-portal"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q328",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are enabling vector search in a Cosmos DB container that stores embeddings and already has a vector field. What should you do FIRST so queries can use the index?",
+    "options": [
+      "Run a similarity query",
+      "Define the vector policy",
+      "Insert the vector embeddings",
+      "Enable the autoscale feature"
+    ],
+    "answer": 1,
+    "explanation": "Define the container's vector embedding policy (dimensions, path, and distance function) first so the vector index is built and queries can use it. Querying before the policy is defined fails.",
+    "hint": "The vector embedding policy must be defined before indexed queries work.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q329",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are setting up a change feed processor in Cosmos DB. Before the processor can start, which resource must you create FIRST?",
+    "options": [
+      "The change handler",
+      "The client SDK",
+      "The lease container",
+      "The stored procedure"
+    ],
+    "answer": 2,
+    "explanation": "The change feed processor requires a lease container to store checkpoints, so it must be created before the processor starts. The handler is implemented afterward.",
+    "hint": "The processor requires a lease container before it can start.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/change-feed-processor"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q330",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are storing embeddings in Azure Database for PostgreSQL using pgvector. Before you can create a vector column, what must you do FIRST?",
+    "options": [
+      "Create the table",
+      "Insert the vectors",
+      "Build the vector index",
+      "Enable the extension"
+    ],
+    "answer": 3,
+    "explanation": "You must enable the vector extension (CREATE EXTENSION vector) before the vector data type is available. The table and index come after the extension is enabled.",
+    "hint": "The pgvector extension must be enabled before vector types exist.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q331",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are adding vector similarity search to Azure Cache for Redis. Before storing any vectors, what should you do FIRST?",
+    "options": [
+      "Load the vectors",
+      "Create the index",
+      "Run a search",
+      "Add the hash keys"
+    ],
+    "answer": 1,
+    "explanation": "Create the RediSearch vector index first so vectors can be stored and searched. Loading and querying vectors depend on the index existing.",
+    "hint": "A RediSearch vector index must be created before vector search works.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-tutorial-vector-similarity"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q332",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A single-region Cosmos DB account needs consistent read-your-writes behavior for one client while lowering latency versus Strong. Which default consistency level should you select?",
+    "options": [
+      "Strong",
+      "Eventual",
+      "Session",
+      "Consistent Prefix"
+    ],
+    "answer": 2,
+    "explanation": "Session consistency is the default level and provides read-your-writes guarantees within a session while reducing latency compared to Strong. Eventual and Consistent Prefix do not guarantee read-your-writes.",
+    "hint": "Session is the default and gives read-your-writes per session.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q333",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You use pgvector and must rank results by semantic relevance where higher values mean more similar. Which operator should you use for maximum inner product?",
+    "options": [
+      "The inner product operator",
+      "The cosine distance operator",
+      "The L2 distance operator",
+      "The Hamming operator"
+    ],
+    "answer": 0,
+    "explanation": "The inner product operator <#> returns a higher score for more similar vectors, matching semantic relevance ranking. Cosine <=> and L2 <-> are distance metrics where lower is better.",
+    "hint": "pgvector's inner product operator is <#>, returning larger values for similarity.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q334",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You use pgvector and must find the nearest vectors by straight-line distance where a smaller score means more similar. Which operator should you use?",
+    "options": [
+      "The inner product operator",
+      "The cosine operator",
+      "The euclidean rank operator",
+      "The L2 distance operator"
+    ],
+    "answer": 3,
+    "explanation": "The L2 distance operator <-> computes Euclidean distance, where smaller values mean more similar vectors. Inner product and cosine differ in scoring direction or metric.",
+    "hint": "pgvector's <-> operator computes Euclidean (L2) distance.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q335",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You need an Azure Cache for Redis instance that persists its data to survive restarts while minimizing cost. Which tier should you select?",
+    "options": [
+      "Basic",
+      "Premium",
+      "Standard",
+      "Enterprise"
+    ],
+    "answer": 1,
+    "explanation": "The Premium tier supports data persistence (RDB and AOF) so cached data survives restarts. Basic and Standard do not persist data, and Enterprise costs more than needed.",
+    "hint": "Persistence requires Premium or Enterprise; Premium minimizes cost.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q336",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A workload tolerates reads that lag writes by no more than ten seconds. Solution: Set the consistency level to bounded staleness with a ten-second staleness bound. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Bounded staleness lets you bound read staleness by a configurable time interval, so a ten-second bound matches the requirement. This meets the goal.",
+    "hint": "Bounded staleness caps read lag by a configurable time bound.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/consistency-levels"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q337",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A point read in Cosmos DB retrieves a 1 KB item by its ID and partition key. At the standard 1 RU per 1 KB read rate, what is the MINIMUM number of request units consumed?",
+    "options": [
+      "One",
+      "Two",
+      "Five",
+      "Ten"
+    ],
+    "answer": 0,
+    "explanation": "A point read of a 1 KB item costs roughly 1 RU at the base rate. Larger items or a stronger consistency level can increase the charge.",
+    "hint": "A 1 KB point read costs about 1 RU at the base rate.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/request-units"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q338",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A container with provisioned throughput must operate at the lowest valid scale. What is the MINIMUM number of physical partitions a provisioned container can have?",
+    "options": [
+      "Two",
+      "Four",
+      "One",
+      "Zero"
+    ],
+    "answer": 2,
+    "explanation": "A provisioned throughput container is backed by at least one physical partition. Zero is not possible for a provisioned container.",
+    "hint": "A provisioned container always has at least one physical partition.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/partitioning-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q339",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "An autoscale throughput container has a maximum of 4,000 RU/s. What is the MINIMUM RU/s the autoscale can provision?",
+    "options": [
+      "1,000",
+      "2,000",
+      "4,000",
+      "400"
+    ],
+    "answer": 3,
+    "explanation": "Autoscale provisions between 10 percent and 100 percent of the configured maximum. A 4,000 RU/s maximum therefore scales down to a 400 RU/s floor.",
+    "hint": "Autoscale ranges from 10 percent to 100 percent of the maximum RU/s.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/autoscale"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q340",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You are creating an HNSW vector index in RediSearch. Each document stores one embedding. What is the MINIMUM number of vector fields required per document to run similarity search?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "A single vector field per document is sufficient to create an HNSW index and run similarity queries. Additional fields are optional.",
+    "hint": "One vector field per document is enough for similarity search.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-cache-for-redis/cache-tutorial-vector-similarity"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q341",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You must configure a Cosmos DB account to tolerate a single Azure region failure while continuing to serve reads. What is the MINIMUM number of regions you should configure?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "Configuring at least two regions lets reads continue from the surviving region when one fails. A single region cannot survive a regional outage.",
+    "hint": "Two regions keep reads available if one region fails.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/global-distribution"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q342",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A solution needs low write latency, cost-efficient reads of one known property, and reduced RU for write-heavy indexing. Which approach meets all requirements?",
+    "options": [
+      "Index every property",
+      "Enable composite indexes",
+      "Limit the indexed paths",
+      "Raise the throughput"
+    ],
+    "answer": 2,
+    "explanation": "Limiting the indexed paths reduces indexing overhead and write RU while still indexing the one queried property. Indexing all paths would raise write cost.",
+    "hint": "Indexing only queried paths cuts write RU without losing needed reads.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/index-policy"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q343",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A solution stores embeddings, needs vector similarity search, and must keep data in a managed Azure NoSQL database. Which service meets all requirements?",
+    "options": [
+      "Azure Blob Storage",
+      "Azure SQL Database",
+      "Azure Cache for Redis",
+      "Cosmos DB for NoSQL"
+    ],
+    "answer": 3,
+    "explanation": "Cosmos DB for NoSQL is a managed NoSQL store that supports vector similarity search with diskANN or flat indexes. The other options lack one of these requirements.",
+    "hint": "Cosmos DB for NoSQL stores documents and supports vector search.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/vector-search"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q344",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A Cosmos DB container must delete items automatically 30 days after creation and allow per-item overrides. Solution: Set a container default TTL and per-item TTL values. Does this meet all requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A container default TTL auto-deletes items, and per-item TTL values can override the default. Together they meet both requirements.",
+    "hint": "Container TTL sets a default; per-item TTL overrides it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/time-to-live"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q345",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "A workload needs predictable, guaranteed throughput with no automatic scaling. Solution: Use autoscale throughput. Does this meet all requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Autoscale varies throughput between a floor and a ceiling, so it does not guarantee a fixed rate. Provisioned (manual) throughput is required for predictable, fixed capacity.",
+    "hint": "Autoscale varies; fixed guaranteed throughput needs provisioned (manual) mode.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q346",
+    "domain": "Develop AI solutions by using Azure data management services",
+    "prompt": "You use pgvector in Azure Database for PostgreSQL and must store embeddings of 1,536 dimensions. Solution: Define a column of type vector(1536). Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "pgvector stores fixed-length embeddings in a vector(n) column, where n is the dimension count. A vector(1536) column holds exactly 1,536 floating-point values.",
+    "hint": "vector(n) stores n-dimensional embeddings, so vector(1536) fits.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-use-pgvector"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q347",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building a Function that processes messages from a Service Bus queue. You have created no Azure resources. What should you create FIRST?",
+    "options": [
+      "The Service Bus namespace",
+      "The Service Bus queue",
+      "The function app resource",
+      "The Azure storage account"
+    ],
+    "answer": 0,
+    "explanation": "Create the Service Bus namespace first, because queues and topics live inside a namespace. The queue and function app come afterward.",
+    "hint": "A namespace must exist before any queue can be created in it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quickstart-portal"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q348",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "An Azure Function is triggered by a new blob. Before the blob trigger can run, what must you create FIRST?",
+    "options": [
+      "The function app",
+      "The storage account",
+      "The blob container",
+      "The event subscription"
+    ],
+    "answer": 1,
+    "explanation": "The storage account must be created before you can create the blob container that the trigger monitors. The function app and subscription follow.",
+    "hint": "A storage account must exist before containers and blobs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-trigger"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q349",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are configuring an Event Grid subscription to send blob events to a function. What must exist FIRST before the subscription can be created?",
+    "options": [
+      "The event subscription",
+      "The event filter rules",
+      "The handler endpoint",
+      "The delivery retry policy"
+    ],
+    "answer": 2,
+    "explanation": "The event handler endpoint (the function) must exist before you create the subscription that routes events to it. Filters and retry policies are part of the subscription itself.",
+    "hint": "The subscription needs a handler endpoint to route events to.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/create-custom-topic"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q350",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are building an Event Hubs streaming pipeline. Before producers can send events, what should you create FIRST?",
+    "options": [
+      "The event hub and its partitions",
+      "The consumer group",
+      "The partition key",
+      "The Event Hubs namespace"
+    ],
+    "answer": 3,
+    "explanation": "Create the Event Hubs namespace first. The event hub, consumer groups, and partitions are all defined inside it.",
+    "hint": "Event hubs are created inside an Event Hubs namespace.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-create"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q351",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You are adding a Service Bus output binding to an Azure Function. Before the function can send messages, what must you configure FIRST?",
+    "options": [
+      "The binding expression",
+      "The connection string",
+      "The message time-to-live",
+      "The session identifier"
+    ],
+    "answer": 1,
+    "explanation": "Configure the connection string in the app settings first so the binding can authenticate to Service Bus. The binding and message properties depend on it.",
+    "hint": "Bindings need a connection string before they can connect.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus-output"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q352",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A function must run on a recurring schedule every five minutes. Which trigger type should you use?",
+    "options": [
+      "A timer trigger",
+      "An HTTP trigger",
+      "A queue trigger",
+      "A blob trigger"
+    ],
+    "answer": 0,
+    "explanation": "A timer trigger runs the function on a CRON schedule, matching the recurring five-minute interval. HTTP, queue, and blob triggers are event-driven.",
+    "hint": "Timer triggers run on a CRON schedule.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q353",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A message must be received by multiple independent subscribers that each need a copy. Which Service Bus construct should you use?",
+    "options": [
+      "A standard Service Bus queue",
+      "A dead-letter queue",
+      "A topic with subscriptions",
+      "A session-enabled queue"
+    ],
+    "answer": 2,
+    "explanation": "A topic delivers each message to all matching subscriptions, fanning out to multiple consumers. A queue delivers to a single consumer.",
+    "hint": "Topics fan out one message to many subscriptions.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q354",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You need a function to react to every new message in an Azure Storage queue without writing polling code. Which trigger type should you use?",
+    "options": [
+      "A timer trigger",
+      "An HTTP trigger",
+      "A Kafka trigger",
+      "A queue trigger"
+    ],
+    "answer": 3,
+    "explanation": "A queue trigger invokes the function for each message in a Storage queue. Timer and HTTP triggers respond to time or requests, not queue messages.",
+    "hint": "Queue triggers invoke the function for each queued message.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-queue-trigger"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q355",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You must allow anyone to call an HTTP-triggered function without providing an API key. Which authorization level should you set?",
+    "options": [
+      "Function",
+      "Anonymous",
+      "Admin",
+      "System"
+    ],
+    "answer": 1,
+    "explanation": "Anonymous authorization permits calls without any API key. Function and Admin levels require a key.",
+    "hint": "Anonymous authorization allows calls without an API key.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-http-webhook-trigger"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q356",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A function must react to a new blob appearing in a container. Solution: Use a blob storage trigger bound to that container. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A blob storage trigger invokes the function when a blob is added to the monitored container. This meets the goal.",
+    "hint": "Blob triggers fire when a blob is created in the monitored container.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-storage-blob-trigger"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q357",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "An event hub must accept streaming events from producers. What is the MINIMUM number of partitions an event hub must have?",
+    "options": [
+      "Two",
+      "Four",
+      "One",
+      "Eight"
+    ],
+    "answer": 2,
+    "explanation": "An event hub must have at least one partition to store events. Additional partitions increase parallelism.",
+    "hint": "An event hub requires at least one partition.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q358",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "Consumers must read from an event hub. What is the MINIMUM number of consumer groups an event hub has?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Zero"
+    ],
+    "answer": 0,
+    "explanation": "Every event hub is created with a default consumer group, so the minimum is one. Consumers can read from it without creating more.",
+    "hint": "Every event hub has a default consumer group named $Default.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q359",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "An Azure Function App requires Azure Storage for its execution state and metadata. What is the MINIMUM number of storage accounts a function app requires?",
+    "options": [
+      "Two",
+      "Three",
+      "Zero",
+      "One"
+    ],
+    "answer": 3,
+    "explanation": "Every function app requires a storage account to store execution state and metadata, so one is the minimum. Zero is not possible.",
+    "hint": "A function app needs a storage account for state and metadata.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/storage-considerations"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q360",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "An Event Grid event must be delivered to a single function. What is the MINIMUM number of event subscriptions you must create?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "A single event subscription routes events to the function. More subscriptions are only needed for additional handlers.",
+    "hint": "One event subscription routes events to one handler.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q361",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "You must consume every message from a Service Bus queue. What is the MINIMUM number of queue consumers required?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "One consumer is enough to receive all messages from a queue. More consumers only add throughput.",
+    "hint": "A single consumer can receive every message in a queue.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q362",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A solution needs one message to reach many independent subscribers, with each subscriber filtering messages by a property. Which combination meets all requirements?",
+    "options": [
+      "A topic with rules",
+      "A single queue",
+      "A dead-letter queue",
+      "A session queue"
+    ],
+    "answer": 0,
+    "explanation": "A topic with subscription rules delivers each message to many subscribers and filters by properties. A queue delivers to one consumer and cannot filter.",
+    "hint": "Topics with subscription rules fan out and filter messages.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/service-bus-messaging/topic-filters"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q363",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A solution must react to resource events without building a custom source, fan out to multiple handlers, and retry failed deliveries. Which service meets all requirements?",
+    "options": [
+      "Service Bus queues",
+      "Event Hubs",
+      "Azure Storage queues",
+      "Event Grid"
+    ],
+    "answer": 3,
+    "explanation": "Event Grid exposes system topics for resource events, fans out to many subscribers, and retries failed deliveries. The other options lack one of these.",
+    "hint": "Event Grid provides system topics, fan-out, and retry policies.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q364",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A solution must run on a schedule, scale to zero when idle, and pay only per execution. Solution: Use an Azure Function on the Consumption plan with a timer trigger. Does this meet all requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A Consumption-plan function with a timer trigger runs on a schedule, scales to zero when idle, and bills per execution. It meets all the requirements.",
+    "hint": "Consumption-plan timer functions scale to zero and bill per run.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-functions/consumption-plan"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q365",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "A solution must ingest millions of telemetry events per second for streaming analytics. Solution: Use a Service Bus queue. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Service Bus is designed for lower-throughput enterprise messaging. Event Hubs is the service built to ingest millions of events per second for streaming.",
+    "hint": "High-throughput streaming needs Event Hubs, not a Service Bus queue.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-features"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q366",
+    "domain": "Connect to and consume Azure services",
+    "prompt": "An Event Grid subscriber expects the CloudEvents format. Solution: Configure the subscription to use the default Event Grid schema. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The default Event Grid schema does not produce CloudEvents. You must configure the subscription to use the CloudEvents schema v1.0.",
+    "hint": "CloudEvents needs the CloudEvents schema, not the default Event Grid schema.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/event-grid/event-schema"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q367",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are securing a Function App so it can read a secret from Key Vault using a managed identity. You have created the Key Vault. What should you do FIRST?",
+    "options": [
+      "Enable the managed identity",
+      "Grant the vault access policy",
+      "Reference the secret value",
+      "Deploy the function app"
+    ],
+    "answer": 0,
+    "explanation": "Enable the managed identity on the Function App first; then grant it access to Key Vault. A role or policy can only target an identity that exists.",
+    "hint": "The managed identity must exist before a role can be assigned.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/managed-identity"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q368",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are configuring monitoring for a Function App. Before you can query its logs in Log Analytics, what must you create FIRST?",
+    "options": [
+      "The Azure diagnostic setting",
+      "The Log Analytics workspace",
+      "The Kusto query language",
+      "The alert rule definition"
+    ],
+    "answer": 1,
+    "explanation": "Create the Log Analytics workspace first, because logs must be sent to it before they can be queried. Diagnostic settings and alerts come later.",
+    "hint": "A workspace must exist before logs can be sent or queried.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q369",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are adding a Key Vault reference to an App Configuration key. What must you do FIRST?",
+    "options": [
+      "Create the key-value entry",
+      "Enable the configuration refresh",
+      "Grant access to the vault",
+      "Add a sentinel key value"
+    ],
+    "answer": 2,
+    "explanation": "Grant App Configuration access to Key Vault first so it can resolve the reference. The key value and refresh settings come after.",
+    "hint": "App Configuration needs permission before it can read the vault.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q370",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are diagnosing a slow request using distributed tracing. Before you can trace the request across services, what must be in place FIRST?",
+    "options": [
+      "A trace exporter",
+      "A sampling policy",
+      "A metrics receiver setting",
+      "Context propagation"
+    ],
+    "answer": 3,
+    "explanation": "Context propagation must be enabled first so trace context flows across service boundaries. Exporters and samplers refine what is sent afterward.",
+    "hint": "Trace context must propagate before end-to-end traces link up.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q371",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You are creating a metric alert rule in Azure Monitor. Before the rule can send a notification, what must you configure FIRST?",
+    "options": [
+      "The alert condition",
+      "An action group",
+      "The metric signal",
+      "The evaluation frequency"
+    ],
+    "answer": 1,
+    "explanation": "Configure an action group first so the alert has a destination for notifications. The condition, signal, and frequency define when it fires.",
+    "hint": "An action group defines where notifications go.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q372",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A Function App needs a managed identity that is deleted automatically when the app is deleted. Which identity type should you use?",
+    "options": [
+      "System-assigned",
+      "User-assigned",
+      "Service principal",
+      "Shared key"
+    ],
+    "answer": 0,
+    "explanation": "A system-assigned identity is tied to the resource and is deleted with it. User-assigned identities and service principals persist independently.",
+    "hint": "System-assigned identities share the resource's lifecycle.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q373",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A Key Vault secret must be readable by an app via a role assignment on the vault. Which permission model should you enable?",
+    "options": [
+      "Vault access policies",
+      "Firewall rules",
+      "Azure RBAC",
+      "Private endpoints"
+    ],
+    "answer": 2,
+    "explanation": "The Azure RBAC permission model controls Key Vault access using Azure role assignments. Vault access policies are a separate legacy model.",
+    "hint": "Azure RBAC lets you grant Key Vault access with role assignments.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q374",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You need to combine rows from two Log Analytics tables on a common column. Which KQL operator should you use?",
+    "options": [
+      "where",
+      "take",
+      "project",
+      "join"
+    ],
+    "answer": 3,
+    "explanation": "The join operator merges rows from two tables based on matching key columns. where, take, and project filter or select but do not combine tables.",
+    "hint": "The join operator merges rows from two tables on a key.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/join-operator"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q375",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A secret must be stored encrypted and referenced by a Function App without storing the value in app settings. Which App Configuration feature should you use?",
+    "options": [
+      "A plain key-value entry",
+      "A Key Vault reference",
+      "A feature flag value",
+      "A sentinel key value"
+    ],
+    "answer": 1,
+    "explanation": "A Key Vault reference stores the secret's URI and resolves the value at runtime, keeping it out of app settings. A plain key value stores the secret directly.",
+    "hint": "Key Vault references point to a secret URI instead of a value.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/use-key-vault-references-dotnet-core"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q376",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A monitoring solution must check an HTTP endpoint's availability on a schedule and alert when it fails. Solution: Create only a metric alert rule on the endpoint. Does this meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A metric alert rule fires when a metric crosses a threshold; it does not actively probe an endpoint. An Application Insights availability test is required to check availability on a schedule.",
+    "hint": "Availability tests probe endpoints; metric alert rules do not.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/availability-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q377",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You must send a Function App's logs and metrics to a Log Analytics workspace. What is the MINIMUM number of diagnostic settings you must create?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "A single diagnostic setting can route both logs and metrics to a workspace, so one is the minimum. More settings only add destinations.",
+    "hint": "One diagnostic setting can route both logs and metrics.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/diagnostic-settings"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q378",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A metric alert rule must notify an on-call engineer. To route the notification, what is the MINIMUM number of action groups the rule requires?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "One action group is enough to send notifications to one or more receivers. Additional groups are optional.",
+    "hint": "One action group carries the notification to its receivers.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/alerts/action-groups"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q379",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "You must count the total number of requests in a Log Analytics table using a single aggregation. What is the MINIMUM number of KQL operators required?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "One"
+    ],
+    "answer": 3,
+    "explanation": "A single summarize count() operator totals all rows in the table. No additional operator is required.",
+    "hint": "summarize count() alone aggregates the full row count.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/summarize-operator"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q380",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A Function App uses a system-assigned identity to read Key Vault. For the identity to read one secret, what is the MINIMUM number of role assignments it needs?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "One role assignment on the vault grants the identity read access to its secrets. Separate assignments per secret are not required.",
+    "hint": "One role assignment grants access to the vault's secrets.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q381",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A web app must reach Key Vault only over a private IP from its virtual network. What is the MINIMUM number of private endpoints required?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "A single private endpoint maps the Key Vault to a private IP in the virtual network. One is therefore the minimum for private access.",
+    "hint": "One private endpoint gives the app a private IP to the vault.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/private-link-service"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q382",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A solution must store secrets centrally, rotate them automatically, and grant access using Azure roles without storing credentials in code. Which combination meets all requirements?",
+    "options": [
+      "Key Vault with RBAC",
+      "App settings with secrets",
+      "A config file in code",
+      "A feature flag store"
+    ],
+    "answer": 0,
+    "explanation": "Key Vault centralizes secrets and supports auto-rotation, while the RBAC permission model grants access through Azure roles. The other options store secrets insecurely.",
+    "hint": "Key Vault with the RBAC model centralizes, rotates, and controls access.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q383",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A solution needs application settings that update without redeploying, secrets referenced from Key Vault, and feature toggles at runtime. Which service meets all requirements?",
+    "options": [
+      "Azure Log Analytics",
+      "Azure Event Grid",
+      "Azure Service Bus",
+      "App Configuration"
+    ],
+    "answer": 3,
+    "explanation": "App Configuration stores settings, supports Key Vault references, and provides feature flags that toggle at runtime. The other services do not provide these.",
+    "hint": "App Configuration handles settings, Key Vault refs, and feature flags.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q384",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A solution must collect traces from a containerized app and send them to Azure Monitor. Solution: Configure an OpenTelemetry receiver and an exporter. Does this meet all requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The receiver collects telemetry, and the exporter sends it to Azure Monitor. Together they satisfy both collection and export requirements.",
+    "hint": "A receiver collects data and an exporter sends it to Azure Monitor.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/opentelemetry-configuration"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q385",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A Log Analytics query must return only error-level logs from the last hour. Solution: Use only the summarize operator to filter rows. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The summarize operator aggregates rows; it does not filter them. Use the where operator to filter error logs and the time range.",
+    "hint": "summarize aggregates; use where to filter rows.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/where-operator"
+      }
+    ]
+  },
+  {
+    "id": "ai-200-q386",
+    "domain": "Secure, monitor, and troubleshoot Azure solutions",
+    "prompt": "A solution must rotate a secret automatically and allow recovery after accidental deletion. Solution: Enable auto-rotation but disable soft-delete. Does this meet all requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Auto-rotation satisfies rotation, but disabling soft-delete prevents recovery after accidental deletion. Soft-delete must remain enabled for both requirements to be met.",
+    "hint": "Recovery after deletion needs soft-delete; disabling it fails that requirement.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview"
+      }
+    ]
+  }
+]

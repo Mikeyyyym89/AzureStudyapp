@@ -1,0 +1,1330 @@
+[
+  {
+    "id": "ai-500-q307",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are designing a new multi-agent support system in which a dispatcher routes user requests to billing, sales, and support subagents. No components exist yet. What should you do FIRST?",
+    "options": [
+      "Define agent roles",
+      "Build the tool servers",
+      "Pick an orchestrator SDK",
+      "Deploy a canary release"
+    ],
+    "answer": 0,
+    "explanation": "Architecture begins with defining each agent's role, responsibilities, and the workflow between them. Tools, SDK choice, and deployment all depend on that design.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Design agents and workflow before tooling, SDK, or deployment."
+  },
+  {
+    "id": "ai-500-q308",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "A customer-facing agent will handle account data, so it must enforce content-safety and privacy guardrails before launch. What should you do FIRST?",
+    "options": [
+      "Deploy the agent now",
+      "Map risk surface",
+      "Write rollback scripts",
+      "Configure telemetry alerts"
+    ],
+    "answer": 1,
+    "explanation": "You must first identify which inputs, outputs, and tool actions are risky so guardrails target the right surfaces. Configuration, alerting, and rollback follow that assessment.",
+    "docs": [
+      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+    ],
+    "hint": "Identify what to guard before configuring guardrails."
+  },
+  {
+    "id": "ai-500-q309",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You are adding retrieval-augmented generation to an agent that will answer from an internal knowledge base. What should you do FIRST?",
+    "options": [
+      "Add a semantic reranker",
+      "Tune the embedding model",
+      "Ingest and index",
+      "Evaluate groundedness scores"
+    ],
+    "answer": 2,
+    "explanation": "RAG requires source documents to be ingested, chunked, and indexed before anything can be retrieved. Reranking, embedding tuning, and evaluation all operate on the index afterward.",
+    "docs": [
+      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+    ],
+    "hint": "Index sources before retrieval, reranking, or evaluation."
+  },
+  {
+    "id": "ai-500-q310",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "Two teams will contribute agents that must call each other across platforms. You want capability discovery and long-running task tracking. What should you do FIRST?",
+    "options": [
+      "Write MCP tool servers",
+      "Provision shared storage",
+      "Agree on a prompt format",
+      "Adopt the A2A protocol"
+    ],
+    "answer": 3,
+    "explanation": "Interoperability must be decided first because it shapes how every agent publishes capabilities and tracks tasks. Tool servers and storage follow from that protocol choice.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Fix the cross-agent protocol before building tools or storage."
+  },
+  {
+    "id": "ai-500-q311",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You must move a prototype multi-agent workflow to production with evaluation and monitoring. What should you do FIRST?",
+    "options": [
+      "Evaluate quality criteria",
+      "Enable auto-scaling",
+      "Create a rollback plan",
+      "Rotate agent credentials"
+    ],
+    "answer": 0,
+    "explanation": "Evaluate quality and safety before deploying, because results may require changes to agents or prompts. Scaling, rollback, and credentials come after evaluation passes.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "Evaluate before you deploy to production."
+  },
+  {
+    "id": "ai-500-q312",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "An orchestrator routes work to specialized subagents that each need secure, audited access to internal APIs. Which should you use for tool and data access?",
+    "options": [
+      "A2A agent cards",
+      "MCP tool servers",
+      "Direct per-API SDK calls",
+      "Custom JSON over WebSocket"
+    ],
+    "answer": 1,
+    "explanation": "MCP is the standard for surfacing tools and data to agents with authentication and auditing. A2A handles agent-to-agent messaging, not tool access.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "MCP is for tools and data; A2A is for agent messaging."
+  },
+  {
+    "id": "ai-500-q313",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need agents from different platforms to negotiate tasks and track long-running work. Which protocol should you select?",
+    "options": [
+      "MCP for tool access",
+      "OAuth device code flow",
+      "A2A for agent messaging",
+      "gRPC with fixed contracts"
+    ],
+    "answer": 2,
+    "explanation": "A2A provides cross-platform agent messaging with agent cards for capability discovery and a task/artifact model for long-running tasks. MCP is scoped to tools, not agent-to-agent tasks.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Cross-platform, long-running task tracking signals A2A."
+  },
+  {
+    "id": "ai-500-q314",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "Your agents need cross-platform messaging with capability discovery. Solution: use the A2A protocol and publish an agent card per agent. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A2A agent cards advertise capabilities so other agents can discover them. The protocol also handles cross-platform messaging, so the goal is met.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Yes — agent cards provide capability discovery."
+  },
+  {
+    "id": "ai-500-q315",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "A single-agent shopping assistant must remember a user's size and address across sessions and devices. Which memory type should you implement?",
+    "options": [
+      "Ephemeral session context",
+      "Prompt-embedded preferences",
+      "A stateless key-value cache",
+      "Managed long-term memory"
+    ],
+    "answer": 3,
+    "explanation": "Long-term memory persists user facts across sessions and devices. Short-term context is lost when the session ends and cannot span devices.",
+    "docs": [
+      { "label": "Memory in Foundry Agent Service", "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory" }
+    ],
+    "hint": "Across sessions and devices means long-term memory."
+  },
+  {
+    "id": "ai-500-q316",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "An agent must recall a user's preference across sessions. Solution: store the preference in short-term working memory. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Short-term memory is session-scoped and is cleared when the session ends. It cannot recall preferences across sessions, so you need long-term memory.",
+    "docs": [
+      { "label": "Memory in Foundry Agent Service", "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory" }
+    ],
+    "hint": "No — short-term memory does not persist across sessions."
+  },
+  {
+    "id": "ai-500-q317",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You must deploy a multi-agent solution through a Development, Test, Acceptance, and Production pipeline while minimizing environments. What is the MINIMUM number of environments?",
+    "options": [
+      "Three",
+      "Four",
+      "Five",
+      "Six"
+    ],
+    "answer": 1,
+    "explanation": "A full DTAP pipeline needs four stages: Development, Test, Acceptance, and Production. Fewer would merge a mandatory stage.",
+    "docs": [
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ],
+    "hint": "DTAP has four distinct stages."
+  },
+  {
+    "id": "ai-500-q318",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "For a multi-region, highly available agent deployment that must survive a full regional outage while minimizing cost, what is the MINIMUM number of regions?",
+    "options": [
+      "One region, two zones",
+      "One region, three zones",
+      "Two regions",
+      "Four regions"
+    ],
+    "answer": 2,
+    "explanation": "Surviving a full region outage requires replicating to a second region. Availability zones cannot protect against a whole-region failure.",
+    "docs": [
+      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }
+    ],
+    "hint": "A whole-region outage needs a second region."
+  },
+  {
+    "id": "ai-500-q319",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "Your solution needs agents to access internal tools via MCP and to message agents on an external platform via A2A. To minimize moving parts, what is the MINIMUM number of protocols to adopt?",
+    "options": [
+      "One protocol",
+      "Three protocols",
+      "Four protocols",
+      "Two protocols"
+    ],
+    "answer": 3,
+    "explanation": "You need exactly two protocols: MCP for tool access and A2A for cross-platform messaging. One cannot cover both, and more than two is unnecessary.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Two protocols: MCP for tools, A2A for messaging."
+  },
+  {
+    "id": "ai-500-q320",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "Three subagents only ever receive tasks from a single dispatcher and never call each other. To minimize coordination overhead, what is the MINIMUM number of orchestrators?",
+    "options": [
+      "One orchestrator",
+      "Two orchestrators",
+      "Three orchestrators",
+      "Four orchestrators"
+    ],
+    "answer": 0,
+    "explanation": "A single central orchestrator is sufficient to dispatch to all subagents. Adding more orchestrators increases overhead without benefit.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "One dispatcher suffices when subagents do not coordinate."
+  },
+  {
+    "id": "ai-500-q321",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "A stateless agent's responses never vary for a given input, so you want caching to cut latency while minimizing storage cost. What is the MINIMUM number of cache tiers required?",
+    "options": [
+      "Zero tiers",
+      "One response cache",
+      "Two cache tiers",
+      "Three cache tiers"
+    ],
+    "answer": 1,
+    "explanation": "A single response cache is enough when outputs are deterministic. More tiers add cost and complexity without benefit.",
+    "docs": [
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ],
+    "hint": "Deterministic output needs only one cache tier."
+  },
+  {
+    "id": "ai-500-q322",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need a pattern that lets a central agent route work to specialized subagents, keeps each independently deployable, and supports future additions without rewiring peers. Which pattern meets ALL requirements?",
+    "options": [
+      "A strict sequential pipeline",
+      "Fully autonomous peer mesh",
+      "Orchestrator-subagent routing",
+      "A single monolithic agent"
+    ],
+    "answer": 2,
+    "explanation": "Orchestrator-subagent (hub-and-spoke) routes work centrally while keeping subagents independently deployable and easy to add. Pipelines and monoliths cannot, and a peer mesh lacks central routing.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Central routing plus independent deployability is hub-and-spoke."
+  },
+  {
+    "id": "ai-500-q323",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You need secure, audited tool access for agents. Solution: front every tool with MCP and grant least-privileged scope. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "MCP provides secure, audited tool access, but auditing and least privilege alone do not secure it. You also need authentication and authorization configured, which the plan omits.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "No — least privilege still requires authentication and authorization."
+  },
+  {
+    "id": "ai-500-q324",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "A workflow has one intake agent, one analyst agent, and one responder agent where the analyst and responder can run independently after intake. Which pattern meets ALL requirements while maximizing parallelism?",
+    "options": [
+      "A peer-to-peer mesh",
+      "A single monolithic agent",
+      "A strict sequential pipeline",
+      "A parallel orchestrator"
+    ],
+    "answer": 3,
+    "explanation": "An orchestrator that fans out the analyst and responder in a parallel stage preserves intake order while running independent branches concurrently. A strict pipeline serializes them, and a mesh lacks the required ordering.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Independent branches after intake means parallel fan-out."
+  },
+  {
+    "id": "ai-500-q325",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "You must design agents that each have their own identity, use only the tools they need, and can be audited individually. Which design meets ALL requirements?",
+    "options": [
+      "Per-agent identity with least privilege",
+      "One shared service principal",
+      "One admin identity for all",
+      "Static keys embedded in code"
+    ],
+    "answer": 0,
+    "explanation": "Per-agent identity with least privilege gives each agent its own auditable identity limited to required tools. Shared or embedded credentials break isolation and auditing.",
+    "docs": [
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+    ],
+    "hint": "Isolation plus auditing requires per-agent identities."
+  },
+  {
+    "id": "ai-500-q326",
+    "domain": "Architect multi-agent solutions",
+    "prompt": "A solution uses A2A for cross-platform messaging and MCP for tool access. Solution: this split correctly separates agent messaging from tool access. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A2A is designed for agent-to-agent messaging, while MCP is designed for tool and data access. Using each for its intended purpose is correct.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Yes — A2A and MCP serve distinct, complementary purposes."
+  },
+  {
+    "id": "ai-500-q327",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You are building an agent in Microsoft Foundry that must call an internal inventory API. No tool server exists yet. What should you do FIRST?",
+    "options": [
+      "Define the MCP server",
+      "Write the orchestrator logic",
+      "Deploy the agent endpoint now",
+      "Configure output guardrails"
+    ],
+    "answer": 0,
+    "explanation": "You must define the tool or MCP server before the agent can invoke the API. Orchestration, deployment, and guardrails depend on that tool contract existing.",
+    "docs": [
+      { "label": "Foundry agents overview", "url": "https://learn.microsoft.com/azure/foundry/agents/overview" }
+    ],
+    "hint": "Build the tool before orchestration or deployment."
+  },
+  {
+    "id": "ai-500-q328",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You must connect an agent to a database that has no existing tool integration. What should you do FIRST?",
+    "options": [
+      "Write the evaluation suite",
+      "Create the MCP server",
+      "Enable model fine-tuning",
+      "Deploy a blue environment"
+    ],
+    "answer": 1,
+    "explanation": "Creating the MCP server exposes the database to the agent as a tool. Evaluation, fine-tuning, and deployment come after the tool exists.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Expose data as an MCP server first."
+  },
+  {
+    "id": "ai-500-q329",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You are implementing a function-calling agent in the Azure AI Agent Service. The model needs a tool schema to call your function. What should you do FIRST?",
+    "options": [
+      "Increase the model temperature",
+      "Enable prompt caching",
+      "Register the function schema",
+      "Set up a retry policy"
+    ],
+    "answer": 2,
+    "explanation": "The model can only emit a function call if the function's schema is registered first. Temperature, caching, and retries are tuning steps that follow registration.",
+    "docs": [
+      { "label": "Azure AI Agent Service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview" }
+    ],
+    "hint": "Register the tool schema before the model can call it."
+  },
+  {
+    "id": "ai-500-q330",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You are wiring a multi-agent workflow that fans out to three subagents and then merges results. What should you do FIRST?",
+    "options": [
+      "Add human approval",
+      "Set log sampling rates",
+      "Configure auto-scaling",
+      "Define the orchestration flow"
+    ],
+    "answer": 3,
+    "explanation": "You must define the orchestration flow (fan-out and merge) before any operational or governance controls. Approval, sampling, and scaling tune an already-defined flow.",
+    "docs": [
+      { "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+    ],
+    "hint": "Define the orchestration flow before operational controls."
+  },
+  {
+    "id": "ai-500-q331",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "An agent must answer using your internal documents and cite its sources. You have raw documents but no retrieval setup. What should you do FIRST?",
+    "options": [
+      "Ingest and chunk sources",
+      "Turn on output citations now",
+      "Configure a reranker",
+      "Deploy a chat UI"
+    ],
+    "answer": 0,
+    "explanation": "Retrieval starts with ingesting and chunking documents into searchable units. Citations, reranking, and the UI all depend on a populated index.",
+    "docs": [
+      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+    ],
+    "hint": "Ingest and chunk before citations, reranking, or UI."
+  },
+  {
+    "id": "ai-500-q332",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "A customer-service agent must call an external CRM that supports OAuth. The agent acts on behalf of a signed-in user. Which OAuth flow should you use?",
+    "options": [
+      "Client credentials flow",
+      "On-behalf-of flow",
+      "Device code flow",
+      "Resource owner flow"
+    ],
+    "answer": 1,
+    "explanation": "The on-behalf-of flow lets a middle-tier service call a downstream API while preserving the signed-in user's delegated identity. Client credentials use only the app's identity, not the user's.",
+    "docs": [
+      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+    ],
+    "hint": "Delegated user identity through a middle tier is on-behalf-of."
+  },
+  {
+    "id": "ai-500-q333",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "A background agent runs overnight with no user signed in and must read a shared data lake. Which OAuth flow should you select?",
+    "options": [
+      "On-behalf-of flow",
+      "Authorization code flow",
+      "Client credentials flow",
+      "Device code flow"
+    ],
+    "answer": 2,
+    "explanation": "Client credentials authenticate the app with its own identity for service-to-service calls with no user. On-behalf-of and authorization code require a signed-in user.",
+    "docs": [
+      { "label": "OAuth 2.0 client credentials", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow" }
+    ],
+    "hint": "No user present, app identity only means client credentials."
+  },
+  {
+    "id": "ai-500-q334",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "An agent must run in a background job with no interactive user and access Microsoft Graph with its own identity. Solution: use the client credentials flow. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Client credentials is the correct flow for a daemon or service using its own identity with no user. It authenticates the background job without any interactive sign-in.",
+    "docs": [
+      { "label": "OAuth 2.0 client credentials", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow" }
+    ],
+    "hint": "Yes — daemon scenarios use client credentials."
+  },
+  {
+    "id": "ai-500-q335",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You are choosing how to surface an enterprise's many internal APIs to agents in a consistent, auditable way. Which should you implement?",
+    "options": [
+      "A single monolithic agent",
+      "Prompt-embedded API docs",
+      "Per-API ad hoc SDK calls",
+      "MCP servers per capability"
+    ],
+    "answer": 3,
+    "explanation": "MCP servers provide a uniform, secure, auditable interface for tools and data. Embedding docs or scattering SDK calls lacks consistency and auditability.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Consistent, audited tool surface means MCP servers."
+  },
+  {
+    "id": "ai-500-q336",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "An agent must call a downstream API on behalf of a signed-in user. Solution: use the client credentials flow. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Client credentials uses only the application's identity and drops the user context. To act on behalf of a user you need the on-behalf-of flow.",
+    "docs": [
+      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+    ],
+    "hint": "No — client credentials loses the user's identity."
+  },
+  {
+    "id": "ai-500-q337",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "A multi-agent flow must call a shared SQL database from a single MCP server. To minimize attack surface and cost, what is the MINIMUM number of MCP servers to deploy?",
+    "options": [
+      "Two servers",
+      "One server",
+      "Three servers",
+      "Four servers"
+    ],
+    "answer": 1,
+    "explanation": "One MCP server can expose the database to all agents, minimizing surface and cost. Additional servers add duplication without benefit.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "One shared server is enough for a single database."
+  },
+  {
+    "id": "ai-500-q338",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You must split long source documents for RAG and need enough chunks to cover every fact without overlap, while minimizing embedding cost. What is the MINIMUM number of chunking passes?",
+    "options": [
+      "Zero passes",
+      "Three separate passes",
+      "One pass",
+      "Five passes"
+    ],
+    "answer": 2,
+    "explanation": "A single well-designed semantic chunking pass is sufficient to cover every fact. Multiple passes re-embed the same content and inflate cost.",
+    "docs": [
+      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+    ],
+    "hint": "One semantic chunking pass avoids duplicate embeddings."
+  },
+  {
+    "id": "ai-500-q339",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "An orchestrator, a retriever, and a summarizer each need a distinct role. To keep roles separate while minimizing the number of agents, what is the MINIMUM number of agent definitions?",
+    "options": [
+      "One shared definition",
+      "Two definitions",
+      "Four definitions",
+      "Three definitions"
+    ],
+    "answer": 3,
+    "explanation": "Each distinct role needs its own agent definition, so three roles require three definitions. Combining roles defeats separation, and a fourth is unnecessary.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "Three roles need three definitions, no more."
+  },
+  {
+    "id": "ai-500-q340",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "A simple agent only calls one tool and never needs concurrent execution. To minimize cost, what is the MINIMUM number of execution threads to configure?",
+    "options": [
+      "One thread",
+      "Two threads",
+      "Three threads",
+      "Four threads"
+    ],
+    "answer": 0,
+    "explanation": "A single sequential thread is sufficient when there is one tool and no concurrency. Extra threads add cost and synchronization overhead.",
+    "docs": [
+      { "label": "Azure AI Agent Service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview" }
+    ],
+    "hint": "No concurrency needs only one thread."
+  },
+  {
+    "id": "ai-500-q341",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "Your RAG index must support both vector and keyword search over the same documents while minimizing components. What is the MINIMUM number of search capabilities to enable?",
+    "options": [
+      "Vector only",
+      "Hybrid search",
+      "Keyword only",
+      "Three separate indexes"
+    ],
+    "answer": 1,
+    "explanation": "Hybrid search combines vector and keyword ranking in one capability, so enabling a single hybrid capability meets both needs. Separate indexes would add components.",
+    "docs": [
+      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+    ],
+    "hint": "Hybrid search covers both in one capability."
+  },
+  {
+    "id": "ai-500-q342",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need an agent that answers from documents, cites sources, and only answers when the index contains sufficient evidence. Which configuration meets ALL requirements?",
+    "options": [
+      "RAG with vector search only",
+      "A pure generation model",
+      "Grounded RAG with citations",
+      "Keyword search without reranking"
+    ],
+    "answer": 2,
+    "explanation": "Grounded RAG with citations returns sourced answers, and a grounding gate refuses answers that lack evidence. The other options omit citation or evidence-checking.",
+    "docs": [
+      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+    ],
+    "hint": "Citations plus an evidence gate needs grounded RAG."
+  },
+  {
+    "id": "ai-500-q343",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need an agent that always follows the signed-in user's identity downstream. Solution: use client credentials for the downstream call. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Client credentials uses the app's own identity and does not carry the user's identity downstream. Use the on-behalf-of flow instead.",
+    "docs": [
+      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+    ],
+    "hint": "No — downstream user identity needs on-behalf-of."
+  },
+  {
+    "id": "ai-500-q344",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need a tool-access layer that is secure, auditable, and works across many agents without each agent holding secrets. Which design meets ALL requirements?",
+    "options": [
+      "Secrets in each agent's code",
+      "A shared super-user token",
+      "Direct database connection strings",
+      "MCP servers using managed identities"
+    ],
+    "answer": 3,
+    "explanation": "MCP servers using managed identities give secure, auditable access without distributing secrets. Embedding secrets or sharing a super-user token violates the requirements.",
+    "docs": [
+      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+    ],
+    "hint": "No shared secrets plus audit means MCP with managed identity."
+  },
+  {
+    "id": "ai-500-q345",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need an agent that streams partial results, retries failed tool calls, and records each attempt for debugging. Which implementation meets ALL requirements?",
+    "options": [
+      "Streaming, retry, and logging",
+      "Batch-only synchronous calls",
+      "Fire-and-forget tool calls",
+      "A single static canned response"
+    ],
+    "answer": 0,
+    "explanation": "Streaming with a retry and logging layer satisfies all three needs at once. Batch-only, fire-and-forget, and static responses each omit at least one requirement.",
+    "docs": [
+      { "label": "Azure AI Agent Service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview" }
+    ],
+    "hint": "Streaming, retry, and logging must all be present."
+  },
+  {
+    "id": "ai-500-q346",
+    "domain": "Develop multi-agent solutions in Azure",
+    "prompt": "You need an agent to answer from your data with source citations. Solution: use Azure OpenAI on your data with citations enabled. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure OpenAI on your data grounds responses in your documents. It supports returning citations for transparency, so the goal is met.",
+    "docs": [
+      { "label": "Azure OpenAI on your data", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/use-your-data" }
+    ],
+    "hint": "Yes — grounded answers with citations satisfy the goal."
+  },
+  {
+    "id": "ai-500-q347",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You are preparing an agent for production and must confirm its answers are grounded, relevant, and coherent before launch. What should you do FIRST?",
+    "options": [
+      "Run a curated evaluation",
+      "Enable production telemetry",
+      "Raise the request quota",
+      "Rotate the agent's secrets now"
+    ],
+    "answer": 0,
+    "explanation": "Evaluate against a curated set of inputs and quality metrics before production. Telemetry, quotas, and secrets are operational tasks that follow evaluation.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "Evaluate against a curated set before production."
+  },
+  {
+    "id": "ai-500-q348",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "A multi-agent workflow reports slow, high-cost runs, but you have no visibility into where time is spent. What should you do FIRST?",
+    "options": [
+      "Increase the model size",
+      "Enable distributed tracing",
+      "Add more subagents",
+      "Cache every response"
+    ],
+    "answer": 1,
+    "explanation": "You need distributed tracing to see where latency and cost occur across agents before optimizing. Scaling, caching, or model changes are guesses without that data.",
+    "docs": [
+      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+    ],
+    "hint": "Tracing reveals where time is spent before optimizing."
+  },
+  {
+    "id": "ai-500-q349",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "An agent occasionally returns unsupported claims to users. You must measure how often its responses stay faithful to retrieved evidence. What should you do FIRST?",
+    "options": [
+      "Silence the warning logs",
+      "Add a faster cache",
+      "Run a groundedness evaluation",
+      "Increase temperature"
+    ],
+    "answer": 2,
+    "explanation": "A groundedness evaluation measures whether responses are faithful to evidence, which is the first step to diagnosing unsupported claims. Other options do not measure or fix the issue.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "Measure groundedness before changing parameters."
+  },
+  {
+    "id": "ai-500-q350",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You suspect one subagent in a chain is silently failing, but aggregate metrics look normal. What should you do FIRST?",
+    "options": [
+      "Trace with correlation IDs",
+      "Increase aggregate sampling",
+      "Drop per-agent logs",
+      "Restart the deployment"
+    ],
+    "answer": 3,
+    "explanation": "Correlation IDs let you trace an individual request across every agent to isolate the failing step. Aggregate metrics and restarts do not pinpoint the failure.",
+    "docs": [
+      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+    ],
+    "hint": "Correlation IDs isolate failures across a chain."
+  },
+  {
+    "id": "ai-500-q351",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You are tuning a RAG agent and want to raise answer quality before measuring cost or latency. What should you do FIRST?",
+    "options": [
+      "Optimize groundedness and relevance",
+      "Trim log retention",
+      "Lower the model tier",
+      "Deploy to more regions"
+    ],
+    "answer": 0,
+    "explanation": "Quality metrics such as groundedness and relevance come first; cost and latency tuning only matter once quality meets the bar. Logging and region changes are unrelated.",
+    "docs": [
+      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+    ],
+    "hint": "Quality metrics precede cost and latency tuning."
+  },
+  {
+    "id": "ai-500-q352",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "Repeated, nearly identical user queries re-run the same expensive generation. You want to avoid recomputation. Which caching should you select?",
+    "options": [
+      "Prompt caching only",
+      "Semantic caching",
+      "Response caching by hash",
+      "No caching"
+    ],
+    "answer": 1,
+    "explanation": "Semantic caching matches queries that are similar in meaning, not just identical, so it avoids recomputation for nearly identical questions. A hash-based response cache misses close variants.",
+    "docs": [
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ],
+    "hint": "Nearly identical queries need semantic matching."
+  },
+  {
+    "id": "ai-500-q353",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "A large, shared system prompt precedes every call and rarely changes. You want to cut token cost and latency without losing any semantic matching. Which caching should you use?",
+    "options": [
+      "Semantic caching",
+      "Response caching",
+      "Prompt caching",
+      "No caching"
+    ],
+    "answer": 2,
+    "explanation": "Prompt caching reuses the unchanged prefix across calls to reduce token reprocessing and latency. Semantic and response caching target different problems.",
+    "docs": [
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ],
+    "hint": "A stable prompt prefix calls for prompt caching."
+  },
+  {
+    "id": "ai-500-q354",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "Your agent's deterministic responses never change for a given input. Solution: use response caching keyed on the exact input. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "For deterministic outputs, an exact-key response cache safely returns the stored answer. It eliminates recomputation and preserves correctness.",
+    "docs": [
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ],
+    "hint": "Yes — deterministic output suits exact-key response caching."
+  },
+  {
+    "id": "ai-500-q355",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need one numeric signal to alert on, chosen so it reflects end-to-end user quality rather than raw call volume. Which metric should you select?",
+    "options": [
+      "Requests per minute",
+      "Queue depth",
+      "Container CPU usage",
+      "Answer rejection rate"
+    ],
+    "answer": 3,
+    "explanation": "Answer rejection rate reflects quality outcomes such as ungrounded or unsafe responses. Volume, queue, and CPU are operational signals, not quality.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "Quality signal, not volume, means rejection rate."
+  },
+  {
+    "id": "ai-500-q356",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You want to cut costs by storing only the recent traffic needed for debugging. Solution: keep full logs for seven days and discard older detail. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Whether seven days is sufficient depends on your debugging and compliance needs. A blanket seven-day retention may discard evidence you still require.",
+    "docs": [
+      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+    ],
+    "hint": "No — retention must match debugging and compliance needs."
+  },
+  {
+    "id": "ai-500-q357",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "To minimize cost while reliably measuring regression, what is the MINIMUM number of evaluation environments to run before each release?",
+    "options": [
+      "Three environments",
+      "One staging environment",
+      "Two staging environments",
+      "Four environments"
+    ],
+    "answer": 1,
+    "explanation": "One staging environment is enough to run evaluations before release. More parallel staging environments increase cost without improving regression coverage.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "One staging environment suffices for pre-release evaluation."
+  },
+  {
+    "id": "ai-500-q358",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You must catch both sudden spikes and slow quality drift with minimal alert rules. What is the MINIMUM number of alert types to configure?",
+    "options": [
+      "One threshold alert",
+      "Three static alerts",
+      "Threshold and anomaly",
+      "Four separate alert rules"
+    ],
+    "answer": 2,
+    "explanation": "A threshold alert catches sudden spikes, and an anomaly alert catches gradual drift. Two alert types cover both with the fewest rules.",
+    "docs": [
+      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+    ],
+    "hint": "Spikes plus drift need threshold and anomaly alerts."
+  },
+  {
+    "id": "ai-500-q359",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "A workflow has three subagents, and you want one trace per user request spanning all three. To minimize trace fragments, what is the MINIMUM number of correlation IDs per request?",
+    "options": [
+      "Three IDs",
+      "Four IDs",
+      "Two IDs",
+      "One ID"
+    ],
+    "answer": 3,
+    "explanation": "A single correlation ID carried across all three subagents ties the whole request into one trace. Multiple IDs would fragment it.",
+    "docs": [
+      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+    ],
+    "hint": "One shared correlation ID keeps a trace whole."
+  },
+  {
+    "id": "ai-500-q360",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You want to measure quality with the fewest distinct evaluators while still checking groundedness, relevance, and fluency. What is the MINIMUM number of evaluators to run?",
+    "options": [
+      "Three evaluators",
+      "Two evaluators",
+      "Four evaluators",
+      "Five evaluators"
+    ],
+    "answer": 0,
+    "explanation": "You need one evaluator per quality dimension, so groundedness, relevance, and fluency require three evaluators. Fewer leaves a dimension unchecked.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "Three dimensions need three evaluators."
+  },
+  {
+    "id": "ai-500-q361",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to cache cheaply and correctly when outputs are deterministic and inputs are exact matches. Which caching meets ALL requirements?",
+    "options": [
+      "Response caching keyed on input",
+      "Semantic caching",
+      "Prompt caching only",
+      "No caching"
+    ],
+    "answer": 1,
+    "explanation": "Response caching keyed on the exact input is correct and inexpensive for deterministic outputs. Semantic caching adds cost for near matches you do not need.",
+    "docs": [
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ],
+    "hint": "Exact deterministic input needs exact-key response caching."
+  },
+  {
+    "id": "ai-500-q362",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need a trace to show every tool call and subagent hop for a request. Solution: emit a span per step with a shared correlation ID. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Emitting spans with a shared correlation ID is necessary but not sufficient. You must also export and store those spans centrally to view the full trace.",
+    "docs": [
+      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+    ],
+    "hint": "No — spans must also be exported and stored."
+  },
+  {
+    "id": "ai-500-q363",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You must reduce token cost, improve latency, and keep answers accurate. Which combination meets ALL requirements?",
+    "options": [
+      "Larger model with no caching",
+      "Longer prompts with retries",
+      "More subagents per request",
+      "Prompt caching plus tuned prompts"
+    ],
+    "answer": 3,
+    "explanation": "Prompt caching cuts token cost and latency, while tuned prompts preserve accuracy. Larger models, longer prompts, and extra agents each worsen at least one goal.",
+    "docs": [
+      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+    ],
+    "hint": "Cache plus tuned prompts lowers cost and latency safely."
+  },
+  {
+    "id": "ai-500-q364",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need quality signals that detect hallucination, answer drift, and high latency with minimal rules. Which monitoring set meets ALL requirements?",
+    "options": [
+      "Quality, latency, drift",
+      "CPU and memory counters",
+      "Only a request counter",
+      "Only a queue-length metric"
+    ],
+    "answer": 0,
+    "explanation": "Groundedness detects hallucination, drift alerts catch quality regression, and latency alerts catch slowness. Infrastructure counters do not measure answer quality.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "Hallucination, drift, and latency each need a signal."
+  },
+  {
+    "id": "ai-500-q365",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You must evaluate a new agent version against a static benchmark and then against live traffic before full rollout, while minimizing effort. What is the MINIMUM number of evaluation stages?",
+    "options": [
+      "One stage",
+      "Three stages",
+      "Two stages",
+      "Four stages"
+    ],
+    "answer": 2,
+    "explanation": "You need an offline benchmark stage and a live-traffic stage before rollout. One stage skips a required check, and more stages add effort without benefit.",
+    "docs": [
+      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+    ],
+    "hint": "Offline then live traffic means two stages."
+  },
+  {
+    "id": "ai-500-q366",
+    "domain": "Evaluate, optimize, and monitor multi-agent solutions",
+    "prompt": "You need to observe a live deployment end-to-end. Solution: enable distributed tracing with correlation IDs. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Distributed tracing with correlation IDs stitches each request across agents and tools. That gives end-to-end observability of a live deployment.",
+    "docs": [
+      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+    ],
+    "hint": "Yes — tracing with correlation gives end-to-end visibility."
+  },
+  {
+    "id": "ai-500-q367",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You are hardening an agent that will write to a production database. What should you do FIRST?",
+    "options": [
+      "Create a scoped identity",
+      "Deploy a canary release now",
+      "Enable query caching",
+      "Raise the log level"
+    ],
+    "answer": 0,
+    "explanation": "Create a scoped identity with least-privilege permissions first so the agent cannot overreach. Deployment and operational tuning follow after identity is secured.",
+    "docs": [
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+    ],
+    "hint": "Least-privilege identity comes before deployment."
+  },
+  {
+    "id": "ai-500-q368",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "An agent returns generated text to users, and some responses could be harmful. What should you do FIRST?",
+    "options": [
+      "Publish the agent",
+      "Add an output guardrail",
+      "Increase token limits",
+      "Add a response cache"
+    ],
+    "answer": 1,
+    "explanation": "An output guardrail filters or blocks harmful text before it reaches the user. Publishing, caching, or raising limits does not mitigate harmful content.",
+    "docs": [
+      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+    ],
+    "hint": "Filter harmful output before it reaches users."
+  },
+  {
+    "id": "ai-500-q369",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "An agent reads prompts that users could craft to bypass its instructions. You must stop prompt injection attempts. What should you do FIRST?",
+    "options": [
+      "Increase the model temperature",
+      "Log every prompt",
+      "Add input filtering",
+      "Add more tools"
+    ],
+    "answer": 2,
+    "explanation": "An input guardrail inspects and blocks malicious prompts at the boundary. Logging, tools, or temperature changes do not stop injection.",
+    "docs": [
+      { "label": "Jailbreak detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection" }
+    ],
+    "hint": "Block malicious prompts with an input guardrail."
+  },
+  {
+    "id": "ai-500-q370",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "An agent can call an external payment tool, and a wrong call would be costly. You must verify every call before it runs. What should you do FIRST?",
+    "options": [
+      "Add a tool-call guardrail",
+      "Increase the timeout",
+      "Cache prior responses",
+      "Add a second region"
+    ],
+    "answer": 3,
+    "explanation": "A tool-call guardrail validates or approves each proposed tool call before execution. Timeouts, caching, and region changes do not prevent a bad call.",
+    "docs": [
+      { "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+    ],
+    "hint": "Verify tool calls before they execute."
+  },
+  {
+    "id": "ai-500-q371",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You are preparing a first production release and must minimize blast radius on failure. What should you do FIRST?",
+    "options": [
+      "Deploy a small canary",
+      "Enable full traffic at once",
+      "Disable all monitoring",
+      "Skip rollback planning"
+    ],
+    "answer": 0,
+    "explanation": "A canary rollout sends the new version to a small subset first, limiting the blast radius. Full rollout, disabling monitoring, or skipping rollback all increase risk.",
+    "docs": [
+      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+    ],
+    "hint": "Limit blast radius with a small canary first."
+  },
+  {
+    "id": "ai-500-q372",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "A middle-tier agent must call a downstream API while preserving the signed-in user's identity. Which OAuth flow should you select?",
+    "options": [
+      "Client credentials flow",
+      "On-behalf-of flow",
+      "Device code flow",
+      "Implicit flow"
+    ],
+    "answer": 1,
+    "explanation": "The on-behalf-of flow lets the middle tier act on behalf of the signed-in user when calling a downstream API. Client credentials and device code do not carry that user context.",
+    "docs": [
+      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+    ],
+    "hint": "Preserve the user's identity with on-behalf-of."
+  },
+  {
+    "id": "ai-500-q373",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "A user must sign in from an input-constrained device that cannot show a browser. Which OAuth flow should you use?",
+    "options": [
+      "Authorization code flow",
+      "On-behalf-of flow",
+      "Device code flow",
+      "Client credentials flow"
+    ],
+    "answer": 2,
+    "explanation": "Device code flow lets a user authenticate on a separate device and enter a code. It suits input-constrained devices that cannot show a browser.",
+    "docs": [
+      { "label": "OAuth 2.0 device code", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code" }
+    ],
+    "hint": "No browser and limited input means device code flow."
+  },
+  {
+    "id": "ai-500-q374",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "A background agent with no signed-in user must read a shared data lake using its own identity. Solution: use the client credentials flow. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Client credentials authenticates the application with its own identity for service-to-service calls with no user. It is the correct choice for a background agent reading a data lake.",
+    "docs": [
+      { "label": "OAuth 2.0 client credentials", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow" }
+    ],
+    "hint": "Yes — app-only access uses client credentials."
+  },
+  {
+    "id": "ai-500-q375",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must block harmful content both in user prompts and in final responses. Which guardrail placement should you select?",
+    "options": [
+      "Input and output guardrails",
+      "Tool-call guardrail only",
+      "Output guardrail only",
+      "No guardrails"
+    ],
+    "answer": 3,
+    "explanation": "You need both an input guardrail for prompts and an output guardrail for responses. Covering only one side leaves the other exposed.",
+    "docs": [
+      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+    ],
+    "hint": "Prompts and responses each need their own guardrail."
+  },
+  {
+    "id": "ai-500-q376",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "An agent retrieves data from a third-party tool, and that data could contain injected instructions. Solution: add only an output guardrail. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Injected instructions arrive in tool responses. You need a tool-response guardrail, not an output guardrail, to sanitize data before it reaches the model.",
+    "docs": [
+      { "label": "Jailbreak detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection" }
+    ],
+    "hint": "No — tool responses need a tool-response guardrail."
+  },
+  {
+    "id": "ai-500-q377",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "Three agents each need a distinct identity with least privilege and independent secret rotation. To minimize identities, what is the MINIMUM number of managed identities?",
+    "options": [
+      "Two identities",
+      "Three identities",
+      "One shared identity",
+      "Four identities"
+    ],
+    "answer": 1,
+    "explanation": "Each agent needs its own identity for least privilege and independent rotation, so three agents require three managed identities. Sharing or adding identities breaks those goals.",
+    "docs": [
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+    ],
+    "hint": "Three agents need three identities for least privilege."
+  },
+  {
+    "id": "ai-500-q378",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "To survive a full region outage while minimizing cost, what is the MINIMUM number of regions for a critical agent deployment?",
+    "options": [
+      "One region",
+      "Three regions",
+      "Two regions",
+      "Four regions"
+    ],
+    "answer": 2,
+    "explanation": "Two regions are the minimum needed to survive a full regional outage. More regions add cost without adding resilience beyond the pair.",
+    "docs": [
+      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }
+    ],
+    "hint": "A region outage needs a second region."
+  },
+  {
+    "id": "ai-500-q379",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You want a deployment that switches traffic instantly and rolls back in one step, while minimizing environments. What is the MINIMUM number of environments for blue/green?",
+    "options": [
+      "One environment",
+      "Four environments",
+      "Three environments",
+      "Two environments"
+    ],
+    "answer": 3,
+    "explanation": "Blue/green requires exactly two parallel environments so you can switch traffic and roll back instantly. One environment cannot, and more add cost.",
+    "docs": [
+      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+    ],
+    "hint": "Blue/green needs two parallel environments."
+  },
+  {
+    "id": "ai-500-q380",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You must protect against prompt injection, validate tool inputs, and filter final output. To cover all three, what is the MINIMUM number of guardrail points?",
+    "options": [
+      "Three guardrail points",
+      "Two guardrail points",
+      "Four guardrail points",
+      "Five guardrail points"
+    ],
+    "answer": 0,
+    "explanation": "You need input, tool-call, and output guardrails, so three points cover all three surfaces. Fewer leaves a surface exposed.",
+    "docs": [
+      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+    ],
+    "hint": "Input, tool call, and output need three points."
+  },
+  {
+    "id": "ai-500-q381",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need a release that limits blast radius, supports instant rollback, and validates the new version against a small audience first. Which strategy meets ALL requirements?",
+    "options": [
+      "Full cutover at once",
+      "Canary release",
+      "In-place rolling update",
+      "Disable monitoring"
+    ],
+    "answer": 1,
+    "explanation": "A canary release exposes the new version to a small audience first, limits blast radius, and supports rollback. Full cutover and in-place updates do not validate against a small audience.",
+    "docs": [
+      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+    ],
+    "hint": "Small audience first with rollback is canary."
+  },
+  {
+    "id": "ai-500-q382",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need secrets stored safely, rotated automatically, and never embedded in code. Solution: store secrets in Key Vault and use managed identities. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Key Vault stores secrets securely and managed identities remove embedded credentials. Automatic rotation is not enabled by Key Vault alone, so you must configure rotation yourself.",
+    "docs": [
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+    ],
+    "hint": "No — Key Vault does not auto-rotate by itself."
+  },
+  {
+    "id": "ai-500-q383",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need a rollout that updates a few instances at a time, keeps the app online, and needs no extra environment. Which strategy meets ALL requirements?",
+    "options": [
+      "Blue/green deployment",
+      "Full cutover",
+      "Stop and redeploy",
+      "Rolling update"
+    ],
+    "answer": 3,
+    "explanation": "A rolling update replaces instances gradually, keeps the app online, and requires no second environment. Blue/green adds an environment, and stop-and-redeploy causes downtime.",
+    "docs": [
+      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+    ],
+    "hint": "Gradual instance replacement, no extra env, is rolling."
+  },
+  {
+    "id": "ai-500-q384",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need agents with isolated permissions, secret rotation per agent, and full action auditing. Which identity design meets ALL requirements?",
+    "options": [
+      "Per-agent managed identities",
+      "One shared admin account",
+      "A single static API key",
+      "Environment-variable secrets"
+    ],
+    "answer": 0,
+    "explanation": "Per-agent managed identities give isolation, independent rotation, and auditable actions. Shared or static credentials break isolation and auditing.",
+    "docs": [
+      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+    ],
+    "hint": "Isolation, rotation, and audit need per-agent identities."
+  },
+  {
+    "id": "ai-500-q385",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "You need to block a prompt-injection attempt before it reaches the model. Solution: add an input guardrail that detects injection. Does the solution meet the goal?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "An input guardrail inspects the prompt at the boundary. It blocks injection before the model processes it, meeting the goal.",
+    "docs": [
+      { "label": "Jailbreak detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection" }
+    ],
+    "hint": "Yes — input guardrails block injection early."
+  },
+  {
+    "id": "ai-500-q386",
+    "domain": "Secure, govern, and deploy multi-agent solutions",
+    "prompt": "For a zone-redundant agent deployment that must survive the loss of a single availability zone while minimizing cost, what is the MINIMUM number of availability zones to span?",
+    "options": [
+      "One zone",
+      "Two zones",
+      "Three zones",
+      "Four zones"
+    ],
+    "answer": 2,
+    "explanation": "A zone-redundant deployment spans three availability zones so the workload stays available when one zone fails. Two zones do not provide that redundancy, and four adds cost.",
+    "docs": [
+      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }
+    ],
+    "hint": "Zone redundancy spans three zones."
+  }
+]

@@ -1,0 +1,1330 @@
+[
+  {
+    "id": "sc-500-q336",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You plan to configure Microsoft Entra ID Identity Protection user risk and sign-in risk policies. What should you do first?",
+    "options": [
+      "Assign Entra ID P2 licenses",
+      "Create a sign-in risk policy",
+      "Enable combined security registration",
+      "Configure a Conditional Access policy"
+    ],
+    "answer": 0,
+    "explanation": "Identity Protection requires Microsoft Entra ID P2 licensing, so licenses must be assigned before risk policies can be configured. Without P2, the risk policies are not available.",
+    "hint": "Identity Protection risk policies require Entra ID P2 licenses.",
+    "docs": [
+      { "label": "What is Microsoft Entra ID Protection", "url": "https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection" }
+    ]
+  },
+  {
+    "id": "sc-500-q337",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You plan to use Privileged Identity Management for Azure resource roles. Before creating eligible assignments, what should you do first?",
+    "options": [
+      "Activate the Global Administrator role",
+      "Onboard the subscription to PIM",
+      "Create an access review",
+      "Assign a user access administrator"
+    ],
+    "answer": 1,
+    "explanation": "Azure resources must be onboarded to Privileged Identity Management before role assignments can be made. Onboarding registers the subscription so PIM can discover and manage its roles.",
+    "hint": "Azure resources must be discovered and onboarded before PIM can manage them.",
+    "docs": [
+      { "label": "Discover and manage Azure resources in PIM", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-resource-roles-discover-resources" }
+    ]
+  },
+  {
+    "id": "sc-500-q338",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You deploy a Conditional Access policy that requires MFA for all users. Before the policy is enforced, what should you do first?",
+    "options": [
+      "Block legacy authentication",
+      "Create an access package",
+      "Enable combined security registration",
+      "Review recent sign-in logs"
+    ],
+    "answer": 2,
+    "explanation": "Users must register their authentication methods before a policy that requires MFA is enforced. Enabling combined security information registration lets users register MFA and SSPR methods in one place.",
+    "hint": "Users must register MFA methods before an MFA policy takes effect.",
+    "docs": [
+      { "label": "Combined security information registration", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-registration-mfa-sspr-combined" }
+    ]
+  },
+  {
+    "id": "sc-500-q339",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You need to configure single sign-on for a new SaaS application. What should you do first?",
+    "options": [
+      "Assign users to the app",
+      "Configure SAML token claims",
+      "Create a Conditional Access policy",
+      "Register the application"
+    ],
+    "answer": 3,
+    "explanation": "The application must first be registered in Microsoft Entra ID, which establishes the service principal needed for SSO. User assignment and claims are configured only after the app exists.",
+    "hint": "The application must exist in the directory before SSO can be configured.",
+    "docs": [
+      { "label": "Add an enterprise application", "url": "https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/add-application-portal" }
+    ]
+  },
+  {
+    "id": "sc-500-q340",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You plan a Conditional Access MFA rollout for all users. Solution: Enable combined security information registration before creating the policy that requires MFA. Does this meet the goal of a smooth rollout?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Enabling combined security information registration before enforcement lets users register MFA methods in advance. This prevents sign-in failures when the Conditional Access policy requires MFA.",
+    "hint": "Registering MFA methods first prevents lockouts when the policy goes live.",
+    "docs": [
+      { "label": "Combined security information registration", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-registration-mfa-sspr-combined" }
+    ]
+  },
+  {
+    "id": "sc-500-q341",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Which authentication method is phishing-resistant, passwordless, and stored on a hardware security key?",
+    "options": [
+      "FIDO2 security key",
+      "Authenticator one-time code",
+      "SMS verification code",
+      "Temporary access pass"
+    ],
+    "answer": 0,
+    "explanation": "FIDO2 security keys use public-key cryptography bound to the physical device, making them phishing-resistant and passwordless. OTP and SMS codes are not phishing-resistant.",
+    "hint": "FIDO2 keys are physical hardware devices that resist phishing.",
+    "docs": [
+      { "label": "Authentication methods in Microsoft Entra ID", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods" }
+    ]
+  },
+  {
+    "id": "sc-500-q342",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "Which method provides passwordless sign-in using a device-bound biometric such as a fingerprint or face scan?",
+    "options": [
+      "Authenticator push notification",
+      "Windows Hello for Business",
+      "Text message verification code",
+      "Temporary access pass"
+    ],
+    "answer": 1,
+    "explanation": "Windows Hello for Business stores a device-bound biometric or PIN credential in the TPM, enabling phishing-resistant passwordless sign-in. It does not transmit the credential to the service.",
+    "hint": "Windows Hello binds a biometric or PIN to the device.",
+    "docs": [
+      { "label": "Windows Hello for Business overview", "url": "https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/" }
+    ]
+  },
+  {
+    "id": "sc-500-q343",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A new contractor must sign in once to register a passwordless method without any existing credential. Which credential should you issue?",
+    "options": [
+      "FIDO2 security key",
+      "Windows Hello for Business",
+      "Temporary access pass",
+      "SMS verification code"
+    ],
+    "answer": 2,
+    "explanation": "A temporary access pass is a time-limited passcode that lets a user sign in once to register other strong methods. It is designed for onboarding and recovery when no credential exists.",
+    "hint": "A temporary access pass is a time-limited code for onboarding.",
+    "docs": [
+      { "label": "Configure a Temporary Access Pass", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/howto-authentication-temporary-access-pass" }
+    ]
+  },
+  {
+    "id": "sc-500-q344",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must block sign-in from devices that do not meet your compliance policy. Which Conditional Access grant control should you configure?",
+    "options": [
+      "Require multifactor authentication",
+      "Require a FIDO2 security key",
+      "Block access grant control",
+      "Require a compliant device"
+    ],
+    "answer": 3,
+    "explanation": "The 'Require device to be marked as compliant' grant control blocks access from devices that fail your Intune compliance policy. It works with device compliance data from Microsoft Intune.",
+    "hint": "Compliance is enforced by the compliant device grant.",
+    "docs": [
+      { "label": "Conditional Access grant controls", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-grant" }
+    ]
+  },
+  {
+    "id": "sc-500-q345",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "An administrator needs a role only while performing a task and must approve each use. Which assignment type should you use?",
+    "options": [
+      "Eligible assignment in PIM",
+      "Permanent active assignment",
+      "Static role assignment",
+      "Conditional Access session control"
+    ],
+    "answer": 0,
+    "explanation": "An eligible assignment in Privileged Identity Management requires the user to activate the role just-in-time, optionally with approval, instead of holding it permanently.",
+    "hint": "Eligible assignments require activation each time the role is needed.",
+    "docs": [
+      { "label": "Assign roles in Privileged Identity Management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure" }
+    ]
+  },
+  {
+    "id": "sc-500-q346",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must delegate user administration and helpdesk duties using existing built-in Microsoft Entra roles. What is the minimum number of custom roles you must create?",
+    "options": [
+      "One custom role",
+      "Zero custom roles",
+      "Two custom roles",
+      "Three custom roles"
+    ],
+    "answer": 1,
+    "explanation": "Built-in roles such as User Administrator and Helpdesk Administrator already cover these duties, so no custom roles are required. Custom roles are needed only when built-in roles do not fit.",
+    "hint": "Built-in roles already cover user and helpdesk administration.",
+    "docs": [
+      { "label": "Microsoft Entra custom roles", "url": "https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/custom-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q347",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must remediate both sign-in risk and user risk automatically. What is the minimum number of Identity Protection policies you must configure?",
+    "options": [
+      "One risk policy",
+      "Three risk policies",
+      "Two risk policies",
+      "Four risk policies"
+    ],
+    "answer": 2,
+    "explanation": "Identity Protection uses a separate policy for sign-in risk and for user risk, so two policies are the minimum. A single policy cannot govern both risk types.",
+    "hint": "Sign-in risk and user risk require separate policies.",
+    "docs": [
+      { "label": "Configure risk policies", "url": "https://learn.microsoft.com/en-us/entra/id-protection/howto-identity-protection-configure-risk-policies" }
+    ]
+  },
+  {
+    "id": "sc-500-q348",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must enforce Conditional Access for 10 users while minimizing licensing cost. What is the minimum number of Entra ID P1 licenses you must purchase?",
+    "options": [
+      "One license",
+      "Zero licenses",
+      "Five licenses",
+      "Ten licenses"
+    ],
+    "answer": 3,
+    "explanation": "Conditional Access requires Microsoft Entra ID P1 for every user who is subject to the policy, so all 10 users need a license. Licenses are assigned per user, not per tenant.",
+    "hint": "Conditional Access licensing is per user.",
+    "docs": [
+      { "label": "Conditional Access overview", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q349",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A company has two brands sharing one IT team and one directory. To minimize administration cost, what is the minimum number of Entra ID tenants required?",
+    "options": [
+      "One tenant",
+      "Two tenants",
+      "Three tenants",
+      "Four tenants"
+    ],
+    "answer": 0,
+    "explanation": "A single Microsoft Entra tenant can host many verified domains and brands, so one tenant is sufficient. Separate tenants add cost and administrative overhead without benefit here.",
+    "hint": "A single tenant can host multiple brands and domains.",
+    "docs": [
+      { "label": "What is Microsoft Entra ID", "url": "https://learn.microsoft.com/en-us/entra/fundamentals/whatis" }
+    ]
+  },
+  {
+    "id": "sc-500-q350",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must assign the same Conditional Access policy to five departments. What is the minimum number of policies you must create?",
+    "options": [
+      "Five policies",
+      "One policy",
+      "Ten policies",
+      "Two policies"
+    ],
+    "answer": 1,
+    "explanation": "A single Conditional Access policy can include all five department groups in its assignment, so one policy is the minimum. Duplicating the policy per department is unnecessary.",
+    "hint": "One policy can target multiple groups at once.",
+    "docs": [
+      { "label": "Conditional Access policies", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/concept-conditional-access-policies" }
+    ]
+  },
+  {
+    "id": "sc-500-q351",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A contractor must use MFA, sign in only from a compliant device, and be unable to download files. Which configuration meets ALL requirements?",
+    "options": [
+      "MFA and device grant",
+      "MFA and session control",
+      "MFA, device, session control",
+      "Device and session control"
+    ],
+    "answer": 2,
+    "explanation": "Requiring MFA and a compliant device enforces the sign-in controls, while an app session control (such as Conditional Access App Control) blocks downloads. No single control covers all three requirements.",
+    "hint": "Combine grant controls with a session control for downloads.",
+    "docs": [
+      { "label": "Conditional Access overview", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q352",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A contractor must use phishing-resistant MFA. Solution: Require a Microsoft Authenticator one-time passcode for the contractor. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "A one-time passcode can be phished by a convincing attacker, so it is not a phishing-resistant method. Phishing resistance requires FIDO2, Windows Hello for Business, or certificate-based authentication.",
+    "hint": "One-time passcodes are not phishing-resistant.",
+    "docs": [
+      { "label": "Authentication methods in Microsoft Entra ID", "url": "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods" }
+    ]
+  },
+  {
+    "id": "sc-500-q353",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "A user must sign in with a passwordless, device-bound credential. Solution: Enable Windows Hello for Business and require it through Conditional Access. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Windows Hello for Business stores a device-bound biometric or PIN in the TPM and performs passwordless sign-in. Requiring it through Conditional Access enforces the credential for the user.",
+    "hint": "Windows Hello for Business is passwordless and device-bound.",
+    "docs": [
+      { "label": "Windows Hello for Business overview", "url": "https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/" }
+    ]
+  },
+  {
+    "id": "sc-500-q354",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "An admin needs just-in-time access with MFA required on activation and an eight-hour maximum. Which meets ALL requirements?",
+    "options": [
+      "Permanent assignment in PIM",
+      "Static role assignment",
+      "Access review for the role",
+      "Eligible assignment with settings"
+    ],
+    "answer": 3,
+    "explanation": "An eligible assignment in PIM is activated just-in-time, and its role settings can require MFA and cap activation at eight hours. Permanent or static assignments do not provide just-in-time access.",
+    "hint": "Eligible assignments activate just-in-time with MFA and time limits.",
+    "docs": [
+      { "label": "Assign roles in Privileged Identity Management", "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure" }
+    ]
+  },
+  {
+    "id": "sc-500-q355",
+    "domain": "Manage identity, access, and governance",
+    "prompt": "You must block legacy authentication and require MFA for all cloud apps. Solution: Create one Conditional Access policy that targets Other clients and requires MFA. Does this meet ALL requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Targeting Other clients applies the policy only to legacy protocols, so modern cloud-app sign-ins are not forced to use MFA. You need a separate policy that requires MFA for cloud apps.",
+    "hint": "Other clients excludes modern cloud app sign-ins.",
+    "docs": [
+      { "label": "Conditional Access overview", "url": "https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q356",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You plan to enable Microsoft Defender for Storage on a storage account. What should you do first?",
+    "options": [
+      "Register the security provider",
+      "Create a Log Analytics workspace",
+      "Enable the Defender for Storage plan",
+      "Configure a diagnostic setting"
+    ],
+    "answer": 0,
+    "explanation": "Enabling a Defender plan requires the Microsoft.Security resource provider to be registered on the subscription. Registration is a one-time prerequisite before any Defender plan can be enabled.",
+    "hint": "The Microsoft.Security provider must be registered first.",
+    "docs": [
+      { "label": "Defender for Cloud permissions", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions" }
+    ]
+  },
+  {
+    "id": "sc-500-q357",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You plan to grant an application access to a key vault using Azure RBAC. What should you do first?",
+    "options": [
+      "Create an access policy",
+      "Create the key vault",
+      "Assign the Key Vault Reader role",
+      "Generate a client secret"
+    ],
+    "answer": 1,
+    "explanation": "The key vault must be created first because role assignments and access policies are applied to an existing vault. You cannot assign data-plane roles to a vault that does not exist.",
+    "hint": "The key vault must exist before roles can be assigned.",
+    "docs": [
+      { "label": "Azure RBAC permission model for Key Vault", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide" }
+    ]
+  },
+  {
+    "id": "sc-500-q358",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You plan to deploy Azure Firewall to inspect hub traffic. What should you create first?",
+    "options": [
+      "A user-defined route",
+      "A network security group",
+      "The AzureFirewallSubnet",
+      "The firewall public IP"
+    ],
+    "answer": 2,
+    "explanation": "Azure Firewall requires a dedicated subnet named AzureFirewallSubnet, which must be created before the firewall can be deployed into it. The firewall instance, IP, and routes come afterward.",
+    "hint": "Azure Firewall needs its dedicated subnet first.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q359",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You plan to enable Azure DDoS Protection Standard for a virtual network. What should you create first?",
+    "options": [
+      "A public IP address",
+      "A network security group",
+      "A Log Analytics workspace",
+      "A DDoS protection plan"
+    ],
+    "answer": 3,
+    "explanation": "Azure DDoS Protection Standard requires a DDoS protection plan, which is created first and then associated with the virtual network. The plan defines the protected resource.",
+    "hint": "DDoS Standard requires a protection plan first.",
+    "docs": [
+      { "label": "Azure DDoS Protection overview", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q360",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You plan to enable Defender for Cloud plans. Solution: Register the Microsoft.Security resource provider before enabling the Defender plans. Does this meet the prerequisite?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The Microsoft.Security resource provider must be registered on the subscription before Defender plans can be enabled. Registering it first satisfies the prerequisite.",
+    "hint": "The security provider must be registered before enabling plans.",
+    "docs": [
+      { "label": "Defender for Cloud permissions", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/permissions" }
+    ]
+  },
+  {
+    "id": "sc-500-q361",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must allow secrets, keys, and certificates to share one permission model managed by Azure roles. Which Key Vault access model should you select?",
+    "options": [
+      "Azure RBAC model",
+      "Vault access policy",
+      "Shared access signature",
+      "Storage access key"
+    ],
+    "answer": 0,
+    "explanation": "The Azure RBAC permission model manages Key Vault data-plane access with built-in roles and is the recommended model. Access policies are the legacy per-vault alternative.",
+    "hint": "Azure RBAC is the recommended, unified permission model.",
+    "docs": [
+      { "label": "Azure RBAC permission model for Key Vault", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide" }
+    ]
+  },
+  {
+    "id": "sc-500-q362",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must inspect outbound TLS traffic and detect intrusions using signatures. Which Azure Firewall tier should you deploy?",
+    "options": [
+      "Basic tier",
+      "Premium tier",
+      "Standard tier",
+      "Developer tier"
+    ],
+    "answer": 1,
+    "explanation": "TLS inspection and intrusion detection and prevention (IDPS) are available only in Azure Firewall Premium. Basic and Standard do not provide these capabilities.",
+    "hint": "TLS inspection and IDPS are Premium-only.",
+    "docs": [
+      { "label": "Azure Firewall Premium features", "url": "https://learn.microsoft.com/en-us/azure/firewall/premium-features" }
+    ]
+  },
+  {
+    "id": "sc-500-q363",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must filter outbound traffic by FQDN and use threat intelligence, but you do not need TLS inspection. Which Azure Firewall tier should you deploy?",
+    "options": [
+      "Premium tier",
+      "Basic tier",
+      "Standard tier",
+      "Developer tier"
+    ],
+    "answer": 2,
+    "explanation": "Azure Firewall Standard provides FQDN filtering and threat intelligence without the Premium-only TLS inspection and IDPS. Basic lacks FQDN filtering and threat intelligence.",
+    "hint": "FQDN and threat intelligence without TLS = Standard.",
+    "docs": [
+      { "label": "Choose the right Azure Firewall SKU", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q364",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must prevent clients from authenticating to a storage account with account keys. Which setting should you disable?",
+    "options": [
+      "Secure transfer required",
+      "Anonymous public access",
+      "Minimum TLS version",
+      "Shared key authorization"
+    ],
+    "answer": 3,
+    "explanation": "Disabling shared key authorization blocks access that uses account access keys, steering clients to Microsoft Entra ID or shared access signatures instead.",
+    "hint": "Disabling shared key forces Entra ID-based authorization.",
+    "docs": [
+      { "label": "Prevent Shared Key authorization", "url": "https://learn.microsoft.com/en-us/azure/storage/common/shared-key-authorization-prevent" }
+    ]
+  },
+  {
+    "id": "sc-500-q365",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must enable always-on DDoS mitigation for a virtual network at no extra cost. Which DDoS Protection tier should you use?",
+    "options": [
+      "Basic tier",
+      "Standard tier",
+      "Premium tier",
+      "Enterprise tier"
+    ],
+    "answer": 0,
+    "explanation": "DDoS Protection Basic is enabled automatically for every virtual network at no extra cost. Standard adds adaptive tuning and cost protection but is a paid service.",
+    "hint": "Basic DDoS protection is free and automatic.",
+    "docs": [
+      { "label": "Azure DDoS Protection overview", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q366",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must minimize cost while securing one subscription with secrets in a single region. What is the minimum number of key vaults required?",
+    "options": [
+      "Two vaults",
+      "One vault",
+      "Three vaults",
+      "Four vaults"
+    ],
+    "answer": 1,
+    "explanation": "One key vault can store all secrets, keys, and certificates for the subscription, so a single vault is sufficient. Additional vaults are needed only for isolation or multi-region requirements.",
+    "hint": "A single vault can hold secrets, keys, and certificates.",
+    "docs": [
+      { "label": "Azure Key Vault basic concepts", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts" }
+    ]
+  },
+  {
+    "id": "sc-500-q367",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must minimize cost while centralizing firewall inspection for one hub. What is the minimum number of Azure Firewall instances required?",
+    "options": [
+      "Two instances",
+      "Four instances",
+      "One instance",
+      "Three instances"
+    ],
+    "answer": 2,
+    "explanation": "One Azure Firewall instance in the hub can inspect traffic for the entire network, so one is the minimum. Multiple instances are needed only for high availability across regions or zones.",
+    "hint": "A single firewall can secure the hub's traffic.",
+    "docs": [
+      { "label": "Azure Firewall overview", "url": "https://learn.microsoft.com/en-us/azure/firewall/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q368",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must minimize cost while monitoring security logs for one subscription. What is the minimum number of Log Analytics workspaces required?",
+    "options": [
+      "Two workspaces",
+      "Three workspaces",
+      "Four workspaces",
+      "One workspace"
+    ],
+    "answer": 3,
+    "explanation": "A single Log Analytics workspace can ingest logs from the entire subscription, so one workspace minimizes cost and management. Multiple workspaces are needed only for data residency or isolation.",
+    "hint": "One workspace can collect logs for the whole subscription.",
+    "docs": [
+      { "label": "Log Analytics workspace overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/logs/log-analytics-workspace-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q369",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must restrict a storage account to one specific virtual network while minimizing cost. What is the minimum number of private endpoints required?",
+    "options": [
+      "One endpoint",
+      "Two endpoints",
+      "Three endpoints",
+      "Four endpoints"
+    ],
+    "answer": 0,
+    "explanation": "A single private endpoint maps the storage account to one subnet's private IP, which is enough for one virtual network. More endpoints are needed for multiple networks or regions.",
+    "hint": "One private endpoint provides private access from a subnet.",
+    "docs": [
+      { "label": "Azure Private Link overview", "url": "https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q370",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must protect one virtual network against DDoS while minimizing cost. What is the minimum number of DDoS protection plans required?",
+    "options": [
+      "Two plans",
+      "One plan",
+      "Three plans",
+      "Four plans"
+    ],
+    "answer": 1,
+    "explanation": "A single DDoS protection plan can be associated with multiple virtual networks, so one plan is the minimum. Additional plans are unnecessary for a single network.",
+    "hint": "One plan can protect many virtual networks.",
+    "docs": [
+      { "label": "Azure DDoS Protection overview", "url": "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q371",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A storage account must reject public traffic, detect malware, and stop shared-key sign-in. Which configuration meets ALL requirements?",
+    "options": [
+      "Private, shared key, no Defender",
+      "Public, no shared key, Defender",
+      "Private, no shared key, Defender",
+      "Private, shared key, Defender"
+    ],
+    "answer": 2,
+    "explanation": "A private endpoint rejects public traffic, disabling shared key forces Entra ID authentication, and Defender for Storage provides malware and threat detection. This combination meets all three requirements.",
+    "hint": "Private endpoint plus Entra-only auth plus Defender satisfies all three.",
+    "docs": [
+      { "label": "Configure Azure Storage firewalls and virtual networks", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security" }
+    ]
+  },
+  {
+    "id": "sc-500-q372",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must prevent public access and detect threats on a storage account. Solution: Enable Defender for Storage and leave the firewall set to allow public access. Does this meet ALL requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Defender for Storage detects threats but does not restrict network access. Preventing public access requires a private endpoint or a firewall configured to deny public traffic.",
+    "hint": "Defender detects threats but does not block public access.",
+    "docs": [
+      { "label": "Configure Azure Storage firewalls and virtual networks", "url": "https://learn.microsoft.com/en-us/azure/storage/common/storage-network-security" }
+    ]
+  },
+  {
+    "id": "sc-500-q373",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must filter only source and destination IP, port, and protocol while minimizing cost. Solution: Deploy Azure Firewall Basic. Does this meet ALL requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure Firewall Basic performs layer 3 and layer 4 filtering by IP, port, and protocol at the lowest cost. It is sufficient when FQDN, threat intelligence, and TLS inspection are not needed.",
+    "hint": "Basic handles L3/L4 filtering at the lowest cost.",
+    "docs": [
+      { "label": "Choose the right Azure Firewall SKU", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q374",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "A key vault must survive accidental deletion, be unrecoverable after purge, and grant access through Azure roles. Which configuration meets ALL requirements?",
+    "options": [
+      "Access policy, soft delete",
+      "RBAC model, access policy",
+      "Soft delete with purge protection enabled",
+      "RBAC, soft delete, purge protection"
+    ],
+    "answer": 3,
+    "explanation": "The Azure RBAC model grants access with Azure roles, soft delete protects against accidental deletion, and purge protection prevents permanent removal. Together they satisfy all three requirements.",
+    "hint": "RBAC model plus soft delete plus purge protection.",
+    "docs": [
+      { "label": "Azure Key Vault soft-delete overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/soft-delete-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q375",
+    "domain": "Secure storage, databases, and networking",
+    "prompt": "You must inspect inbound traffic, filter by FQDN, and detect intrusions while minimizing cost. Solution: Deploy Azure Firewall Basic. Does this meet ALL requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Azure Firewall Basic cannot filter by FQDN and does not include IDPS, so it fails two of the requirements. Standard or Premium is required.",
+    "hint": "Basic lacks FQDN filtering and IDPS.",
+    "docs": [
+      { "label": "Choose the right Azure Firewall SKU", "url": "https://learn.microsoft.com/en-us/azure/firewall/choose-firewall-sku" }
+    ]
+  },
+  {
+    "id": "sc-500-q376",
+    "domain": "Secure compute",
+    "prompt": "You plan to deploy a confidential virtual machine that requires secure boot and vTPM. What should you do first?",
+    "options": [
+      "Enable Trusted Launch",
+      "Enable Azure Disk Encryption",
+      "Configure Just-in-Time access",
+      "Create a network security group"
+    ],
+    "answer": 0,
+    "explanation": "Trusted Launch, which provides secure boot and vTPM, must be enabled when the virtual machine is created; it cannot be added later. It is a prerequisite for confidential computing.",
+    "hint": "Trusted Launch must be enabled at deployment time.",
+    "docs": [
+      { "label": "Trusted launch for Azure VMs", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch" }
+    ]
+  },
+  {
+    "id": "sc-500-q377",
+    "domain": "Secure compute",
+    "prompt": "You plan to enable Defender for Servers with agent-based protections. What should you do first?",
+    "options": [
+      "Enable Just-in-Time VM access",
+      "Enable the Defender plan",
+      "Deploy the Azure Monitor Agent",
+      "Review Secure Score"
+    ],
+    "answer": 1,
+    "explanation": "The Defender for Servers plan must be enabled on the subscription before auto-provisioning can deploy the Azure Monitor Agent. The plan is the prerequisite for the agent and protections.",
+    "hint": "Enable the plan before provisioning the agent.",
+    "docs": [
+      { "label": "Plan Defender for Servers", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/plan-defender-for-servers" }
+    ]
+  },
+  {
+    "id": "sc-500-q378",
+    "domain": "Secure compute",
+    "prompt": "You plan to give administrators secure RDP and SSH access without exposing a public IP address. What should you deploy first?",
+    "options": [
+      "A public IP address",
+      "A network security group",
+      "An Azure Bastion host",
+      "A virtual machine"
+    ],
+    "answer": 2,
+    "explanation": "Azure Bastion provides RDP and SSH through the Azure portal over TLS without a public IP on the VM. It is the first component to deploy for this access model.",
+    "hint": "Azure Bastion provides private RDP and SSH.",
+    "docs": [
+      { "label": "Azure Bastion overview", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q379",
+    "domain": "Secure compute",
+    "prompt": "You plan to enable Just-in-Time VM access to reduce management-port exposure. What should you enable first?",
+    "options": [
+      "Create a new Log Analytics workspace",
+      "Azure Disk Encryption",
+      "Trusted Launch",
+      "Defender for Servers Plan 2"
+    ],
+    "answer": 3,
+    "explanation": "Just-in-Time VM access is a feature of Microsoft Defender for Servers Plan 2, which must be enabled first. It cannot be used with the free tier or Plan 1.",
+    "hint": "Just-in-Time access requires Defender for Servers Plan 2.",
+    "docs": [
+      { "label": "Just-in-time machine access", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/just-in-time-access-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q380",
+    "domain": "Secure compute",
+    "prompt": "You plan to use confidential computing. Solution: Deploy the VM with Trusted Launch enabled before enabling confidential VM features. Does this sequence meet the prerequisite?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Confidential virtual machines require Trusted Launch, so enabling it at deployment is the correct first step. Secure boot and vTPM are prerequisites for confidential computing.",
+    "hint": "Confidential VMs require Trusted Launch first.",
+    "docs": [
+      { "label": "Confidential VMs overview", "url": "https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-vm-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q381",
+    "domain": "Secure compute",
+    "prompt": "You must block prompt injection attacks against an Azure OpenAI deployment. Which plan should you enable?",
+    "options": [
+      "Defender for AI",
+      "Defender for Servers",
+      "Defender for Storage",
+      "Defender for SQL"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft Defender for AI protects Azure OpenAI and other AI workloads by detecting prompt injection and other threats. The other plans protect different resource types.",
+    "hint": "Defender for AI detects prompt injection threats.",
+    "docs": [
+      { "label": "Defender for AI", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-ai" }
+    ]
+  },
+  {
+    "id": "sc-500-q382",
+    "domain": "Secure compute",
+    "prompt": "You must encrypt a VM disk using BitLocker with a key stored in a key vault. Which option should you use?",
+    "options": [
+      "Encryption at host",
+      "Azure Disk Encryption",
+      "Confidential VM",
+      "Secure Boot"
+    ],
+    "answer": 1,
+    "explanation": "Azure Disk Encryption uses BitLocker (Windows) or DM-Crypt (Linux) and stores encryption secrets in a key vault. Encryption at host does not use BitLocker or a key vault.",
+    "hint": "Azure Disk Encryption uses BitLocker and a key vault.",
+    "docs": [
+      { "label": "Azure Disk Encryption overview", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/disk-encryption-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q383",
+    "domain": "Secure compute",
+    "prompt": "You must protect a VM against boot kits and rootkits at startup. Which Trusted Launch feature provides this?",
+    "options": [
+      "Virtual TPM",
+      "Virtualization-based security",
+      "Secure Boot",
+      "Boot diagnostics"
+    ],
+    "answer": 2,
+    "explanation": "Secure Boot verifies the boot loader and blocks untrusted code at startup, protecting against boot kits and rootkits. Virtual TPM protects keys, and virtualization-based security isolates the OS.",
+    "hint": "Secure Boot blocks untrusted boot loaders.",
+    "docs": [
+      { "label": "Trusted launch for Azure VMs", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch" }
+    ]
+  },
+  {
+    "id": "sc-500-q384",
+    "domain": "Secure compute",
+    "prompt": "You must filter harmful or offensive content in prompts sent to an Azure OpenAI model. Which service should you configure?",
+    "options": [
+      "Azure Web Application Firewall",
+      "Azure Firewall Premium",
+      "Microsoft Defender for Cloud",
+      "Azure AI Content Safety"
+    ],
+    "answer": 3,
+    "explanation": "Azure AI Content Safety detects and filters harmful, offensive, or inappropriate content in prompts and completions. The other services do not filter model content.",
+    "hint": "Content Safety filters harmful prompt content.",
+    "docs": [
+      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q385",
+    "domain": "Secure compute",
+    "prompt": "You must scan container images for vulnerabilities before deployment. Which plan should you enable?",
+    "options": [
+      "Defender for Containers",
+      "Defender for Servers",
+      "Defender for Storage",
+      "Defender for App Service"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft Defender for Containers scans container images in registries for vulnerabilities and provides runtime threat detection. The other plans protect different resource types.",
+    "hint": "Defender for Containers scans images and registries.",
+    "docs": [
+      { "label": "Defender for Containers overview", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q386",
+    "domain": "Secure compute",
+    "prompt": "You must give administrators temporary RDP access to several VMs without public IPs. What is the minimum number of Azure Bastion hosts required for one virtual network?",
+    "options": [
+      "Two hosts",
+      "One host",
+      "Three hosts",
+      "Four hosts"
+    ],
+    "answer": 1,
+    "explanation": "A single Azure Bastion host provides RDP and SSH access to every VM in its virtual network, so one host is the minimum. More hosts are needed only for additional networks.",
+    "hint": "One Bastion host serves an entire virtual network.",
+    "docs": [
+      { "label": "Azure Bastion overview", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q387",
+    "domain": "Secure compute",
+    "prompt": "You must minimize cost while securing one AKS cluster's container images. What is the minimum number of Defender for Containers plans required?",
+    "options": [
+      "Two plans",
+      "Three plans",
+      "One plan",
+      "Four plans"
+    ],
+    "answer": 2,
+    "explanation": "Enabling Defender for Containers once on the subscription protects the cluster and its registry, so one plan is the minimum. It is not enabled per node or per image.",
+    "hint": "One Defender for Containers plan covers a cluster.",
+    "docs": [
+      { "label": "Defender for Containers overview", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q388",
+    "domain": "Secure compute",
+    "prompt": "You must minimize cost while giving a VM a system-assigned identity for key vault access. What is the minimum number of managed identities required?",
+    "options": [
+      "Two identities",
+      "Three identities",
+      "Four identities",
+      "One identity"
+    ],
+    "answer": 3,
+    "explanation": "A single system-assigned managed identity is bound to the VM and can be granted access to the key vault. No additional identities are required for one workload.",
+    "hint": "One system-assigned identity is shared with the VM.",
+    "docs": [
+      { "label": "Managed identities for Azure resources", "url": "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q389",
+    "domain": "Secure compute",
+    "prompt": "You must minimize cost while encrypting disks for one VM. What is the minimum number of key vaults required for Azure Disk Encryption?",
+    "options": [
+      "One vault",
+      "Two vaults",
+      "Three vaults",
+      "Four vaults"
+    ],
+    "answer": 0,
+    "explanation": "Azure Disk Encryption stores the BitLocker keys in a single key vault, so one vault is the minimum. The same vault can serve multiple VMs.",
+    "hint": "One key vault stores the encryption secrets.",
+    "docs": [
+      { "label": "Azure Disk Encryption with a key vault", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/windows/disk-encryption-key-vault" }
+    ]
+  },
+  {
+    "id": "sc-500-q390",
+    "domain": "Secure compute",
+    "prompt": "You must minimize cost while centrally managing RDP access across two virtual networks in one region. What is the minimum number of Bastion hosts required?",
+    "options": [
+      "One host",
+      "Two hosts",
+      "Three hosts",
+      "Four hosts"
+    ],
+    "answer": 1,
+    "explanation": "Azure Bastion is deployed per virtual network, so two virtual networks require two hosts. A single host cannot span separate virtual networks.",
+    "hint": "Bastion is deployed per virtual network.",
+    "docs": [
+      { "label": "Azure Bastion overview", "url": "https://learn.microsoft.com/en-us/azure/bastion/bastion-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q391",
+    "domain": "Secure compute",
+    "prompt": "A VM must protect boot integrity, encrypt data at rest without a key vault, and restrict management ports. Which combination meets ALL requirements?",
+    "options": [
+      "Trusted Launch, Disk Encryption, public ports",
+      "Trusted Launch, encryption at host, open ports",
+      "Trusted Launch, encryption at host, Just-in-Time",
+      "Standard VM, encryption at host, Just-in-Time"
+    ],
+    "answer": 2,
+    "explanation": "Trusted Launch protects boot integrity, encryption at host encrypts disks without a key vault, and Just-in-Time VM access restricts management ports. The combination satisfies all three.",
+    "hint": "Trusted Launch plus encryption at host plus Just-in-Time.",
+    "docs": [
+      { "label": "Trusted launch for Azure VMs", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch" }
+    ]
+  },
+  {
+    "id": "sc-500-q392",
+    "domain": "Secure compute",
+    "prompt": "You must protect a VM from boot kits. Solution: Enable Azure Disk Encryption on the VM. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Azure Disk Encryption encrypts data at rest but does not verify boot integrity. Protecting against boot kits requires Trusted Launch with Secure Boot.",
+    "hint": "Disk encryption protects data, not boot integrity.",
+    "docs": [
+      { "label": "Trusted launch for Azure VMs", "url": "https://learn.microsoft.com/en-us/azure/virtual-machines/trusted-launch" }
+    ]
+  },
+  {
+    "id": "sc-500-q393",
+    "domain": "Secure compute",
+    "prompt": "You must encrypt a VM's data in use. Solution: Deploy a confidential VM with Trusted Launch. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Confidential virtual machines encrypt data in use with hardware-based memory encryption, and they require Trusted Launch. The combination meets the requirement.",
+    "hint": "Confidential VMs encrypt memory and require Trusted Launch.",
+    "docs": [
+      { "label": "Confidential VMs overview", "url": "https://learn.microsoft.com/en-us/azure/confidential-computing/confidential-vm-overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q394",
+    "domain": "Secure compute",
+    "prompt": "A container workload must enforce pod network isolation, scan images, and authenticate with Entra ID. Which set meets ALL requirements?",
+    "options": [
+      "Role-based access control and image scanning",
+      "Network policy and RBAC",
+      "Image scanning and RBAC",
+      "Network policy, RBAC, image scanning"
+    ],
+    "answer": 3,
+    "explanation": "A network policy isolates pod traffic, RBAC provides Entra ID-based authorization, and Defender image scanning detects vulnerabilities. Together they satisfy all three requirements.",
+    "hint": "Network policy plus RBAC plus image scanning.",
+    "docs": [
+      { "label": "Security concepts for AKS", "url": "https://learn.microsoft.com/en-us/azure/aks/concepts-security" }
+    ]
+  },
+  {
+    "id": "sc-500-q395",
+    "domain": "Secure compute",
+    "prompt": "You must scan container images and detect runtime threats in an AKS cluster. Solution: Enable Defender for Servers only. Does this meet ALL requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Defender for Servers does not scan container images or detect container runtime threats. Those capabilities require Microsoft Defender for Containers.",
+    "hint": "Container image scanning needs Defender for Containers.",
+    "docs": [
+      { "label": "Defender for Containers overview", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-containers-introduction" }
+    ]
+  },
+  {
+    "id": "sc-500-q396",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You plan to onboard Microsoft Sentinel to monitor security logs. What should you create first?",
+    "options": [
+      "A Log Analytics workspace",
+      "A Sentinel data connector",
+      "A scheduled analytics rule",
+      "A Microsoft Sentinel automation rule"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft Sentinel is enabled on an existing Log Analytics workspace, so the workspace must be created first. Data connectors, analytics rules, and automation come after onboarding.",
+    "hint": "Sentinel requires a Log Analytics workspace first.",
+    "docs": [
+      { "label": "Quickstart: Onboard to Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard" }
+    ]
+  },
+  {
+    "id": "sc-500-q397",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You plan to auto-provision the Azure Monitor Agent to servers through Defender for Cloud. What should you enable first?",
+    "options": [
+      "A data collection rule",
+      "Auto-provisioning",
+      "A Log Analytics workspace",
+      "Just-in-Time access"
+    ],
+    "answer": 1,
+    "explanation": "Auto-provisioning must be enabled first so Defender for Cloud can deploy the Azure Monitor Agent to servers. It is the mechanism that installs the agent.",
+    "hint": "Auto-provisioning deploys the agent automatically.",
+    "docs": [
+      { "label": "Defender for Cloud monitoring components", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/monitoring-components" }
+    ]
+  },
+  {
+    "id": "sc-500-q398",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You plan to enforce a regulatory compliance baseline using Azure Policy. What should you do first?",
+    "options": [
+      "Assign the initiative",
+      "Create a remediation task",
+      "Select a built-in initiative",
+      "Review compliance results"
+    ],
+    "answer": 2,
+    "explanation": "A built-in regulatory initiative must be selected before it can be assigned. Assignment and remediation follow selection.",
+    "hint": "Choose the initiative before assigning it.",
+    "docs": [
+      { "label": "Azure Policy built-in initiatives", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/samples/built-in-initiatives" }
+    ]
+  },
+  {
+    "id": "sc-500-q399",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You plan to raise your Microsoft Secure Score by enforcing recommendations. What should you do first?",
+    "options": [
+      "Create an exemption",
+      "Apply a remediation task",
+      "Enable all Defender plans",
+      "Review security recommendations"
+    ],
+    "answer": 3,
+    "explanation": "Secure Score recommendations must first be reviewed and prioritized before remediation can raise the score. Remediation and exemptions follow the review.",
+    "hint": "Review recommendations before remediating them.",
+    "docs": [
+      { "label": "Secure score and security controls", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls" }
+    ]
+  },
+  {
+    "id": "sc-500-q400",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You plan to monitor security logs with Microsoft Sentinel. Solution: Create a Log Analytics workspace before enabling Sentinel. Does this meet the prerequisite?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft Sentinel is enabled on top of an existing Log Analytics workspace, so creating the workspace first satisfies the prerequisite.",
+    "hint": "Sentinel must be enabled on an existing workspace.",
+    "docs": [
+      { "label": "Quickstart: Onboard to Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard" }
+    ]
+  },
+  {
+    "id": "sc-500-q401",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must detect threats by matching known attack signatures against collected events. Which Microsoft Sentinel component should you configure?",
+    "options": [
+      "An analytics rule",
+      "A data connector",
+      "A workbook",
+      "A watchlist"
+    ],
+    "answer": 0,
+    "explanation": "Analytics rules apply detection logic to ingested events to generate incidents. Scheduled and NRT rules match known attack signatures; connectors only ingest data.",
+    "hint": "Analytics rules match events to detection logic.",
+    "docs": [
+      { "label": "Detect threats with built-in analytics rules", "url": "https://learn.microsoft.com/en-us/azure/sentinel/detect-threats-built-in" }
+    ]
+  },
+  {
+    "id": "sc-500-q402",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must automatically run a Logic Apps playbook when an incident is created. Which Sentinel component should you configure?",
+    "options": [
+      "A data connector",
+      "An automation rule",
+      "A workbook",
+      "A watchlist"
+    ],
+    "answer": 1,
+    "explanation": "Automation rules trigger playbooks (Logic Apps) in response to incidents and alerts. They define the trigger conditions for automated response.",
+    "hint": "Automation rules trigger playbooks on incidents.",
+    "docs": [
+      { "label": "Automation in Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/automation/automation" }
+    ]
+  },
+  {
+    "id": "sc-500-q403",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must identify the tenant's overall security posture as a single percentage. Which metric should you review?",
+    "options": [
+      "Regulatory compliance score",
+      "Defender plan status",
+      "Microsoft Secure Score",
+      "Sentinel incident count"
+    ],
+    "answer": 2,
+    "explanation": "Microsoft Secure Score aggregates recommendations into a single percentage representing overall security posture. Compliance and incidents measure other aspects.",
+    "hint": "Secure Score expresses posture as a percentage.",
+    "docs": [
+      { "label": "Secure score and security controls", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/secure-score-security-controls" }
+    ]
+  },
+  {
+    "id": "sc-500-q404",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must assign a policy that requires a specific virtual machine setting without manual correction. Which Azure Policy effect should you use?",
+    "options": [
+      "Audit effect",
+      "Deny effect",
+      "Append effect",
+      "DeployIfNotExists effect"
+    ],
+    "answer": 3,
+    "explanation": "The DeployIfNotExists effect automatically deploys a missing setting or resource to bring the machine into compliance. Audit only reports, and Deny only blocks.",
+    "hint": "DeployIfNotExists remediates missing settings.",
+    "docs": [
+      { "label": "Azure Policy effects", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects" }
+    ]
+  },
+  {
+    "id": "sc-500-q405",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must classify sensitive data and apply labels across cloud and AI services. Which service should you use?",
+    "options": [
+      "Microsoft Purview",
+      "Microsoft Sentinel",
+      "Azure Firewall",
+      "Azure Policy"
+    ],
+    "answer": 0,
+    "explanation": "Microsoft Purview provides data classification, sensitivity labels, and information protection across cloud and AI services. The other services do not classify data.",
+    "hint": "Purview classifies and labels sensitive data.",
+    "docs": [
+      { "label": "Microsoft Purview documentation", "url": "https://learn.microsoft.com/en-us/purview/purview" }
+    ]
+  },
+  {
+    "id": "sc-500-q406",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must minimize cost while monitoring all security logs in one region. What is the minimum number of Microsoft Sentinel workspaces required?",
+    "options": [
+      "Two workspaces",
+      "One workspace",
+      "Three workspaces",
+      "Four workspaces"
+    ],
+    "answer": 1,
+    "explanation": "A single Microsoft Sentinel workspace can ingest logs for the entire region, so one workspace minimizes cost. Additional workspaces are needed only for data residency or isolation.",
+    "hint": "One Sentinel workspace can monitor a region.",
+    "docs": [
+      { "label": "Design your Microsoft Sentinel workspace architecture", "url": "https://learn.microsoft.com/en-us/azure/sentinel/design-your-workspace-architecture" }
+    ]
+  },
+  {
+    "id": "sc-500-q407",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must minimize cost while ingesting Microsoft Entra ID sign-in logs into Sentinel. What is the minimum number of data connectors required?",
+    "options": [
+      "Two connectors",
+      "Three connectors",
+      "One connector",
+      "Four connectors"
+    ],
+    "answer": 2,
+    "explanation": "The Microsoft Entra ID data connector ingests both sign-in and audit logs, so one connector is the minimum. No additional connector is needed for sign-in logs.",
+    "hint": "One Entra ID connector ingests sign-in logs.",
+    "docs": [
+      { "label": "Microsoft Entra ID data connector", "url": "https://learn.microsoft.com/en-us/azure/sentinel/data-connectors/microsoft-entra-id" }
+    ]
+  },
+  {
+    "id": "sc-500-q408",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must minimize cost while enforcing one regulatory baseline and one operational policy set. What is the minimum number of initiatives you must assign?",
+    "options": [
+      "One initiative",
+      "Three initiatives",
+      "Four initiatives",
+      "Two initiatives"
+    ],
+    "answer": 3,
+    "explanation": "The regulatory baseline and the operational policy set are separate initiatives, so two assignments are required. A single initiative cannot combine unrelated baselines.",
+    "hint": "One initiative for compliance, one for operations.",
+    "docs": [
+      { "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q409",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must minimize cost while collecting Defender for Cloud alerts for one subscription. What is the minimum number of Log Analytics workspaces required?",
+    "options": [
+      "One workspace",
+      "Two workspaces",
+      "Three workspaces",
+      "Four workspaces"
+    ],
+    "answer": 0,
+    "explanation": "Defender for Cloud can stream alerts from a subscription to a single Log Analytics workspace, so one workspace is the minimum. A second workspace is unnecessary.",
+    "hint": "One workspace receives alerts for a subscription.",
+    "docs": [
+      { "label": "Continuous export in Defender for Cloud", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/continuous-export" }
+    ]
+  },
+  {
+    "id": "sc-500-q410",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must minimize cost while assigning one initiative to five subscriptions under one management group. What is the minimum number of assignments required?",
+    "options": [
+      "Two assignments",
+      "One assignment",
+      "Five assignments",
+      "Three assignments"
+    ],
+    "answer": 1,
+    "explanation": "Assigning the initiative once at the management group scope covers all five subscriptions beneath it. Per-subscription assignments are unnecessary.",
+    "hint": "One assignment at the management group covers all.",
+    "docs": [
+      { "label": "Azure Policy assignment structure", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/assignment-structure" }
+    ]
+  },
+  {
+    "id": "sc-500-q411",
+    "domain": "Manage and monitor security posture",
+    "prompt": "A monitoring solution must detect threats, automate response, and visualize data. Which combination meets ALL requirements?",
+    "options": [
+      "Data connector and workbook",
+      "Analytics rule and connector",
+      "Analytics rule, automation, workbook",
+      "Workbook and watchlist"
+    ],
+    "answer": 2,
+    "explanation": "An analytics rule detects threats, an automation rule responds, and a workbook visualizes the data. Together they cover detection, response, and visualization.",
+    "hint": "Analytics rule detects, automation responds, workbook visualizes.",
+    "docs": [
+      { "label": "Quickstart: Onboard to Microsoft Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/quickstart-onboard" }
+    ]
+  },
+  {
+    "id": "sc-500-q412",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must automatically remediate a security recommendation. Solution: Configure a Microsoft Sentinel analytics rule. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Analytics rules detect threats but do not remediate recommendations. Remediation is done through Azure Policy effects or Defender for Cloud recommendation workflows.",
+    "hint": "Remediation uses Azure Policy or Defender, not analytics.",
+    "docs": [
+      { "label": "Azure Policy overview", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/overview" }
+    ]
+  },
+  {
+    "id": "sc-500-q413",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must view compliance against a standard and receive actionable remediation. Solution: Assign a built-in regulatory compliance initiative. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "A built-in regulatory compliance initiative maps Azure resources to the standard's controls and surfaces remediation steps in Defender for Cloud. It meets both requirements.",
+    "hint": "Built-in initiatives provide controls and remediation steps.",
+    "docs": [
+      { "label": "Regulatory compliance dashboard", "url": "https://learn.microsoft.com/en-us/azure/defender-for-cloud/regulatory-compliance-dashboard" }
+    ]
+  },
+  {
+    "id": "sc-500-q414",
+    "domain": "Manage and monitor security posture",
+    "prompt": "A team must enrich incidents with threat context, store custom IP lists, and visualize metrics. Which set meets ALL requirements?",
+    "options": [
+      "Workbook and connector",
+      "Watchlist and analytics rule",
+      "Connector and automation rule",
+      "Threat intelligence, watchlist, workbook"
+    ],
+    "answer": 3,
+    "explanation": "Threat intelligence enriches incidents with context, watchlists store custom IP lists, and workbooks visualize metrics. The set satisfies all three requirements.",
+    "hint": "Threat intelligence, watchlist, and workbook cover all three.",
+    "docs": [
+      { "label": "Work with threat indicators in Sentinel", "url": "https://learn.microsoft.com/en-us/azure/sentinel/work-with-threat-indicators" }
+    ]
+  },
+  {
+    "id": "sc-500-q415",
+    "domain": "Manage and monitor security posture",
+    "prompt": "You must enforce a setting on all future resources. Solution: Create an Azure Policy with the Audit effect. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The Audit effect records non-compliance but does not enforce or block the setting. Enforcing requires a Deny or DeployIfNotExists effect.",
+    "hint": "Audit only reports; it does not enforce.",
+    "docs": [
+      { "label": "Azure Policy effects", "url": "https://learn.microsoft.com/en-us/azure/governance/policy/concepts/effects" }
+    ]
+  }
+]

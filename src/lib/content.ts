@@ -62,6 +62,13 @@ import az140Docs from "@/content/az-140/docs.json";
 import az140Takeaways from "@/content/az-140/takeaways.json";
 import az140Logic from "@/content/az-140/questions-logic.json";
 
+import az104Logic from "@/content/az-104/questions-logic.json";
+import az305Logic from "@/content/az-305/questions-logic.json";
+import sc500Logic from "@/content/sc-500/questions-logic.json";
+import ai103Logic from "@/content/ai-103/questions-logic.json";
+import ai200Logic from "@/content/ai-200/questions-logic.json";
+import ai500Logic from "@/content/ai-500/questions-logic.json";
+
 import az104Topic from "@/content/az-104/questions-topic.json";
 import az104Order from "@/content/az-104/questions-order.json";
 import az305Topic from "@/content/az-305/questions-topic.json";
@@ -90,6 +97,7 @@ export const courseContent: Record<string, CourseContent> = {
       ...tag(az104Topic as Question[], "expert"),
       ...tag(az104Order as Question[], "expert"),
       ...tag(az104Order2 as Question[], "expert"),
+      ...tag(az104Logic as Question[], "expert"),
     ],
     caseStudies: [...az104Cases, ...az104Cases2] as CaseStudy[],
     docs: az104Docs as DocGroup[],
@@ -102,6 +110,7 @@ export const courseContent: Record<string, CourseContent> = {
       ...tag(az305Topic as Question[], "expert"),
       ...tag(az305Order as Question[], "expert"),
       ...tag(az305Order2 as Question[], "expert"),
+      ...tag(az305Logic as Question[], "expert"),
     ],
     caseStudies: [...az305Cases, ...az305Cases2] as CaseStudy[],
     docs: az305Docs as DocGroup[],
@@ -114,6 +123,7 @@ export const courseContent: Record<string, CourseContent> = {
       ...tag(sc500Topic as Question[], "expert"),
       ...tag(sc500Order as Question[], "expert"),
       ...tag(sc500Order2 as Question[], "expert"),
+      ...tag(sc500Logic as Question[], "expert"),
     ],
     caseStudies: [...sc500Cases, ...sc500Cases2] as CaseStudy[],
     docs: sc500Docs as DocGroup[],
@@ -135,6 +145,7 @@ export const courseContent: Record<string, CourseContent> = {
     questions: [
       ...tag(ai103Official as Question[], "expert"),
       ...tag(ai103Order as Question[], "expert"),
+      ...tag(ai103Logic as Question[], "expert"),
     ],
     caseStudies: [...ai103Cases, ...ai103Cases2] as CaseStudy[],
     docs: ai103Docs as DocGroup[],
@@ -145,6 +156,7 @@ export const courseContent: Record<string, CourseContent> = {
     questions: [
       ...tag(ai200Official as Question[], "expert"),
       ...tag(ai200Order as Question[], "expert"),
+      ...tag(ai200Logic as Question[], "expert"),
     ],
     caseStudies: [...ai200Cases, ...ai200Cases2] as CaseStudy[],
     docs: ai200Docs as DocGroup[],
@@ -155,6 +167,7 @@ export const courseContent: Record<string, CourseContent> = {
     questions: [
       ...tag(ai500Official as Question[], "expert"),
       ...tag(ai500Order as Question[], "expert"),
+      ...tag(ai500Logic as Question[], "expert"),
     ],
     caseStudies: [...ai500Cases, ...ai500Cases2] as CaseStudy[],
     docs: ai500Docs as DocGroup[],

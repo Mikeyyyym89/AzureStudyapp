@@ -1,0 +1,1570 @@
+[
+  {
+    "id": "ai-103-q307",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You plan to build a custom copilot app in Azure AI Foundry that will share storage, key vault, and container registry across several projects. What should you create first?",
+    "options": [
+      "An AI Foundry hub",
+      "An AI Foundry project",
+      "An AI Search resource",
+      "An OpenAI resource"
+    ],
+    "answer": 0,
+    "explanation": "A hub is the parent resource that holds shared storage, key vault, and container registry. Projects are created inside a hub and reuse those shared resources, so the hub must come first.",
+    "hint": "Hubs host shared resources; projects live inside a hub.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q308",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to grant a developer the least privilege to only call a deployed OpenAI model. Which role should you select?",
+    "options": [
+      "Cognitive Services OpenAI Contributor",
+      "Cognitive Services OpenAI User",
+      "Cognitive Services Contributor",
+      "Azure AI Developer"
+    ],
+    "answer": 1,
+    "explanation": "Cognitive Services OpenAI User grants inference-only access to a deployed model. The other roles also allow broader actions such as creating deployments or reading keys.",
+    "hint": "Inference-only access uses the OpenAI User role.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/rbac-ai-foundry"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q309",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You must expose one GPT-4o model to three regional teams while minimizing endpoints. What is the minimum number of deployments you need?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "A single model deployment can be shared by multiple teams through one endpoint and key. Additional deployments are only needed for different models, versions, or regions.",
+    "hint": "One deployment serves many consumers.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/deployments-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q310",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You deploy a model using the Global Standard deployment type. Requirements: a fixed throughput commitment and reserved capacity. Does this deployment meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Global Standard is consumption-based and offers no throughput commitment or reserved capacity. Use a Provisioned deployment to reserve throughput.",
+    "hint": "Global Standard has no commitment.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-openai"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q311",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You plan to evaluate and deploy a model from the Azure AI Foundry model catalog. What should you do first?",
+    "options": [
+      "Create an inference endpoint",
+      "Run model benchmarks",
+      "Configure content filters",
+      "Create a Foundry hub"
+    ],
+    "answer": 3,
+    "explanation": "The model catalog is accessed from a hub or project workspace, so a hub must exist first. You can then benchmark and deploy models.",
+    "hint": "A workspace is needed before the catalog.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/model-catalog-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q312",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to view request metrics and token usage for a deployed model. Which Azure service should you use?",
+    "options": [
+      "Azure Monitor",
+      "Azure Policy",
+      "Azure Logic Apps",
+      "Azure Load Balancer"
+    ],
+    "answer": 0,
+    "explanation": "Azure Monitor provides metrics for model requests, latency, and token usage. Policy governs resources, while Logic Apps and Load Balancer are unrelated.",
+    "hint": "Model metrics are in Azure Monitor.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-ai-foundry"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q313",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You have two apps that call the same chat model through one endpoint. To minimize cost, what is the minimum number of deployments you need?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "A single deployment can serve both apps through the same endpoint and key. Separate deployments are unnecessary for the same model version.",
+    "hint": "One deployment serves both apps.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/deployments-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q314",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need a keyless authentication method for a production AI app that uses Microsoft Entra ID. Which approach meets both requirements?",
+    "options": [
+      "API key in request header",
+      "Shared access signature token",
+      "Entra ID managed identity",
+      "Connection string with key"
+    ],
+    "answer": 2,
+    "explanation": "An Entra ID managed identity authenticates keylessly using Microsoft Entra tokens. API keys, connection strings, and SAS tokens embed or require secrets.",
+    "hint": "Keyless auth uses Entra ID managed identity.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/authentication"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q315",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You must deploy a custom model to Azure AI Foundry. You already created a hub and a project. Should you register the model before creating a deployment?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Custom models must be registered in the model catalog before they can be deployed. Registration is a prerequisite for deployment.",
+    "hint": "Register before you deploy a custom model.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/deploy-models-custom"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q316",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to enforce naming and region rules for all AI Foundry resources. Which Azure service should you use?",
+    "options": [
+      "Azure Monitor",
+      "Azure Logic Apps",
+      "Azure Load Balancer",
+      "Azure Policy"
+    ],
+    "answer": 3,
+    "explanation": "Azure Policy enforces compliance rules such as naming and region restrictions. The other services do not govern resource configuration.",
+    "hint": "Governance rules use Azure Policy.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-safety"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q317",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need three projects to share one set of storage and key vault resources. To minimize resources, what is the minimum number of hubs you need?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "A single hub can host multiple projects and provide shared storage and key vault resources. One hub is therefore sufficient.",
+    "hint": "One hub hosts many projects.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/ai-resources"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q318",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You assign the Cognitive Services OpenAI User role so a developer can call a deployed model. Requirement: the developer must also create new deployments. Does this role meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Cognitive Services OpenAI User only allows calling inference APIs. Creating deployments requires a deployment operator or contributor role.",
+    "hint": "OpenAI User only calls inference.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/rbac-ai-foundry"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q319",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You plan to use prompt flow to orchestrate a multi-step AI workflow in Azure AI Foundry. What should you create first?",
+    "options": [
+      "A prompt flow runtime",
+      "A project in a hub",
+      "A model deployment",
+      "A vector index"
+    ],
+    "answer": 1,
+    "explanation": "Prompt flow is authored and run within a project, so a project inside a hub must exist first. Runtimes, deployments, and indexes are created later.",
+    "hint": "Prompt flow lives inside a project.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/prompt-flow"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q320",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You need to block harmful content in both prompts and model responses. Which Azure AI capability should you use?",
+    "options": [
+      "Model benchmarks",
+      "Prompt caching",
+      "Content filtering",
+      "Model versioning controls"
+    ],
+    "answer": 2,
+    "explanation": "Content filtering analyzes prompts and completions and can block harmful categories. The other options do not filter content.",
+    "hint": "Harmful prompt and response blocking is content filtering.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/content-safety"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q321",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "You run a test app and a production app that use the same model version but need different rate limits. To minimize cost, is one deployment the minimum you need?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Rate limits are configured per deployment, so different limits require two deployments even for the same model version. Sharing one deployment would force both apps onto the same limits.",
+    "hint": "Rate limits are set per deployment.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/deployments-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q322",
+    "domain": "Plan and manage an Azure AI solution",
+    "prompt": "A solution must track token usage per deployment and alert on high request latency. Which two Azure Monitor items meet the requirements?",
+    "options": [
+      "Logs and policies",
+      "Dashboards and blueprints",
+      "Workbooks and tags",
+      "Metrics and alerts"
+    ],
+    "answer": 3,
+    "explanation": "Metrics provide token usage and latency data, and alert rules trigger on thresholds. Together they satisfy both requirements.",
+    "hint": "Metrics feed alert rules.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/monitor-ai-foundry"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q323",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You are building a retrieval-augmented generation solution from source PDFs. What should you do first?",
+    "options": [
+      "Ingest and chunk documents",
+      "Generate embeddings",
+      "Call the chat model",
+      "Query the vector search index"
+    ],
+    "answer": 0,
+    "explanation": "RAG requires documents to be ingested and split into chunks before embedding and indexing. Embedding, querying, and generation all depend on the chunks.",
+    "hint": "Chunk before you embed.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/retrieval-augmented-generation"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q324",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to convert text into vectors for semantic search in Azure AI Search. Which model type should you use?",
+    "options": [
+      "Chat model",
+      "Embedding model",
+      "Whisper model",
+      "DALL-E image model"
+    ],
+    "answer": 1,
+    "explanation": "Embedding models such as text-embedding-3-small convert text to vectors for vector search. Chat and other models do not produce embeddings.",
+    "hint": "Vectors come from embedding models.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/understand-embeddings"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q325",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need one vector index to serve retrieval for two separate RAG apps. What is the minimum number of indexes you need?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "A single Azure AI Search index can serve multiple applications. Only one index is needed to minimize cost and management.",
+    "hint": "One index can serve both apps.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/search/search-what-is-an-index"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q326",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need a model that produces vectors and also generates conversational answers. You select text-embedding-3-small. Does it meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "text-embedding-3-small produces embeddings for retrieval but cannot generate conversational text. A chat model is needed for answers.",
+    "hint": "Embedding models don't generate chat text.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/understand-embeddings"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q327",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You plan to use function calling so an agent can look up live order data. What should you do first?",
+    "options": [
+      "Generate the model response",
+      "Log the conversation",
+      "Tokenize the output",
+      "Define the tool schema"
+    ],
+    "answer": 3,
+    "explanation": "Function calling begins with defining the function (tool) schema so the model knows available tools and parameters. The model can then request a call.",
+    "hint": "Define the tool before the model can call it.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/function-calling"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q328",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "In the Python SDK, which client should you use to send a chat completion request to Azure OpenAI?",
+    "options": [
+      "ChatCompletionsClient",
+      "EmbeddingsClient",
+      "DocumentAnalysisClient",
+      "TextAnalyticsClient"
+    ],
+    "answer": 0,
+    "explanation": "ChatCompletionsClient sends chat completions to a chat model. The other clients handle embeddings, document analysis, and text analytics.",
+    "hint": "Chat completions use ChatCompletionsClient.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/chat-completions"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q329",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You build two agents that both need tool access to the same vector store. To minimize resources, what is the minimum number of vector stores you need?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "Both agents can attach to the same vector store. One vector store is therefore sufficient and minimizes cost.",
+    "hint": "A vector store can be shared by agents.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tools"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q330",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "A model must reason about an image and generate JSON output in one call. Which model meets both requirements?",
+    "options": [
+      "text-embedding-ada-002",
+      "Whisper",
+      "GPT-4o",
+      "text-embedding-3-small"
+    ],
+    "answer": 2,
+    "explanation": "GPT-4o is multimodal and supports JSON response format. Embedding and speech models cannot reason about images or output JSON.",
+    "hint": "GPT-4o is multimodal and supports JSON mode.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q331",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You plan to build a chat agent with the Azure OpenAI Assistants API. Should you create a thread before creating the assistant?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The assistant defines the model, instructions, and tools, so it must be created first. Threads and messages are created afterward and belong to the assistant.",
+    "hint": "Create the assistant before the thread.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/assistant"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q332",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You want to reduce the risk of the model inventing facts in an answer. Which approach should you use?",
+    "options": [
+      "Prompt injection",
+      "Token streaming",
+      "Semantic search over embeddings",
+      "Retrieval Augmented Generation"
+    ],
+    "answer": 3,
+    "explanation": "Retrieval Augmented Generation grounds answers in retrieved source documents, reducing hallucination. Streaming and embeddings alone do not ground responses.",
+    "hint": "RAG grounds answers in source data.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/retrieval-augmented-generation"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q333",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You deploy a model with a provisioned throughput type for one high-volume app. To meet capacity while minimizing deployments, what is the minimum number of deployments you need?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "A single provisioned deployment can supply the committed throughput for the app. One deployment is the minimum to meet capacity.",
+    "hint": "One provisioned deployment can suffice.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/deployments-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q334",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need an agent that retrieves knowledge and then writes answers. You attach an Azure AI Search tool and enable code interpreter. Does this configuration meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The Azure AI Search tool provides retrieval, and code interpreter lets the agent compute and generate answers. Together they meet both requirements.",
+    "hint": "Search tool plus code interpreter works.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-foundry/agents/concepts/tools"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q335",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You plan to build a chat agent with the Assistants API. What should you create first?",
+    "options": [
+      "A thread",
+      "An assistant",
+      "A run request",
+      "A message"
+    ],
+    "answer": 1,
+    "explanation": "An assistant holds the model, instructions, and tools. Threads, messages, and runs are created after the assistant exists.",
+    "hint": "Create the assistant first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/assistant"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q336",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need to transcribe an audio file to text using Azure OpenAI. Which model should you use?",
+    "options": [
+      "GPT-4o",
+      "DALL-E",
+      "Whisper",
+      "text-embedding-3-small"
+    ],
+    "answer": 2,
+    "explanation": "Whisper is the speech-to-text model. GPT-4o, DALL-E, and text-embedding handle chat, image generation, and embeddings respectively.",
+    "hint": "Whisper converts speech to text.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/whisper-quickstart"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q337",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "You need embeddings for two different languages in one search index. To minimize models, what is the minimum number of embedding models you need?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "One"
+    ],
+    "answer": 3,
+    "explanation": "text-embedding-3 models are multilingual. One model can generate embeddings for multiple languages.",
+    "hint": "Multilingual embedding models cover many languages.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/understand-embeddings"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q338",
+    "domain": "Implement generative AI and agentic solutions",
+    "prompt": "A solution must stream tokens as they generate and support vision input. Which model meets both requirements?",
+    "options": [
+      "GPT-4o",
+      "text-embedding-3-large",
+      "Whisper",
+      "DALL-E"
+    ],
+    "answer": 0,
+    "explanation": "GPT-4o supports streaming responses and vision input. Embedding, speech, and image-generation models do not provide both.",
+    "hint": "GPT-4o streams and accepts images.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q339",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You plan to use Azure AI Vision Read to extract printed and handwritten text. What should you do first?",
+    "options": [
+      "Call the Read API",
+      "Create a Vision resource",
+      "Parse the JSON output",
+      "Upload the image for analysis"
+    ],
+    "answer": 1,
+    "explanation": "You need an Azure AI Vision resource with an endpoint and key before calling the Read API. All API calls require an existing resource.",
+    "hint": "Create the resource before calling.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q340",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to detect objects and generate a caption for an uploaded photo. Which Azure AI Vision feature should you use?",
+    "options": [
+      "Read OCR",
+      "Face detection",
+      "Image Analysis",
+      "Spatial Analysis"
+    ],
+    "answer": 2,
+    "explanation": "Image Analysis returns captions, tags, and object detection. Read OCR extracts text; Face and Spatial Analysis serve different purposes.",
+    "hint": "Captions and objects come from Image Analysis.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-tagging-images"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q341",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to process images for one app. To minimize cost, what is the minimum number of Azure AI Vision resources you need?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "One"
+    ],
+    "answer": 3,
+    "explanation": "One Azure AI Vision resource can serve the app and all of its API calls. A single resource minimizes cost.",
+    "hint": "One resource can serve the app.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q342",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need a Vision feature that reads printed text and handwritten text from a document. Which feature meets both requirements?",
+    "options": [
+      "Read OCR",
+      "Image Analysis tags",
+      "Face detection",
+      "Spatial Analysis"
+    ],
+    "answer": 0,
+    "explanation": "The Read API extracts both printed and handwritten text. Image Analysis tags classify content, while Face and Spatial Analysis are unrelated.",
+    "hint": "Read OCR handles print and handwriting.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-ocr"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q343",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You plan to detect faces and verify identity in images. Should you create an Azure AI Face resource before calling the Face API?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The Face API requires a dedicated Azure AI Face resource with an endpoint and key. The resource must be created before any Face calls.",
+    "hint": "A Face resource is needed before calls.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-identity"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q344",
+    "domain": "Implement computer vision solutions",
+    "prompt": "In the Python SDK, which class should you instantiate to analyze an image with Azure AI Vision?",
+    "options": [
+      "TextAnalyticsClient",
+      "ImageAnalysisClient",
+      "TextTranslationClient",
+      "ChatCompletionsClient"
+    ],
+    "answer": 1,
+    "explanation": "ImageAnalysisClient analyzes images for Azure AI Vision. The other clients belong to text analytics, translation, and OpenAI.",
+    "hint": "Image analysis uses ImageAnalysisClient.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/call-analyze-image"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q345",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to index several videos for search and insights. To minimize resources, what is the minimum number of Azure AI Video Indexer accounts you need?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "One Video Indexer account can index multiple videos and serve the app. One account minimizes cost.",
+    "hint": "One account can index many videos.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-video-indexer/video-indexer-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q346",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to verify that two face images show the same person and also extract identity attributes. You call Face Verify. Does this meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Face Verify only checks whether two faces match. Extracting attributes requires a separate Face Detect operation.",
+    "hint": "Verify doesn't extract attributes.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-face-recognition"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q347",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You plan to train a custom image classification model with Azure AI Vision Image Analysis 4.0. What should you do first?",
+    "options": [
+      "Call the model inference endpoint",
+      "Evaluate the trained model",
+      "Set a training quota",
+      "Label and upload training images"
+    ],
+    "answer": 3,
+    "explanation": "Custom model training requires a labeled training dataset uploaded to storage. Training and inference happen only after data preparation.",
+    "hint": "Labeled training data comes first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/model-customization"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q348",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to detect people moving through a store and trigger alerts on social distancing. Which Azure AI Vision feature should you use?",
+    "options": [
+      "Spatial Analysis",
+      "Read OCR",
+      "Image Analysis caption",
+      "Face detection"
+    ],
+    "answer": 0,
+    "explanation": "Spatial Analysis processes video to detect people, movement, and distances. The other features do not provide real-time spatial video analytics.",
+    "hint": "Spatial Analysis handles movement and distance.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/intro-to-spatial-analysis-public-preview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q349",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need face detection and face verification for one app. To minimize resources, what is the minimum number of Face resources you need?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "A single Azure AI Face resource provides both detection and verification operations. One resource is sufficient.",
+    "hint": "One Face resource does both.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview-identity"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q350",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to remove a background from an image and return the foreground subject. Which Vision capability meets both requirements?",
+    "options": [
+      "Read OCR",
+      "Face detection",
+      "Background removal",
+      "Image Analysis tagging"
+    ],
+    "answer": 2,
+    "explanation": "The Background removal API returns the foreground matte so you can remove the background. The other features do not segment foregrounds.",
+    "hint": "Background removal isolates the subject.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-background-removal"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q351",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You plan to train a custom Image Analysis 4.0 model. Should you label your training images only after the model is deployed?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "Training images must be labeled before training, and training happens before deployment. Labeling cannot wait until after deployment.",
+    "hint": "Label training images first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/model-customization"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q352",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to detect whether a face in a video is a real person or a spoof. Which Azure AI Face capability should you use?",
+    "options": [
+      "Face identification",
+      "Face grouping",
+      "Face verification",
+      "Face liveness"
+    ],
+    "answer": 3,
+    "explanation": "Face liveness detection determines whether a face is live or a spoof such as a photo or screen. The other operations do not detect spoofing.",
+    "hint": "Liveness detection blocks spoofs.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/tutorials/liveness"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q353",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You must run OCR and background removal for one app. To minimize cost, what is the minimum number of Azure AI Vision resources you need?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "Both Read OCR and background removal are features of a single Azure AI Vision resource. One resource is enough.",
+    "hint": "One Vision resource covers both features.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q354",
+    "domain": "Implement computer vision solutions",
+    "prompt": "You need to detect multiple faces in a group photo and estimate each person's age. Which single operation meets both requirements?",
+    "options": [
+      "Face verification",
+      "Face detection",
+      "Face identification",
+      "Face grouping"
+    ],
+    "answer": 1,
+    "explanation": "Face Detect returns face locations plus attributes such as age and emotion. The other operations do not estimate age.",
+    "hint": "Face detection returns attributes.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/concept-face-detection"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q355",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You plan to analyze customer reviews for sentiment using Azure AI Language. What should you do first?",
+    "options": [
+      "Call the analyze_sentiment method",
+      "Parse the confidence scores",
+      "Create a Language resource",
+      "Store the analysis results"
+    ],
+    "answer": 2,
+    "explanation": "You need an Azure AI Language resource with an endpoint and key before calling analyze_sentiment. All calls require an existing resource.",
+    "hint": "Create the resource first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/quickstart"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q356",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to find redacted text and PII entity categories in documents. Which SDK method should you call?",
+    "options": [
+      "analyze_sentiment",
+      "extract_key_phrases",
+      "recognize_linked_entities",
+      "recognize_pii_entities"
+    ],
+    "answer": 3,
+    "explanation": "recognize_pii_entities returns redacted text and PII categories such as names and phone numbers. The other methods serve different purposes.",
+    "hint": "PII detection is recognize_pii_entities.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/personally-identifiable-information/quickstart"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q357",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need language detection and sentiment analysis for one app. To minimize resources, what is the minimum number of Language resources you need?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "A single Azure AI Language resource provides all language features. One resource suffices for both operations.",
+    "hint": "One Language resource covers both.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q358",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to detect the language of a document and return a confidence score. You call detect_language. Does this meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "detect_language returns the detected language with a confidence score for each candidate. This satisfies both requirements.",
+    "hint": "detect_language returns language and confidence.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/language-detection/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q359",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You plan to build a custom entity recognition model for industry-specific terms. What should you do first?",
+    "options": [
+      "Deploy the model",
+      "Label training data",
+      "Call the endpoint",
+      "Evaluate performance"
+    ],
+    "answer": 1,
+    "explanation": "Custom NER requires a labeled dataset for training. Labeling precedes training, deployment, and inference.",
+    "hint": "Label data before training.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/custom-named-entity-recognition/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q360",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to identify key phrases in support tickets to find common topics. Which SDK method should you call?",
+    "options": [
+      "recognize_entities",
+      "recognize_linked_entities",
+      "extract_key_phrases",
+      "detect_language"
+    ],
+    "answer": 2,
+    "explanation": "extract_key_phrases returns the main phrases in text. recognize_entities and recognize_linked_entities identify entities, not phrases.",
+    "hint": "Key phrases use extract_key_phrases.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/key-phrase-extraction/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q361",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need PII detection and key phrase extraction. To minimize cost, what is the minimum number of Language resources you need?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "One"
+    ],
+    "answer": 3,
+    "explanation": "One Azure AI Language resource can perform both PII detection and key phrase extraction. A single resource minimizes cost.",
+    "hint": "One resource handles both features.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q362",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to translate text from French to Spanish and transliterate a name to another script. Which client provides both?",
+    "options": [
+      "TextTranslationClient",
+      "TextAnalyticsClient",
+      "ImageAnalysisClient",
+      "ChatCompletionsClient"
+    ],
+    "answer": 0,
+    "explanation": "TextTranslationClient offers translate and transliterate operations. TextAnalyticsClient handles language understanding, not translation.",
+    "hint": "Translation and transliteration use TextTranslationClient.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/translator/text-translation-overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q363",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You plan to use opinion mining on review text. Should you enable opinion mining as part of the sentiment analysis request before calling the API?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Opinion mining is an optional flag set in the sentiment analysis request. It must be enabled to receive aspect-level opinions.",
+    "hint": "Enable opinion mining in the request.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/sentiment-opinion-mining/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q364",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to extract well-known entities such as people, places, and organizations. Which SDK method should you call?",
+    "options": [
+      "detect_language",
+      "recognize_entities",
+      "extract_key_phrases",
+      "analyze_sentiment"
+    ],
+    "answer": 1,
+    "explanation": "recognize_entities performs named entity recognition for categories such as Person, Location, and Organization. The others serve different purposes.",
+    "hint": "NER uses recognize_entities.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/named-entity-recognition/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q365",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need summarization and sentiment analysis for one document set. To minimize resources, what is the minimum number of Language resources you need?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "A single Azure AI Language resource provides summarization and sentiment analysis. One resource is the minimum.",
+    "hint": "One resource covers summarization and sentiment.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q366",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need a question answering solution that answers from a knowledge base built from your own documents. You use Azure AI Language question answering. Does this meet the requirement?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "Azure AI Language question answering builds a knowledge base from your documents. It then answers natural language questions from that knowledge base.",
+    "hint": "Custom QA answers from your documents.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/question-answering/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q367",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You plan to train a custom text classification model. What should you do first?",
+    "options": [
+      "Run a prediction",
+      "Publish the model",
+      "Query the deployed endpoint",
+      "Upload labeled utterances"
+    ],
+    "answer": 3,
+    "explanation": "Custom classification training requires uploaded labeled examples. Prediction and publishing happen after the model is trained.",
+    "hint": "Upload labeled examples first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/custom-text-classification/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q368",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need to route incoming customer messages to the correct language automatically. Which SDK method should you call?",
+    "options": [
+      "detect_language",
+      "analyze_sentiment",
+      "recognize_pii_entities",
+      "extract_key_phrases"
+    ],
+    "answer": 0,
+    "explanation": "detect_language identifies the language of text, enabling routing. The other methods perform different analyses.",
+    "hint": "Language detection uses detect_language.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/language-detection/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q369",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need entity linking and sentiment analysis for one app. To minimize cost, what is the minimum number of Language resources you need?",
+    "options": [
+      "Two",
+      "One",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "Entity linking and sentiment are both features of one Azure AI Language resource. A single resource is sufficient.",
+    "hint": "One resource covers both features.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q370",
+    "domain": "Implement text analysis solutions",
+    "prompt": "You need a text analysis feature that extracts entities and their knowledge-base links in one call. Which method meets both requirements?",
+    "options": [
+      "recognize_entities",
+      "analyze_healthcare_entities",
+      "recognize_linked_entities",
+      "extract_key_phrases"
+    ],
+    "answer": 2,
+    "explanation": "recognize_linked_entities returns entities with links to a knowledge base such as Wikipedia. recognize_entities does not include links.",
+    "hint": "Linked entities include knowledge-base links.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/language-service/entity-linking/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q371",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You plan to extract fields from invoices using a prebuilt model. What should you do first?",
+    "options": [
+      "Call the analyze_document method",
+      "Parse the returned JSON payload",
+      "Upload the invoice for analysis",
+      "Create the Azure resource"
+    ],
+    "answer": 3,
+    "explanation": "You need a Document Intelligence resource with an endpoint and key before calling analyze_document. The resource must exist first.",
+    "hint": "Create the resource before calling.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/quickstarts/get-started-sdks-rest-api"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q372",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract invoice fields such as vendor name and total. Which prebuilt model should you use?",
+    "options": [
+      "Prebuilt invoice",
+      "Prebuilt receipt",
+      "Prebuilt ID document",
+      "Prebuilt business card"
+    ],
+    "answer": 0,
+    "explanation": "The prebuilt-invoice model extracts invoice-specific fields such as vendor, invoice total, and line items. The other models serve different document types.",
+    "hint": "Invoices use the invoice model.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/invoice"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q373",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract structured fields from both receipts and invoices. To minimize models, what is the minimum number of prebuilt models you need?",
+    "options": [
+      "One",
+      "Two",
+      "Three",
+      "Four"
+    ],
+    "answer": 1,
+    "explanation": "Receipts and invoices use distinct prebuilt models, prebuilt-receipt and prebuilt-invoice. At least two models are required.",
+    "hint": "Receipts and invoices need two models.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/overview"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q374",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need a model that extracts tables and selection marks from a document. You use the layout model. Does it meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The layout model extracts text, tables, and selection marks along with structure. It meets both requirements.",
+    "hint": "Layout extracts tables and selection marks.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-layout"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q375",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You plan to train a custom neural model for your document types. What should you do first?",
+    "options": [
+      "Test the trained model",
+      "Deploy the model to an endpoint",
+      "Label sample documents",
+      "Set the API version"
+    ],
+    "answer": 2,
+    "explanation": "Custom model training requires labeled sample documents. Labeling precedes training, testing, and deployment.",
+    "hint": "Labeled samples come first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom-neural"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q376",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract printed text only, with no tables or selection marks. Which Document Intelligence model should you use?",
+    "options": [
+      "Layout model",
+      "Invoice model",
+      "Custom neural model",
+      "Read model"
+    ],
+    "answer": 3,
+    "explanation": "The Read model extracts printed and handwritten text without layout structure. Layout adds tables and selection marks.",
+    "hint": "Read extracts text without structure.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-read"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q377",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You have five different invoice layouts. To minimize models while handling all layouts, what is the minimum number of custom neural models you need?",
+    "options": [
+      "One",
+      "Two",
+      "Five",
+      "Four"
+    ],
+    "answer": 0,
+    "explanation": "A custom neural model generalizes across varied layouts. One neural model can handle all five invoice layouts.",
+    "hint": "Neural models generalize across layouts.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom-neural"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q378",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need a single endpoint that routes a document to the correct prebuilt model automatically. Which capability meets this requirement?",
+    "options": [
+      "Document layout analysis",
+      "Custom classification",
+      "Read OCR",
+      "Key value pair extraction"
+    ],
+    "answer": 1,
+    "explanation": "A custom classification model identifies the document type so it can be routed to the right extraction model. Layout and Read do not classify documents.",
+    "hint": "Classification routes by document type.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom-classifier"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q379",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You plan to extract fields from standard invoices. Should you train a custom model before trying the prebuilt invoice model?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 1,
+    "explanation": "The prebuilt invoice model already extracts standard invoice fields. Try it first before investing in custom training.",
+    "hint": "Try the prebuilt model first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/invoice"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q380",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract itemized line details from a sales receipt. Which prebuilt model should you use?",
+    "options": [
+      "Prebuilt invoice",
+      "Prebuilt ID document",
+      "Prebuilt receipt",
+      "Prebuilt health insurance card"
+    ],
+    "answer": 2,
+    "explanation": "The prebuilt-receipt model extracts merchant, total, and itemized line items. The invoice and ID models serve other documents.",
+    "hint": "Receipts use the receipt model.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/receipt"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q381",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need text extraction and structured table extraction for one document set. To minimize models, what is the minimum number of models you need?",
+    "options": [
+      "Two",
+      "Three",
+      "Four",
+      "One"
+    ],
+    "answer": 3,
+    "explanation": "The layout model extracts both text and tables. One model satisfies both needs without separate Read and Layout models.",
+    "hint": "Layout extracts text and tables in one model.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-layout"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q382",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract both handwritten and printed text from a scanned note. You use the Read model. Does it meet both requirements?",
+    "options": [
+      "Yes",
+      "No"
+    ],
+    "answer": 0,
+    "explanation": "The Read model extracts both printed and handwritten text. A single model satisfies both requirements.",
+    "hint": "Read handles print and handwriting.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-read"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q383",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You plan to use the prebuilt-invoice model. What should you obtain first from your Document Intelligence resource?",
+    "options": [
+      "Endpoint and key",
+      "Model ID",
+      "Result URL",
+      "Storage container"
+    ],
+    "answer": 0,
+    "explanation": "You need the resource endpoint and key to authenticate and call analyze_document. Model IDs and results come later.",
+    "hint": "Get endpoint and key first.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/quickstarts/get-started-sdks-rest-api"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q384",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need a model for a document type with a fixed, consistent layout and few samples. Which custom model type should you use?",
+    "options": [
+      "Custom neural",
+      "Custom template",
+      "Custom classifier",
+      "Composed model"
+    ],
+    "answer": 1,
+    "explanation": "Custom template models suit fixed layouts and need fewer samples than neural models. Neural models suit varied layouts.",
+    "hint": "Fixed layouts use template models.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-custom-template"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q385",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to extract data from receipts in English and Spanish. To minimize models, what is the minimum number of prebuilt receipt models you need?",
+    "options": [
+      "Two",
+      "Three",
+      "One",
+      "Four"
+    ],
+    "answer": 2,
+    "explanation": "The prebuilt-receipt model supports multiple languages. One model can process receipts in both languages.",
+    "hint": "One receipt model supports many languages.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/prebuilt/receipt"
+      }
+    ]
+  },
+  {
+    "id": "ai-103-q386",
+    "domain": "Implement information extraction solutions",
+    "prompt": "You need to combine two custom models so one call can analyze different form types together. Which capability meets this requirement?",
+    "options": [
+      "Layout model",
+      "Read model",
+      "Custom classifier",
+      "Composed model"
+    ],
+    "answer": 3,
+    "explanation": "A composed model bundles multiple custom models so a single analyze call handles different form types. Classification alone does not extract fields.",
+    "hint": "Composed models bundle multiple models.",
+    "docs": [
+      {
+        "label": "Microsoft Learn",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/document-intelligence/concept-composed-models"
+      }
+    ]
+  }
+]
