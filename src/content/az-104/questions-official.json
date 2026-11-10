@@ -739,9 +739,9 @@
       "Yes",
       "No"
     ],
-    "answer": 0,
-    "hint": "Signal: anonymous blob read → enable container public read → Yes.",
-    "explanation": "Enabling anonymous (public) read access on the container allows anonymous users to read blobs by URL. A SAS token alone would not grant anonymous access.",
+    "answer": 1,
+    "hint": "Signal: single blob + one hour → scoped, time-limited SAS token",
+    "explanation": "Container-level public read access exposes EVERY blob anonymously and is not time-limited, so it cannot satisfy a single blob for one hour. Use a scoped, time-limited SAS token (or user delegation SAS) for that.",
     "docs": [
       {
         "label": "Anonymous access to blobs",

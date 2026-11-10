@@ -12,7 +12,10 @@
     "answer": 0,
     "explanation": "Architecture begins with defining each agent's role, responsibilities, and the workflow between them. Tools, SDK choice, and deployment all depend on that design.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Design agents and workflow before tooling, SDK, or deployment."
   },
@@ -29,7 +32,10 @@
     "answer": 1,
     "explanation": "You must first identify which inputs, outputs, and tool actions are risky so guardrails target the right surfaces. Configuration, alerting, and rollback follow that assessment.",
     "docs": [
-      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+      {
+        "label": "Azure AI Content Safety",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview"
+      }
     ],
     "hint": "Identify what to guard before configuring guardrails."
   },
@@ -46,7 +52,10 @@
     "answer": 2,
     "explanation": "RAG requires source documents to be ingested, chunked, and indexed before anything can be retrieved. Reranking, embedding tuning, and evaluation all operate on the index afterward.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ],
     "hint": "Index sources before retrieval, reranking, or evaluation."
   },
@@ -63,7 +72,10 @@
     "answer": 3,
     "explanation": "Interoperability must be decided first because it shapes how every agent publishes capabilities and tracks tasks. Tool servers and storage follow from that protocol choice.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Fix the cross-agent protocol before building tools or storage."
   },
@@ -80,7 +92,10 @@
     "answer": 0,
     "explanation": "Evaluate quality and safety before deploying, because results may require changes to agents or prompts. Scaling, rollback, and credentials come after evaluation passes.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "Evaluate before you deploy to production."
   },
@@ -97,7 +112,10 @@
     "answer": 1,
     "explanation": "MCP is the standard for surfacing tools and data to agents with authentication and auditing. A2A handles agent-to-agent messaging, not tool access.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "MCP is for tools and data; A2A is for agent messaging."
   },
@@ -114,7 +132,10 @@
     "answer": 2,
     "explanation": "A2A provides cross-platform agent messaging with agent cards for capability discovery and a task/artifact model for long-running tasks. MCP is scoped to tools, not agent-to-agent tasks.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Cross-platform, long-running task tracking signals A2A."
   },
@@ -129,7 +150,10 @@
     "answer": 0,
     "explanation": "A2A agent cards advertise capabilities so other agents can discover them. The protocol also handles cross-platform messaging, so the goal is met.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Yes — agent cards provide capability discovery."
   },
@@ -146,7 +170,10 @@
     "answer": 3,
     "explanation": "Long-term memory persists user facts across sessions and devices. Short-term context is lost when the session ends and cannot span devices.",
     "docs": [
-      { "label": "Memory in Foundry Agent Service", "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory" }
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
     ],
     "hint": "Across sessions and devices means long-term memory."
   },
@@ -161,7 +188,10 @@
     "answer": 1,
     "explanation": "Short-term memory is session-scoped and is cleared when the session ends. It cannot recall preferences across sessions, so you need long-term memory.",
     "docs": [
-      { "label": "Memory in Foundry Agent Service", "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory" }
+      {
+        "label": "Memory in Foundry Agent Service",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/concepts/what-is-memory"
+      }
     ],
     "hint": "No — short-term memory does not persist across sessions."
   },
@@ -178,7 +208,10 @@
     "answer": 1,
     "explanation": "A full DTAP pipeline needs four stages: Development, Test, Acceptance, and Production. Fewer would merge a mandatory stage.",
     "docs": [
-      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
     ],
     "hint": "DTAP has four distinct stages."
   },
@@ -195,7 +228,10 @@
     "answer": 2,
     "explanation": "Surviving a full region outage requires replicating to a second region. Availability zones cannot protect against a whole-region failure.",
     "docs": [
-      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }
+      {
+        "label": "Availability zones overview",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
     ],
     "hint": "A whole-region outage needs a second region."
   },
@@ -212,7 +248,10 @@
     "answer": 3,
     "explanation": "You need exactly two protocols: MCP for tool access and A2A for cross-platform messaging. One cannot cover both, and more than two is unnecessary.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Two protocols: MCP for tools, A2A for messaging."
   },
@@ -229,7 +268,10 @@
     "answer": 0,
     "explanation": "A single central orchestrator is sufficient to dispatch to all subagents. Adding more orchestrators increases overhead without benefit.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "One dispatcher suffices when subagents do not coordinate."
   },
@@ -246,7 +288,10 @@
     "answer": 1,
     "explanation": "A single response cache is enough when outputs are deterministic. More tiers add cost and complexity without benefit.",
     "docs": [
-      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
     ],
     "hint": "Deterministic output needs only one cache tier."
   },
@@ -263,7 +308,10 @@
     "answer": 2,
     "explanation": "Orchestrator-subagent (hub-and-spoke) routes work centrally while keeping subagents independently deployable and easy to add. Pipelines and monoliths cannot, and a peer mesh lacks central routing.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Central routing plus independent deployability is hub-and-spoke."
   },
@@ -278,7 +326,10 @@
     "answer": 1,
     "explanation": "MCP provides secure, audited tool access, but auditing and least privilege alone do not secure it. You also need authentication and authorization configured, which the plan omits.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "No — least privilege still requires authentication and authorization."
   },
@@ -295,7 +346,10 @@
     "answer": 3,
     "explanation": "An orchestrator that fans out the analyst and responder in a parallel stage preserves intake order while running independent branches concurrently. A strict pipeline serializes them, and a mesh lacks the required ordering.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Independent branches after intake means parallel fan-out."
   },
@@ -312,7 +366,10 @@
     "answer": 0,
     "explanation": "Per-agent identity with least privilege gives each agent its own auditable identity limited to required tools. Shared or embedded credentials break isolation and auditing.",
     "docs": [
-      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
     ],
     "hint": "Isolation plus auditing requires per-agent identities."
   },
@@ -327,7 +384,10 @@
     "answer": 0,
     "explanation": "A2A is designed for agent-to-agent messaging, while MCP is designed for tool and data access. Using each for its intended purpose is correct.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Yes — A2A and MCP serve distinct, complementary purposes."
   },
@@ -344,7 +404,10 @@
     "answer": 0,
     "explanation": "You must define the tool or MCP server before the agent can invoke the API. Orchestration, deployment, and guardrails depend on that tool contract existing.",
     "docs": [
-      { "label": "Foundry agents overview", "url": "https://learn.microsoft.com/azure/foundry/agents/overview" }
+      {
+        "label": "Foundry agents overview",
+        "url": "https://learn.microsoft.com/azure/foundry/agents/overview"
+      }
     ],
     "hint": "Build the tool before orchestration or deployment."
   },
@@ -361,7 +424,10 @@
     "answer": 1,
     "explanation": "Creating the MCP server exposes the database to the agent as a tool. Evaluation, fine-tuning, and deployment come after the tool exists.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Expose data as an MCP server first."
   },
@@ -378,7 +444,10 @@
     "answer": 2,
     "explanation": "The model can only emit a function call if the function's schema is registered first. Temperature, caching, and retries are tuning steps that follow registration.",
     "docs": [
-      { "label": "Azure AI Agent Service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview" }
+      {
+        "label": "Azure AI Agent Service",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview"
+      }
     ],
     "hint": "Register the tool schema before the model can call it."
   },
@@ -395,7 +464,10 @@
     "answer": 3,
     "explanation": "You must define the orchestration flow (fan-out and merge) before any operational or governance controls. Approval, sampling, and scaling tune an already-defined flow.",
     "docs": [
-      { "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multiple-agent workflow automation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ],
     "hint": "Define the orchestration flow before operational controls."
   },
@@ -412,7 +484,10 @@
     "answer": 0,
     "explanation": "Retrieval starts with ingesting and chunking documents into searchable units. Citations, reranking, and the UI all depend on a populated index.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ],
     "hint": "Ingest and chunk before citations, reranking, or UI."
   },
@@ -429,7 +504,10 @@
     "answer": 1,
     "explanation": "The on-behalf-of flow lets a middle-tier service call a downstream API while preserving the signed-in user's delegated identity. Client credentials use only the app's identity, not the user's.",
     "docs": [
-      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
     ],
     "hint": "Delegated user identity through a middle tier is on-behalf-of."
   },
@@ -446,7 +524,10 @@
     "answer": 2,
     "explanation": "Client credentials authenticate the app with its own identity for service-to-service calls with no user. On-behalf-of and authorization code require a signed-in user.",
     "docs": [
-      { "label": "OAuth 2.0 client credentials", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow" }
+      {
+        "label": "OAuth 2.0 client credentials",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow"
+      }
     ],
     "hint": "No user present, app identity only means client credentials."
   },
@@ -461,7 +542,10 @@
     "answer": 0,
     "explanation": "Client credentials is the correct flow for a daemon or service using its own identity with no user. It authenticates the background job without any interactive sign-in.",
     "docs": [
-      { "label": "OAuth 2.0 client credentials", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow" }
+      {
+        "label": "OAuth 2.0 client credentials",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow"
+      }
     ],
     "hint": "Yes — daemon scenarios use client credentials."
   },
@@ -478,7 +562,10 @@
     "answer": 3,
     "explanation": "MCP servers provide a uniform, secure, auditable interface for tools and data. Embedding docs or scattering SDK calls lacks consistency and auditability.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Consistent, audited tool surface means MCP servers."
   },
@@ -493,7 +580,10 @@
     "answer": 1,
     "explanation": "Client credentials uses only the application's identity and drops the user context. To act on behalf of a user you need the on-behalf-of flow.",
     "docs": [
-      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
     ],
     "hint": "No — client credentials loses the user's identity."
   },
@@ -510,7 +600,10 @@
     "answer": 1,
     "explanation": "One MCP server can expose the database to all agents, minimizing surface and cost. Additional servers add duplication without benefit.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "One shared server is enough for a single database."
   },
@@ -527,7 +620,10 @@
     "answer": 2,
     "explanation": "A single well-designed semantic chunking pass is sufficient to cover every fact. Multiple passes re-embed the same content and inflate cost.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ],
     "hint": "One semantic chunking pass avoids duplicate embeddings."
   },
@@ -544,7 +640,10 @@
     "answer": 3,
     "explanation": "Each distinct role needs its own agent definition, so three roles require three definitions. Combining roles defeats separation, and a fourth is unnecessary.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "Three roles need three definitions, no more."
   },
@@ -561,7 +660,10 @@
     "answer": 0,
     "explanation": "A single sequential thread is sufficient when there is one tool and no concurrency. Extra threads add cost and synchronization overhead.",
     "docs": [
-      { "label": "Azure AI Agent Service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview" }
+      {
+        "label": "Azure AI Agent Service",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview"
+      }
     ],
     "hint": "No concurrency needs only one thread."
   },
@@ -578,7 +680,10 @@
     "answer": 1,
     "explanation": "Hybrid search combines vector and keyword ranking in one capability, so enabling a single hybrid capability meets both needs. Separate indexes would add components.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ],
     "hint": "Hybrid search covers both in one capability."
   },
@@ -595,7 +700,10 @@
     "answer": 2,
     "explanation": "Grounded RAG with citations returns sourced answers, and a grounding gate refuses answers that lack evidence. The other options omit citation or evidence-checking.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ],
     "hint": "Citations plus an evidence gate needs grounded RAG."
   },
@@ -610,7 +718,10 @@
     "answer": 1,
     "explanation": "Client credentials uses the app's own identity and does not carry the user's identity downstream. Use the on-behalf-of flow instead.",
     "docs": [
-      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
     ],
     "hint": "No — downstream user identity needs on-behalf-of."
   },
@@ -627,7 +738,10 @@
     "answer": 3,
     "explanation": "MCP servers using managed identities give secure, auditable access without distributing secrets. Embedding secrets or sharing a super-user token violates the requirements.",
     "docs": [
-      { "label": "Multi-agent patterns", "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns" }
+      {
+        "label": "Multi-agent patterns",
+        "url": "https://learn.microsoft.com/agents/architecture/multi-agent-patterns"
+      }
     ],
     "hint": "No shared secrets plus audit means MCP with managed identity."
   },
@@ -644,7 +758,10 @@
     "answer": 0,
     "explanation": "Streaming with a retry and logging layer satisfies all three needs at once. Batch-only, fire-and-forget, and static responses each omit at least one requirement.",
     "docs": [
-      { "label": "Azure AI Agent Service", "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview" }
+      {
+        "label": "Azure AI Agent Service",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/agents/overview"
+      }
     ],
     "hint": "Streaming, retry, and logging must all be present."
   },
@@ -659,7 +776,10 @@
     "answer": 0,
     "explanation": "Azure OpenAI on your data grounds responses in your documents. It supports returning citations for transparency, so the goal is met.",
     "docs": [
-      { "label": "Azure OpenAI on your data", "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/use-your-data" }
+      {
+        "label": "Azure OpenAI on your data",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/use-your-data"
+      }
     ],
     "hint": "Yes — grounded answers with citations satisfy the goal."
   },
@@ -676,7 +796,10 @@
     "answer": 0,
     "explanation": "Evaluate against a curated set of inputs and quality metrics before production. Telemetry, quotas, and secrets are operational tasks that follow evaluation.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "Evaluate against a curated set before production."
   },
@@ -693,7 +816,10 @@
     "answer": 1,
     "explanation": "You need distributed tracing to see where latency and cost occur across agents before optimizing. Scaling, caching, or model changes are guesses without that data.",
     "docs": [
-      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+      {
+        "label": "Application Insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+      }
     ],
     "hint": "Tracing reveals where time is spent before optimizing."
   },
@@ -710,7 +836,10 @@
     "answer": 2,
     "explanation": "A groundedness evaluation measures whether responses are faithful to evidence, which is the first step to diagnosing unsupported claims. Other options do not measure or fix the issue.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "Measure groundedness before changing parameters."
   },
@@ -724,10 +853,13 @@
       "Drop per-agent logs",
       "Restart the deployment"
     ],
-    "answer": 3,
+    "answer": 0,
     "explanation": "Correlation IDs let you trace an individual request across every agent to isolate the failing step. Aggregate metrics and restarts do not pinpoint the failure.",
     "docs": [
-      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+      {
+        "label": "Application Insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+      }
     ],
     "hint": "Correlation IDs isolate failures across a chain."
   },
@@ -744,7 +876,10 @@
     "answer": 0,
     "explanation": "Quality metrics such as groundedness and relevance come first; cost and latency tuning only matter once quality meets the bar. Logging and region changes are unrelated.",
     "docs": [
-      { "label": "RAG solution design and evaluation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide" }
+      {
+        "label": "RAG solution design and evaluation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/rag/rag-solution-design-and-evaluation-guide"
+      }
     ],
     "hint": "Quality metrics precede cost and latency tuning."
   },
@@ -761,7 +896,10 @@
     "answer": 1,
     "explanation": "Semantic caching matches queries that are similar in meaning, not just identical, so it avoids recomputation for nearly identical questions. A hash-based response cache misses close variants.",
     "docs": [
-      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
     ],
     "hint": "Nearly identical queries need semantic matching."
   },
@@ -778,7 +916,10 @@
     "answer": 2,
     "explanation": "Prompt caching reuses the unchanged prefix across calls to reduce token reprocessing and latency. Semantic and response caching target different problems.",
     "docs": [
-      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
     ],
     "hint": "A stable prompt prefix calls for prompt caching."
   },
@@ -793,7 +934,10 @@
     "answer": 0,
     "explanation": "For deterministic outputs, an exact-key response cache safely returns the stored answer. It eliminates recomputation and preserves correctness.",
     "docs": [
-      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
     ],
     "hint": "Yes — deterministic output suits exact-key response caching."
   },
@@ -810,7 +954,10 @@
     "answer": 3,
     "explanation": "Answer rejection rate reflects quality outcomes such as ungrounded or unsafe responses. Volume, queue, and CPU are operational signals, not quality.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "Quality signal, not volume, means rejection rate."
   },
@@ -825,7 +972,10 @@
     "answer": 1,
     "explanation": "Whether seven days is sufficient depends on your debugging and compliance needs. A blanket seven-day retention may discard evidence you still require.",
     "docs": [
-      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+      {
+        "label": "Azure Monitor overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview"
+      }
     ],
     "hint": "No — retention must match debugging and compliance needs."
   },
@@ -842,7 +992,10 @@
     "answer": 1,
     "explanation": "One staging environment is enough to run evaluations before release. More parallel staging environments increase cost without improving regression coverage.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "One staging environment suffices for pre-release evaluation."
   },
@@ -859,7 +1012,10 @@
     "answer": 2,
     "explanation": "A threshold alert catches sudden spikes, and an anomaly alert catches gradual drift. Two alert types cover both with the fewest rules.",
     "docs": [
-      { "label": "Azure Monitor overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview" }
+      {
+        "label": "Azure Monitor overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/overview"
+      }
     ],
     "hint": "Spikes plus drift need threshold and anomaly alerts."
   },
@@ -876,7 +1032,10 @@
     "answer": 3,
     "explanation": "A single correlation ID carried across all three subagents ties the whole request into one trace. Multiple IDs would fragment it.",
     "docs": [
-      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+      {
+        "label": "Application Insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+      }
     ],
     "hint": "One shared correlation ID keeps a trace whole."
   },
@@ -893,7 +1052,10 @@
     "answer": 0,
     "explanation": "You need one evaluator per quality dimension, so groundedness, relevance, and fluency require three evaluators. Fewer leaves a dimension unchecked.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "Three dimensions need three evaluators."
   },
@@ -907,10 +1069,13 @@
       "Prompt caching only",
       "No caching"
     ],
-    "answer": 1,
+    "answer": 0,
     "explanation": "Response caching keyed on the exact input is correct and inexpensive for deterministic outputs. Semantic caching adds cost for near matches you do not need.",
     "docs": [
-      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
     ],
     "hint": "Exact deterministic input needs exact-key response caching."
   },
@@ -925,7 +1090,10 @@
     "answer": 1,
     "explanation": "Emitting spans with a shared correlation ID is necessary but not sufficient. You must also export and store those spans centrally to view the full trace.",
     "docs": [
-      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+      {
+        "label": "Application Insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+      }
     ],
     "hint": "No — spans must also be exported and stored."
   },
@@ -942,7 +1110,10 @@
     "answer": 3,
     "explanation": "Prompt caching cuts token cost and latency, while tuned prompts preserve accuracy. Larger models, longer prompts, and extra agents each worsen at least one goal.",
     "docs": [
-      { "label": "Microsoft Foundry documentation", "url": "https://learn.microsoft.com/en-us/azure/foundry/" }
+      {
+        "label": "Microsoft Foundry documentation",
+        "url": "https://learn.microsoft.com/en-us/azure/foundry/"
+      }
     ],
     "hint": "Cache plus tuned prompts lowers cost and latency safely."
   },
@@ -959,7 +1130,10 @@
     "answer": 0,
     "explanation": "Groundedness detects hallucination, drift alerts catch quality regression, and latency alerts catch slowness. Infrastructure counters do not measure answer quality.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "Hallucination, drift, and latency each need a signal."
   },
@@ -976,7 +1150,10 @@
     "answer": 2,
     "explanation": "You need an offline benchmark stage and a live-traffic stage before rollout. One stage skips a required check, and more stages add effort without benefit.",
     "docs": [
-      { "label": "Evaluate your agents", "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent" }
+      {
+        "label": "Evaluate your agents",
+        "url": "https://learn.microsoft.com/azure/foundry/observability/quickstarts/quickstart-evaluate-hosted-agent"
+      }
     ],
     "hint": "Offline then live traffic means two stages."
   },
@@ -991,7 +1168,10 @@
     "answer": 0,
     "explanation": "Distributed tracing with correlation IDs stitches each request across agents and tools. That gives end-to-end observability of a live deployment.",
     "docs": [
-      { "label": "Application Insights overview", "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview" }
+      {
+        "label": "Application Insights overview",
+        "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+      }
     ],
     "hint": "Yes — tracing with correlation gives end-to-end visibility."
   },
@@ -1008,7 +1188,10 @@
     "answer": 0,
     "explanation": "Create a scoped identity with least-privilege permissions first so the agent cannot overreach. Deployment and operational tuning follow after identity is secured.",
     "docs": [
-      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
     ],
     "hint": "Least-privilege identity comes before deployment."
   },
@@ -1025,7 +1208,10 @@
     "answer": 1,
     "explanation": "An output guardrail filters or blocks harmful text before it reaches the user. Publishing, caching, or raising limits does not mitigate harmful content.",
     "docs": [
-      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+      {
+        "label": "Azure AI Content Safety",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview"
+      }
     ],
     "hint": "Filter harmful output before it reaches users."
   },
@@ -1042,7 +1228,10 @@
     "answer": 2,
     "explanation": "An input guardrail inspects and blocks malicious prompts at the boundary. Logging, tools, or temperature changes do not stop injection.",
     "docs": [
-      { "label": "Jailbreak detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection" }
+      {
+        "label": "Jailbreak detection",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection"
+      }
     ],
     "hint": "Block malicious prompts with an input guardrail."
   },
@@ -1056,10 +1245,13 @@
       "Cache prior responses",
       "Add a second region"
     ],
-    "answer": 3,
+    "answer": 0,
     "explanation": "A tool-call guardrail validates or approves each proposed tool call before execution. Timeouts, caching, and region changes do not prevent a bad call.",
     "docs": [
-      { "label": "Multiple-agent workflow automation", "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation" }
+      {
+        "label": "Multiple-agent workflow automation",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/idea/multiple-agent-workflow-automation"
+      }
     ],
     "hint": "Verify tool calls before they execute."
   },
@@ -1076,7 +1268,10 @@
     "answer": 0,
     "explanation": "A canary rollout sends the new version to a small subset first, limiting the blast radius. Full rollout, disabling monitoring, or skipping rollback all increase risk.",
     "docs": [
-      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+      {
+        "label": "Cloud design patterns",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/"
+      }
     ],
     "hint": "Limit blast radius with a small canary first."
   },
@@ -1093,7 +1288,10 @@
     "answer": 1,
     "explanation": "The on-behalf-of flow lets the middle tier act on behalf of the signed-in user when calling a downstream API. Client credentials and device code do not carry that user context.",
     "docs": [
-      { "label": "OAuth 2.0 on-behalf-of flow", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow" }
+      {
+        "label": "OAuth 2.0 on-behalf-of flow",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      }
     ],
     "hint": "Preserve the user's identity with on-behalf-of."
   },
@@ -1110,7 +1308,10 @@
     "answer": 2,
     "explanation": "Device code flow lets a user authenticate on a separate device and enter a code. It suits input-constrained devices that cannot show a browser.",
     "docs": [
-      { "label": "OAuth 2.0 device code", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code" }
+      {
+        "label": "OAuth 2.0 device code",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code"
+      }
     ],
     "hint": "No browser and limited input means device code flow."
   },
@@ -1125,7 +1326,10 @@
     "answer": 0,
     "explanation": "Client credentials authenticates the application with its own identity for service-to-service calls with no user. It is the correct choice for a background agent reading a data lake.",
     "docs": [
-      { "label": "OAuth 2.0 client credentials", "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow" }
+      {
+        "label": "OAuth 2.0 client credentials",
+        "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow"
+      }
     ],
     "hint": "Yes — app-only access uses client credentials."
   },
@@ -1139,10 +1343,13 @@
       "Output guardrail only",
       "No guardrails"
     ],
-    "answer": 3,
+    "answer": 0,
     "explanation": "You need both an input guardrail for prompts and an output guardrail for responses. Covering only one side leaves the other exposed.",
     "docs": [
-      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+      {
+        "label": "Azure AI Content Safety",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview"
+      }
     ],
     "hint": "Prompts and responses each need their own guardrail."
   },
@@ -1157,7 +1364,10 @@
     "answer": 1,
     "explanation": "Injected instructions arrive in tool responses. You need a tool-response guardrail, not an output guardrail, to sanitize data before it reaches the model.",
     "docs": [
-      { "label": "Jailbreak detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection" }
+      {
+        "label": "Jailbreak detection",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection"
+      }
     ],
     "hint": "No — tool responses need a tool-response guardrail."
   },
@@ -1174,7 +1384,10 @@
     "answer": 1,
     "explanation": "Each agent needs its own identity for least privilege and independent rotation, so three agents require three managed identities. Sharing or adding identities breaks those goals.",
     "docs": [
-      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
     ],
     "hint": "Three agents need three identities for least privilege."
   },
@@ -1191,7 +1404,10 @@
     "answer": 2,
     "explanation": "Two regions are the minimum needed to survive a full regional outage. More regions add cost without adding resilience beyond the pair.",
     "docs": [
-      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }
+      {
+        "label": "Availability zones overview",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
     ],
     "hint": "A region outage needs a second region."
   },
@@ -1208,7 +1424,10 @@
     "answer": 3,
     "explanation": "Blue/green requires exactly two parallel environments so you can switch traffic and roll back instantly. One environment cannot, and more add cost.",
     "docs": [
-      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+      {
+        "label": "Cloud design patterns",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/"
+      }
     ],
     "hint": "Blue/green needs two parallel environments."
   },
@@ -1225,7 +1444,10 @@
     "answer": 0,
     "explanation": "You need input, tool-call, and output guardrails, so three points cover all three surfaces. Fewer leaves a surface exposed.",
     "docs": [
-      { "label": "Azure AI Content Safety", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" }
+      {
+        "label": "Azure AI Content Safety",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview"
+      }
     ],
     "hint": "Input, tool call, and output need three points."
   },
@@ -1242,7 +1464,10 @@
     "answer": 1,
     "explanation": "A canary release exposes the new version to a small audience first, limits blast radius, and supports rollback. Full cutover and in-place updates do not validate against a small audience.",
     "docs": [
-      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+      {
+        "label": "Cloud design patterns",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/"
+      }
     ],
     "hint": "Small audience first with rollback is canary."
   },
@@ -1257,7 +1482,10 @@
     "answer": 1,
     "explanation": "Key Vault stores secrets securely and managed identities remove embedded credentials. Automatic rotation is not enabled by Key Vault alone, so you must configure rotation yourself.",
     "docs": [
-      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
     ],
     "hint": "No — Key Vault does not auto-rotate by itself."
   },
@@ -1274,7 +1502,10 @@
     "answer": 3,
     "explanation": "A rolling update replaces instances gradually, keeps the app online, and requires no second environment. Blue/green adds an environment, and stop-and-redeploy causes downtime.",
     "docs": [
-      { "label": "Cloud design patterns", "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/" }
+      {
+        "label": "Cloud design patterns",
+        "url": "https://learn.microsoft.com/en-us/azure/architecture/patterns/"
+      }
     ],
     "hint": "Gradual instance replacement, no extra env, is rolling."
   },
@@ -1291,7 +1522,10 @@
     "answer": 0,
     "explanation": "Per-agent managed identities give isolation, independent rotation, and auditable actions. Shared or static credentials break isolation and auditing.",
     "docs": [
-      { "label": "Azure Key Vault overview", "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      {
+        "label": "Azure Key Vault overview",
+        "url": "https://learn.microsoft.com/en-us/azure/key-vault/general/overview"
+      }
     ],
     "hint": "Isolation, rotation, and audit need per-agent identities."
   },
@@ -1306,7 +1540,10 @@
     "answer": 0,
     "explanation": "An input guardrail inspects the prompt at the boundary. It blocks injection before the model processes it, meeting the goal.",
     "docs": [
-      { "label": "Jailbreak detection", "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection" }
+      {
+        "label": "Jailbreak detection",
+        "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/concepts/jailbreak-detection"
+      }
     ],
     "hint": "Yes — input guardrails block injection early."
   },
@@ -1323,7 +1560,10 @@
     "answer": 2,
     "explanation": "A zone-redundant deployment spans three availability zones so the workload stays available when one zone fails. Two zones do not provide that redundancy, and four adds cost.",
     "docs": [
-      { "label": "Availability zones overview", "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview" }
+      {
+        "label": "Availability zones overview",
+        "url": "https://learn.microsoft.com/en-us/azure/reliability/availability-zones-overview"
+      }
     ],
     "hint": "Zone redundancy spans three zones."
   }
